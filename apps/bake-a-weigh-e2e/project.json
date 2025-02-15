@@ -1,0 +1,10 @@
+{
+  "name": "bake-a-weigh-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/bake-a-weigh-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["bake-a-weigh"],
+  "// targets": "to see all targets run: nx show project bake-a-weigh-e2e --web",
+  "targets": {}
+}
