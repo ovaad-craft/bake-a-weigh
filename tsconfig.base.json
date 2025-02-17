@@ -17,7 +17,8 @@
     "paths": {
       "@bake-a-weigh/ingredient-manager": [
         "libs/ingredient-manager/src/index.ts"
-      ]
+      ],
+      "@bake-a-weigh/site-types": ["libs/types/site-types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
