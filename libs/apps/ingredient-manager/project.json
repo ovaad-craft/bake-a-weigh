@@ -1,7 +1,7 @@
 {
   "name": "ingredient-manager",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ingredient-manager/src",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/apps/ingredient-manager/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],

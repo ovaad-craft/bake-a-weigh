@@ -1,8 +1,8 @@
 export default {
   displayName: 'ingredient-manager',
-  preset: '../../jest.preset.js',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/ingredient-manager',
+  coverageDirectory: '../../../coverage/libs/apps/ingredient-manager',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
