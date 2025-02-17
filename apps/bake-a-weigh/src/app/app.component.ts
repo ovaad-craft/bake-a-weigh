@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
 
-import { IngredientManagerComponent } from '../../../../libs/apps/ingredient-manager/src';
+import { IngredientManagerComponent } from '@bake-a-weigh/ingredient-manager';
 
 
 
