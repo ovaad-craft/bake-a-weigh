@@ -1,3 +1,23 @@
+/*
+
+Ingredient Manager Component
+
+Purpose:
+> Organizes ingredients into structure of categories defined by user.
+> Allows user to create new ingredient profiles.
+> Allows user to edit existing ingredient profiles.
+
+Views:
+> Main Menu
+> Ingredient Generator
+> Ingredient Editor
+
+Functionality:
+> Uses router to switch between different views.
+> Loads main menu route by default.
+
+*/
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainMenuComponent } from './screens/main-menu/main-menu.component';
