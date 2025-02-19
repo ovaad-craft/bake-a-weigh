@@ -139,6 +139,69 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/bake-a-weigh/.storybook",
+        "browserTarget": "bake-a-weigh:build",
+        "compodoc": true,
+        "generateStories" : true,
+        "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/bake-a-weigh",
+        "configDir": "apps/bake-a-weigh/.storybook",
+        "browserTarget": "bake-a-weigh:build",
+        "compodoc": true,
+        "generateStories" : true,
+        "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c apps/bake-a-weigh/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "bake-a-weigh:build-storybook",
+        "staticFilePath": "dist/storybook/bake-a-weigh",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "bake-a-weigh:build-storybook:ci"
+        }
+      }
     }
   }
 }
