@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MainMenuComponent } from './screens/main-menu/main-menu.component';
 
 @Component({
-  selector: 'ingredient-manager',
-  imports: [CommonModule],
+  selector: 'lib-ingredient-manager',
+  imports: [CommonModule, MainMenuComponent],
   templateUrl: './ingredient-manager.component.html',
   styleUrl: './ingredient-manager.component.css',
 })
