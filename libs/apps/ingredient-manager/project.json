@@ -1,6 +1,6 @@
 {
   "name": "ingredient-manager",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/apps/ingredient-manager/src",
   "prefix": "lib",
   "projectType": "library",
@@ -10,11 +10,74 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/ingredient-manager/jest.config.ts"
+        "jestConfig": "libs/apps/ingredient-manager/jest.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/apps/ingredient-manager/.storybook",
+        "browserTarget": "ingredient-manager:build-storybook",
+        "compodoc": true,
+        "generateStories" : true,
+        "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ingredient-manager",
+        "configDir": "libs/apps/ingredient-manager/.storybook",
+        "browserTarget": "ingredient-manager:build-storybook",
+        "generateStories" : true,
+        "compodoc": true,
+        "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/apps/ingredient-manager/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "ingredient-manager:build-storybook",
+        "staticFilePath": "dist/storybook/ingredient-manager",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "ingredient-manager:build-storybook:ci"
+        }
+      }
     }
   }
 }
