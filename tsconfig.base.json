@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bake-a-weigh/bw-elements": ["libs/ui/bw-elements/src/index.ts"],
       "@bake-a-weigh/ingredient-manager": [
         "libs/apps/ingredient-manager/src/index.ts"
       ],

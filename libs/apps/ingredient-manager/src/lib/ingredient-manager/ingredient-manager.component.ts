@@ -2,39 +2,48 @@
 
 Ingredient Manager Component
 
+
 Purpose:
 > Organizes ingredients into structure of categories defined by user.
 > Allows user to create new ingredient profiles.
 > Allows user to edit existing ingredient profiles.
 
-Views:
+
+Elements:
+> Router Outlet
+
+
+Views: none
+
+
+Routes:
 > Main Menu
 > Ingredient Generator
-> Ingredient Editor
+
+
+Interactivity: none
+
 
 Functionality:
-> Uses router to switch between different views.
+> Load routes as user navigates.
 > Loads main menu route by default.
+
+
+User Story:
+> User should see the main menu by default when the component loads.
+> User should be able to navigate to each route.
+
+
 
 */
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainMenuComponent } from './screens/main-menu/main-menu.component';
-import { IngredientEditorComponent } from './screens/ingredient-editor/ingredient-editor.component';
-import { IngredientViewerComponent } from './screens/ingredient-viewer/ingredient-viewer.component';
-import { IngredientGeneratorComponent } from './screens/ingredient-generator/ingredient-generator.component';
-import { NutritionProfileGeneratorComponent } from './screens/nutrition-profile-generator/nutrition-profile-generator.component';
 
 @Component({
   selector: 'lib-ingredient-manager',
   imports: [
-    CommonModule,
-    MainMenuComponent,
-    IngredientEditorComponent,
-    IngredientViewerComponent,
-    IngredientGeneratorComponent,
-    NutritionProfileGeneratorComponent
+    CommonModule
 
   ],
   templateUrl: './ingredient-manager.component.html',
