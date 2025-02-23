@@ -3,34 +3,40 @@
 Ingredient Manager
 
 
-Purpose:
-> Allows user to create, edit, remove and organize their ingredient profiles 
+PURPOSE :
+ > Allows user to create, edit, remove and organize their ingredient profiles 
 
 
-Elements:
-> Router Outlet
-    Routes:
-    > Main Menu Screen
-    > Ingredient Generator Screen
+ELEMENTS :
+ > Router Outlet
+     Routes :
+     > Main Menu Screen
+     > Ingredient Generator Screen
 
 
-Views: none
+VIEWS : none
 
 
-Interactivity: none
+INTERACTIVITY : none
 
 
-Functionality:
-> Load routes as user navigates.
-> Loads main menu route by default.
+FUNCTIONALITY :
+ > Load routes as user navigates.
+ > Loads main menu route by default.
 
 
-Routes To: nowhere
+SENDS DATA TO : nowhere
 
 
-User Story:
-> User should see the main menu by default when the component loads.
-> User should be able to navigate to each route.
+GETS DATA FROM : nowhere
+
+
+ROUTES TO : nowhere
+
+
+USER STORY :
+ > User should see the main menu by default when the component loads.
+ > User should be able to navigate to each route.
 
 
 
