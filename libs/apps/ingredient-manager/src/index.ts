@@ -1,1 +1,2 @@
-export * from './lib/ingredient-manager/ingredient-manager.component';
+export * from './lib/ingredient-manager/ingredient-manager.module';
+export * from './lib/ingredient-manager/ingredient-manager-routing.module';

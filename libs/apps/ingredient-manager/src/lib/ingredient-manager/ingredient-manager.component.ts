@@ -39,12 +39,13 @@ User Story:
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'lib-ingredient-manager',
   imports: [
-    CommonModule
-
+    CommonModule,
+    RouterOutlet
   ],
   templateUrl: './ingredient-manager.component.html',
   styleUrl: './ingredient-manager.component.css',
