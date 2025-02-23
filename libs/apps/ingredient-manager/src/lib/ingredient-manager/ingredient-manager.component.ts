@@ -1,24 +1,20 @@
 /*
 
-Ingredient Manager Component
+Ingredient Manager
 
 
 Purpose:
-> Organizes ingredients into structure of categories defined by user.
-> Allows user to create new ingredient profiles.
-> Allows user to edit existing ingredient profiles.
+> Allows user to create, edit, remove and organize their ingredient profiles 
 
 
 Elements:
 > Router Outlet
+    Routes:
+    > Main Menu Screen
+    > Ingredient Generator Screen
 
 
 Views: none
-
-
-Routes:
-> Main Menu
-> Ingredient Generator
 
 
 Interactivity: none
@@ -27,6 +23,9 @@ Interactivity: none
 Functionality:
 > Load routes as user navigates.
 > Loads main menu route by default.
+
+
+Routes To: nowhere
 
 
 User Story:

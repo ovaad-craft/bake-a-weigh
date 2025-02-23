@@ -9,7 +9,6 @@ export const appRoutes: Route[] = [
     },
     {
         path: 'ingredient-manager',
-        //loadComponent: ()=>import('@bake-a-weigh/ingredient-manager').then(a=> a.IngredientManagerModule),
         component: IngredientManagerComponent,
         loadChildren: ()=>import('@bake-a-weigh/ingredient-manager').then(a=> a.IngredientManagerModule)
     }
