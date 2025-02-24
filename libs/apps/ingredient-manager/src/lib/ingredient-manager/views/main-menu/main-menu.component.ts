@@ -35,7 +35,6 @@ USER STORY:
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IngredientEditorComponent } from '../ingredient-editor/ingredient-editor.component';
 
 @Component({
   selector: 'lib-im-main-menu',

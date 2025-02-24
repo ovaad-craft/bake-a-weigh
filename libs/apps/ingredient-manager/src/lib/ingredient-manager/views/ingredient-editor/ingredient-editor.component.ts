@@ -36,7 +36,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'lib-ingredient-editor',
+  selector: 'lib-im-ingredient-editor',
   imports: [CommonModule],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
