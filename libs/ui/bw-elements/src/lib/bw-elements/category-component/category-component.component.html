@@ -1,4 +1,53 @@
-<p>{{CategoryData.name}}</p>
-<lib-bwui-add-button></lib-bwui-add-button>
-<lib-bwui-back-button></lib-bwui-back-button>
-<lib-bwui-category-item></lib-bwui-category-item>
+<section>
+    <article>
+        <h3>{{CurrentItem.name}}</h3>
+        <lib-bwui-edit-button />
+    </article>
+    <section>
+        @if(CurrentItem.subCategories && CurrentItem.subCategories.length){
+            <article>
+                @for (a of CurrentItem.subCategories; track $index) {
+                    <lib-bwui-subcategory-button />
+                }
+            </article>
+        }
+        @if (CurrentItem.items && CurrentItem.items.length) {
+            <article>
+                <lib-bwui-add-button />
+                @for (a of CurrentItem.items; track $index) {
+                    <lib-bwui-category-item />
+                }
+            </article>
+        }
+    </section>
+</section>
+
+
+
+<!--<section>
+    <h3>{{CategoryData.name}}</h3>
+    <article>
+        <lib-bwui-add-button></lib-bwui-add-button>
+
+        @for (item of CategoryData.subCategories; track $index) {
+
+            <lib-bwui-subcategory-button></lib-bwui-subcategory-button>
+
+        }
+    </article>
+
+    <section>
+       
+    </section>
+    <article>
+        <lib-bwui-add-button></lib-bwui-add-button>
+    
+        @for (item of CategoryData.items; track $index) {
+    
+            <lib-bwui-category-item></lib-bwui-category-item>
+    
+        }
+        
+    </article>
+</section>
+<lib-bwui-back-button></lib-bwui-back-button>-->
