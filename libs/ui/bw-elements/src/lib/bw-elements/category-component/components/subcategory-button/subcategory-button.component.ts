@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CategoryIndex } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-bwui-subcategory-button',
@@ -7,4 +8,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './subcategory-button.component.html',
   styleUrl: './subcategory-button.component.css',
 })
-export class SubcategoryButtonComponent {}
+export class SubcategoryButtonComponent {
+  @Input() SubcategoryData! : CategoryIndex;
+}
