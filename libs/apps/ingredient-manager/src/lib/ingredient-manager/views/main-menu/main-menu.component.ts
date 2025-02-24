@@ -25,7 +25,7 @@ FUNCTIONALITY: none
 
 
 USER STORY:
-> User should see all their defined ingredients.
+ > User should see all their defined ingredients.
 
 */
 
