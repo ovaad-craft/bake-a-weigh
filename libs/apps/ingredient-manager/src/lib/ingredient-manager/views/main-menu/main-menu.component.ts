@@ -35,10 +35,11 @@ USER STORY:
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CategoryComponentComponent } from '@bake-a-weigh/bw-elements';
 
 @Component({
   selector: 'lib-im-main-menu',
-  imports: [CommonModule],
+  imports: [CommonModule, CategoryComponentComponent],
   templateUrl: './main-menu.component.html',
   styleUrl: './main-menu.component.css',
 })
