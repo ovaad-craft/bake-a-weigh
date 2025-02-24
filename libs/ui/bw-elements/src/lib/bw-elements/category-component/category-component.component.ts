@@ -54,7 +54,7 @@ USER STORY :
 
 
 
-import { Component, input} from '@angular/core';
+import { Component, Input, input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
@@ -68,5 +68,5 @@ import { CategoryIndex } from '@bake-a-weigh/site-types';
   styleUrl: './category-component.component.css',
 })
 export class CategoryComponentComponent {
-  CategoryData = input<CategoryIndex>();
+  @Input() CategoryData! : CategoryIndex;
 }
