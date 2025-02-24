@@ -31,7 +31,7 @@ USER STORY:
 
 
 
-const DemoCategories : CategoryIndex = {
+const DemoCategory : CategoryIndex = {
   name: 'Salts',
   id: 'salts_category_id1100011',
   items: [
@@ -143,4 +143,6 @@ import { CategoryComponentComponent } from '@bake-a-weigh/bw-elements';
   templateUrl: './main-menu.component.html',
   styleUrl: './main-menu.component.css',
 })
-export class MainMenuComponent {}
+export class MainMenuComponent {
+  DemoData: CategoryIndex = DemoCategory;
+}
