@@ -9,27 +9,36 @@ PURPOSE :
 
 
 ELEMENTS :
+ > Modal Component
 
 
-VIEWS : none
+VIEWS :
+ > Main Menu Component
+ > Ingredient Editor Component
 
 
-INTERACTIVITY : none
+INTERACTIVITY :
+ > Toggles Modal on and off to display Ingredient Editor Component
 
 
-FUNCTIONALITY :
+FUNCTIONALITY : none
 
 
 SENDS DATA TO : nowhere
 
 
-GETS DATA FROM : nowhere
+GETS DATA FROM :
+ > @Output on Main Menu Component to toggle modal on.
+ > @Output on Modal Component to toggle itself off.
 
 
 ROUTES TO : nowhere
 
 
 USER STORY :
+ > User should see the Main Menu Component when this screen loads.
+ > User should see modal when ModalToggle variable is set to "true".
+ > User shouldn't see modal when ModalToggle variable is set to "false".
 
 
 
