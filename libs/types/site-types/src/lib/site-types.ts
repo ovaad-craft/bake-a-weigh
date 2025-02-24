@@ -34,3 +34,17 @@ export interface IngredientProfile{
   //data?      : WhereItGetsInteresting;  // <---
   locations  : IngredientCategory[];
 }
+
+export interface CategoryIndexItem{
+  name: string;
+  id: string;
+  icon?: string;
+  photo?: string;
+}
+
+export interface CategoryIndex{
+  name: string;
+  id: string;
+  items?: CategoryIndexItem[];
+  subCategories?: CategoryIndex[];
+}
