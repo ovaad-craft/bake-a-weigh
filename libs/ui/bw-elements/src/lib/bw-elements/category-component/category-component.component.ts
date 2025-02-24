@@ -54,11 +54,12 @@ USER STORY :
 
 
 
-import { Component } from '@angular/core';
+import { Component, input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { CategoryItemComponent } from './components/category-item/category-item.component';
+import { CategoryIndex } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-category-component',
@@ -66,4 +67,6 @@ import { CategoryItemComponent } from './components/category-item/category-item.
   templateUrl: './category-component.component.html',
   styleUrl: './category-component.component.css',
 })
-export class CategoryComponentComponent {}
+export class CategoryComponentComponent {
+  CategoryData = input<CategoryIndex>();
+}
