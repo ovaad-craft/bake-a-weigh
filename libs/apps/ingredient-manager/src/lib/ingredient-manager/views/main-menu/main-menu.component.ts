@@ -3,35 +3,29 @@
 Main Menu Component
 
 
-Purpose:
-> Displays a list of all user's ingredients.
-> Direct user to ingredient generator if they want to create a new ingredient.
-> Allow user to edit an ingredient's details.
+PURPOSE :
+ > Displays a list of all user's ingredients.
 
 
-Elements:
-> Modal Component
+ELEMENTS :
 
 
-Views:
-> Ingredient Editor
-> Category Manager
+VIEWS :
+ > Category Component
 
 
-Routes To:
-> Ingredient Generator
+ROUTES TO :
+ > Ingredient Generator
 
 
-Interactivity:
-> Toggles Modal on when user clicks on an ingredient.
-> Toggles Modal off when user completes or cancels an edit.
+INTERACTIVITY :
 
 
-Functionality: none
+FUNCTIONALITY: none
 
 
-User Story:
-> User should see a scrollable list of all their ingredients.
+USER STORY:
+> User should see all their defined ingredients.
 
 */
 
