@@ -42,9 +42,7 @@ export interface CategoryIndexItem{
   photo?: string;
 }
 
-export interface CategoryIndex{
-  name: string;
-  id: string;
+export interface CategoryIndex extends CategoryIndexItem{
   items?: CategoryIndexItem[];
   subCategories?: CategoryIndex[];
 }
