@@ -7,7 +7,7 @@
         @if(CurrentItem.subCategories && CurrentItem.subCategories.length){
             <article>
                 @for (a of CurrentItem.subCategories; track $index) {
-                    <lib-bwui-subcategory-button />
+                    <lib-bwui-subcategory-button [SubcategoryData]="a" />
                 }
             </article>
         }
