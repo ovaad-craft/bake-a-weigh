@@ -56,10 +56,13 @@ USER STORY :
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AddButtonComponent } from './components/add-button/add-button.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
+import { CategoryItemComponent } from './components/category-item/category-item.component';
 
 @Component({
   selector: 'lib-category-component',
-  imports: [CommonModule],
+  imports: [CommonModule, AddButtonComponent, BackButtonComponent, CategoryItemComponent],
   templateUrl: './category-component.component.html',
   styleUrl: './category-component.component.css',
 })
