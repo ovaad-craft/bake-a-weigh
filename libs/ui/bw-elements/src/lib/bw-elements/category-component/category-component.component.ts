@@ -78,10 +78,12 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
 })
 export class CategoryComponentComponent implements OnInit {
 
-  @Input() CategoryData! : CategoryIndex;
-  @Output() SelectedItem : EventEmitter<string> = new EventEmitter<string>();
-  CurrentItem!           : CategoryIndex;
-  PrevItems              : CategoryIndex[] = [];
+  @Input() SingleItemName = 'item';
+  @Input() GroupName      = 'category';
+  @Input() CategoryData!  : CategoryIndex;
+  @Output() SelectedItem  : EventEmitter<string> = new EventEmitter<string>();
+  CurrentItem!            : CategoryIndex;
+  PrevItems               : CategoryIndex[] = [];
 
 
 
