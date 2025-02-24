@@ -52,10 +52,11 @@ USER STORY :
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MainMenuComponent } from '../../views/main-menu/main-menu.component';
 
 @Component({
   selector: 'lib-main-menu-screen',
-  imports: [CommonModule],
+  imports: [CommonModule, MainMenuComponent],
   templateUrl: './main-menu-screen.component.html',
   styleUrl: './main-menu-screen.component.css',
 })
