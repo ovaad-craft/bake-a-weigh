@@ -60,10 +60,11 @@ import { AddButtonComponent } from './components/add-button/add-button.component
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { CategoryItemComponent } from './components/category-item/category-item.component';
 import { CategoryIndex } from '@bake-a-weigh/site-types';
+import { SubcategoryButtonComponent } from './components/subcategory-button/subcategory-button.component';
 
 @Component({
   selector: 'lib-category-component',
-  imports: [CommonModule, AddButtonComponent, BackButtonComponent, CategoryItemComponent],
+  imports: [CommonModule, AddButtonComponent, BackButtonComponent, SubcategoryButtonComponent, CategoryItemComponent],
   templateUrl: './category-component.component.html',
   styleUrl: './category-component.component.css',
 })
