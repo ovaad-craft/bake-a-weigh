@@ -53,10 +53,11 @@ USER STORY :
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainMenuComponent } from '../../views/main-menu/main-menu.component';
+import { ModalComponent } from '@bake-a-weigh/bw-elements';
 
 @Component({
-  selector: 'lib-main-menu-screen',
-  imports: [CommonModule, MainMenuComponent],
+  selector: 'lib-im-main-menu-screen',
+  imports: [CommonModule, MainMenuComponent, ModalComponent],
   templateUrl: './main-menu-screen.component.html',
   styleUrl: './main-menu-screen.component.css',
 })

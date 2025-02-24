@@ -1,1 +1,1 @@
-export * from './lib/bw-elements/bw-elements.component';
+export * from './lib/bw-elements/modal/modal.component';

@@ -39,7 +39,7 @@ import { IngredientEditorComponent } from '../ingredient-editor/ingredient-edito
 
 @Component({
   selector: 'lib-im-main-menu',
-  imports: [CommonModule, IngredientEditorComponent],
+  imports: [CommonModule],
   templateUrl: './main-menu.component.html',
   styleUrl: './main-menu.component.css',
 })
