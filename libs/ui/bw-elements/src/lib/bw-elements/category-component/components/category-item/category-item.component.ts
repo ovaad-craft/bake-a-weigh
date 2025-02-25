@@ -1,6 +1,6 @@
 /*
 
-Subcategory Button
+Category Item Component
 
 
 PURPOSE :
