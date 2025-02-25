@@ -25,7 +25,9 @@ INTERACTIVITY :
  > Has "next, prev" functionality for navigating sub categories of items.
 
 
-FUNCTIONALITY : none
+FUNCTIONALITY :
+ > Keep track of user's navigation through deep nested categories.
+ > Update CurrentItem variable to display user's selections in template.
 
 
 SENDS DATA TO :
@@ -40,8 +42,19 @@ ROUTES TO : nowhere
 
 
 USER STORY :
- >
- >
+ > User should see name of current category at the top of the component.
+ > User should see an edit button next to the name of the category.
+ > If the current category has subcategories the subcategory container should be visible.
+ > If the current category has subcategories the item container should be invisible.
+ > User should see an "add" button as the first element in the item container.
+ > If the current category doesn't have any subcategories the subcategory container should be invisible.
+ > If the current category doesn't have any subcategories the item container should be visible.
+ > If the User is at the top level of a category the "back" button should be invisible.
+ > If the User is viewing a subcategory the "back" button should be visible.
+ > When User clicks "edit" button data regarding the path to the current category should be emitted to parent component.
+ > When User clicks on an item data regarding the path to the current item should be emitted to parent component.
+ > When User clicks on a subcategory the CurrentItem should be updated with the selected category's data.
+ > When User clicks "add" button the parent component must be notified.
 
 
 
@@ -62,9 +75,11 @@ import { CategoryIndex, CategoryResponse } from '@bake-a-weigh/site-types';
 import { SubcategoryButtonComponent } from './components/subcategory-button/subcategory-button.component';
 import { EditButtonComponent } from './components/edit-button/edit-button.component';
 
+
+
 @Component({
-  selector: 'lib-category-component',
-  imports: [
+  selector : 'lib-category-component',
+  imports  : [
     CommonModule,
     AddButtonComponent,
     BackButtonComponent,
@@ -72,61 +87,84 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
     CategoryItemComponent,
     EditButtonComponent
   ],
-  templateUrl: './category-component.component.html',
-  styleUrl: './category-component.component.css',
+  templateUrl : './category-component.component.html',
+  styleUrl    : './category-component.component.css',
 })
 export class CategoryComponentComponent implements OnInit {
 
-  @Input() SingleItemName    = 'item';
-  @Input() GroupName         = 'category';
-  @Input() CategoryData!     : CategoryIndex;
+  @Input() SingleItemName = 'item';
+  @Input() GroupName      = 'category';
+  @Input() CategoryData!  : CategoryIndex;
+
   @Output() SelectedItem     : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
   @Output() SelectedCategory : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
-  @Output() AddNewItem       : EventEmitter<void> = new EventEmitter<void>()
-  CurrentItem!               : CategoryIndex;
-  PrevItems                  : CategoryIndex[] = [];
-  CategoryPath               : number[] = [];
+  @Output() AddNewItem       : EventEmitter<void>             = new EventEmitter<void>();
+
+  CurrentItem! : CategoryIndex;
+  PrevItems    : CategoryIndex[] = [];
+  CategoryPath : number[]        = [];
 
 
 
 
-  ngOnInit(){ this.CurrentItem = this.CategoryData }
+  
+  ngOnInit() : void { this.CurrentItem = this.CategoryData; }
 
 
 
  
 
-  goToChildCategory(index : number): void {
+  goToChildCategory( index : number ) : void {
 
     const currentItem : CategoryIndex = this.CurrentItem;
 
-    this.PrevItems.push(this.CurrentItem);
-    this.CurrentItem = currentItem.subCategories![index];
-    this.addToCategoryPath(index);
+
+    this.PrevItems.push( this.CurrentItem );
+
+    this.CurrentItem = currentItem.subCategories![ index ];
+
+    this.addToCategoryPath( index );
+
 
   }
 
+  
+  
   goToParentCategory() : void {
 
-    this.CurrentItem = this.PrevItems[this.PrevItems.length - 1];
+    this.CurrentItem = this.PrevItems[ this.PrevItems.length - 1 ];
+
     this.PrevItems.pop();
+
     this.removeLastFromCategoryPath();
 
   }
 
-  addToCategoryPath(index : number) : void {
-    this.CategoryPath.push(index);
+  
+  
+  private addToCategoryPath(index : number) : void {
+    this.CategoryPath.push( index );
   }
 
-  removeLastFromCategoryPath() : void {
+
+
+  private removeLastFromCategoryPath() : void {
     this.CategoryPath.pop();
   }
 
+
+
   sendSelectedCategory() : void {
-    this.SelectedCategory.emit({categoryPath: this.CategoryPath});
+    this.SelectedCategory.emit( { categoryPath : this.CategoryPath } );
   }
 
+
+
   sendSelectedItem(index : number) : void {
-    this.SelectedItem.emit({categoryPath: this.CategoryPath, itemIndex: index});
+    this.SelectedItem.emit( { categoryPath : this.CategoryPath, itemIndex : index } );
   }
+
+
+
+  
 }
