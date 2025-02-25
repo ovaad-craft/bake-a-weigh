@@ -3,14 +3,14 @@
         <h3>{{CurrentItem.name}}</h3>
         <lib-bwui-edit-button />
         @if (PrevItems.length > 0) {
-            <lib-bwui-back-button />
+            <lib-bwui-back-button (click)="goToParentCategory()" />
         }
     </article>
     <section>
         @if(CurrentItem.subCategories && CurrentItem.subCategories.length){
             <article>
                 @for (a of CurrentItem.subCategories; track $index) {
-                    <lib-bwui-subcategory-button [SubcategoryData]="a" />
+                    <lib-bwui-subcategory-button [SubcategoryData]="a" (click)="goToChildCategory($index)" />
                 }
             </article>
         }
