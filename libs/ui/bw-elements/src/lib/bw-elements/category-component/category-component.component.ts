@@ -90,7 +90,7 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
   templateUrl : './category-component.component.html',
   styleUrl    : './category-component.component.css',
 })
-export class CategoryComponentComponent implements OnInit {
+export class CategoryComponent implements OnInit {
 
   @Input() SingleItemName = 'item';
   @Input() GroupName      = 'category';

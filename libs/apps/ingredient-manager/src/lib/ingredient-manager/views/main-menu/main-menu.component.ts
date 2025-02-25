@@ -135,11 +135,11 @@ const DemoCategory : CategoryIndex = {
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryIndex } from '@bake-a-weigh/site-types';
-import { CategoryComponentComponent } from '@bake-a-weigh/bw-elements';
+import { CategoryComponent } from '@bake-a-weigh/bw-elements';
 
 @Component({
   selector: 'lib-im-main-menu',
-  imports: [CommonModule, CategoryComponentComponent],
+  imports: [CommonModule, CategoryComponent],
   templateUrl: './main-menu.component.html',
   styleUrl: './main-menu.component.css',
 })
