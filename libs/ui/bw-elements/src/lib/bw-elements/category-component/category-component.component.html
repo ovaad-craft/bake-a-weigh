@@ -16,7 +16,7 @@
         }
         @if (CurrentItem.items && CurrentItem.items.length) {
             <article>
-                <lib-bwui-add-button [ItemNoun]="SingleItemName" />
+                <lib-bwui-add-button [ItemNoun]="SingleItemName" (click)="AddNewItem.emit()" />
                 @for (a of CurrentItem.items; track $index) {
                     <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem($index)" />
                 }

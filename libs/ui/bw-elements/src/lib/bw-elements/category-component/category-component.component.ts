@@ -82,6 +82,7 @@ export class CategoryComponentComponent implements OnInit {
   @Input() CategoryData!     : CategoryIndex;
   @Output() SelectedItem     : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
   @Output() SelectedCategory : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
+  @Output() AddNewItem       : EventEmitter<void> = new EventEmitter<void>()
   CurrentItem!               : CategoryIndex;
   PrevItems                  : CategoryIndex[] = [];
   CategoryPath               : number[] = [];
