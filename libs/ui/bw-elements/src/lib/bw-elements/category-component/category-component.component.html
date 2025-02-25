@@ -1,26 +1,56 @@
 <section>
+
+
     <article>
+
         <h3>{{CurrentItem.name}}</h3>
+
         <lib-bwui-edit-button (click)="sendSelectedCategory()" />
-        @if (PrevItems.length > 0) {
+
+
+        @if ( PrevItems.length > 0 ) {
+
             <lib-bwui-back-button (click)="goToParentCategory()" />
+
         }
+
     </article>
+
+
+
     <section>
-        @if(CurrentItem.subCategories && CurrentItem.subCategories.length){
+
+        @if( CurrentItem.subCategories && CurrentItem.subCategories.length ) {
+
             <article>
-                @for (a of CurrentItem.subCategories; track $index) {
+
+                @for ( a of CurrentItem.subCategories; track $index ) {
+
                     <lib-bwui-subcategory-button [SubcategoryData]="a" (click)="goToChildCategory($index)" />
+
                 }
+
             </article>
+
         }
-        @if (CurrentItem.items && CurrentItem.items.length) {
+
+
+        @if ( CurrentItem.items && CurrentItem.items.length ) {
+
             <article>
+
                 <lib-bwui-add-button [ItemNoun]="SingleItemName" (click)="AddNewItem.emit()" />
-                @for (a of CurrentItem.items; track $index) {
+
+                @for ( a of CurrentItem.items; track $index ) {
+                    
                     <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem($index)" />
+                    
                 }
+
             </article>
         }
+
     </section>
+
+
 </section>
