@@ -9,7 +9,7 @@ PURPOSE :
 
 ELEMENTS :
  > Add Item Button
- > Add Category Button
+ > Edit Category Button
  > Category Item Component
  > SubCategory Button
  > Back Button
