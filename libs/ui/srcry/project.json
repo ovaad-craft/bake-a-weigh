@@ -1,0 +1,19 @@
+{
+  "name": "srcry",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/srcry/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/srcry",
+        "main": "libs/ui/srcry/src/index.ts",
+        "tsConfig": "libs/ui/srcry/tsconfig.lib.json",
+        "assets": ["libs/ui/srcry/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
