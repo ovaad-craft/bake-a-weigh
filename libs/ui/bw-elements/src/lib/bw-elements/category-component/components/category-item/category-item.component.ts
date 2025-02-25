@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CategoryIndexItem } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-bwui-category-item',
@@ -7,4 +8,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './category-item.component.html',
   styleUrl: './category-item.component.css',
 })
-export class CategoryItemComponent {}
+export class CategoryItemComponent {
+  @Input() ItemData! : CategoryIndexItem;
+}
