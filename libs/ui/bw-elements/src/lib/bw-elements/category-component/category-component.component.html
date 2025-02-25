@@ -1,7 +1,7 @@
 <section>
     <article>
         <h3>{{CurrentItem.name}}</h3>
-        <lib-bwui-edit-button />
+        <lib-bwui-edit-button (click)="sendSelectedCategory()" />
         @if (PrevItems.length > 0) {
             <lib-bwui-back-button (click)="goToParentCategory()" />
         }
@@ -18,7 +18,7 @@
             <article>
                 <lib-bwui-add-button [ItemNoun]="SingleItemName" />
                 @for (a of CurrentItem.items; track $index) {
-                    <lib-bwui-category-item [ItemData]="a" />
+                    <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem($index)" />
                 }
             </article>
         }

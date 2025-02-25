@@ -20,7 +20,6 @@ VIEWS : none
 
 INTERACTIVITY :
  > Emits data about item up through an @Output when a Category Item is clicked.
- > Triggers an @Output to let parent know when "add category" button is clicked.
  > Emits data about category through an @Output to parent when "add item" button is clicked.
  > Refreshes list of items when a subcategory button is clicked.
  > Has "next, prev" functionality for navigating sub categories of items.
@@ -54,12 +53,12 @@ USER STORY :
 
 
 
-import { Component, EventEmitter, Input, input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { CategoryItemComponent } from './components/category-item/category-item.component';
-import { CategoryIndex, CategoryIndexItem } from '@bake-a-weigh/site-types';
+import { CategoryIndex, CategoryResponse } from '@bake-a-weigh/site-types';
 import { SubcategoryButtonComponent } from './components/subcategory-button/subcategory-button.component';
 import { EditButtonComponent } from './components/edit-button/edit-button.component';
 
@@ -78,12 +77,15 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
 })
 export class CategoryComponentComponent implements OnInit {
 
-  @Input() SingleItemName = 'item';
-  @Input() GroupName      = 'category';
-  @Input() CategoryData!  : CategoryIndex;
-  @Output() SelectedItem  : EventEmitter<string> = new EventEmitter<string>();
-  CurrentItem!            : CategoryIndex;
-  PrevItems               : CategoryIndex[] = [];
+  @Input() SingleItemName    = 'item';
+  @Input() GroupName         = 'category';
+  @Input() CategoryData!     : CategoryIndex;
+  @Output() SelectedItem     : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
+  @Output() SelectedCategory : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
+  CurrentItem!               : CategoryIndex;
+  PrevItems                  : CategoryIndex[] = [];
+  CategoryPath               : number[] = [];
+
 
 
 
@@ -99,6 +101,7 @@ export class CategoryComponentComponent implements OnInit {
 
     this.PrevItems.push(this.CurrentItem);
     this.CurrentItem = currentItem.subCategories![index];
+    this.addToCategoryPath(index);
 
   }
 
@@ -106,6 +109,23 @@ export class CategoryComponentComponent implements OnInit {
 
     this.CurrentItem = this.PrevItems[this.PrevItems.length - 1];
     this.PrevItems.pop();
+    this.removeLastFromCategoryPath();
 
+  }
+
+  addToCategoryPath(index : number) : void {
+    this.CategoryPath.push(index);
+  }
+
+  removeLastFromCategoryPath() : void {
+    this.CategoryPath.pop();
+  }
+
+  sendSelectedCategory() : void {
+    this.SelectedCategory.emit({categoryPath: this.CategoryPath});
+  }
+
+  sendSelectedItem(index : number) : void {
+    this.SelectedItem.emit({categoryPath: this.CategoryPath, itemIndex: index});
   }
 }
