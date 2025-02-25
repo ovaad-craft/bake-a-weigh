@@ -5,11 +5,11 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "mkdir -p dist/libs/srcry",
-          "cp libs/srcry/src/srcry.css dist/libs/srcry/srcry.css"
+          "mkdir dist\\libs\\ui\\srcry 2>nul || echo Folder exists",
+          "copy libs\\ui\\srcry\\src\\srcry.css dist\\libs\\srcry\\srcry.css"
       ],
       "parallel" : false
       },
