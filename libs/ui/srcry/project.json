@@ -5,14 +5,15 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/workspace:run-commands",
       "options": {
-        "outputPath": "dist/libs/ui/srcry",
-        "main": "libs/ui/srcry/src/index.ts",
-        "tsConfig": "libs/ui/srcry/tsconfig.lib.json",
-        "assets": ["libs/ui/srcry/*.md"]
-      }
+        "commands": [
+          "mkdir -p dist/libs/srcry",
+          "cp libs/srcry/src/srcry.css dist/libs/srcry/srcry.css"
+      ],
+      "parallel" : false
+      },
+      "outputs": ["{workspaceRoot}/dist/libs/srcry"]
     }
   },
   "tags": []
