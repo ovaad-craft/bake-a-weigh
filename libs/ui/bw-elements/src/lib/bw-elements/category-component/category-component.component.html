@@ -15,7 +15,7 @@
             <article>
                 <lib-bwui-add-button [ItemNoun]="SingleItemName" />
                 @for (a of CurrentItem.items; track $index) {
-                    <lib-bwui-category-item />
+                    <lib-bwui-category-item [ItemData]="a" />
                 }
             </article>
         }
