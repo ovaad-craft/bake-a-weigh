@@ -13,7 +13,7 @@
         }
         @if (CurrentItem.items && CurrentItem.items.length) {
             <article>
-                <lib-bwui-add-button />
+                <lib-bwui-add-button [ItemNoun]="SingleItemName" />
                 @for (a of CurrentItem.items; track $index) {
                     <lib-bwui-category-item />
                 }
