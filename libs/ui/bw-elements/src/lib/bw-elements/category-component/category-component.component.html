@@ -2,6 +2,9 @@
     <article>
         <h3>{{CurrentItem.name}}</h3>
         <lib-bwui-edit-button />
+        @if (PrevItems.length > 0) {
+            <lib-bwui-back-button />
+        }
     </article>
     <section>
         @if(CurrentItem.subCategories && CurrentItem.subCategories.length){
