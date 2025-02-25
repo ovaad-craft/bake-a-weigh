@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,4 +7,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './add-button.component.html',
   styleUrl: './add-button.component.css',
 })
-export class AddButtonComponent {}
+export class AddButtonComponent {
+  @Input() ItemNoun! : string;
+}
