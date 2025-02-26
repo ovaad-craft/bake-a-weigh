@@ -1,2 +1,8 @@
 <p>main-menu works!</p>
-<lib-category-component [CategoryData]="DemoData" [SingleItemName]="'ingredient'"></lib-category-component>
+<lib-category-component
+    [CategoryData]="DemoData"
+    [SingleItemName]="'ingredient'"
+    (AddNewItem)="handleNewIngredientResponse()"
+    (SelectedItem)="handleSelectedIngredient($event)"
+    (SelectedCategory)="handleSelectedCategory($event)"
+></lib-category-component>

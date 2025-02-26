@@ -137,7 +137,7 @@ const DemoCategory : CategoryIndex = {
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryIndex } from '@bake-a-weigh/site-types';
+import { CategoryIndex, CategoryResponse } from '@bake-a-weigh/site-types';
 import { CategoryComponent } from '@bake-a-weigh/bw-elements';
 
 @Component({
@@ -148,4 +148,16 @@ import { CategoryComponent } from '@bake-a-weigh/bw-elements';
 })
 export class MainMenuComponent {
   DemoData: CategoryIndex = DemoCategory;
+
+  handleNewIngredientResponse(){
+    console.log('new ingredient response');
+  }
+
+  handleSelectedIngredient(ingredient : CategoryResponse) : void {
+    console.log(ingredient);
+  }
+
+  handleSelectedCategory(path : CategoryResponse){
+    console.log(path);
+  }
 }
