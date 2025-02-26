@@ -1,8 +1,10 @@
 <p>main-menu works!</p>
-<lib-category-component
-    [CategoryData]="DemoData"
-    [SingleItemName]="'ingredient'"
-    (AddNewItem)="handleNewIngredientResponse()"
-    (SelectedItem)="handleSelectedIngredient($event)"
-    (SelectedCategory)="handleSelectedCategory($event)"
-></lib-category-component>
+@for (a of DemoData; track $index) {
+
+    <lib-category-component
+        [GroupIndex]="$index"
+        [CategoryData]="a"
+        [SingleItemName]="'ingredient'"
+        (CategoryResponse)="handleSelectedCategory($event)"
+    ></lib-category-component>
+}
