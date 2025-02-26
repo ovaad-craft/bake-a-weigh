@@ -34,7 +34,7 @@ USER STORY:
 const DemoCategory : CategoryIndex = {
   name: 'Salts',
   id: 'salts_category_id1100011',
-  items: [
+  /*items: [
     {
       name: 'some salt 01',
       id: 'some_salt_01',
@@ -50,7 +50,7 @@ const DemoCategory : CategoryIndex = {
       id: 'some_salt_03',
       icon: 'some-icon'
     },
-  ],
+  ],*/
   subCategories: [
     {
       name: 'Sea Salts',
@@ -86,7 +86,8 @@ const DemoCategory : CategoryIndex = {
           id: 'sea_salt_06',
           icon: 'some-icon'
         },
-      ]
+      ],
+      icon: 'some-icon'
     },
     {
       name: 'Kosher Salts',
@@ -102,7 +103,8 @@ const DemoCategory : CategoryIndex = {
           id: 'kosher_salt_02',
           photo: 'some-photo'
         }
-      ]
+      ],
+      icon: 'some-icon'
     },
     {
       name: 'Table Salts',
@@ -123,7 +125,8 @@ const DemoCategory : CategoryIndex = {
           id: 'table_salt_03',
           photo: 'some-photo'
         }
-      ]
+      ],
+      icon: 'some-icon'
     }
   ]
 }
