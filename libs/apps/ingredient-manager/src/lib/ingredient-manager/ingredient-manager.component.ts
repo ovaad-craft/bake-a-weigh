@@ -58,5 +58,5 @@ import { IngredientManagerService } from './ingredient-manager.service';
 })
 export class IngredientManagerComponent {
 
-  private ingredientService = inject(IngredientManagerService);
+  constructor( private ingredientService: IngredientManagerService) {}
 }
