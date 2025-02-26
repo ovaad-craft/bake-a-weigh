@@ -20,7 +20,7 @@
         "libs/apps/ingredient-manager/src/index.ts"
       ],
       "@bake-a-weigh/site-types": ["libs/types/site-types/src/index.ts"],
-      "@bake-a-weigh/srcry": ["libs/ui/srcry/src/index.ts"]
+      "@bake-a-weigh/srcry": ["libs/ui/srcry/src/srcry.css"]
     }
   },
   "exclude": ["node_modules", "tmp"]
