@@ -1,4 +1,4 @@
-<section>
+<section class="srcryBox mainContainer">
 
 
     <article>
@@ -44,7 +44,7 @@
                 @for ( a of CurrentItem.items; track $index ) {
                     
                     <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem($index)" />
-                    
+
                 }
 
             </article>
