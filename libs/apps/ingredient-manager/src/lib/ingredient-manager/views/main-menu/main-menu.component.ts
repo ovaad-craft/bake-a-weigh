@@ -124,6 +124,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryIndex, CategoryResponse } from '@bake-a-weigh/site-types';
 import { CategoryComponent } from '@bake-a-weigh/bw-elements';
+import { IngredientManagerService } from '../../ingredient-manager.service';
 
 @Component({
   selector: 'lib-im-main-menu',
@@ -134,6 +135,10 @@ import { CategoryComponent } from '@bake-a-weigh/bw-elements';
 export class MainMenuComponent {
 
   DemoData: CategoryIndex[] = DemoCategory;
+
+
+
+  constructor( private ingredientService: IngredientManagerService ) {}
 
 
   
