@@ -95,10 +95,9 @@ export class CategoryComponent implements OnInit {
   @Input() SingleItemName = 'item';
   @Input() GroupName      = 'category';
   @Input() CategoryData!  : CategoryIndex;
+  @Input() GroupIndex!    : number;
 
-  @Output() SelectedItem     : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
-  @Output() SelectedCategory : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
-  @Output() AddNewItem       : EventEmitter<void>             = new EventEmitter<void>();
+  @Output() CategoryResponse : EventEmitter<CategoryResponse> = new EventEmitter<CategoryResponse>();
 
   CurrentItem! : CategoryIndex;
   PrevItems    : CategoryIndex[] = [];
@@ -108,7 +107,10 @@ export class CategoryComponent implements OnInit {
 
 
   
-  ngOnInit() : void { this.CurrentItem = this.CategoryData; }
+  ngOnInit() : void {
+    this.CurrentItem = this.CategoryData;
+    this.CategoryPath.push( this.GroupIndex );
+  }
 
 
 
@@ -155,13 +157,13 @@ export class CategoryComponent implements OnInit {
 
 
   sendSelectedCategory() : void {
-    this.SelectedCategory.emit( { categoryPath : this.CategoryPath } );
+    this.CategoryResponse.emit( { categoryPath : this.CategoryPath, responseType: 'category' } );
   }
 
 
 
   sendSelectedItem(index : number) : void {
-    this.SelectedItem.emit( { categoryPath : this.CategoryPath, itemIndex : index } );
+    this.CategoryResponse.emit( { categoryPath : this.CategoryPath, itemIndex : index, responseType: 'item' } );
   }
 
 

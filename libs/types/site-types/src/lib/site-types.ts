@@ -47,7 +47,9 @@ export interface CategoryIndex extends CategoryIndexItem{
   subCategories?: CategoryIndex[];
 }
 
+export type CategoryResponseType = 'category' | 'item' | 'new';
 export interface CategoryResponse{
   categoryPath : number[];
   itemIndex? : number;
+  responseType : CategoryResponseType;
 }

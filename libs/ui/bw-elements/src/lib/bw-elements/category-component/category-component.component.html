@@ -4,7 +4,7 @@
     <article class="headerItem">
 
         <article class="titleContainer">
-            <h3>{{CurrentItem.name}}</h3>
+            <h3>{{ CurrentItem.name }}</h3>
     
             <lib-bwui-edit-button (click)="sendSelectedCategory()" />
         </article>
@@ -29,7 +29,7 @@
 
                 @for ( a of CurrentItem.subCategories; track $index ) {
 
-                    <lib-bwui-subcategory-button [SubcategoryData]="a" (click)="goToChildCategory($index)" />
+                    <lib-bwui-subcategory-button [SubcategoryData]="a" (click)="goToChildCategory( $index )" />
 
                 }
 
@@ -42,11 +42,14 @@
 
             <article class="listContainer">
 
-                <lib-bwui-add-button [ItemNoun]="SingleItemName" (click)="AddNewItem.emit()" />
+                <lib-bwui-add-button
+                    [ItemNoun]="SingleItemName"
+                    (click)="CategoryResponse.emit( { categoryPath : CategoryPath, responseType : 'new' } )"
+                />
 
                 @for ( a of CurrentItem.items; track $index ) {
                     
-                    <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem($index)" />
+                    <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem( $index )" />
 
                 }
 
