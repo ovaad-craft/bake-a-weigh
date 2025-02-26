@@ -42,9 +42,10 @@ USER STORY :
 
 */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { IngredientManagerService } from './ingredient-manager.service';
 
 @Component({
   selector: 'lib-ingredient-manager',
@@ -55,4 +56,7 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './ingredient-manager.component.html',
   styleUrl: './ingredient-manager.component.css',
 })
-export class IngredientManagerComponent {}
+export class IngredientManagerComponent {
+
+  private ingredientService = inject(IngredientManagerService);
+}
