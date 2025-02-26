@@ -1,16 +1,19 @@
 <section class="srcryBox mainContainer">
 
 
-    <article>
+    <article class="headerItem">
 
-        <h3>{{CurrentItem.name}}</h3>
+        <article class="titleContainer">
+            <h3>{{CurrentItem.name}}</h3>
+    
+            <lib-bwui-edit-button (click)="sendSelectedCategory()" />
+        </article>
 
-        <lib-bwui-edit-button (click)="sendSelectedCategory()" />
 
 
         @if ( PrevItems.length > 0 ) {
 
-            <lib-bwui-back-button (click)="goToParentCategory()" />
+            <lib-bwui-back-button (click)="goToParentCategory()" class="backButton" />
 
         }
 
@@ -18,11 +21,11 @@
 
 
 
-    <section>
+    <section class="selectionContainer">
 
         @if( CurrentItem.subCategories && CurrentItem.subCategories.length ) {
 
-            <article>
+            <article class="listContainer">
 
                 @for ( a of CurrentItem.subCategories; track $index ) {
 
@@ -37,7 +40,7 @@
 
         @if ( CurrentItem.items && CurrentItem.items.length ) {
 
-            <article>
+            <article class="listContainer">
 
                 <lib-bwui-add-button [ItemNoun]="SingleItemName" (click)="AddNewItem.emit()" />
 
