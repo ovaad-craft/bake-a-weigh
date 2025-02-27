@@ -42,7 +42,7 @@ USER STORY :
 
 */
 
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { IngredientManagerService } from './ingredient-manager.service';
