@@ -66,8 +66,8 @@ USER STORY :
 
 
 
-import { Injectable } from '@angular/core';
-import { CategoryIndex } from '@bake-a-weigh/site-types';
+import { computed, Injectable, signal, Signal, WritableSignal } from '@angular/core';
+import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/site-types';
 
 
 
@@ -166,4 +166,12 @@ const DemoCategory : CategoryIndex[] = [
   providedIn: 'root'
 })
 export class IngredientManagerService {
+
+  private IngredientData    : IngredientProfile[]               = [];
+  private CategoryKeys      : CategoryKey[]                     = [];
+  private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
+  CategoryIndex             : Signal< CategoryIndex[] >         = computed( ()=> this.CategoryIndexData() );
+
+
+
 }
