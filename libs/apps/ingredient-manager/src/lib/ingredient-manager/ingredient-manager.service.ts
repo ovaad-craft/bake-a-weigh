@@ -73,6 +73,71 @@ import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/sit
 
 
 
+const DemoIngredients : IngredientProfile[] = [
+]
+
+
+
+const DemoKeys : CategoryKey[] = [
+  {
+    name: 'Flours',
+    id: 'flours_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Salts',
+    id: 'salts_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Sugars',
+    id: 'sugars_category_id110001',
+    removable: false
+  },
+  {
+    name: 'Oils',
+    id: 'oils_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Grains',
+    id: 'grains_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Nuts',
+    id: 'nuts_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Seeds',
+    id: 'seeds_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Dairy',
+    id: 'dairy_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Produce',
+    id: 'produce_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Herbs',
+    id: 'herbs_category_id1100011',
+    removable: false
+  },
+  {
+    name: 'Extracts',
+    id: 'extracts_category_id1100011',
+    removable: false
+  }
+]
+
+
+
 const DemoCategory : CategoryIndex[] = [
   {
     name: 'Salts',
