@@ -172,6 +172,9 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( ()=> this.CategoryIndexData() );
 
+  IngredientEditorToggler : WritableSignal< boolean > = signal( false );
+  CategoryEditorToggler   : WritableSignal< boolean > = signal( false );
+
 
 
 }
