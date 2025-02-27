@@ -242,4 +242,64 @@ export class IngredientManagerService {
 
 
 
+
+
+  // loadIngredientData(){}
+
+  // loadCategoryKey(){}
+
+  // loadCategoryIndexData(){}
+
+  // generateCategoryIndexData(){}
+
+
+
+
+
+  // toggleIngredientEditorOn(){}
+
+  // toggleIngredientEditorOff(){}
+
+  // toggleCategoryEditorOn(){}
+
+  // toggleCategoryEditorOff(){}
+
+
+
+
+
+  // addItemToIngredientData(){}
+
+  // editIngredientDataItem(){}
+
+  // removeItemFromIngredientData(){}
+
+
+
+
+  // addCategoryToKey(){}
+
+  // addIngredientToKey(){}
+
+  // editCategoryInKey(){}
+
+  // removeCategoryFromKey(){}
+
+  // removeIngredientFromKey(){}
+
+  
+
+
+  // addCategoryToIndex(){}
+
+  // addIngredientToIndex(){}
+
+  // editCategoryInIndex(){}
+
+  // removeCategoryFromIndex(){}
+
+  // removeIngredientFromIndex(){}
+
+
+
 }

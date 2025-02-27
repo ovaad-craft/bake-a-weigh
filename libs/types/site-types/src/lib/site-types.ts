@@ -2,8 +2,6 @@
   return 'site-types';
 }*/
 
-import { info } from "console";
-
 
 export interface IngredientNote{
   title       : string;
@@ -115,7 +113,7 @@ export interface SeedProfile{
 
 export type DairyType = 'cow' | 'goat';
 
-type DairyForm = 'milk' | 'cream' | 'yogurt' | 'butter' | 'cheese';
+export type DairyForm = 'milk' | 'cream' | 'yogurt' | 'butter' | 'cheese';
 
 export type MilkType = 'low fat' | 'skim' | '2%' | 'whole' | 'butter milk';
 
@@ -161,12 +159,20 @@ export interface CheeseSpecs{
   state     : CheeseState;
 }
 
+export type DairySpecMapType = {
+  'milk'   : MilkSpecs;
+  'cream'  : CreamSpecs;
+  'yogurt' : YogurtSpecs;
+  'butter' : ButterSpecs;
+  'cheese' : CheeseSpecs;
+}
+
 export interface DairyProfile{
   type        : DairyType;
   form        : DairyForm;
-  specs       : MilkSpecs | CreamSpecs | YogurtSpecs | ButterSpecs | CheeseSpecs;
+  specs       : DairySpecMapType[this['form']];
   pasturized  : boolean;
-  homogenized : boolean
+  homogenized : boolean;
 }
 
 
