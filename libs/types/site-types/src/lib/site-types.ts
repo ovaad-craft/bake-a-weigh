@@ -231,7 +231,7 @@ export interface IngredientProfile{
   photo?     : string;
   nutrition? : Nutrition;
   notes?     : IngredientNote[];
-  data?      : IngredientDataType;  // <---
+  data?      : IngredientDataType;
   locations  : IngredientCategory[];
 }
 
@@ -240,6 +240,13 @@ export interface CategoryIndexItem{
   id: string;
   icon?: string;
   photo?: string;
+}
+
+export interface CategoryKey{
+  name: string;
+  id: string;
+  subCategories?: CategoryKey[];
+  itemIds?: string[];
 }
 
 export interface CategoryIndex extends CategoryIndexItem{
