@@ -245,6 +245,7 @@ export interface CategoryIndexItem{
 export interface CategoryKey{
   name: string;
   id: string;
+  removable: boolean;
   subCategories?: CategoryKey[];
   itemIds?: string[];
 }
