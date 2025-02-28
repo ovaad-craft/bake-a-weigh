@@ -2,26 +2,47 @@
   return 'site-types';
 }*/
 
-
+export type WeightType = 'mcg' | 'mg' | 'g' | 'ml';
 export interface IngredientNote{
   title       : string;
   description : string;
 }
 
-export interface Nutrient{
-  name   : string;
+
+export interface ElementWeightType{
   amount : number;
+  weightType: WeightType;
+  percentage? : number;
+}
+
+
+export interface Nutrient extends ElementWeightType{
+  name : string;
+}
+
+export interface NutrientCategory{
+  name?       : string;
+  totalAmount : ElementWeightType;
+  nutrients?  : Nutrient[] | NutrientCategory;
 }
 
 export interface Nutrition{
-  servingSize : number;
-  nutrients   : Nutrient[];
+  servingSize        : ElementWeightType;
+  calories           : number;
+  totalFat?           : NutrientCategory;
+  cholesterol?        : NutrientCategory;
+  sodium?             : NutrientCategory;
+  totalCarbohydrates? : NutrientCategory;
+  protein?            : NutrientCategory;
+  vitaminsAndMinerals?: Nutrient[];
   ingredients : string[];
 }
 
 interface NutrientAmount{
   servingSize : number;
+  servingSizeWeight : WeightType;
   amount      : number;
+  amountWeightType : WeightType;
 }
 
 export interface IngredientCategory{
@@ -208,6 +229,7 @@ export type PlantPart = 'root' | 'stem' | 'leaf' | 'flower' | 'bark' | 'berry' |
 export interface HerbProfile{
   species : string;
   part    : PlantPart | string;
+  // todo : create a herb state type
 }
 
 
@@ -230,6 +252,8 @@ export interface ExtractProfile{
 export type IngredientDataType = FlourProfile | SaltProfile | SugarProfile | GrainProfile | NutProfile | SeedProfile | DairyProfile |
                                  ProduceProfile | OilProfile | HerbProfile | ExtractProfile;
 
+
+ // todo -- create a profile for powders                                
 export interface IngredientProfile{
   name       : string;
   brand      : string;
@@ -238,7 +262,8 @@ export interface IngredientProfile{
   nutrition? : Nutrition;
   notes?     : IngredientNote[];
   data?      : IngredientDataType;
-  locations  : IngredientCategory[];
+  //locations  : IngredientCategory[];
+  locations  : string[];
 }
 
 export interface CategoryIndexItem{
