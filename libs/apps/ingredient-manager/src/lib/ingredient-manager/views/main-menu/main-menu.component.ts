@@ -33,7 +33,7 @@ USER STORY:
 
 
 
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryIndex, CategoryResponse } from '@bake-a-weigh/site-types';
 import { CategoryComponent } from '@bake-a-weigh/bw-elements';
@@ -47,11 +47,13 @@ import { IngredientManagerService } from '../../ingredient-manager.service';
 })
 export class MainMenuComponent {
 
-  DemoData: CategoryIndex[] = DemoCategory;
+  CategoryData: Signal<CategoryIndex[]>;
 
 
 
-  constructor( private ingredientService: IngredientManagerService ) {}
+  constructor( private ingredientService: IngredientManagerService ) {
+    this.CategoryData = this.ingredientService.CategoryIndex;
+  }
 
 
   
