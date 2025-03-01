@@ -2278,48 +2278,53 @@ export class IngredientManagerService {
     const indexData : CategoryIndex[] = [];
 
     key.forEach( a => {
-      const items    : IngredientProfile[] = ingredients.filter( b => b.locations.includes( a.id ) );
-      const category : CategoryIndex = {        
 
-        name          : a.name,
-        id            : a.id,
-        photo         : a.photo               ? a.photo : undefined,
-        icon          : a.icon                ? a.icon  : undefined,
-        items         : items && items.length ? []      : undefined,
-        subCategories : a.subCategories       ? []      : undefined
+      if( !a.hidden ) {
 
-      };
-
-
-
-      if( items.length > 0 ) {
-        const ingredientData : CategoryIndex[] = [];
-
-        items.forEach( c => {
-          const item : CategoryIndex = {
-            name  : c.name,
-            id    : c.id,
-            photo : c.photo ? c.photo : undefined,
-            icon  : c.icon  ? c.icon  : undefined
-          };
-
-          ingredientData.push(item);
+        const items    : IngredientProfile[] = ingredients.filter( b => b.locations.includes( a.id ) );
+        const category : CategoryIndex = {        
+  
+          name          : a.name,
+          id            : a.id,
+          photo         : a.photo               ? a.photo : undefined,
+          icon          : a.icon                ? a.icon  : undefined,
+          items         : items && items.length ? []      : undefined,
+          subCategories : a.subCategories       ? []      : undefined
+  
+        };
+  
+  
+  
+        if( items.length > 0 ) {
+          const ingredientData : CategoryIndex[] = [];
+  
+          items.forEach( c => {
+            const item : CategoryIndex = {
+              name  : c.name,
+              id    : c.id,
+              photo : c.photo ? c.photo : undefined,
+              icon  : c.icon  ? c.icon  : undefined
+            };
+  
+            ingredientData.push(item);
+            
+          });
           
-        });
+          category.items?.push( ...ingredientData.sort( ( a, b ) => a.name.localeCompare( b.name ) ) );
+        }
+  
+  
+  
+        if( a.subCategories && a.subCategories.length ) {
+          const subCategoryData : CategoryIndex[] = this.generateCategoryIndexData( a.subCategories, ingredients )
+                                                    .sort( (d, e ) => d.name.localeCompare( e.name ) );
+                                                    
+          category.subCategories?.push(...subCategoryData)
+        }
+  
+        indexData.push( category );
         
-        category.items?.push( ...ingredientData.sort( ( a, b ) => a.name.localeCompare( b.name ) ) );
       }
-
-
-
-      if( a.subCategories && a.subCategories.length ) {
-        const subCategoryData : CategoryIndex[] = this.generateCategoryIndexData( a.subCategories, ingredients )
-                                                  .sort( (d, e ) => d.name.localeCompare( e.name ) );
-                                                  
-        category.subCategories?.push(...subCategoryData)
-      }
-
-      indexData.push( category );
       
     });
     return indexData.sort( ( a, b ) => a.name.localeCompare( b.name ) );
