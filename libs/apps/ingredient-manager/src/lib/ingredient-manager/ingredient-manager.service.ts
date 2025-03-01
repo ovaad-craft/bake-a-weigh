@@ -2200,13 +2200,87 @@ export class IngredientManagerService {
 
 
 
+  ingredientServiceInit() : void {
+
+    this.loadIngredientData( DemoIngredients );
+
+    this.loadCategoryKey( DemoKeys );
+    
+    this.CategoryIndexData.set( this.generateCategoryIndexData( this.CategoryKeys, this.IngredientData ) );
+
+  }
+
+
+
+
+
   private loadIngredientData( data : IngredientProfile[] ) : void { this.IngredientData = [ ...data ]; }
 
+  
+  
   private loadCategoryKey( key : CategoryKey[] ) : void { this.CategoryKeys = [ ...key ]; }
 
+  
+  
   private loadCategoryIndexData( data : CategoryIndex[] ) : void { this.CategoryIndexData.set( [ ...data ] ); }
 
-  // generateCategoryIndexData(){}
+  
+  
+  
+  
+  generateCategoryIndexData( key : CategoryKey[], ingredients : IngredientProfile[] ) : CategoryIndex[] {
+    const indexData : CategoryIndex[] = [];
+
+    key.forEach( a => {
+      const items    : IngredientProfile[] = ingredients.filter( b => b.locations.includes( a.id ) );
+      const category : CategoryIndex = {        
+
+        name  : a.name,
+        id    : a.id,
+        photo : a.photo               ? a.photo : undefined,
+        icon  : a.icon                ? a.icon  : undefined,
+        items : items && items.length ? []      : undefined
+
+      };
+
+
+
+      if( items.length > 0 ) {
+
+        //console.log (`${ items.length } items`);
+
+        items.forEach( c => {
+          const item : CategoryIndex = {
+            name  : c.name,
+            id    : c.id,
+            photo : c.photo ? c.photo : undefined,
+            icon  : c.icon  ? c.icon  : undefined
+          };
+
+          category.items?.push( item );
+          console.log(category);
+
+        });
+
+      }
+
+
+
+      if( a.subCategories && a.subCategories.length ) {
+        category.subCategories = [ ...this.generateCategoryIndexData( a.subCategories, ingredients ) ]
+      }
+
+      indexData.push( category );
+      
+    });
+    return indexData;
+  }
+
+
+
+  findIngredients(location : string) : IngredientProfile[] {
+    return this.IngredientData.filter(a => a.locations.includes(location))
+  }
 
 
 

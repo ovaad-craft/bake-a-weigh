@@ -269,6 +269,7 @@ export interface IngredientProfile{
   brand      : string;
   id         : string;
   photo?     : string;
+  icon?      : string;
   nutrition? : Nutrition;
   notes?     : IngredientNote[];
   data?      : IngredientDataType;
@@ -286,6 +287,8 @@ export interface CategoryIndexItem{
 export interface CategoryKey{
   name: string;
   id: string;
+  photo? : string;
+  icon? : string;
   removable: boolean;
   subCategories?: CategoryKey[];
   itemIds?: string[];
