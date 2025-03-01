@@ -55,6 +55,16 @@
 
             </article>
         }
+        @else if(!CurrentItem.subCategories && !CurrentItem.items) {
+            <article class="listContainer">
+
+                <lib-bwui-add-button
+                    [ItemNoun]="SingleItemName"
+                    (click)="CategoryResponse.emit( { categoryPath : CategoryPath, responseType : 'new' } )"
+                />
+
+            </article>
+        }
 
     </section>
 
