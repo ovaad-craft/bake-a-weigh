@@ -2281,17 +2281,19 @@ export class IngredientManagerService {
       const items    : IngredientProfile[] = ingredients.filter( b => b.locations.includes( a.id ) );
       const category : CategoryIndex = {        
 
-        name  : a.name,
-        id    : a.id,
-        photo : a.photo               ? a.photo : undefined,
-        icon  : a.icon                ? a.icon  : undefined,
-        items : items && items.length ? []      : undefined
+        name          : a.name,
+        id            : a.id,
+        photo         : a.photo               ? a.photo : undefined,
+        icon          : a.icon                ? a.icon  : undefined,
+        items         : items && items.length ? []      : undefined,
+        subCategories : a.subCategories       ? []      : undefined
 
       };
 
 
 
       if( items.length > 0 ) {
+        const ingredientData : CategoryIndex[] = [];
 
         items.forEach( c => {
           const item : CategoryIndex = {
@@ -2301,22 +2303,26 @@ export class IngredientManagerService {
             icon  : c.icon  ? c.icon  : undefined
           };
 
-          category.items?.push( item );
-
+          ingredientData.push(item);
+          
         });
-
+        
+        category.items?.push( ...ingredientData.sort( ( a, b ) => a.name.localeCompare( b.name ) ) );
       }
 
 
 
       if( a.subCategories && a.subCategories.length ) {
-        category.subCategories = [ ...this.generateCategoryIndexData( a.subCategories, ingredients ) ]
+        const subCategoryData : CategoryIndex[] = this.generateCategoryIndexData( a.subCategories, ingredients )
+                                                  .sort( (d, e ) => d.name.localeCompare( e.name ) );
+                                                  
+        category.subCategories?.push(...subCategoryData)
       }
 
       indexData.push( category );
       
     });
-    return indexData;
+    return indexData.sort( ( a, b ) => a.name.localeCompare( b.name ) );
   }
 
 
