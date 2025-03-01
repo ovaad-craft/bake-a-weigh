@@ -76,8 +76,9 @@ import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/sit
 const DemoIngredients : IngredientProfile[] = [
   {
     name : '100% Pure Raw and Unfiltered Honey',
-    id : 'honey_id1100011',
     brand : `Nate's Honey CO`,
+    id : 'honey_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 21,
@@ -131,6 +132,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Ground Flax Seed',
     brand : 'Badia',
     id : 'flax_seed_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 14,
@@ -238,6 +240,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Sea Salt Fine Crystals',
     brand : 'Roland',
     id : 'sea_salt_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 1.5,
@@ -290,6 +293,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : '100% Puse Sesame Seed Oil',
     brand : 'Shirakiku',
     id : 'black_sesame_seed_oil_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 15,
@@ -343,6 +347,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Thyme',
     brand : 'Chefzito',
     id : 'thyme_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 0.3,
@@ -448,6 +453,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'California Sun Dried Raisins',
     brand : 'SunMaid',
     id : 'raisins_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 40,
@@ -558,6 +564,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'California Golden Raisins',
     brand : 'SunMaid',
     id : 'golden_raisins_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 40,
@@ -668,6 +675,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Iodized Sea Salt',
     brand : 'Morton',
     id : 'iodized_sea_salt_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 1.3,
@@ -722,6 +730,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Monkfruit Sweetener',
     brand : 'Lakanto',
     id : 'monkfruit_sweetener_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 30,
@@ -774,6 +783,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : '100% Extra Virgin Olive Oil',
     brand : 'Iberia',
     id : 'olive_oil_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 15,
@@ -850,6 +860,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Double Active Baking Powder',
     brand : 'Clabber Girl',
     id : 'baking_powder_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 0.6,
@@ -897,6 +908,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : '100% Organic Sesame Seed',
     brand : 'Morton & Bassett Spices',
     id : 'sesame_seed_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 0.8,
@@ -938,6 +950,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Stevia Inte The Raw',
     brand : 'In The Raw',
     id : 'stevia_id1100011',
+    icon : 'some icon',
     nutrition: {
       servingSize : {
         amount : 1,
@@ -995,6 +1008,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Organic Stevia',
     brand : 'Wholesome Sweeteners',
     id : 'organic_stevia_id1100011',
+    icon : 'some icon',
     nutrition: {
       servingSize : {
         amount : 1,
@@ -1057,6 +1071,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Dark Brown Sugar',
     brand : 'Good & Gather',
     id : 'dark_brown_sugar_id1100011',
+    icon : 'some icon',
     nutrition: {
       servingSize : {
         amount : 8,
@@ -1167,6 +1182,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Light Brown Sugar',
     brand : 'Good & Gather',
     id : 'dark_brown_sugar_id1100011',
+    icon : 'some icon',
     nutrition: {
       servingSize : {
         amount : 8,
@@ -1277,6 +1293,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : `Premium Pure Cane Baker's Sugar`,
     brand : 'C&H',
     id : 'bakers_sugar_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 8,
@@ -1333,6 +1350,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Semolina Flour',
     brand : `Bob's Red Mill`,
     id : 'semolina_flour_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 45,
@@ -1473,6 +1491,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Steel Cut Oats',
     brand : 'Quaker Oats',
     id : 'oats_id1100011',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 40,
@@ -1611,6 +1630,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Old Fashioned Rolled Oats',
     brand : 'Quaker Oats',
     id : 'oats_id2200022',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 40,
@@ -1749,6 +1769,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Extra Virgin Olive Oil',
     brand : 'Kroger',
     id : 'olive_oil_id2200022',
+    icon : 'some icon',
     nutrition : {
       servingSize : {
         amount : 15,
@@ -1807,11 +1828,13 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Semolina Flours',
         id : 'semolina_flours_category_id1100011',
+        icon : 'some icon',
         removable : true
       },
       {
         name : '00 Flours',
         id : '00_flours_category_id1100011',
+        icon : 'some icon',
         removable : true
       }
     ]
@@ -1824,16 +1847,19 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Sea Salts',
         id : 'sea_salts_category_id1100011',
+        icon : 'some icon',
         removable: true,
       },
       {
         name : 'Kosher Salts',
         id : 'kosher_salts_category_id1100011',
+        icon : 'some icon',
         removable: true,
       },
       {
         name : 'Table Salts',
         id : 'table_salts_category_id1100011',
+        icon : 'some icon',
         removable: true,
       }
     ]
@@ -1846,21 +1872,25 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Cane Sugars',
         id : 'cane_sugars_category_id1100011',
+        icon : 'some icon',
         removable: true,
         subCategories : [
           {
             name : 'Brown Sugars',
             id : 'brown_sugars_category_id1100011',
+            icon : 'some icon',
             removable: true,
             subCategories : [
               {
                 name : 'Dark Brown Sugars',
                 id : 'dark_brown_sugars_category_id1100011',
+                icon : 'some icon',
                 removable: true
               },
               {
                 name : 'Light Brown Sugars',
                 id : 'light_brown_sugars_category_id1100011',
+                icon : 'some icon',
                 removable: true
               }
             ]
@@ -1868,16 +1898,19 @@ const DemoKeys : CategoryKey[] = [
           {
             name : 'White Sugars',
             id : 'white_sugars_category_id1100011',
+            icon : 'some icon',
             removable: true,
             subCategories : [
               {
                 name : 'Granulated Sugars',
                 id : 'granulated_sugars_category_id1100011',
+                icon : 'some icon',
                 removable: true
               },
               {
                 name : 'Powdered Sugars',
                 id : 'powdered_sugars_category_id1100011',
+                icon : 'some icon',
                 removable: true
               }
             ]
@@ -1894,11 +1927,13 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Sesame Seed Oils',
         id : 'sesame_seed_oils_category_id1100011',
+        icon : 'some icon',
         removable: true,
       },
       {
         name : 'Olive Oils',
         id : 'olive_oils_category_id1100011',
+        icon : 'some icon',
         removable: true,
       }
     ]
@@ -1911,6 +1946,7 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Oats',
         id : 'oats_category_id1100011',
+        icon : 'some icon',
         removable : true
       }
     ]
@@ -1937,34 +1973,39 @@ const DemoKeys : CategoryKey[] = [
     subCategories : [
       {
         name : 'Fruit',
-        id : 'dried_produce_category_id1100011',
+        id : 'fruit_produce_category_id1100011',
+        icon : 'some icon',
         removable: true,
         subCategories : [
           {
             name : 'Dried',
             id : 'dried_fruit_category_id1100011',
+            icon : 'some icon',
             removable: true
           },
           {
             name : 'Fresh',
             id : 'fresh_fruit_category_id1100011',
+            icon : 'some icon',
             removable: true
           }
         ]
       },
       {
         name : 'Vegetables',
-        id : 'fresh_produce_category_id1100011',
+        id : 'vegetable_produce_category_id1100011',
         removable: true,
         subCategories : [
           {
             name : 'Fresh',
             id : 'fresh_vegetables_category_id1100011',
+            icon : 'some icon',
             removable: true
           },
           {
             name : 'Dried',
             id : 'dried_vegetables_category_id1100011',
+            icon : 'some icon',
             removable: true
           }
         ]
@@ -1979,11 +2020,13 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Dried',
         id : 'dried_herbs_category_id1100011',
+        icon : 'some icon',
         removable: true
       },
       {
         name : 'Fresh',
         id : 'fresh_herbs_category_id1100011',
+        icon : 'some icon',
         removable: true
       }
     ]
@@ -2002,16 +2045,19 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Honey',
         id : 'honeys_category_id1100011',
+        icon : 'some icon',
         removable: true,
       },
       {
         name : 'Monkfruit',
         id : 'monkfruit_sweetener_category_id1100011',
+        icon : 'some icon',
         removable: true,
       },
       {
         name : 'Stevia',
         id : 'stevia_sweetener_category_id1100011',
+        icon : 'some icon',
         removable: true,
       }
     ]
@@ -2191,7 +2237,7 @@ export class IngredientManagerService {
   private IngredientData    : IngredientProfile[]               = [];
   private CategoryKeys      : CategoryKey[]                     = [];
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
-  CategoryIndex             : Signal< CategoryIndex[] >         = computed( ()=> this.CategoryIndexData() );
+  CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
   IngredientEditorToggler : WritableSignal< boolean > = signal( false );
   CategoryEditorToggler   : WritableSignal< boolean > = signal( false );
@@ -2205,7 +2251,7 @@ export class IngredientManagerService {
     this.loadIngredientData( DemoIngredients );
 
     this.loadCategoryKey( DemoKeys );
-    
+
     this.CategoryIndexData.set( this.generateCategoryIndexData( this.CategoryKeys, this.IngredientData ) );
 
   }
@@ -2247,8 +2293,6 @@ export class IngredientManagerService {
 
       if( items.length > 0 ) {
 
-        //console.log (`${ items.length } items`);
-
         items.forEach( c => {
           const item : CategoryIndex = {
             name  : c.name,
@@ -2258,7 +2302,6 @@ export class IngredientManagerService {
           };
 
           category.items?.push( item );
-          console.log(category);
 
         });
 
