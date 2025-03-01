@@ -66,7 +66,7 @@ USER STORY :
 
 
 
-import { computed, Injectable, signal, Signal, WritableSignal } from '@angular/core';
+import { computed, Injectable, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/site-types';
 
 
@@ -2200,11 +2200,11 @@ export class IngredientManagerService {
 
 
 
-  // loadIngredientData(){}
+  private loadIngredientData( data : IngredientProfile[] ) : void { this.IngredientData = [ ...data ]; }
 
-  // loadCategoryKey(){}
+  private loadCategoryKey( key : CategoryKey[] ) : void { this.CategoryKeys = [ ...key ]; }
 
-  // loadCategoryIndexData(){}
+  private loadCategoryIndexData( data : CategoryIndex[] ) : void { this.CategoryIndexData.set( [ ...data ] ); }
 
   // generateCategoryIndexData(){}
 
