@@ -236,6 +236,17 @@ export interface HerbProfile{
 
 
 
+export type SweetenerFormType = 'liquid' | 'powder' | 'crystal' | 'block' | 'paste';
+
+export interface SweetenerProfile{
+  type : string;
+  form : SweetenerFormType;
+}
+
+
+
+
+
 export type ExtractType = 'water' | 'alcohol' | 'oil';
 
 export type ExtractState = 'liquid' | 'paste';
