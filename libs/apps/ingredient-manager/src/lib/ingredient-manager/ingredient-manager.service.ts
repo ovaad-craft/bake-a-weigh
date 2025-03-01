@@ -2321,21 +2321,19 @@ export class IngredientManagerService {
 
 
 
-  findIngredients(location : string) : IngredientProfile[] {
-    return this.IngredientData.filter(a => a.locations.includes(location))
-  }
+  //findIngredient(location : string) : IngredientProfile {}
 
 
 
 
 
-  // toggleIngredientEditorOn(){}
+  toggleIngredientEditorOn() : void { this.IngredientEditorToggler.set( true ); }
 
-  // toggleIngredientEditorOff(){}
+  toggleIngredientEditorOff() : void { this.IngredientEditorToggler.set( false ); }
 
-  // toggleCategoryEditorOn(){}
+  toggleCategoryEditorOn() : void { this.CategoryEditorToggler.set( true ); }
 
-  // toggleCategoryEditorOff(){}
+  toggleCategoryEditorOff() : void { this.CategoryEditorToggler.set( false ); }
 
 
 
