@@ -75,7 +75,7 @@ import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/sit
 
 const DemoIngredients : IngredientProfile[] = [
   {
-    name : '100% Pure Rawn and Unfiltered Honey',
+    name : '100% Pure Raw and Unfiltered Honey',
     id : 'honey_id1100011',
     brand : `Nate's Honey CO`,
     nutrition : {
@@ -120,6 +120,10 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       ingredients : [ 'Honey' ]
+    },
+    data : {
+      type : 'honey',
+      state : 'liquid'
     },
     locations : ['honeys_category_id1100011']
   },
@@ -760,6 +764,10 @@ const DemoIngredients : IngredientProfile[] = [
       },
       ingredients : [ 'Monkfruit Extract', 'Erythritol' ]
     },
+    data:{
+      type : 'Monkfruit',
+      form : 'powder'
+    },
     locations : ['monkfruit_sweetener_category_id1100011']
   },
   {
@@ -836,7 +844,955 @@ const DemoIngredients : IngredientProfile[] = [
       type : 'olive',
       state : 'liquid'
     },
+    locations : ['olive_oils_category_id1100011']
+  },
+  {
+    name : 'Double Active Baking Powder',
+    brand : 'Clabber Girl',
+    id : 'baking_powder_id1100011',
+    nutrition : {
+      servingSize : {
+        amount : 0.6,
+        weightType : 'g'
+      },
+      calories : 0,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 60,
+          weightType : 'mg',
+          percentage : 3
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : [
+        'Corn Starch',
+        'Sodium Bicarbonate',
+        'Sodium Aluminum Sulfate',
+        'Monocalcium Phosphate'
+
+      ]
+    },
     locations : ['']
+  },
+  {
+    name : '100% Organic Sesame Seed',
+    brand : 'Morton & Bassett Spices',
+    id : 'sesame_seed_id1100011',
+    nutrition : {
+      servingSize : {
+        amount : 0.8,
+        weightType : 'g'
+      },
+      calories : 0,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : ['Certified 100% Organic Sesame Seed']
+    },
+    locations : ['seeds_category_id1100011']
+  },
+  {
+    name : 'Stevia Inte The Raw',
+    brand : 'In The Raw',
+    id : 'stevia_id1100011',
+    nutrition: {
+      servingSize : {
+        amount : 1,
+        weightType : 'g'
+      },
+      calories : 0,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Trans Fat',
+            amount : 0,
+            weightType : 'g'
+          }
+        ]
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : ['Dextrose', 'Stevia Leaf Extract']
+    },
+    data :{
+      type : 'stevia',
+      form : 'powder'
+    },
+    locations: ['stevia_sweetener_category_id1100011']
+  },
+  {
+    name : 'Organic Stevia',
+    brand : 'Wholesome Sweeteners',
+    id : 'organic_stevia_id1100011',
+    nutrition: {
+      servingSize : {
+        amount : 1,
+        weightType : 'g'
+      },
+      calories : 0,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            amount : 0.8,
+            weightType : 'g'
+          },
+          {
+            name : 'Sugars',
+            amount : 0,
+            weightType : 'g'
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : [
+        'Organic Agave Inulin',
+        'Organic Stevia Extract (Stevia Rebaudiana)',
+        'Silica'
+
+      ]
+    },
+    data :{
+      type : 'stevia',
+      form : 'powder'
+    },
+    locations: ['stevia_sweetener_category_id1100011']
+  },
+  {
+    name : 'Dark Brown Sugar',
+    brand : 'Good & Gather',
+    id : 'dark_brown_sugar_id1100011',
+    nutrition: {
+      servingSize : {
+        amount : 8,
+        weightType : 'g'
+      },
+      calories : 30,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Trans Fat',
+            amount : 0,
+            weightType : 'g'
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'g',
+          percentage : 3
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Total Sugars',
+            amount : 8,
+            weightType : 'g'
+          },
+          {
+            name : 'Added Sugars',
+            amount : 8,
+            weightType : 'g',
+            percentage : 16
+          }
+        ],
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Calcium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Potassium',
+          amount : 0,
+          weightType : 'mg'
+        }
+      ],
+      ingredients : ['Sugar', 'Molasses']
+    },
+    data : {
+      type : 'cane',
+      info : {
+        type : 'dark brown',
+        consistency : 'small granules'
+      },
+      source : 'sugar cane'
+    },
+    locations : ['dark_brown_sugars_category_id1100011']
+  },
+  {
+    name : 'Light Brown Sugar',
+    brand : 'Good & Gather',
+    id : 'dark_brown_sugar_id1100011',
+    nutrition: {
+      servingSize : {
+        amount : 8,
+        weightType : 'g'
+      },
+      calories : 30,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Trans Fat',
+            amount : 0,
+            weightType : 'g'
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'g',
+          percentage : 3
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Total Sugars',
+            amount : 8,
+            weightType : 'g'
+          },
+          {
+            name : 'Added Sugars',
+            amount : 8,
+            weightType : 'g',
+            percentage : 16
+          }
+        ],
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Calcium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Potassium',
+          amount : 0,
+          weightType : 'mg'
+        }
+      ],
+      ingredients : ['Sugar', 'Molasses']
+    },
+    data : {
+      type : 'cane',
+      info : {
+        type : 'light brown',
+        consistency : 'small granules'
+      },
+      source : 'sugar cane'
+    },
+    locations : ['light_brown_sugars_category_id1100011']
+  },
+  {
+    name : `Premium Pure Cane Baker's Sugar`,
+    brand : 'C&H',
+    id : 'bakers_sugar_id1100011',
+    nutrition : {
+      servingSize : {
+        amount : 8,
+        weightType : 'g'
+      },
+      calories : 30,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'g',
+          percentage : 3
+        },
+        nutrients : [
+          {
+            name : 'Total Sugars',
+            amount : 8,
+            weightType : 'g'
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : ['Cane Sugar']
+    },
+    data : {
+      type : 'cane',
+      info : {
+        type : 'white',
+        consistency : 'small granules'
+      },
+      source : 'sugar cane'
+    },
+    locations : ['granulated_sugars_category_id1100011']
+  },
+  {
+    name : 'Semolina Flour',
+    brand : `Bob's Red Mill`,
+    id : 'semolina_flour_id1100011',
+    nutrition : {
+      servingSize : {
+        amount : 45,
+        weightType : 'g'
+      },
+      calories : 160,
+      totalFat : {
+        totalAmount : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 1
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
+          },
+          {
+            name : 'Trans Fat',
+            amount : 0,
+            weightType : 'g',
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 33,
+          weightType : 'g',
+          percentage : 12
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            amount : 1,
+            weightType : 'g',
+            percentage : 4
+          },
+          {
+            name : 'Total Sugars',
+            amount : 0,
+            weightType : 'g'
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 6,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Calcium',
+          amount : 13,
+          weightType : 'mg',
+          percentage : 2
+        },
+        {
+          name : 'Iron',
+          amount : 2,
+          weightType : 'mg',
+          percentage : 10
+        },
+        {
+          name : 'Potassium',
+          amount : 115,
+          weightType : 'mg',
+          percentage : 2
+        },
+        {
+          name : 'Thiamin',
+          amount : 0.5,
+          weightType : 'mg',
+          percentage : 40
+        },
+        {
+          name : 'Riboflavin',
+          amount : 0.2,
+          weightType : 'mcg',
+          percentage : 15
+        },
+        {
+          name : 'Niacin',
+          amount : 4,
+          weightType : 'mg',
+          percentage : 25
+        },
+        {
+          name : 'Folate',
+          amount : 341,
+          weightType : 'mcg',
+          percentage : 90
+        },
+        {
+          name : 'Folic Acid',
+          amount : 119,
+          weightType : 'mcg'
+        }
+      ],
+      ingredients : [
+        'Enriched Durum Flour (Durum Wheat)',
+        'Niacin',
+        'Iron',
+        'Thiamin Mononitrate',
+        'Riboflavin',
+        'Folic Acid'
+      ]
+    },
+    data : {
+      type : 'wheat',
+      classification : '00',
+      bleached : false
+    },
+    locations : ['semolina_flours_category_id1100011']
+  },
+  {
+    name : 'Steel Cut Oats',
+    brand : 'Quaker Oats',
+    id : 'oats_id1100011',
+    nutrition : {
+      servingSize : {
+        amount : 40,
+        weightType : 'g'
+      },
+      calories : 150,
+      totalFat : {
+        totalAmount : {
+          amount : 3,
+          weightType : 'g',
+          percentage : 4
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 0.5,
+            weightType : 'g',
+            percentage : 3
+          },
+          {
+            name : 'Trans Fat',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Polyunsaturated Fat',
+            amount : 1,
+            weightType : 'g',
+          },
+          {
+            name : 'Monounsaturated Fat',
+            amount : 1,
+            weightType : 'g'
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 27,
+          weightType : 'g',
+          percentage : 10
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            amount : 4,
+            weightType : 'g',
+            percentage : 13
+          },
+          {
+            name : 'Soluble Fiber',
+            amount : 2,
+            weightType : 'g'
+          },
+          {
+            name : 'Total Sugars',
+            amount : 1,
+            weightType : 'g'
+          },
+          {
+            name : 'Added Sugars',
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 1.5,
+          weightType : 'mg',
+          percentage : 8
+        },
+        {
+          name : 'Thiamin',
+          amount : 0.2,
+          weightType : 'mg',
+          percentage : 15,
+        },
+        {
+          name : 'Magnesium',
+          amount : 40,
+          weightType : 'mg',
+          percentage : 10
+        },
+        {
+          name : 'Calcium',
+          amount : 20,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 150,
+          weightType : 'mg',
+          percentage : 2
+        },
+        {
+          name : 'Phosphorus',
+          amount : 130,
+          weightType : 'mg'
+        }
+      ],
+      ingredients : ['Steel Cut Oats']
+    },
+    locations : ['oats_category_id1100011']
+  },
+  {
+    name : 'Old Fashioned Rolled Oats',
+    brand : 'Quaker Oats',
+    id : 'oats_id2200022',
+    nutrition : {
+      servingSize : {
+        amount : 40,
+        weightType : 'g'
+      },
+      calories : 150,
+      totalFat : {
+        totalAmount : {
+          amount : 3,
+          weightType : 'g',
+          percentage : 4
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 0.5,
+            weightType : 'g',
+            percentage : 3
+          },
+          {
+            name : 'Trans Fat',
+            amount : 0,
+            weightType : 'g'
+          },
+          {
+            name : 'Polyunsaturated Fat',
+            amount : 1,
+            weightType : 'g',
+          },
+          {
+            name : 'Monounsaturated Fat',
+            amount : 1,
+            weightType : 'g'
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 27,
+          weightType : 'g',
+          percentage : 10
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            amount : 4,
+            weightType : 'g',
+            percentage : 13
+          },
+          {
+            name : 'Soluble Fiber',
+            amount : 2,
+            weightType : 'g'
+          },
+          {
+            name : 'Total Sugars',
+            amount : 1,
+            weightType : 'g'
+          },
+          {
+            name : 'Added Sugars',
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 1.5,
+          weightType : 'mg',
+          percentage : 8
+        },
+        {
+          name : 'Thiamin',
+          amount : 0.2,
+          weightType : 'mg',
+          percentage : 15,
+        },
+        {
+          name : 'Magnesium',
+          amount : 40,
+          weightType : 'mg',
+          percentage : 10
+        },
+        {
+          name : 'Calcium',
+          amount : 20,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 150,
+          weightType : 'mg',
+          percentage : 2
+        },
+        {
+          name : 'Phosphorus',
+          amount : 130,
+          weightType : 'mg'
+        }
+      ],
+      ingredients : ['Whole Grain Rolled Oats']
+    },
+    locations : ['oats_category_id1100011']
+  },
+  {
+    name : 'Extra Virgin Olive Oil',
+    brand : 'Kroger',
+    id : 'olive_oil_id2200022',
+    nutrition : {
+      servingSize : {
+        amount : 15,
+        weightType : 'ml'
+      },
+      calories : 120,
+      totalFat : {
+        totalAmount : {
+          amount : 14,
+          weightType : 'g',
+          percentage : 18
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            amount : 2,
+            weightType : 'g',
+            percentage : 10
+          }
+        ]
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : ['Extra Virgin Olive Oil']
+    },
+    locations : ['olive_oils_category_id1100011']
   }
 ]
 
@@ -846,7 +1802,19 @@ const DemoKeys : CategoryKey[] = [
   {
     name: 'Flours',
     id: 'flours_category_id1100011',
-    removable: false
+    removable: false,
+    subCategories : [
+      {
+        name : 'Semolina Flours',
+        id : 'semolina_flours_category_id1100011',
+        removable : true
+      },
+      {
+        name : '00 Flours',
+        id : '00_flours_category_id1100011',
+        removable : true
+      }
+    ]
   },
   {
     name: 'Salts',
@@ -873,7 +1841,50 @@ const DemoKeys : CategoryKey[] = [
   {
     name: 'Sugars',
     id: 'sugars_category_id110001',
-    removable: false
+    removable: false,
+    subCategories : [
+      {
+        name : 'Cane Sugars',
+        id : 'cane_sugars_category_id1100011',
+        removable: true,
+        subCategories : [
+          {
+            name : 'Brown Sugars',
+            id : 'brown_sugars_category_id1100011',
+            removable: true,
+            subCategories : [
+              {
+                name : 'Dark Brown Sugars',
+                id : 'dark_brown_sugars_category_id1100011',
+                removable: true
+              },
+              {
+                name : 'Light Brown Sugars',
+                id : 'light_brown_sugars_category_id1100011',
+                removable: true
+              }
+            ]
+          },
+          {
+            name : 'White Sugars',
+            id : 'white_sugars_category_id1100011',
+            removable: true,
+            subCategories : [
+              {
+                name : 'Granulated Sugars',
+                id : 'granulated_sugars_category_id1100011',
+                removable: true
+              },
+              {
+                name : 'Powdered Sugars',
+                id : 'powdered_sugars_category_id1100011',
+                removable: true
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     name: 'Oils',
@@ -881,8 +1892,13 @@ const DemoKeys : CategoryKey[] = [
     removable: false,
     subCategories : [
       {
-        name : 'Sesame Seed',
+        name : 'Sesame Seed Oils',
         id : 'sesame_seed_oils_category_id1100011',
+        removable: true,
+      },
+      {
+        name : 'Olive Oils',
+        id : 'olive_oils_category_id1100011',
         removable: true,
       }
     ]
@@ -890,7 +1906,14 @@ const DemoKeys : CategoryKey[] = [
   {
     name: 'Grains',
     id: 'grains_category_id1100011',
-    removable: false
+    removable: false,
+    subCategories : [
+      {
+        name : 'Oats',
+        id : 'oats_category_id1100011',
+        removable : true
+      }
+    ]
   },
   {
     name: 'Nuts',
@@ -977,7 +2000,7 @@ const DemoKeys : CategoryKey[] = [
     removable: false,
     subCategories : [
       {
-        name : 'Honeys',
+        name : 'Honey',
         id : 'honeys_category_id1100011',
         removable: true,
       },
@@ -985,8 +2008,24 @@ const DemoKeys : CategoryKey[] = [
         name : 'Monkfruit',
         id : 'monkfruit_sweetener_category_id1100011',
         removable: true,
+      },
+      {
+        name : 'Stevia',
+        id : 'stevia_sweetener_category_id1100011',
+        removable: true,
       }
     ]
+  },
+  {
+    name : 'Powders',
+    id : 'powders_category_id1100011',
+    removable: true
+  },
+  {
+    name : 'Uncategorized',
+    id : 'uncategorized_category_id1100011',
+    removable: false,
+    hidden: true
   }
 ]
 

@@ -246,7 +246,6 @@ export interface SweetenerProfile{
 
 
 
-
 export type ExtractType = 'water' | 'alcohol' | 'oil';
 
 export type ExtractState = 'liquid' | 'paste';
@@ -261,7 +260,7 @@ export interface ExtractProfile{
 
 
 export type IngredientDataType = FlourProfile | SaltProfile | SugarProfile | GrainProfile | NutProfile | SeedProfile | DairyProfile |
-                                 ProduceProfile | OilProfile | HerbProfile | ExtractProfile;
+                                 ProduceProfile | OilProfile | HerbProfile | ExtractProfile | SweetenerProfile;
 
 
  // todo -- create a profile for powders                                
@@ -290,6 +289,7 @@ export interface CategoryKey{
   removable: boolean;
   subCategories?: CategoryKey[];
   itemIds?: string[];
+  hidden?: boolean;
 }
 
 export interface CategoryIndex extends CategoryIndexItem{
