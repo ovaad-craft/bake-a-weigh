@@ -1,4 +1,12 @@
-<p>main-menu-screen works!</p>
+@if(IngredientEditorToggle()){
+    
+    <lib-bwui-modal (CloseModal)="closeIngredientEditor()">
+
+        <lib-im-ingredient-editor />
+
+    </lib-bwui-modal>
+
+}
+
 <lib-im-main-menu></lib-im-main-menu>
-<!--<lib-bwui-modal></lib-bwui-modal>
-<lib-im-ingredient-editor></lib-im-ingredient-editor>-->
+

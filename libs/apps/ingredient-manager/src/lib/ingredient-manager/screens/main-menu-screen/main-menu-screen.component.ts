@@ -50,11 +50,12 @@ USER STORY :
 
 
 
-import { Component } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainMenuComponent } from '../../views/main-menu/main-menu.component';
 import { ModalComponent } from '@bake-a-weigh/bw-elements';
 import { IngredientEditorComponent } from '../../views/ingredient-editor/ingredient-editor.component';
+import { IngredientManagerService } from '../../ingredient-manager.service';
 
 @Component({
   selector: 'lib-im-main-menu-screen',
@@ -62,4 +63,25 @@ import { IngredientEditorComponent } from '../../views/ingredient-editor/ingredi
   templateUrl: './main-menu-screen.component.html',
   styleUrl: './main-menu-screen.component.css',
 })
-export class MainMenuScreenComponent {}
+export class MainMenuScreenComponent implements OnInit {
+
+  IngredientEditorToggle! : Signal<boolean>;
+  CategoryEditorToggle!   : Signal<boolean>;
+
+
+
+
+
+  constructor( private ingredientService : IngredientManagerService ){}
+
+  ngOnInit() : void {
+      this.IngredientEditorToggle = this.ingredientService.IngredientEditorToggler;
+      this.CategoryEditorToggle   = this.ingredientService.CategoryEditorToggler;
+  }
+
+
+
+
+
+  closeIngredientEditor() : void { this.ingredientService.toggleIngredientEditorOff(); }
+}
