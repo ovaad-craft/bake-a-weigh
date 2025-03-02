@@ -64,7 +64,9 @@ import { IngredientManagerService } from '../../ingredient-manager.service';
   styleUrl: './main-menu-screen.component.css',
 })
 export class MainMenuScreenComponent implements OnInit {
-  ModalToggle! : Signal<boolean>;
+  
+  IngredientEditorToggle! : Signal<boolean>;
+  CategoryEditorToggle!   : Signal<boolean>;
 
 
 
@@ -72,7 +74,8 @@ export class MainMenuScreenComponent implements OnInit {
 
   constructor( private ingredientService : IngredientManagerService ){}
 
-  ngOnInit(): void {
-      this.ModalToggle = this.ingredientService.IngredientEditorToggler;
+  ngOnInit() : void {
+      this.IngredientEditorToggle = this.ingredientService.IngredientEditorToggler;
+      this.CategoryEditorToggle   = this.ingredientService.CategoryEditorToggler;
   }
 }
