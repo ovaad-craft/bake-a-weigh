@@ -1,0 +1,21 @@
+{
+  "name": "srcry",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/srcry/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir dist\\srcry\\ 2>nul || echo Folder exists",
+          "copy /Y libs\\ui\\srcry\\src\\srcry.css dist\\srcry\\srcry.css",
+          "robocopy libs\\ui\\srcry\\src\\assets dist\\srcry\\assets /E || exit 0"
+      ],
+      "parallel" : false
+      },
+      "outputs": ["{workspaceRoot}/dist/libs/srcry"]
+    }
+  },
+  "tags": []
+}

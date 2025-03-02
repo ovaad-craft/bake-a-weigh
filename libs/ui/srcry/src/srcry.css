@@ -1,0 +1,8 @@
+@import url('./assets/utils/gr_portions.css');
+@import url('./assets/utils/core_calculations.css');
+@import url('./assets/libraries/box_size_library.css');
+@import url('./assets/libraries/nudging_library.css');
+@import url('./assets/libraries/line_size_library.css');
+@import url('./assets/libraries/text_size_library.css');
+@import url('./assets/classes/srcryBox_class.css');
+@import url('./assets/classes/srcryTxt_class.css');

@@ -1,0 +1,78 @@
+:host{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.mainContainer{
+    display: grid;
+    --baseSize-w: var(--loMed-2-8);
+    --baseSize-w-nudge-chunk: 11;
+    --edgeChase-w: var(--tiny-1-4);
+    --chaseStop-w: var(--large-1-3);
+    height: auto;
+    grid-auto-rows: min-content;
+    background-color: blanchedalmond;
+}
+
+.headerItem{
+    grid-area: 1/1/2/2;
+    display: grid;
+    grid-template-columns: var(--xTiny-2-3) 1fr var(--xTiny-2-3);
+    width: 100%;
+    height: auto;
+    background-color: beige;
+}
+
+.titleContainer{
+    grid-area: 1/2/2/3;
+    display: grid;
+    height: min-content;
+    grid-template-columns: max-content auto;
+    width: auto;
+    place-self: center;
+    column-gap: var(--line-thick);
+    padding: var(--line-bold) 0;
+    align-items: center;
+}
+
+.backButton{
+    grid-area: 1/3/2/4;
+}
+
+h3{
+    font-size: var(--text-subtitle-2);
+}
+
+.selectionContainer{
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+/*.listContainer:has(> *:nth-child(1)){
+    --items: 1;
+}
+.listContainer:has(> *:nth-child(2)){
+    --items: 2;
+}
+.listContainer:has(> *:nth-child(3)){
+    --items: 3;
+}
+.listContainer:has(> *:nth-child(4)){
+    --items: 4;
+}
+.listContainer:has(> *:nth-child(5)){
+    --items: 5;
+}*/
+
+.listContainer{
+    display: grid;
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(var(--xSmall-1-3), 1fr));
+    place-self: center;
+    place-items: center;
+    gap: var(--line-thick);
+    padding: var(--xTiny-1-3) 0;
+}

@@ -1,0 +1,15 @@
+<section class="mainContainer">
+    @if (ItemData.photo) {
+        <!--<img [src]="ItemData.photo" alt="" />-->
+        <div style="width: 60px; height: 60px; display: grid; place-items: center; background-color: blanchedalmond;">
+            <h6>photo</h6>
+        </div>
+    }
+    @if (ItemData.icon) {
+        <!--<img [src]="ItemData.photo" alt="" />-->
+        <div style="width: 60px; height: 60px; display: grid; place-items: center; background-color: rgb(205, 248, 255);">
+            <h6>icon</h6>
+        </div>
+    }
+    <h5>{{ItemData.name}}</h5>
+</section>

@@ -1,0 +1,74 @@
+<section class="srcryBox mainContainer">
+
+
+    <article class="headerItem">
+
+        <article class="titleContainer">
+            <h3>{{ CurrentItem.name }}</h3>
+    
+            <lib-bwui-edit-button (click)="sendSelectedCategory()" />
+        </article>
+
+
+
+        @if ( PrevItems.length > 0 ) {
+
+            <lib-bwui-back-button (click)="goToParentCategory()" class="backButton" />
+
+        }
+
+    </article>
+
+
+
+    <section class="selectionContainer">
+
+        @if( CurrentItem.subCategories && CurrentItem.subCategories.length ) {
+
+            <article class="listContainer">
+
+                @for ( a of CurrentItem.subCategories; track $index ) {
+
+                    <lib-bwui-subcategory-button [SubcategoryData]="a" (click)="goToChildCategory( $index )" />
+
+                }
+
+            </article>
+
+        }
+
+
+        @if ( CurrentItem.items && CurrentItem.items.length ) {
+
+            <article class="listContainer">
+
+                <lib-bwui-add-button
+                    [ItemNoun]="SingleItemName"
+                    (click)="CategoryResponse.emit( { categoryPath : CategoryPath, responseType : 'new' } )"
+                />
+
+                @for ( a of CurrentItem.items; track $index ) {
+                    
+                    <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem( $index )" />
+
+                }
+
+            </article>
+        }
+        @else if( !CurrentItem.subCategories && !CurrentItem.items ) {
+
+            <article class="listContainer">
+
+                <lib-bwui-add-button
+                    [ItemNoun]="SingleItemName"
+                    (click)="CategoryResponse.emit( { categoryPath : CategoryPath, responseType : 'new' } )"
+                />
+
+            </article>
+            
+        }
+
+    </section>
+
+
+</section>

@@ -1,0 +1,9 @@
+@for (a of CategoryData(); track $index) {
+
+    <lib-category-component
+        [GroupIndex]="$index"
+        [CategoryData]="a"
+        [SingleItemName]="'ingredient'"
+        (CategoryResponse)="handleSelectedCategory($event)"
+    ></lib-category-component>
+}
