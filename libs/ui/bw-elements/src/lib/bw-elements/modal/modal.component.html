@@ -1,1 +1,15 @@
-<p>modal works!</p>
+<article class="closeButton"
+    (click)="CloseModal.emit()"
+    (keydown)="CloseModal.emit()"
+    tabindex="0"
+>
+    <!-- add an svg icon -->
+    <h5>close</h5>
+    
+</article>
+
+<section class="mainContainer">
+
+    <ng-content></ng-content>
+
+</section>
