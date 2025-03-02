@@ -157,13 +157,26 @@ export class CategoryComponent implements OnInit {
 
 
   sendSelectedCategory() : void {
-    this.CategoryResponse.emit( { categoryPath : this.CategoryPath, responseType: 'category' } );
+
+    this.CategoryResponse.emit({
+      categoryPath : this.CategoryPath,
+      responseType : 'category',
+      categoryId   : this.CategoryData.id
+    });
+
   }
 
 
 
-  sendSelectedItem(index : number) : void {
-    this.CategoryResponse.emit( { categoryPath : this.CategoryPath, itemIndex : index, responseType: 'item'} );
+  sendSelectedItem(index : number, id : string) : void {
+
+    this.CategoryResponse.emit({
+      categoryPath : this.CategoryPath,
+      responseType : 'item',
+      itemIndex    : index,
+      ingredientId : id
+    });
+
   }
 
 
