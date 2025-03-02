@@ -2244,6 +2244,8 @@ export class IngredientManagerService {
   
   IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
   CategoryEditorToggler   : Signal< boolean > = computed( () => this.CategoryEditorToggleData() );
+  
+  IngredientToEdit : IngredientProfile = { id :'', name : '', brand : '', locations : [] };
 
 
 
@@ -2355,7 +2357,27 @@ export class IngredientManagerService {
 
   // addItemToIngredientData(){}
 
-  // editIngredientDataItem(){}
+  
+
+  editIngredientDataItem( itemId : string ) : void {
+
+    const ingredient : IngredientProfile | undefined = this.IngredientData.find( a => a.id === itemId );
+
+
+    if( ingredient ) {
+      
+      this.IngredientToEdit = ingredient;
+      this.toggleIngredientEditorOn();
+
+    }
+
+    else { console.error( `Ingredient with id ${ itemId } not found` ); }
+
+  }
+
+
+
+  getIngredientToEdit() : IngredientProfile { return this.IngredientToEdit; }
 
   // removeItemFromIngredientData(){}
 
