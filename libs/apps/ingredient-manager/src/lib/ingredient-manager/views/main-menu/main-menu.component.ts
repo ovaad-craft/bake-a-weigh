@@ -62,17 +62,22 @@ export class MainMenuComponent {
   handleCategoryResponse( response : CategoryResponse ) : void {
 
     switch( response.responseType ) {
+
       case 'new':
         this.handleNewIngredientResponse( response );
         break;
+
+
       case 'item':
-        if( response.ingredientId ) {
-          this.ingredientService.editIngredientDataItem( response.ingredientId );
-        }
+        if( response.ingredientId )
+        this.ingredientService.editIngredientDataItem( response.ingredientId );
         break;
+
+
       case 'category':
         this.handleSelectedCategory( response );
         break;
+
     }
 
   }
