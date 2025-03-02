@@ -2239,8 +2239,11 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
-  IngredientEditorToggler : WritableSignal< boolean > = signal( false );
-  CategoryEditorToggler   : WritableSignal< boolean > = signal( false );
+  private IngredientEditorToggleData : WritableSignal< boolean > = signal( true );
+  private CategoryEditorToggleData   : WritableSignal< boolean > = signal( false );
+  
+  IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
+  CategoryEditorToggler   : Signal< boolean > = computed( () => this.CategoryEditorToggleData() );
 
 
 
@@ -2323,7 +2326,7 @@ export class IngredientManagerService {
         }
   
         indexData.push( category );
-        
+
       }
       
     });
@@ -2338,13 +2341,13 @@ export class IngredientManagerService {
 
 
 
-  toggleIngredientEditorOn() : void { this.IngredientEditorToggler.set( true ); }
+  toggleIngredientEditorOn() : void { this.IngredientEditorToggleData.set( true ); }
 
-  toggleIngredientEditorOff() : void { this.IngredientEditorToggler.set( false ); }
+  toggleIngredientEditorOff() : void { this.IngredientEditorToggleData.set( false ); }
 
-  toggleCategoryEditorOn() : void { this.CategoryEditorToggler.set( true ); }
+  toggleCategoryEditorOn() : void { this.CategoryEditorToggleData.set( true ); }
 
-  toggleCategoryEditorOff() : void { this.CategoryEditorToggler.set( false ); }
+  toggleCategoryEditorOff() : void { this.CategoryEditorToggleData.set( false ); }
 
 
 
