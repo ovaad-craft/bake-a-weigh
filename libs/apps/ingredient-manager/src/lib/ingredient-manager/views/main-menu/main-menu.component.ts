@@ -70,7 +70,7 @@ export class MainMenuComponent {
         break;
       case 'category':
         this.handleSelectedCategory( response );
-        break
+        break;
     }
 
   }
@@ -78,18 +78,18 @@ export class MainMenuComponent {
 
 
   handleNewIngredientResponse(path : CategoryResponse){
-    console.log(path);
+    console.log('new ingredient: ',path);
   }
 
 
 
   handleSelectedIngredient(ingredient : CategoryResponse) : void {
-    console.log(ingredient);
+    console.log('edit ingredient: ',ingredient);
   }
 
 
 
   handleSelectedCategory(path : CategoryResponse){
-    console.log(path);
+    console.log('category: ',path);
   }
 }
