@@ -66,7 +66,9 @@ export class MainMenuComponent {
         this.handleNewIngredientResponse( response );
         break;
       case 'item':
-        this.handleSelectedIngredient( response );
+        if( response.ingredientId ) {
+          this.ingredientService.editIngredientDataItem( response.ingredientId );
+        }
         break;
       case 'category':
         this.handleSelectedCategory( response );
