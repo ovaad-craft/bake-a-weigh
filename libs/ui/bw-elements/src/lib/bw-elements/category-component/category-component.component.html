@@ -49,7 +49,7 @@
 
                 @for ( a of CurrentItem.items; track $index ) {
                     
-                    <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem( $index )" />
+                    <lib-bwui-category-item [ItemData]="a" (click)="sendSelectedItem( $index, a.id )" />
 
                 }
 

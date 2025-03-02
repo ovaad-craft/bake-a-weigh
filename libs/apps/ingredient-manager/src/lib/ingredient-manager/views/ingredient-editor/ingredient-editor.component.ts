@@ -32,8 +32,10 @@ User Story:
 
 
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IngredientManagerService } from '../../ingredient-manager.service';
+import { IngredientProfile } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-im-ingredient-editor',
@@ -41,4 +43,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
 })
-export class IngredientEditorComponent {}
+export class IngredientEditorComponent implements OnInit{
+
+  Ingredient! : IngredientProfile;
+
+  constructor( private ingredientService : IngredientManagerService ){}
+
+  ngOnInit(): void {
+      this.Ingredient = this.ingredientService.getIngredientToEdit();
+  }
+
+}

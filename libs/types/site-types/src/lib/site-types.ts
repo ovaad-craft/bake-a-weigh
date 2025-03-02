@@ -304,5 +304,7 @@ export type CategoryResponseType = 'category' | 'item' | 'new';
 export interface CategoryResponse{
   categoryPath : number[];
   itemIndex? : number;
+  ingredientId? : string;
+  categoryId? : string;
   responseType : CategoryResponseType;
 }
