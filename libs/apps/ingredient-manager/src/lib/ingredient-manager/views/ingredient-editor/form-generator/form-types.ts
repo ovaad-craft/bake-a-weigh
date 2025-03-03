@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { FlourClassification, FlourType, WeightType } from "@bake-a-weigh/site-types";
+import { FlourClassification, FlourType, SaltConsistency, SaltType, WeightType } from "@bake-a-weigh/site-types";
 
 
 
@@ -81,4 +81,15 @@ export interface FlourProfileGroup{
     maxHydration?  : FormControl< number | null >;
     protein?       : FormGroup< NutrientTrackerGroup >;
 
+}
+
+
+
+export interface SaltProfileGroup{
+
+    type        : FormControl< SaltType | null >;
+    consistency : FormControl< SaltConsistency | null >;
+    iodized     : FormControl< boolean | null >;
+    sodium?     : FormGroup< NutrientTrackerGroup >;
+    
 }

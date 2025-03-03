@@ -79,14 +79,14 @@ export interface FlourProfile{
 
 
 
-export type SaltType = 'table salt' | 'sea salt' | 'kosher salt';
+export type SaltType = 'table salt' | 'sea salt' | 'kosher salt' | 'other';
 
-export type SaltConsistency = 'extra fine' | 'fine' | 'coarse' | 'fine crystal' | 'crystal';
+export type SaltConsistency = 'extra fine' | 'fine' | 'coarse' | 'fine crystal' | 'crystal' | 'other';
 
 export interface SaltProfile{
-  type        : SaltType | string;
-  consistency : SaltConsistency | string;
-  sodium?     : NutrientAmount;
+  type        : SaltType;
+  consistency : SaltConsistency;
+  sodium?     : NutrientTracker;
   iodized     : boolean;
 }
 
