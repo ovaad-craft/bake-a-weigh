@@ -56,11 +56,11 @@ export interface IngredientCategory{
 
 export type FlourType = 'wheat' | 'whole wheat' | 'rice' | 'rye' | 'barley' | 'spelt' | 'buckwheat' | 'other'; //there's more but I'm still compiling the list.
 
-export type FlourClassification = 'cake' | 'pastry' | 'all purpose' | 'bread' | '0' | '00' | '000' | '0000';
+export type FlourClassification = 'cake' | 'pastry' | 'all purpose' | 'bread' | '0' | '00' | '000' | '0000' | 'other';
 
 export interface FlourProfile{
-  type           : FlourType | string;
-  classification : FlourClassification | string;
+  type           : FlourType;
+  classification : FlourClassification;
   maxHydration?  : number;
   protein?       : NutrientAmount;
   bleached       : boolean;
