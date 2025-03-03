@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl }         from "@angular/forms";
 import { CheeseHydrationType } from "@bake-a-weigh/site-types";
 
 
@@ -12,5 +12,5 @@ export function createCheeseHydrationControl( defaultHydration? : CheeseHydratio
     return new FormControl< CheeseHydrationType >( defaultHydration ? defaultHydration : 'dry' );
 
 
-    
+
 }
