@@ -2239,7 +2239,7 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
-  private IngredientEditorToggleData : WritableSignal< boolean > = signal( false );
+  private IngredientEditorToggleData : WritableSignal< boolean > = signal( true );
   private CategoryEditorToggleData   : WritableSignal< boolean > = signal( false );
   
   IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
