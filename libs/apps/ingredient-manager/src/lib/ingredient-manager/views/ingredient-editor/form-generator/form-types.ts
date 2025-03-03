@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { WeightType } from "@bake-a-weigh/site-types";
+import { FlourClassification, FlourType, WeightType } from "@bake-a-weigh/site-types";
 
 
 
@@ -54,9 +54,31 @@ export interface NutrientGroupType extends ElementWeightGroupType{
 
 
 
+export interface NutrientTrackerGroup{
+
+    name        : FormControl< string | null >;
+    servingSize : FormGroup< WeightMeasurementPrimative >;
+    amount      : FormGroup< WeightMeasurementPrimative >;
+
+}
+
+
+
 export interface IngredientCategoryGroup{
 
     name : FormControl< string | null>;
     subCategory? : FormGroup< IngredientCategoryGroup >;
+
+}
+
+
+
+export interface FlourProfileGroup{
+
+    type           : FormControl< FlourType | null >;
+    classification : FormControl< FlourClassification | null >;
+    bleached       : FormControl< boolean | null >;
+    maxHydration?  : FormControl< number | null >;
+    protein?       : FormGroup< NutrientTrackerGroup >;
 
 }

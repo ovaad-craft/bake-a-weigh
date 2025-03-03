@@ -38,7 +38,18 @@ export interface Nutrition{
   ingredients : string[];
 }
 
-interface NutrientAmount{
+export interface WeightMeasurement{
+  amount : number;
+  weightType : WeightType;
+}
+
+export interface NutrientTracker{
+  name : string;
+  servingSize : WeightMeasurement;
+  amount : WeightMeasurement;
+}
+
+export interface NutrientAmount{
   servingSize : number;
   servingSizeWeight : WeightType;
   amount      : number;
@@ -62,7 +73,7 @@ export interface FlourProfile{
   type           : FlourType;
   classification : FlourClassification;
   maxHydration?  : number;
-  protein?       : NutrientAmount;
+  protein?       : NutrientTracker;
   bleached       : boolean;
 }
 

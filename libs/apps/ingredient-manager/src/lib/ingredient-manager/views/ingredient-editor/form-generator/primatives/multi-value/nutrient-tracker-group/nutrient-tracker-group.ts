@@ -7,7 +7,7 @@ import { createElementWeightGroup } from "../element-weight-group/element-weight
 
 
 
-export function createNutrientGroup( defaultSettings? : NutrientTracker ) : FormGroup< NutrientTrackerGroup > {
+export function createNutrientTrackerGroup( defaultSettings? : NutrientTracker ) : FormGroup< NutrientTrackerGroup > {
 
 
 
