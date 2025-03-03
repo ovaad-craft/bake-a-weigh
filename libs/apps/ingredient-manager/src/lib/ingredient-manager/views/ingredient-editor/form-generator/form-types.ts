@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { WeightType } from "@bake-a-weigh/site-types";
 
 
@@ -11,6 +11,24 @@ import { WeightType } from "@bake-a-weigh/site-types";
 
 
 
+export interface AmountPrimative{
+
+    amount : FormControl< number | null >
+
+}
+
+
+
+export interface WeightTypePrimative{
+
+    weightType  : FormControl< WeightType | null >
+
+}
+
+export interface WeightMeasurementPrimative extends AmountPrimative, WeightTypePrimative{}
+
+
+
 export interface IngredientNoteFormGroup{
 
     title       : FormControl< string >,
@@ -20,10 +38,8 @@ export interface IngredientNoteFormGroup{
 
 
 
-export interface ElementWeightGroupType{
+export interface ElementWeightGroupType extends WeightMeasurementPrimative{
 
-    amount      : FormControl< number | null >,
-    weightType  : FormControl< WeightType | null >,
     percentage? : FormControl< number | null >
 
 }
@@ -33,5 +49,14 @@ export interface ElementWeightGroupType{
 export interface NutrientGroupType extends ElementWeightGroupType{
 
     name : FormControl< string | null >
+
+}
+
+
+
+export interface IngredientCategoryGroup{
+
+    name : FormControl< string | null>;
+    subCategory? : FormGroup< IngredientCategoryGroup >;
 
 }
