@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms";
-import { SugarType }    from "@bake-a-weigh/site-types";
+import { SugarType }   from "@bake-a-weigh/site-types";
 
 
 
