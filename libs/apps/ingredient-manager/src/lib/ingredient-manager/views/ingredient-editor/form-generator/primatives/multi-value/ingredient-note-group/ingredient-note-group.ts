@@ -1,11 +1,6 @@
 import { FormControl, FormGroup } from "@angular/forms";
 import { IngredientNote }         from "@bake-a-weigh/site-types";
-
-
-export interface IngredientNoteFormGroup{
-    title       : FormControl< string >,
-    description : FormControl< string >
-}
+import { IngredientNoteFormGroup } from "../../../form-types";
 
 
 
