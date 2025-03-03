@@ -152,7 +152,7 @@ export type CheeseTextureType = 'smooth/creamy' | 'smooth/chunky' | 'crumbly' | 
 
 export type CheeseHydrationType = 'very wet' | 'wet' | 'damp' | 'dry' | 'very dry';
 
-export type CheeseState = 'spreadable' | 'shredded' | 'crumbled' | 'block' | 'ball';
+export type CheeseState = 'spreadable' | 'shredded' | 'crumbled' | 'block' | 'ball' | 'sliced';
 
 export interface MilkSpecs{
   type  : MilkType;
