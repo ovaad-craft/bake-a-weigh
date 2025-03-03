@@ -54,7 +54,7 @@ export interface IngredientCategory{
 
 
 
-export type FlourType = 'wheat' | 'whole wheat' | 'rice' | 'rye'; //there's more but I'm still compiling the list.
+export type FlourType = 'wheat' | 'whole wheat' | 'rice' | 'rye' | 'barley' | 'spelt' | 'buckwheat' | 'other'; //there's more but I'm still compiling the list.
 
 export type FlourClassification = 'cake' | 'pastry' | 'all purpose' | 'bread' | '0' | '00' | '000' | '0000';
 
