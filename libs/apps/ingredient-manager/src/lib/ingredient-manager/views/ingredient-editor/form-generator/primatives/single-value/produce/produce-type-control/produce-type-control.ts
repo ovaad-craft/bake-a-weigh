@@ -5,7 +5,7 @@ import { ProduceType } from "@bake-a-weigh/site-types";
 
 
 
-export function createProduceTypeControl( defaultProduceType : ProduceType ) : FormControl< ProduceType | null > {
+export function createProduceTypeControl( defaultProduceType? : ProduceType ) : FormControl< ProduceType | null > {
 
 
 
