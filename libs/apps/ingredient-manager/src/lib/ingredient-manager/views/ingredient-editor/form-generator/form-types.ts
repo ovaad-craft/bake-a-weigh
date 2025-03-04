@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { ButterType, CaneType, CreamState, CreamType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
+import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
 
 
 
@@ -186,5 +186,15 @@ export interface YogurtSpecsGroup {
 export interface ButterSpecsGroup {
 
     type : FormControl< ButterType | null >;
+
+}
+
+
+
+export interface CheeseSpecsGroup {
+
+    kind      : FormControl< string | null >;
+    texture   : FormControl< CheeseTextureType | null >;
+    hydration : FormControl< CheeseHydrationType | null >;
 
 }

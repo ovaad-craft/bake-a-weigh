@@ -5,7 +5,7 @@ import { CheeseTextureType } from "@bake-a-weigh/site-types";
 
 
 
-export function createCheeseTextureTypeControl( defaultTexture : CheeseTextureType ) : FormControl< CheeseTextureType | null > {
+export function createCheeseTextureTypeControl( defaultTexture? : CheeseTextureType ) : FormControl< CheeseTextureType | null > {
 
 
 
