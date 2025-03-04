@@ -1,8 +1,8 @@
 import { FormGroup }               from "@angular/forms";
 import { CreamSpecs }              from "@bake-a-weigh/site-types";
-import { CreamSpecsGroup }         from "../../../form-types";
-import { createCreamTypeControl }  from "../../single-value/dairy/cream-type-control/cream-type-control";
-import { createCreamStateControl } from "../../single-value/dairy/cream-state-control/cream-state-control";
+import { CreamSpecsGroup }         from "../../../../form-types";
+import { createCreamTypeControl }  from "../../../single-value/dairy/cream-type-control/cream-type-control";
+import { createCreamStateControl } from "../../../single-value/dairy/cream-state-control/cream-state-control";
 
 
 

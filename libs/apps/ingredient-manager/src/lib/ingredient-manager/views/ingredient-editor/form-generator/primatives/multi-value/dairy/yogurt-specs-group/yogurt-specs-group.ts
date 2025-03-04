@@ -1,7 +1,7 @@
 import { FormControl, FormGroup }  from "@angular/forms";
 import { YogurtSpecs }             from "@bake-a-weigh/site-types";
-import { YogurtSpecsGroup }        from "../../../form-types";
-import { createYogurtTypeControl } from "../../single-value/dairy/yogurt-type-control/yogurt-type-control";
+import { YogurtSpecsGroup }        from "../../../../form-types";
+import { createYogurtTypeControl } from "../../../single-value/dairy/yogurt-type-control/yogurt-type-control";
 
 
 

@@ -3,7 +3,7 @@ import { DairyProfile }           from "@bake-a-weigh/site-types";
 import { DairyProfileGroup }      from "../../form-types";
 import { createDairyTypeControl } from "../../primatives/single-value/dairy/dairy-type-control/dairy-type-control";
 import { createDairyFormControl } from "../../primatives/single-value/dairy/dairy-form-control/dairy-form-control";
-import { createDairySpecGroup }   from "../../primatives/multi-value/dairy-spec-group/dairy-spec-group";
+import { createDairySpecGroup }   from "../../primatives/multi-value/dairy/dairy-spec-group/dairy-spec-group";
 
 
 

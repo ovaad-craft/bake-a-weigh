@@ -15,10 +15,12 @@ export function createSaltProfileGroup( defaultProfile? : SaltProfile ) : FormGr
 
     return new FormGroup< SaltProfileGroup >({
 
-        type        : createSaltTypeControl( defaultProfile ? defaultProfile.type : undefined ),
+        type        : createSaltTypeControl(        defaultProfile ? defaultProfile.type        : undefined ),
         consistency : createSaltConsistencyControl( defaultProfile ? defaultProfile.consistency : undefined ),
-        iodized     : new FormControl< boolean | null >( defaultProfile ? defaultProfile.iodized : null  ),
-        sodium      : ( defaultProfile?.sodium ? createNutrientTrackerGroup( defaultProfile?.sodium ) : undefined )
+        sodium      : ( defaultProfile?.sodium ?
+                            createNutrientTrackerGroup( defaultProfile?.sodium ) : undefined
+                      ),
+        iodized     : new FormControl< boolean | null >( defaultProfile ? defaultProfile.iodized : null  )
 
     });
 

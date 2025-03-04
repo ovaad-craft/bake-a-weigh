@@ -1,8 +1,8 @@
 import { FormGroup }                       from "@angular/forms";
 import { CaneInfo, SugarInfo, SugarType }                       from "@bake-a-weigh/site-types";
-import { CaneInfoGroup, SugarInfoPartial } from "../../../form-types";
+import { CaneInfoGroup, SugarInfoPartial } from "../../../../form-types";
 import { createCaneInfoGroup }             from "../cane-info-group/cane-info-group";
-import { createSugarInfoPartialGroup }     from "../../single-value/sugar/sugar-info-group/sugar-info-group";
+import { createSugarInfoPartialGroup }     from "../../../single-value/sugar/sugar-info-group/sugar-info-group";
 
 
 

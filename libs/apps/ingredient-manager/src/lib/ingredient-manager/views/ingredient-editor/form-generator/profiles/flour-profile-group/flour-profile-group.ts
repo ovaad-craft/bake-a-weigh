@@ -22,7 +22,9 @@ export function createFlourProfileGroup( defaultProfile? : FlourProfile ) : Form
                                                          ),
         bleached     : new FormControl< boolean | null >( defaultProfile ? defaultProfile.bleached : null ),
         protein      : ( defaultProfile ? createNutrientTrackerGroup( defaultProfile.protein ) : undefined ),
-        maxHydration : ( defaultProfile?.maxHydration ? new FormControl< number | null >( defaultProfile.maxHydration ) : undefined )
+        maxHydration : ( defaultProfile?.maxHydration ?
+                            new FormControl< number | null >( defaultProfile.maxHydration ) : undefined
+                       )
 
     });
 

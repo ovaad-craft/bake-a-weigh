@@ -264,3 +264,19 @@ export interface ExtractProfileGroup{
     state : FormControl< ExtractState | null >;
     
 }
+
+
+
+export type IngredientDataGroupType =
+    FlourProfileGroup   |
+    SaltProfileGroup    |
+    SugarProfileGroup   |
+    GrainProfileGroup   |
+    NutProfileGroup     |
+    SpeciesPrimative    |
+    DairyProfileGroup   |
+    ProduceProfileGroup |
+    OilProfileGroup     |
+    HerbProfileGroup    |
+    ExtractProfileGroup |
+    SweetenerProfileGroup;

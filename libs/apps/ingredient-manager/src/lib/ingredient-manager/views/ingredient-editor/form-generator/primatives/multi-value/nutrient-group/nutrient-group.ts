@@ -14,7 +14,7 @@ export function createNutrientGroup( defaultGroup? : Nutrient ) : FormGroup< Nut
     return new FormGroup< NutrientGroupType >({
 
         name       : new FormControl< string | null >( defaultGroup ? defaultGroup.name : null ),
-        amount     : new FormControl< number | null >( defaultGroup ? defaultGroup.amount : null),
+        amount     : new FormControl< number | null >( defaultGroup ? defaultGroup.amount : null ),
         weightType : createWeightControl( defaultGroup ? defaultGroup.weightType : undefined ),
         percentage : ( defaultGroup?.percentage ? new FormControl< number | null >( defaultGroup.percentage ) : undefined )
 

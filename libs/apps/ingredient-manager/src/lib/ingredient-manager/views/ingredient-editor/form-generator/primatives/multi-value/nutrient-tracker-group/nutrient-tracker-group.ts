@@ -14,8 +14,8 @@ export function createNutrientTrackerGroup( defaultSettings? : NutrientTracker )
     return new FormGroup< NutrientTrackerGroup >({
 
         name        : new FormControl< string | null >( defaultSettings ? defaultSettings.name : null ),
-        servingSize : createElementWeightGroup( defaultSettings ? defaultSettings.servingSize : undefined ),
-        amount      : createElementWeightGroup( defaultSettings ? defaultSettings.amount : undefined )
+        servingSize : createElementWeightGroup( defaultSettings ? defaultSettings.servingSize  : undefined ),
+        amount      : createElementWeightGroup( defaultSettings ? defaultSettings.amount       : undefined )
         
     });
 
