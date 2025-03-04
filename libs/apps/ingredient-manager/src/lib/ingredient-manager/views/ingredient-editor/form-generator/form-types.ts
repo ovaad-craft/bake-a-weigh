@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
+import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
 
 
 
@@ -244,5 +244,14 @@ export interface HerbProfileGroup {
 
     species : FormControl< string | null >;
     part    : FormControl< PlantPart | null >;
+
+}
+
+
+
+export interface SweetenerProfileGroup{
+
+    type : FormControl< string | null >;
+    form : FormControl< SweetenerFormType | null >;
     
 }
