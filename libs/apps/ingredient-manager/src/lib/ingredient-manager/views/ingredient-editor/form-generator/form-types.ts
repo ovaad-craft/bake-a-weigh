@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormArray, FormControl, FormGroup } from "@angular/forms";
 import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, ExtractState, ExtractType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
 
 
@@ -49,6 +49,16 @@ export interface ElementWeightGroupType extends WeightMeasurementPrimative{
 export interface NutrientGroupType extends ElementWeightGroupType{
 
     name : FormControl< string | null >
+
+}
+
+
+
+export interface NutrientCategoryGroup{
+
+    name?       : FormControl< string | null >;
+    totalAmount : FormGroup< ElementWeightGroupType >;
+    nutrients?  : FormArray< FormGroup< NutrientGroupType > >;
 
 }
 
