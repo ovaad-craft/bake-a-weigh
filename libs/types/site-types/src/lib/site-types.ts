@@ -23,7 +23,7 @@ export interface Nutrient extends ElementWeightType{
 export interface NutrientCategory{
   name?       : string;
   totalAmount : ElementWeightType;
-  nutrients?  : Nutrient[] | NutrientCategory;
+  nutrients?  : NutrientCategory[];
 }
 
 export interface Nutrition{
