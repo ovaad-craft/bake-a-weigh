@@ -124,7 +124,7 @@ export interface SugarProfile{
 
 
 export interface GrainProfile{
-  protein        : NutrientAmount;
+  protein?       : NutrientTracker;
   maxObsorption? : number;
 }
 

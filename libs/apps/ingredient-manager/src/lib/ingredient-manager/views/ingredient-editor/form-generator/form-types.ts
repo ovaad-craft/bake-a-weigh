@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { CaneType, FlourClassification, FlourType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType } from "@bake-a-weigh/site-types";
+import { CaneType, FlourClassification, FlourType, NutrientAmount, NutrientTracker, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType } from "@bake-a-weigh/site-types";
 
 
 
@@ -114,10 +114,6 @@ export interface CaneInfoGroup extends SugarInfoPartial {
 
 export type SugarInfoGroupMap = {
 
-    /*'cane'    : FormGroup< CaneInfoGroup >;
-    'coconut' : FormGroup< SugarInfoPartial >;
-    'palm'    : FormGroup< SugarInfoPartial >;
-    'other'   : FormGroup< SugarInfoPartial >;*/
     'cane'    : FormGroup< CaneInfoGroup >;
     'coconut' : FormGroup< SugarInfoPartial >;
     'palm'    : FormGroup< SugarInfoPartial >;
@@ -132,5 +128,14 @@ export interface SugarProfileGroup {
     type   : FormControl< SugarType | null >;
     info   : FormGroup< SugarInfoPartial > | FormGroup< CaneInfoGroup >;
     source : FormControl< string | null >;
+
+}
+
+
+
+export interface GrainProfileGroup {
+
+    protein?       : FormGroup< NutrientTrackerGroup >;
+    maxObsorption? : FormControl< number | null >;
 
 }
