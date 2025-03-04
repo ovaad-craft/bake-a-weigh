@@ -294,15 +294,31 @@ export interface ExtractProfileGroup{
 
 
 export type IngredientDataGroupType =
-    FlourProfileGroup   |
-    SaltProfileGroup    |
-    SugarProfileGroup   |
-    GrainProfileGroup   |
-    NutProfileGroup     |
-    SpeciesPrimative    |
-    DairyProfileGroup   |
-    ProduceProfileGroup |
-    OilProfileGroup     |
-    HerbProfileGroup    |
-    ExtractProfileGroup |
-    SweetenerProfileGroup;
+    FormGroup< FlourProfileGroup >   |
+    FormGroup< SaltProfileGroup >    |
+    FormGroup< SugarProfileGroup >   |
+    FormGroup< GrainProfileGroup >   |
+    FormGroup< NutProfileGroup >     |
+    FormGroup< SpeciesPrimative >    |
+    FormGroup< DairyProfileGroup >   |
+    FormGroup< ProduceProfileGroup > |
+    FormGroup< OilProfileGroup >     |
+    FormGroup< HerbProfileGroup >    |
+    FormGroup< ExtractProfileGroup > |
+    FormGroup< SweetenerProfileGroup >;
+
+
+
+    export interface IngredientForm {
+
+        name       : FormControl< string | null >;
+        brand      : FormControl< string | null >;
+        id         : FormControl< string | null >;
+        photo?     : FormControl< string | null >;
+        icon?      : FormControl< string | null >;
+        nutrition? : FormGroup< NutritionGroup >;
+        notes?     : FormArray< FormGroup< IngredientNoteFormGroup > >;
+        data?      : IngredientDataGroupType;
+        locations  : FormArray< FormControl< string | null > >;
+
+    }

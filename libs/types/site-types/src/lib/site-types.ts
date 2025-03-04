@@ -281,8 +281,13 @@ export type IngredientDataType = FlourProfile | SaltProfile | SugarProfile | Gra
                                  ProduceProfile | OilProfile | HerbProfile | ExtractProfile | SweetenerProfile;
 
 
- // todo -- create a profile for powders                                
-export interface IngredientProfile{
+
+export type IngredientProfileType = 'flour' | 'salt' | 'sugar' | 'grain' | 'nut' | 'seed' | 'dairy' | 'produce' | 'oil' | 'herb' | 'extract' | 'sweetener' | 'custom';
+
+
+
+// todo -- create a profile for powders                                
+export interface IngredientProfile {
   name       : string;
   brand      : string;
   id         : string;
@@ -290,6 +295,7 @@ export interface IngredientProfile{
   icon?      : string;
   nutrition? : Nutrition;
   notes?     : IngredientNote[];
+  profileType : IngredientProfileType;
   data?      : IngredientDataType;
   //locations  : IngredientCategory[];
   locations  : string[];

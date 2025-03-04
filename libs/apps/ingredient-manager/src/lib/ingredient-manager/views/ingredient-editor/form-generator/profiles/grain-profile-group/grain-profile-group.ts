@@ -13,8 +13,8 @@ export function createGrainProfileGroup( defaultProfile? : GrainProfile ) : Form
 
     return new FormGroup< GrainProfileGroup >({
 
-        protein       : createNutrientTrackerGroup( defaultProfile?.protein ? defaultProfile.protein : undefined ),
-        maxObsorption : new FormControl< number | null >( defaultProfile?.maxObsorption ? defaultProfile.maxObsorption : null )
+        protein       : createNutrientTrackerGroup(       defaultProfile?.protein       ? defaultProfile.protein       : undefined ),
+        maxObsorption : new FormControl< number | null >( defaultProfile?.maxObsorption ? defaultProfile.maxObsorption : null      )
 
     });
 
