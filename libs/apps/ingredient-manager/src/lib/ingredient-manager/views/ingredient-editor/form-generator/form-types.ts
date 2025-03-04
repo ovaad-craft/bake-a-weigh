@@ -140,11 +140,15 @@ export interface GrainProfileGroup {
 
 }
 
+export interface SpeciesPrimative {
+
+    species :  FormControl< string  | null >;
+
+}
 
 
-export interface NutProfileGroup {
+export interface NutProfileGroup extends SpeciesPrimative {
 
-    species : FormControl< string  | null >;
     roasted : FormControl< boolean | null >;
     salted  : FormControl< boolean | null >;
 
