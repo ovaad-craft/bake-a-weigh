@@ -1,7 +1,7 @@
 import { FormControl, FormGroup }     from "@angular/forms";
 import { GrainProfile }               from "@bake-a-weigh/site-types";
 import { GrainProfileGroup }          from "../../form-types";
-import { createNutrientTrackerGroup } from "../../primatives/multi-value/nutrient-tracker-group/nutrient-tracker-group";
+import { createNutrientTrackerGroup } from "../../primatives/multi-value/nutrition/nutrient-tracker-group/nutrient-tracker-group";
 
 
 

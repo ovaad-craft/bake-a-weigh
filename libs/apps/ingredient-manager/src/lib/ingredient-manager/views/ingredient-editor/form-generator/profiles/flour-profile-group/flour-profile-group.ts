@@ -3,7 +3,7 @@ import { FlourProfile }                     from "@bake-a-weigh/site-types";
 import { createFlourTypeControl }           from "../../primatives/single-value/flour/flour-type-control/flour-type-control";
 import { createFlourClassificationControl } from "../../primatives/single-value/flour/flour-class-control/flour-class-control";
 import { FlourProfileGroup }                from "../../form-types";
-import { createNutrientTrackerGroup }       from "../../primatives/multi-value/nutrient-tracker-group/nutrient-tracker-group";
+import { createNutrientTrackerGroup }       from "../../primatives/multi-value/nutrition/nutrient-tracker-group/nutrient-tracker-group";
 
 
 

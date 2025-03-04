@@ -1,6 +1,6 @@
 import { FormArray, FormGroup }        from "@angular/forms";
 import { NutrientCategory }            from "@bake-a-weigh/site-types";
-import { NutrientCategoryGroup }       from "../../../form-types";
+import { NutrientCategoryGroup }       from "../../../../form-types";
 import { createNutrientCategoryGroup } from "../nutrient-category-group/nutrient-category-group";
 
 

@@ -3,7 +3,7 @@ import { SaltProfile }                  from "@bake-a-weigh/site-types";
 import { SaltProfileGroup }             from "../../form-types";
 import { createSaltTypeControl }        from "../../primatives/single-value/salt/salt-type-control/salt-type-control";
 import { createSaltConsistencyControl } from "../../primatives/single-value/salt/salt-consistency-control/salt-consistency-control";
-import { createNutrientTrackerGroup }   from "../../primatives/multi-value/nutrient-tracker-group/nutrient-tracker-group";
+import { createNutrientTrackerGroup }   from "../../primatives/multi-value/nutrition/nutrient-tracker-group/nutrient-tracker-group";
 
 
 

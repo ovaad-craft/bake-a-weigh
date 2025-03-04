@@ -1,8 +1,8 @@
 import { FormControl, FormGroup }           from "@angular/forms";
 import { NutrientCategory }                 from "@bake-a-weigh/site-types";
-import { NutrientCategoryGroup }            from "../../../form-types";
-import { createElementWeightGroup }         from "../element-weight-group/element-weight-group";
-import { createNutrientCategoryGroupArray } from "../nutrient-category-group-array/nutrient-category-group-array";
+import { NutrientCategoryGroup }            from "../../../../form-types";
+import { createElementWeightGroup }         from "../../element-weight-group/element-weight-group";
+import { createNutrientCategoryGroupArray } from "../nutrient-category-group-list/nutrient-category-group-list";
 
 
 

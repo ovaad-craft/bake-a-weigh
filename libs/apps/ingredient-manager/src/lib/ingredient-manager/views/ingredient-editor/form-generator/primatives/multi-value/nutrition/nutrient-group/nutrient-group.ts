@@ -1,7 +1,7 @@
 import { Nutrient }               from "@bake-a-weigh/site-types";
-import { NutrientGroupType }      from "../../../form-types";
+import { NutrientGroupType }      from "../../../../form-types";
 import { FormControl, FormGroup } from "@angular/forms";
-import { createWeightControl }    from "../../single-value/measurements/weight-control/weight-control";
+import { createWeightControl }    from "../../../single-value/measurements/weight-control/weight-control";
 
 
 
