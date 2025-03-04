@@ -242,11 +242,11 @@ export interface OilProfile{
 
 
 
-export type PlantPart = 'root' | 'stem' | 'leaf' | 'flower' | 'bark' | 'berry' | 'fruit' | 'seed';
+export type PlantPart = 'root' | 'stem' | 'leaf' | 'flower' | 'bark' | 'berry' | 'fruit' | 'seed' | 'other';
 
 export interface HerbProfile{
   species : string;
-  part    : PlantPart | string;
+  part    : PlantPart;
   // todo : create a herb state type
 }
 
