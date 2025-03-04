@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { CaneType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType } from "@bake-a-weigh/site-types";
+import { CaneType, CreamState, CreamType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, SaltConsistency, SaltType, SugarConsistencyType, SugarType, WeightType } from "@bake-a-weigh/site-types";
 
 
 
@@ -158,9 +158,15 @@ export interface NutProfileGroup extends SpeciesPrimative {
 
 export interface MilkSpecsGroup {
 
-
     type  : FormControl< MilkType  | null >;
     state : FormControl< MilkState | null >;
 
+}
 
+
+
+export interface CreamSpecsGroup {
+
+    type  : FormControl< CreamType | null >;
+    state : FormControl< CreamState | null >;
 }
