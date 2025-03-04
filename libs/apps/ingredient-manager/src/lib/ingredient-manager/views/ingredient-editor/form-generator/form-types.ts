@@ -74,6 +74,22 @@ export interface NutrientTrackerGroup{
 
 
 
+export interface NutritionGroup {
+
+    servingSize          : FormGroup< ElementWeightGroupType >;
+    calories             : FormControl< number | null >;
+    totalFat?            : FormGroup< NutrientCategoryGroup >;
+    cholesterol?         : FormGroup< NutrientCategoryGroup >;
+    sodium?              : FormGroup< NutrientCategoryGroup >;
+    totalCarbohydrates?  : FormGroup< NutrientCategoryGroup >;
+    protein?             : FormGroup< NutrientCategoryGroup >;
+    vitaminsAndMinerals? : FormArray< FormGroup< NutrientGroupType > >;
+    ingredients          : FormArray< FormControl< string | null > >;
+
+}
+
+
+
 export interface IngredientCategoryGroup{
 
     name : FormControl< string | null>;
