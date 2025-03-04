@@ -139,3 +139,13 @@ export interface GrainProfileGroup {
     maxObsorption? : FormControl< number | null >;
 
 }
+
+
+
+export interface NutProfileGroup {
+
+    species : FormControl< string  | null >;
+    roasted : FormControl< boolean | null >;
+    salted  : FormControl< boolean | null >;
+
+}
