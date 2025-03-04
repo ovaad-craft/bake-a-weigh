@@ -8,7 +8,7 @@ import { createCreamStateControl } from "../../single-value/dairy/cream-state-co
 
 
 
-export function createCreamSpecs( defaultSpecs? : CreamSpecs ) : FormGroup< CreamSpecsGroup > {
+export function createCreamSpecsGroup( defaultSpecs? : CreamSpecs ) : FormGroup< CreamSpecsGroup > {
 
 
 

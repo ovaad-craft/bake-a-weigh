@@ -199,6 +199,13 @@ export type DairySpecMapType = {
   'cheese' : CheeseSpecs;
 }
 
+export type DairySpecType =
+  MilkSpecs   |
+  CreamSpecs  |
+  YogurtSpecs |
+  ButterSpecs |
+  CheeseSpecs;
+
 export interface DairyProfile{
   type        : DairyType;
   form        : DairyForm;
