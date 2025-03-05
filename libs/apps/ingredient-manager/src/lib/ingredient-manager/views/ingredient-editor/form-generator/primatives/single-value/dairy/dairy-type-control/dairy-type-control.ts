@@ -13,5 +13,4 @@ export function createDairyTypeControl( defaultDairyType? : DairyType ) : FormCo
 
 
 
-
 }

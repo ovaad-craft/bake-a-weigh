@@ -138,6 +138,10 @@ export interface CaneInfoGroup extends SugarInfoPartial {
 
 
 
+export type SugarInfoGroupType = FormGroup< SugarInfoPartial > | FormGroup< CaneInfoGroup >;
+
+
+
 export type SugarInfoGroupMap = {
 
     'cane'    : FormGroup< CaneInfoGroup >;

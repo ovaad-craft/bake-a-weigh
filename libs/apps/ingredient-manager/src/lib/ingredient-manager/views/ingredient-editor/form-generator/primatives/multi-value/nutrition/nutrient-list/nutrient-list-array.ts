@@ -13,12 +13,8 @@ export function createNutrientListArray( defaultList? : Nutrient[] ) : FormArray
 
     const nutrients : FormArray< FormGroup< NutrientGroupType > > = new FormArray< FormGroup< NutrientGroupType > >([]);
 
+    if( defaultList ){ defaultList.forEach( a => nutrients.push( createNutrientGroup( a ) ) ); }
 
-    if( defaultList ){
-
-        defaultList.forEach( a => nutrients.push( createNutrientGroup( a ) ) );
-
-    }
 
 
     return nutrients;

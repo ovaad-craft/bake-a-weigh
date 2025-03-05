@@ -19,6 +19,7 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
         servingSize         : createElementWeightGroup(         defaultData ? defaultData.servingSize : undefined ),
         ingredients         : createIngredientArray(            defaultData ? defaultData.ingredients : undefined ),
         calories            : new FormControl< number | null >( defaultData ? defaultData.calories    : null      ),
+        
         totalFat            : ( defaultData?.totalFat            ? createNutrientCategoryGroup(    defaultData.totalFat            ) : undefined ),
         cholesterol         : ( defaultData?.cholesterol         ? createNutrientCategoryGroup(    defaultData.cholesterol         ) : undefined ),
         sodium              : ( defaultData?.sodium              ? createNutrientCategoryGroup(    defaultData.sodium              ) : undefined ),

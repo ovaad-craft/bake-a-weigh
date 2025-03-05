@@ -13,8 +13,8 @@ export function createYogurtSpecsGroup( defaultSpecs? : YogurtSpecs ) : FormGrou
 
     return new FormGroup< YogurtSpecsGroup >({
 
-        type   : createYogurtTypeControl( defaultSpecs ? defaultSpecs.type : undefined ),
-        flavor : new FormControl< string | null >( defaultSpecs?.flavor ? defaultSpecs.flavor : null )
+        type   : createYogurtTypeControl(          defaultSpecs         ? defaultSpecs.type   : undefined ),
+        flavor : new FormControl< string | null >( defaultSpecs?.flavor ? defaultSpecs.flavor : null      )
 
     });
 

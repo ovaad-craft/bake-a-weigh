@@ -23,25 +23,25 @@ export function createIngredientDataGroup( ingredientType : string, data? : Ingr
 
     let dataGroup! : IngredientDataGroupType;
 
-
-
-    if( ingredientType === 'flour'     ) { dataGroup = createFlourProfileGroup(     data ? data as FlourProfile     : undefined ); }
-    if( ingredientType === 'salt'      ) { dataGroup = createSaltProfileGroup(      data ? data as SaltProfile      : undefined ); }
-    if( ingredientType === 'sugar'     ) { dataGroup = createSugarProfileGroup(     data ? data as SugarProfile     : undefined ); }
-    if( ingredientType === 'grain'     ) { dataGroup = createGrainProfileGroup(     data ? data as GrainProfile     : undefined ); }
-    if( ingredientType === 'nut'       ) { dataGroup = createNutProfileGroup(       data ? data as NutProfile       : undefined ); }
-    if( ingredientType === 'seed'      ) { dataGroup = createSeedProfileGroup(      data ? data as SeedProfile      : undefined ); }
-    if( ingredientType === 'dairy'     ) { dataGroup = createDairyProfileGroup(     data ? data as DairyProfile     : undefined ); }
-    if( ingredientType === 'produce'   ) { dataGroup = createProduceProfileGroup(   data ? data as ProduceProfile   : undefined ); }
-    if( ingredientType === 'oil'       ) { dataGroup = createOilProfileGroup(       data ? data as OilProfile       : undefined ); }
-    if( ingredientType === 'herb'      ) { dataGroup = createHerbProfileGroup(      data ? data as HerbProfile      : undefined ); }
-    if( ingredientType === 'extract'   ) { dataGroup = createExractProfileGroup(    data ? data as ExtractProfile   : undefined ); }
-    if( ingredientType === 'sweetener' ) { dataGroup = createSweetenerProfileGroup( data ? data as SweetenerProfile : undefined ); }
+    switch( ingredientType ) {
+        case 'flour'     : dataGroup = createFlourProfileGroup(     data ? data as FlourProfile     : undefined ); break;
+        case 'salt'      : dataGroup = createSaltProfileGroup(      data ? data as SaltProfile      : undefined ); break;
+        case 'sugar'     : dataGroup = createSugarProfileGroup(     data ? data as SugarProfile     : undefined ); break;
+        case 'grain'     : dataGroup = createGrainProfileGroup(     data ? data as GrainProfile     : undefined ); break;
+        case 'nut'       : dataGroup = createNutProfileGroup(       data ? data as NutProfile       : undefined ); break;
+        case 'seed'      : dataGroup = createSeedProfileGroup(      data ? data as SeedProfile      : undefined ); break;
+        case 'dairy'     : dataGroup = createDairyProfileGroup(     data ? data as DairyProfile     : undefined ); break;
+        case 'produce'   : dataGroup = createProduceProfileGroup(   data ? data as ProduceProfile   : undefined ); break;
+        case 'oil'       : dataGroup = createOilProfileGroup(       data ? data as OilProfile       : undefined ); break;
+        case 'herb'      : dataGroup = createHerbProfileGroup(      data ? data as HerbProfile      : undefined ); break;
+        case 'extract'   : dataGroup = createExractProfileGroup(    data ? data as ExtractProfile   : undefined ); break;
+        case 'sweetener' : dataGroup = createSweetenerProfileGroup( data ? data as SweetenerProfile : undefined ); break;
+    }
 
 
 
     return dataGroup;
 
-    
+
 
 }

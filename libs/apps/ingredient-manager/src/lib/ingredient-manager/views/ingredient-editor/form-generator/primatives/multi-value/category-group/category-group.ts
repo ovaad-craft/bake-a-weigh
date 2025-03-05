@@ -13,9 +13,13 @@ export function createCategoryGroup( defaultSettings? : IngredientCategory ) : F
     return new FormGroup< IngredientCategoryGroup >({
 
         name        : new FormControl< string | null >( defaultSettings ? defaultSettings.name : null ),
-        subCategory : ( defaultSettings?.subCategory ? createCategoryGroup( defaultSettings.subCategory ) : undefined )
+        subCategory : ( defaultSettings?.subCategory ?
+                            createCategoryGroup( defaultSettings.subCategory ) : undefined
+                      )
 
     });
+
+
 
 
 }

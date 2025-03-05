@@ -1,7 +1,7 @@
 import { FormControl, FormGroup }     from "@angular/forms";
 import { SweetenerProfile }           from "@bake-a-weigh/site-types";
 import { SweetenerProfileGroup }      from "../../form-types";
-import { createSweetenerFormControl } from "../../primatives/single-value/sweetener-form-control/sweetener-form-control";
+import { createSweetenerFormControl } from "../../primatives/single-value/sweetener/sweetener-form-control/sweetener-form-control";
 
 
 

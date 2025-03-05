@@ -14,11 +14,10 @@ export function createCaneInfoGroup( defaultInfo? : CaneInfo ) : FormGroup< Cane
 
     return new FormGroup< CaneInfoGroup >({
 
-        consistency : createSugarConsistencyControl( defaultInfo ? defaultInfo.consistency : undefined),
-        type        : createCaneTypeControl( defaultInfo ? defaultInfo.type : undefined )
+        consistency : createSugarConsistencyControl( defaultInfo ? defaultInfo.consistency : undefined ),
+        type        : createCaneTypeControl(         defaultInfo ? defaultInfo.type        : undefined )
 
     });
-
 
 
 
