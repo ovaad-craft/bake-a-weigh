@@ -27,8 +27,8 @@ export interface NutrientCategory{
 }
 
 export interface Nutrition{
-  servingSize        : ElementWeightType;
-  calories           : number;
+  servingSize         : ElementWeightType;
+  calories            : number;
   totalFat?           : NutrientCategory;
   cholesterol?        : NutrientCategory;
   sodium?             : NutrientCategory;
@@ -44,7 +44,7 @@ export interface WeightMeasurement{
 }
 
 export interface NutrientTracker{
-  name : string;
+  name? : string;
   servingSize : WeightMeasurement;
   amount : WeightMeasurement;
 }
@@ -295,7 +295,7 @@ export interface IngredientProfile {
   icon?      : string;
   nutrition? : Nutrition;
   notes?     : IngredientNote[];
-  profileType : IngredientProfileType;
+  profileType? : IngredientProfileType;
   data?      : IngredientDataType;
   //locations  : IngredientCategory[];
   locations  : string[];
