@@ -1,0 +1,37 @@
+/*
+
+<%= classify(name) %>
+
+PURPOSE :
+
+VIEWS :
+
+ELEMENTS :
+
+INTERACTIVITY :
+
+GETS DATA FROM :
+
+SENDS DATA TO :
+
+USER STORIES :
+
+*/
+
+
+
+
+
+import { Component } from '@angular/core';
+
+
+
+
+
+@Component({
+    selector    : 'lib-<%= name %>',
+    templateUrl : './<%= name %>.component.html',
+    styleUrls   : [ './<%= name %>.component.css' ]
+})
+
+export class <%= classify(name) %>Component {}
