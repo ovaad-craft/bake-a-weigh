@@ -23,7 +23,7 @@ export interface Nutrient extends ElementWeightType{
 export interface NutrientCategory{
   name?       : string;
   totalAmount : ElementWeightType;
-  nutrients?  : Nutrient[] | NutrientCategory;
+  nutrients?  : NutrientCategory[];
 }
 
 export interface Nutrition{
@@ -38,7 +38,18 @@ export interface Nutrition{
   ingredients : string[];
 }
 
-interface NutrientAmount{
+export interface WeightMeasurement{
+  amount : number;
+  weightType : WeightType;
+}
+
+export interface NutrientTracker{
+  name : string;
+  servingSize : WeightMeasurement;
+  amount : WeightMeasurement;
+}
+
+export interface NutrientAmount{
   servingSize : number;
   servingSizeWeight : WeightType;
   amount      : number;
@@ -54,28 +65,28 @@ export interface IngredientCategory{
 
 
 
-export type FlourType = 'wheat' | 'whole wheat' | 'rice' | 'rye'; //there's more but I'm still compiling the list.
+export type FlourType = 'wheat' | 'whole wheat' | 'rice' | 'rye' | 'barley' | 'spelt' | 'buckwheat' | 'other'; //there's more but I'm still compiling the list.
 
-export type FlourClassification = 'cake' | 'pastry' | 'all purpose' | 'bread' | '0' | '00' | '000' | '0000';
+export type FlourClassification = 'cake' | 'pastry' | 'all purpose' | 'bread' | '0' | '00' | '000' | '0000' | 'other';
 
 export interface FlourProfile{
-  type           : FlourType | string;
-  classification : FlourClassification | string;
+  type           : FlourType;
+  classification : FlourClassification;
   maxHydration?  : number;
-  protein?       : NutrientAmount;
+  protein?       : NutrientTracker;
   bleached       : boolean;
 }
 
 
 
-export type SaltType = 'table salt' | 'sea salt' | 'kosher salt';
+export type SaltType = 'table salt' | 'sea salt' | 'kosher salt' | 'other';
 
-export type SaltConsistency = 'extra fine' | 'fine' | 'coarse' | 'fine crystal' | 'crystal';
+export type SaltConsistency = 'extra fine' | 'fine' | 'coarse' | 'fine crystal' | 'crystal' | 'other';
 
 export interface SaltProfile{
-  type        : SaltType | string;
-  consistency : SaltConsistency | string;
-  sodium?     : NutrientAmount;
+  type        : SaltType;
+  consistency : SaltConsistency;
+  sodium?     : NutrientTracker;
   iodized     : boolean;
 }
 
@@ -113,7 +124,7 @@ export interface SugarProfile{
 
 
 export interface GrainProfile{
-  protein        : NutrientAmount;
+  protein?       : NutrientTracker;
   maxObsorption? : number;
 }
 
@@ -152,7 +163,7 @@ export type CheeseTextureType = 'smooth/creamy' | 'smooth/chunky' | 'crumbly' | 
 
 export type CheeseHydrationType = 'very wet' | 'wet' | 'damp' | 'dry' | 'very dry';
 
-export type CheeseState = 'spreadable' | 'shredded' | 'crumbled' | 'block' | 'ball';
+export type CheeseState = 'spreadable' | 'shredded' | 'crumbled' | 'block' | 'ball' | 'sliced';
 
 export interface MilkSpecs{
   type  : MilkType;
@@ -187,6 +198,13 @@ export type DairySpecMapType = {
   'butter' : ButterSpecs;
   'cheese' : CheeseSpecs;
 }
+
+export type DairySpecType =
+  MilkSpecs   |
+  CreamSpecs  |
+  YogurtSpecs |
+  ButterSpecs |
+  CheeseSpecs;
 
 export interface DairyProfile{
   type        : DairyType;
@@ -224,11 +242,11 @@ export interface OilProfile{
 
 
 
-export type PlantPart = 'root' | 'stem' | 'leaf' | 'flower' | 'bark' | 'berry' | 'fruit' | 'seed';
+export type PlantPart = 'root' | 'stem' | 'leaf' | 'flower' | 'bark' | 'berry' | 'fruit' | 'seed' | 'other';
 
 export interface HerbProfile{
   species : string;
-  part    : PlantPart | string;
+  part    : PlantPart;
   // todo : create a herb state type
 }
 
@@ -263,8 +281,13 @@ export type IngredientDataType = FlourProfile | SaltProfile | SugarProfile | Gra
                                  ProduceProfile | OilProfile | HerbProfile | ExtractProfile | SweetenerProfile;
 
 
- // todo -- create a profile for powders                                
-export interface IngredientProfile{
+
+export type IngredientProfileType = 'flour' | 'salt' | 'sugar' | 'grain' | 'nut' | 'seed' | 'dairy' | 'produce' | 'oil' | 'herb' | 'extract' | 'sweetener' | 'custom';
+
+
+
+// todo -- create a profile for powders                                
+export interface IngredientProfile {
   name       : string;
   brand      : string;
   id         : string;
@@ -272,6 +295,7 @@ export interface IngredientProfile{
   icon?      : string;
   nutrition? : Nutrition;
   notes?     : IngredientNote[];
+  profileType : IngredientProfileType;
   data?      : IngredientDataType;
   //locations  : IngredientCategory[];
   locations  : string[];
