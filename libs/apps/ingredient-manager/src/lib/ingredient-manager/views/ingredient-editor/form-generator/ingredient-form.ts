@@ -42,11 +42,12 @@ export function createIngredientForm( data? : IngredientProfile ) : FormGroup< I
         else{
             ingredientForm.addControl( 'data', createIngredientDataGroup( data.profileType, undefined ) );
         }
-        //ingredientForm.addControl('data', createIngredientDataGroup(ingredientForm.controls.profileType.value as IngredientProfileType, data?.data ? data.data : undefined))
+    
     }
 
-    /*if(ingredientForm.controls.profileType?.value){
-    }*/
+    if(data?.notes){
+        ingredientForm.addControl( 'notes', createIngredientNoteList( data.notes ) );
+    }
 
 
 
