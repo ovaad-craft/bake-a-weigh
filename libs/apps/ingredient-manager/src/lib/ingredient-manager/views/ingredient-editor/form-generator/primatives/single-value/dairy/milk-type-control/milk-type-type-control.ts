@@ -9,7 +9,7 @@ export function createMilkTypeControl( defaultMilkType? : MilkType ) : FormContr
 
 
 
-    return new FormControl< MilkType >( defaultMilkType ? defaultMilkType : '2%' );
+    return new FormControl< MilkType | null >( defaultMilkType ?? null );
 
 
 

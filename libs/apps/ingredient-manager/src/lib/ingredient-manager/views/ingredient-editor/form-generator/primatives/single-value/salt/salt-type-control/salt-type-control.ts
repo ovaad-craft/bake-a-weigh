@@ -9,7 +9,7 @@ export function createSaltTypeControl( defaultSaltType? : SaltType ) : FormContr
 
 
 
-    return new FormControl< SaltType >( defaultSaltType ? defaultSaltType : 'table salt' );
+    return new FormControl< SaltType | null >( defaultSaltType ?? null );
 
 
 

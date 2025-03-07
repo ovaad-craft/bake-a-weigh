@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "angular-component": {
+      "factory": "./src/generators/ovaad-angular-component/ovaad-angular-component.ts",
+      "schema": "./src/generators/ovaad-angular-component/schema.json",
+      "description": "ovaad-angular-component generator"
+    }
+  }
+}

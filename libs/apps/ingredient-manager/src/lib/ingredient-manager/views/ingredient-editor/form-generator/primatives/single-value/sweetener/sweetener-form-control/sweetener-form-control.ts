@@ -9,7 +9,7 @@ export function createSweetenerFormControl( defaultForm? : SweetenerFormType ) :
 
 
 
-    return new FormControl< SweetenerFormType >( defaultForm ? defaultForm : 'powder' );
+    return new FormControl< SweetenerFormType | null >( defaultForm ?? null );
 
 
 

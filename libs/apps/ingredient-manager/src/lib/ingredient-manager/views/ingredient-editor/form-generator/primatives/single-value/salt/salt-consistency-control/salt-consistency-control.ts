@@ -9,7 +9,7 @@ export function createSaltConsistencyControl( defaultConsistency? : SaltConsiste
 
 
 
-    return new FormControl< SaltConsistency >( defaultConsistency ? defaultConsistency : 'fine' );
+    return new FormControl< SaltConsistency | null >( defaultConsistency ?? null );
 
 
 

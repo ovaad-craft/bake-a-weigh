@@ -9,7 +9,7 @@ export function createOilStateControl( defaultOilState? : OilState ) : FormContr
 
 
 
-    return new FormControl< OilState >( defaultOilState ? defaultOilState : 'liquid' );
+    return new FormControl< OilState | null >( defaultOilState ?? null );
 
 
 

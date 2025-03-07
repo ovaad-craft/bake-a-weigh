@@ -12,7 +12,7 @@ export function createSugarInfoPartialGroup( defaultInfo? : SugarConsistencyType
 
     return new FormGroup< SugarInfoPartial >({
 
-        consistency : new FormControl< SugarConsistencyType | null >( defaultInfo ? defaultInfo : null)
+        consistency : new FormControl< SugarConsistencyType | null >( defaultInfo ?? null )
 
     });
 

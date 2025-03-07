@@ -9,7 +9,7 @@ export function createSugarConsistencyControl( defaultConsistency? : SugarConsis
 
 
 
-    return new FormControl< SugarConsistencyType >( defaultConsistency ? defaultConsistency : 'small granules' );
+    return new FormControl< SugarConsistencyType | null >( defaultConsistency ?? null );
 
 
 

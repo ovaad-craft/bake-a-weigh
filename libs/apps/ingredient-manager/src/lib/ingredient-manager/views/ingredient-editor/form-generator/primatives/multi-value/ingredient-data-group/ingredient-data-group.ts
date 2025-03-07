@@ -1,4 +1,4 @@
-import { DairyProfile, ExtractProfile, FlourProfile, GrainProfile, HerbProfile, IngredientDataType, NutProfile, OilProfile, ProduceProfile, SaltProfile, SeedProfile, SugarProfile, SweetenerProfile } from "@bake-a-weigh/site-types";
+import { DairyProfile, ExtractProfile, FlourProfile, GrainProfile, HerbProfile, IngredientDataType, IngredientProfileType, NutProfile, OilProfile, ProduceProfile, SaltProfile, SeedProfile, SugarProfile, SweetenerProfile } from "@bake-a-weigh/site-types";
 import { IngredientDataGroupType }     from "../../../form-types";
 import { createFlourProfileGroup }     from "../../../profiles/flour-profile-group/flour-profile-group";
 import { createSaltProfileGroup }      from "../../../profiles/salt-profile-group/salt-profile-group";
@@ -17,7 +17,7 @@ import { createSweetenerProfileGroup } from "../../../profiles/sweetener-profile
 
 
 
-export function createIngredientDataGroup( ingredientType : string, data? : IngredientDataType ) : IngredientDataGroupType {
+export function createIngredientDataGroup( ingredientType : IngredientProfileType, data? : IngredientDataType ) : IngredientDataGroupType {
 
 
 

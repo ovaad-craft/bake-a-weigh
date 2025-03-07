@@ -18,9 +18,9 @@ export function createNutrientGroup( defaultGroup? : Nutrient ) : FormGroup< Nut
 
         weightType : createWeightControl( defaultGroup ? defaultGroup.weightType : undefined ),
 
-        percentage : ( defaultGroup?.percentage ?
+        /*percentage : ( defaultGroup?.percentage ?
                         new FormControl< number | null >( defaultGroup.percentage ) : undefined
-                     )
+                     )*/
 
     });
 

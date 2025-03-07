@@ -5,11 +5,11 @@ import { WeightType }  from "@bake-a-weigh/site-types";
 
 
 
-export function createWeightControl( defaultWeight? : WeightType ) : FormControl<WeightType | null> {
+export function createWeightControl( defaultWeight? : WeightType ) : FormControl< WeightType | null > {
 
 
 
-    return new FormControl<WeightType>(defaultWeight ? defaultWeight : 'g');
+    return new FormControl< WeightType | null >(defaultWeight ?? null );
 
 
 

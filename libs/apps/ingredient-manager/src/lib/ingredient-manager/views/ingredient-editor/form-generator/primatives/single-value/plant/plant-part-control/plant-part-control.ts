@@ -9,7 +9,7 @@ export function createPlantPartControl( defaultPart? : PlantPart ) : FormControl
 
 
 
-    return new FormControl< PlantPart >( defaultPart ? defaultPart : 'leaf' );
+    return new FormControl< PlantPart | null >( defaultPart ?? null );
 
 
 

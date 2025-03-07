@@ -9,7 +9,7 @@ export function createCreamTypeControl( defaultCreamType? : CreamType ) : FormCo
 
 
 
-    return new FormControl< CreamType >( defaultCreamType ? defaultCreamType : 'heavy cream' );
+    return new FormControl< CreamType | null >( defaultCreamType ?? null );
 
 
 

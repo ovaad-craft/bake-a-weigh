@@ -66,7 +66,7 @@ USER STORY :
 
 
 
-import { computed, Injectable, OnInit, signal, Signal, WritableSignal } from '@angular/core';
+import { computed, Injectable, signal, Signal, WritableSignal } from '@angular/core';
 import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/site-types';
 
 
@@ -79,6 +79,11 @@ const DemoIngredients : IngredientProfile[] = [
     brand : `Nate's Honey CO`,
     id : 'honey_id1100011',
     icon : 'some icon',
+    profileType : 'sweetener',
+    data : {
+      type : 'honey',
+      form : 'liquid'
+    },
     nutrition : {
       servingSize : {
         amount : 21,
@@ -105,14 +110,16 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 7
         },
-        nutrients : {
-          name : 'Total Sugars',
-          totalAmount : {
-            amount     : 15,
-            weightType : 'g',
-            percentage : 30
+        nutrients : [
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount     : 15,
+              weightType : 'g',
+              percentage : 30
+            }
           }
-        }
+        ]
       },
       protein : {
         totalAmount : {
@@ -121,10 +128,6 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       ingredients : [ 'Honey' ]
-    },
-    data : {
-      type : 'honey',
-      state : 'liquid'
     },
     locations : ['honeys_category_id1100011']
   },
@@ -148,18 +151,24 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0.5,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0.5,
+              weightType : 'g'
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Polyunsaturated Fat',
-            amount : 4,
-            weightType : 'g'
+            totalAmount : {
+              amount : 4,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -186,14 +195,18 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 4,
-            weightType : 'g',
-            percentage : 14
+            totalAmount : {
+              amount : 4,
+              weightType : 'g',
+              percentage : 14
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -231,6 +244,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : [ 'Organic Ground Flax Seed' ]
     },
+    profileType : 'seed',
     data : {
       species : 'Flax'
     },
@@ -276,14 +290,19 @@ const DemoIngredients : IngredientProfile[] = [
       },
       ingredients : [ 'Sea Salt', 'Magnesium Carbonate' ]
     },
+    profileType : 'salt',
     data : {
-      type : 'sea sale',
+      type : 'sea salt',
       consistency : 'fine crystal',
       sodium : {
-        servingSize : 1.5,
-        servingSizeWeight : 'g',
-        amount : 590,
-        amountWeightType : 'mg'
+        servingSize : {
+          amount : 1.5,
+          weightType : 'g'
+        },
+        amount : {
+          amount : 590,
+          weightType : 'mg'
+        }
       },
       iodized : false
     },
@@ -309,9 +328,11 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 2,
-            weightType : 'g',
-            percentage : 10
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 10
+            }
           }
         ]
       },
@@ -337,6 +358,7 @@ const DemoIngredients : IngredientProfile[] = [
       },
       ingredients : [ 'Black Sesame Seed Oil' ]
     },
+    profileType : 'oil',
     data: {
       type : 'sesame seed',
       state : 'liquid'
@@ -363,15 +385,19 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           }
         ]
       },
@@ -398,14 +424,18 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           },
           {
             name : 'Sugars',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -443,6 +473,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : [ 'Thyme' ]
     },
+    profileType : 'herb',
     data: {
       species : 'Thymus vulgaris',
       part : 'leaf'
@@ -469,15 +500,19 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           }
         ]
       },
@@ -504,19 +539,25 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 2,
-            weightType : 'g',
-            percentage : 6
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 6
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 26,
-            weightType : 'g'
+            totalAmount : {
+              amount : 26,
+              weightType : 'g'
+            }
           },
           {
             name : 'Added Sugars',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -554,6 +595,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : [ 'Raisins' ]
     },
+    profileType : 'produce',
     data : {
       type : 'fruit',
       state : 'dried'
@@ -580,15 +622,19 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           }
         ]
       },
@@ -615,19 +661,25 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 2,
-            weightType : 'g',
-            percentage : 6
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 6
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 26,
-            weightType : 'g'
+            totalAmount : {
+              amount : 26,
+              weightType : 'g'
+            }
           },
           {
             name : 'Added Sugars',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -665,6 +717,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : [ 'Raisins' ]
     },
+    profileType : 'produce',
     data : {
       type : 'fruit',
       state : 'dried'
@@ -760,8 +813,10 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Sugar Alcohol',
-            amount : 30,
-            weightType : 'g'
+            totalAmount : {
+              amount : 30,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -773,6 +828,7 @@ const DemoIngredients : IngredientProfile[] = [
       },
       ingredients : [ 'Monkfruit Extract', 'Erythritol' ]
     },
+    profileType : 'sweetener',
     data:{
       type : 'Monkfruit',
       form : 'powder'
@@ -799,24 +855,32 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 2,
-            weightType : 'g',
-            percentage : 10
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 10
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Polyunsaturated Fat',
-            amount : 1,
-            weightType : 'g'
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           },
           {
             name : 'Monounsaturated Fat',
-            amount : 11,
-            weightType : 'g'
+            totalAmount : {
+              amount : 11,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -850,6 +914,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : [ '100% Extra Virgin Olive Oil' ]
     },
+    profileType : 'oil',
     data : {
       type : 'olive',
       state : 'liquid'
@@ -966,13 +1031,17 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -998,6 +1067,7 @@ const DemoIngredients : IngredientProfile[] = [
       },
       ingredients : ['Dextrose', 'Stevia Leaf Extract']
     },
+    profileType : 'sweetener',
     data :{
       type : 'stevia',
       form : 'powder'
@@ -1038,13 +1108,17 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 0.8,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0.8,
+              weightType : 'g'
+            }
           },
           {
             name : 'Sugars',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1058,9 +1132,9 @@ const DemoIngredients : IngredientProfile[] = [
         'Organic Agave Inulin',
         'Organic Stevia Extract (Stevia Rebaudiana)',
         'Silica'
-
       ]
     },
+    profileType : 'sweetener',
     data :{
       type : 'stevia',
       form : 'powder'
@@ -1087,13 +1161,17 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1120,19 +1198,25 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 8,
-            weightType : 'g'
+            totalAmount : {
+              amount : 8,
+              weightType : 'g'
+            }
           },
           {
             name : 'Added Sugars',
-            amount : 8,
-            weightType : 'g',
-            percentage : 16
+            totalAmount : {
+              amount : 8,
+              weightType : 'g',
+              percentage : 16
+            }
           }
         ],
       },
@@ -1168,6 +1252,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : ['Sugar', 'Molasses']
     },
+    profileType : 'sugar',
     data : {
       type : 'cane',
       info : {
@@ -1198,13 +1283,17 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1231,19 +1320,25 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 8,
-            weightType : 'g'
+            totalAmount : {
+              amount : 8,
+              weightType : 'g'
+            }
           },
           {
             name : 'Added Sugars',
-            amount : 8,
-            weightType : 'g',
-            percentage : 16
+            totalAmount : {
+              amount : 8,
+              weightType : 'g',
+              percentage : 16              
+            }
           }
         ],
       },
@@ -1279,6 +1374,7 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : ['Sugar', 'Molasses']
     },
+    profileType : 'sugar',
     data : {
       type : 'cane',
       info : {
@@ -1323,8 +1419,10 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Total Sugars',
-            amount : 8,
-            weightType : 'g'
+            totalAmount : {
+              amount : 8,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1336,6 +1434,7 @@ const DemoIngredients : IngredientProfile[] = [
       },
       ingredients : ['Cane Sugar']
     },
+    profileType : 'sugar',
     data : {
       type : 'cane',
       info : {
@@ -1366,14 +1465,18 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1400,14 +1503,18 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 1,
-            weightType : 'g',
-            percentage : 4
+            totalAmount : {
+              amount : 1,
+              weightType : 'g',
+              percentage : 4
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1480,6 +1587,7 @@ const DemoIngredients : IngredientProfile[] = [
         'Folic Acid'
       ]
     },
+    profileType : 'flour',
     data : {
       type : 'wheat',
       classification : '00',
@@ -1507,24 +1615,32 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0.5,
-            weightType : 'g',
-            percentage : 3
+            totalAmount : {
+              amount : 0.5,
+              weightType : 'g',
+              percentage : 3
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Polyunsaturated Fat',
-            amount : 1,
-            weightType : 'g',
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           },
           {
             name : 'Monounsaturated Fat',
-            amount : 1,
-            weightType : 'g'
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1551,25 +1667,33 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 4,
-            weightType : 'g',
-            percentage : 13
+            totalAmount : {
+              amount : 4,
+              weightType : 'g',
+              percentage : 13
+            }
           },
           {
             name : 'Soluble Fiber',
-            amount : 2,
-            weightType : 'g'
+            totalAmount : {
+              amount : 2,
+              weightType : 'g'
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 1,
-            weightType : 'g'
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           },
           {
             name : 'Added Sugars',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           }
         ]
       },
@@ -1646,24 +1770,32 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 0.5,
-            weightType : 'g',
-            percentage : 3
+            totalAmount : {
+              amount : 0.5,
+              weightType : 'g',
+              percentage : 3
+            }
           },
           {
             name : 'Trans Fat',
-            amount : 0,
-            weightType : 'g'
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
           },
           {
             name : 'Polyunsaturated Fat',
-            amount : 1,
-            weightType : 'g',
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           },
           {
             name : 'Monounsaturated Fat',
-            amount : 1,
-            weightType : 'g'
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           }
         ]
       },
@@ -1690,25 +1822,33 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Dietary Fiber',
-            amount : 4,
-            weightType : 'g',
-            percentage : 13
+            totalAmount : {
+              amount : 4,
+              weightType : 'g',
+              percentage : 13
+            }
           },
           {
             name : 'Soluble Fiber',
-            amount : 2,
-            weightType : 'g'
+            totalAmount : {
+              amount : 2,
+              weightType : 'g'
+            }
           },
           {
             name : 'Total Sugars',
-            amount : 1,
-            weightType : 'g'
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
           },
           {
             name : 'Added Sugars',
-            amount : 0,
-            weightType : 'g',
-            percentage : 0
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
           }
         ]
       },
@@ -1785,9 +1925,11 @@ const DemoIngredients : IngredientProfile[] = [
         nutrients : [
           {
             name : 'Saturated Fat',
-            amount : 2,
-            weightType : 'g',
-            percentage : 10
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 10
+            }
           }
         ]
       },
@@ -2239,7 +2381,7 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
-  private IngredientEditorToggleData : WritableSignal< boolean > = signal( true );
+  private IngredientEditorToggleData : WritableSignal< boolean > = signal( false );
   private CategoryEditorToggleData   : WritableSignal< boolean > = signal( false );
   
   IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
@@ -2377,7 +2519,7 @@ export class IngredientManagerService {
 
 
 
-  getIngredientToEdit() : IngredientProfile { return this.IngredientToEdit; }
+  getIngredientToEdit() : IngredientProfile { return this.IngredientToEdit }
 
 
 

@@ -9,7 +9,7 @@ export function createFlourClassificationControl( defaultFlourClass? : FlourClas
     
     
     
-    return new FormControl< FlourClassification >( defaultFlourClass ? defaultFlourClass : 'all purpose' );
+    return new FormControl< FlourClassification | null >( defaultFlourClass ?? null );
 
 
 
