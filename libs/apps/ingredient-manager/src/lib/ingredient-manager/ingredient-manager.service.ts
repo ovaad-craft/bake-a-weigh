@@ -82,7 +82,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sweetener',
     data : {
       type : 'honey',
-      state : 'liquid'
+      form : 'liquid'
     },
     nutrition : {
       servingSize : {
@@ -2381,7 +2381,7 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
-  private IngredientEditorToggleData : WritableSignal< boolean > = signal( true );
+  private IngredientEditorToggleData : WritableSignal< boolean > = signal( false );
   private CategoryEditorToggleData   : WritableSignal< boolean > = signal( false );
   
   IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
@@ -2519,7 +2519,7 @@ export class IngredientManagerService {
 
 
 
-  getIngredientToEdit() : IngredientProfile { return this.IngredientToEdit; }
+  getIngredientToEdit() : IngredientProfile { return this.IngredientToEdit }
 
 
 

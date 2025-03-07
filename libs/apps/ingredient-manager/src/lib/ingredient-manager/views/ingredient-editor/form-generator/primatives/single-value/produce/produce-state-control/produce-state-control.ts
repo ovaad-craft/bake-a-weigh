@@ -9,7 +9,7 @@ export function createProdueStateControl( defaultProduceState? : ProduceState ) 
 
 
 
-    return new FormControl< ProduceState >( defaultProduceState ? defaultProduceState : 'fresh' );
+    return new FormControl< ProduceState | null >( defaultProduceState ?? null );
 
 
 

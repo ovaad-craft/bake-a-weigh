@@ -9,7 +9,7 @@ export function createYogurtTypeControl( defaultYogurtType? : YogurtType ) : For
 
 
 
-    return new FormControl< YogurtType >( defaultYogurtType ? defaultYogurtType : 'plain' );
+    return new FormControl< YogurtType | null >( defaultYogurtType ?? null );
 
 
 

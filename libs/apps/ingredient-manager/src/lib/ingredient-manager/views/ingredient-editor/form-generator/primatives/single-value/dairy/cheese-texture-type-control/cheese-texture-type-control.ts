@@ -9,7 +9,7 @@ export function createCheeseTextureTypeControl( defaultTexture? : CheeseTextureT
 
 
 
-    return new FormControl< CheeseTextureType >( defaultTexture ? defaultTexture : 'solid' );
+    return new FormControl< CheeseTextureType | null >( defaultTexture ?? null );
 
 
 

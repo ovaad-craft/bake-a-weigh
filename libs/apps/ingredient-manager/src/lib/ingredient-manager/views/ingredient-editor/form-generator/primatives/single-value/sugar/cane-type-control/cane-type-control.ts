@@ -9,7 +9,7 @@ export function createCaneTypeControl( defaultCaneType? : CaneType ) : FormContr
 
 
 
-    return new FormControl< CaneType >( defaultCaneType ? defaultCaneType : 'white' );
+    return new FormControl< CaneType | null >( defaultCaneType ?? null );
 
 
 

@@ -14,9 +14,10 @@ export function createCheeseSpecsGroup( defaultSpecs? : CheeseSpecs ) : FormGrou
 
     return new FormGroup< CheeseSpecsGroup >({
 
-        kind      : new FormControl< string | null >( defaultSpecs ? defaultSpecs.kind      : null      ),
-        texture   : createCheeseTextureTypeControl(   defaultSpecs ? defaultSpecs.texture   : undefined ),
-        hydration : createCheeseHydrationControl(     defaultSpecs ? defaultSpecs.hydration : undefined )
+        kind      : new FormControl< string | null >( defaultSpecs?.kind ?? null ),
+
+        texture   : createCheeseTextureTypeControl( defaultSpecs ? defaultSpecs.texture   : undefined ),
+        hydration : createCheeseHydrationControl(   defaultSpecs ? defaultSpecs.hydration : undefined )
 
 
     });

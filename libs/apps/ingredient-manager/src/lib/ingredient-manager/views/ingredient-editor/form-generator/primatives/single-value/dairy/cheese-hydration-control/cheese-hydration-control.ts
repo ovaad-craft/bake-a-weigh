@@ -9,7 +9,7 @@ export function createCheeseHydrationControl( defaultHydration? : CheeseHydratio
 
 
 
-    return new FormControl< CheeseHydrationType >( defaultHydration ? defaultHydration : 'dry' );
+    return new FormControl< CheeseHydrationType | null >( defaultHydration ?? null );
 
 
 

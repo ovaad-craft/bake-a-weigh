@@ -1,6 +1,6 @@
 /*
 
-<%= classify(name) %>
+<%= className %>
 
 PURPOSE :
 
@@ -29,9 +29,9 @@ import { Component } from '@angular/core';
 
 
 @Component({
-    selector    : 'lib-<%= name %>',
-    templateUrl : './<%= name %>.component.html',
-    styleUrls   : [ './<%= name %>.component.css' ]
+    selector    : 'lib-<%= fileName %>',
+    templateUrl : './<%= fileName %>.component.html',
+    styleUrls   : [ './<%= fileName %>.component.css' ]
 })
 
-export class <%= classify(name) %>Component {}
+export class <%= className %>Component {}

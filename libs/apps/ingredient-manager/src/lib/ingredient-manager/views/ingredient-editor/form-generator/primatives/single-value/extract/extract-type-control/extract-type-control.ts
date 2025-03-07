@@ -9,7 +9,7 @@ export function createExtractType( defaultType? : ExtractType ) : FormControl< E
 
 
 
-    return new FormControl< ExtractType >( defaultType ? defaultType : 'alcohol' );
+    return new FormControl< ExtractType | null >( defaultType ?? null );
 
 
     

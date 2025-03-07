@@ -13,7 +13,17 @@ export function createVitaminsAndMineralsArray( defaultList? : Nutrient[] ) : Fo
 
     const list : FormArray< FormGroup< NutrientGroupType > > = new FormArray< FormGroup< NutrientGroupType > >([]);
 
-    if( defaultList ) { defaultList.forEach( a => createNutrientGroup( a ) ); }
+    if( defaultList ) {
+        
+        defaultList.forEach( a => {
+            const group : FormGroup<NutrientGroupType> = createNutrientGroup(a);
+            
+            list.push( group );
+            console.log(group);
+
+        } );
+
+    }
 
 
 

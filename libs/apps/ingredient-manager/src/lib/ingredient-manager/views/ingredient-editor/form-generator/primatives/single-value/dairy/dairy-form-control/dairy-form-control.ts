@@ -9,7 +9,7 @@ export function createDairyFormControl( defaultDairyForm? : DairyForm ) : FormCo
 
 
 
-    return new FormControl< DairyForm >( defaultDairyForm ? defaultDairyForm : 'milk' );
+    return new FormControl< DairyForm | null >( defaultDairyForm ?? null );
 
 
 

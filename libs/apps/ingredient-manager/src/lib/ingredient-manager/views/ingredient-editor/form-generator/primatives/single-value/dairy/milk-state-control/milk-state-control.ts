@@ -9,7 +9,7 @@ export function createMilkStateControl( defaultMilkState? : MilkState ) : FormCo
 
 
 
-    return new FormControl< MilkState >( defaultMilkState ? defaultMilkState : 'liquid' );
+    return new FormControl< MilkState | null >( defaultMilkState ?? null );
 
 
 

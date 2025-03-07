@@ -9,7 +9,7 @@ export function createExtractStateControl( defaultState? : ExtractState ) : Form
 
 
 
-    return new FormControl< ExtractState >( defaultState ? defaultState : 'liquid' );
+    return new FormControl< ExtractState | null >( defaultState ?? null );
 
 
 

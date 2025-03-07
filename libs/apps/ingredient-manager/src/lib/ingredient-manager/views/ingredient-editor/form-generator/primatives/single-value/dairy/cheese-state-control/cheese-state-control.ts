@@ -9,7 +9,7 @@ export function createCheeseStateControl( defaultCheeseState? : CheeseState ) : 
 
 
 
-    return new FormControl< CheeseState >( defaultCheeseState ? defaultCheeseState : 'block' );
+    return new FormControl< CheeseState | null >( defaultCheeseState ?? null );
 
 
     

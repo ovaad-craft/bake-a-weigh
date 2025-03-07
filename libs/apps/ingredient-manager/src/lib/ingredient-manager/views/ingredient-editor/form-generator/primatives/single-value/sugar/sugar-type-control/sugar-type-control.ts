@@ -9,7 +9,7 @@ export function createSugarTypeControl( defaultSugarType? : SugarType ) : FormCo
 
 
 
-    return new FormControl< SugarType >( defaultSugarType ? defaultSugarType : 'cane' );
+    return new FormControl< SugarType | null >( defaultSugarType ?? null );
 
 
     

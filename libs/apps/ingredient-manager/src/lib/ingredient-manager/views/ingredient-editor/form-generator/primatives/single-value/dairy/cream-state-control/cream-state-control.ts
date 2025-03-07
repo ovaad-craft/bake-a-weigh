@@ -9,7 +9,7 @@ export function createCreamStateControl( defaultCreamState ? : CreamState ) : Fo
 
 
 
-    return new FormControl< CreamState >( defaultCreamState ? defaultCreamState : 'liquid' );
+    return new FormControl< CreamState | null >( defaultCreamState ?? null );
 
 
 

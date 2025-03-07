@@ -9,7 +9,7 @@ export function createButterTypeControl( defaultButterType? : ButterType ) : For
 
 
 
-    return new FormControl< ButterType >( defaultButterType ? defaultButterType : 'unsalted' );
+    return new FormControl< ButterType | null >( defaultButterType ? defaultButterType : 'unsalted' );
 
 
 

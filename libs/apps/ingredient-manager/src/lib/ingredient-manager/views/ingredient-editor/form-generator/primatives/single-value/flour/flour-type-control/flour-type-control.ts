@@ -9,7 +9,7 @@ export function createFlourTypeControl( defaultFlourVal? : FlourType ) : FormCon
 
 
 
-    return new FormControl< FlourType >( defaultFlourVal ? defaultFlourVal : 'wheat' );
+    return new FormControl< FlourType | null >( defaultFlourVal ?? null );
 
 
 

@@ -9,7 +9,7 @@ export function createProduceTypeControl( defaultProduceType? : ProduceType ) : 
 
 
 
-    return new FormControl< ProduceType >( defaultProduceType ? defaultProduceType : 'fruit' );
+    return new FormControl< ProduceType | null >( defaultProduceType ?? null );
 
 
     

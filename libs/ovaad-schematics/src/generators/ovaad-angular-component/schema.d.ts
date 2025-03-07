@@ -1,5 +1,7 @@
 export interface OvaadAngularComponentGeneratorSchema {
-  name: string;
-  project : string;
+
+  name     : string;
+  project  : string;
   location : string;
+  
 }
