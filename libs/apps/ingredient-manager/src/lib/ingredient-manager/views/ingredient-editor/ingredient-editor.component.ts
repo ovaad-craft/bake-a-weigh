@@ -49,7 +49,11 @@ import { TextInputComponent } from '@form-controls';
 
 @Component({
   selector: 'lib-im-ingredient-editor',
-  imports: [CommonModule, ReactiveFormsModule, TextInputComponent ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TextInputComponent
+  ],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
 })
