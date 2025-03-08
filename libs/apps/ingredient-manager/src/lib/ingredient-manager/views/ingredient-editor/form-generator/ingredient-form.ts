@@ -21,6 +21,10 @@ export function createIngredientForm( data? : IngredientProfile ) : FormGroup< I
         locations : createLocationsArray( data ? data.locations : undefined )
     });
 
+    if(data){
+        ingredientForm.controls.name.patchValue(data.name);
+    }
+
     if(data?.icon){
         ingredientForm.addControl('icon', new FormControl< string | null >(data.icon));
     }

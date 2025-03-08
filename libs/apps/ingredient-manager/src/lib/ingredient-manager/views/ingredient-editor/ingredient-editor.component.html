@@ -1,2 +1,10 @@
-{{Ingredient | json}}
-<!--{{DemoForm | json}}-->
+<form [formGroup]="IngredientEditorForm">
+
+    <lib-text-input
+        [label]="'name'"
+        ngDefaultControl
+        [Control]="IngredientEditorForm.controls.name"
+        [formControlName]="'name'"
+    />
+
+</form>

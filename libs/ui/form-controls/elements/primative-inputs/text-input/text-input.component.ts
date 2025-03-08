@@ -21,50 +21,23 @@ USER STORIES :
 
 
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormsModule, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-text-input',
   templateUrl: './text-input.component.html',
   imports: [ CommonModule, FormsModule],
-  styleUrls: ['./text-input.component.css'],
-  providers: [
-    {
-      provide     : NG_VALUE_ACCESSOR,
-      useExisting : forwardRef( () => TextInputComponent ),
-      multi       : true
-    }
-  ]
+  styleUrls: ['./text-input.component.css']
 })
-export class TextInputComponent implements OnInit, ControlValueAccessor {
+export class TextInputComponent {
 
 
 
   @Input() label!: string;
-  @Input() InputSize = '';
-  //SizeClass: string = 'smallInput';
-  
-  field  = '';
-
-  ngOnInit():void{ this.setInputSize(); }
-
-  onChange : any = () =>{/* */};
-  onTouch  : any = () => {/* */};
-
-  set value(val : string){
-    this.field = val;
-    this.onChange(val);
-    this.onTouch(val);
-  }
-
-  writeValue(value: string){ this.value = value; }
-
-  registerOnChange(fn: any){ this.onChange = fn; }
-
-  registerOnTouched(onTouched: Function){ this.onTouch = onTouched; }
-
-  setInputSize() : void {/* */}
+  @Input() InputSize = 4;
+  @Input() ControlName = '';
+  @Input() Control!: FormControl<string | null>;
 
 
 
