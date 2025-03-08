@@ -22,8 +22,10 @@ USER STORIES :
 
 
 
-import { Component }    from '@angular/core';
+import { Component, Input }    from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NutritionGroup } from '../../views/ingredient-editor/form-generator/form-types';
 
 
 
@@ -31,9 +33,12 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector    : 'lib-nutrition-group',
-    imports     : [ CommonModule ]
+    imports     : [ CommonModule, FormsModule, ReactiveFormsModule ],
     templateUrl : './nutrition-group.component.html',
     styleUrls   : [ './nutrition-group.component.css' ]
 })
 
-export class NutritionGroupComponent {}
+export class NutritionGroupComponent {
+
+    @Input() Control! : FormGroup< NutritionGroup >;
+}
