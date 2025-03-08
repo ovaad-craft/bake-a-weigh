@@ -1,1 +1,11 @@
-<p>text-input works</p>
+<label class="inputShell">
+
+    <h3 class="inputLabel" *ngIf="label">{{label}}</h3>
+
+    <input
+      class="inputField"
+      type="text"
+      [(ngModel)]="value"
+    />
+
+</label>
