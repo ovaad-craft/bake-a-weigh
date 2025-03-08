@@ -36,9 +36,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IngredientManagerService } from '../../ingredient-manager.service';
 import { IngredientProfile } from '@bake-a-weigh/site-types';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IngredientForm } from './form-generator/form-types';
 import { createIngredientForm } from './form-generator/ingredient-form';
+import { TextInputComponent } from '@form-controls';
 
 
 
@@ -48,7 +49,7 @@ import { createIngredientForm } from './form-generator/ingredient-form';
 
 @Component({
   selector: 'lib-im-ingredient-editor',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, TextInputComponent ],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
 })
@@ -61,7 +62,7 @@ export class IngredientEditorComponent implements OnInit{
   constructor( private ingredientService : IngredientManagerService ){}
 
   ngOnInit(): void {
-      this.Ingredient = this.ingredientService.getIngredientToEdit();
+      this.Ingredient           = this.ingredientService.getIngredientToEdit();
       this.IngredientEditorForm = createIngredientForm( this.ingredientService.getIngredientToEdit() );
       
       console.log(this.IngredientEditorForm);
