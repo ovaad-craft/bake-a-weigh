@@ -31,7 +31,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector    : 'lib-<%= fileName %>',
-    imports     : [ CommonModule ]
+    imports     : [ CommonModule ],
     templateUrl : './<%= fileName %>.component.html',
     styleUrls   : [ './<%= fileName %>.component.css' ]
 })
