@@ -16,8 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@bake-a-weigh/bw-elements": ["libs/ui/bw-elements/src/index.ts"],
-      "@bake-a-weigh/form-controls": [
-        "libs/ui/form-controls/form-controls/src/index.ts"
+      "@form-controls": [
+        "libs/ui/form-controls/index.ts"
       ],
       "@bake-a-weigh/ingredient-manager": [
         "libs/apps/ingredient-manager/src/index.ts"
