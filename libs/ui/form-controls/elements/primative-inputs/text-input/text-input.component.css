@@ -1,0 +1,7 @@
+.inputField{
+    --targetWidth: calc(1ch * var(--width));
+    width: min(var(--targetWidth), 100%);
+    place-self: center;
+    /*max-width: clamp(100%, 4ch, var(--targetWidth));*/
+    /*max-width: calc(1ch * var(--width));*/
+}
