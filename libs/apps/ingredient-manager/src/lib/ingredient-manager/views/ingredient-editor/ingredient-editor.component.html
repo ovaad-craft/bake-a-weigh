@@ -16,4 +16,13 @@
         [InputSize]="44"
     />
 
+    @if (IngredientEditorForm.controls.nutrition) {
+        
+        <lib-nutrition-group
+            [Control]="IngredientEditorForm.controls.nutrition"
+        />
+
+    }
+
+
 </form>

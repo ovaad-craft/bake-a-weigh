@@ -40,6 +40,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IngredientForm } from './form-generator/form-types';
 import { createIngredientForm } from './form-generator/ingredient-form';
 import { TextInputComponent } from '@form-controls';
+import { NutritionGroupComponent } from '../../components/nutrition-group/nutrition-group.component';
 
 
 
@@ -52,7 +53,8 @@ import { TextInputComponent } from '@form-controls';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TextInputComponent
+    TextInputComponent,
+    NutritionGroupComponent
   ],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
