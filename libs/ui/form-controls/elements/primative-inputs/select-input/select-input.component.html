@@ -16,7 +16,7 @@
 
 
     <article class="selectionContainer">
-        @for(let item of OptionList){
+        @for(item of OptionList; track $index){
             <p>{{item}}</p>
         }
     </article>
