@@ -18,12 +18,13 @@ USER STORIES :
 
 */
 
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'lib-select-input',
-  imports : [ ReactiveFormsModule ],
+  imports : [ CommonModule, ReactiveFormsModule ],
   templateUrl: './select-input.component.html',
   styleUrls: ['./select-input.component.css'],
 })
