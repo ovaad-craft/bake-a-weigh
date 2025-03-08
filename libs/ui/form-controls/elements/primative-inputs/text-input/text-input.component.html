@@ -1,0 +1,12 @@
+<label class="inputShell">
+
+    <h5 class="inputLabel" *ngIf="label">{{label}}</h5>
+
+    <input
+      class="inputField"
+      [ngStyle]="{'--width': InputSize}"
+      type="text"
+      [(ngModel)]="Control.value"
+    />
+
+</label>

@@ -21,6 +21,10 @@ export function createIngredientForm( data? : IngredientProfile ) : FormGroup< I
         locations : createLocationsArray( data ? data.locations : undefined )
     });
 
+    if(data){
+        ingredientForm.controls.name.patchValue(data.name);
+    }
+
     if(data?.icon){
         ingredientForm.addControl('icon', new FormControl< string | null >(data.icon));
     }
@@ -42,11 +46,12 @@ export function createIngredientForm( data? : IngredientProfile ) : FormGroup< I
         else{
             ingredientForm.addControl( 'data', createIngredientDataGroup( data.profileType, undefined ) );
         }
-        //ingredientForm.addControl('data', createIngredientDataGroup(ingredientForm.controls.profileType.value as IngredientProfileType, data?.data ? data.data : undefined))
+    
     }
 
-    /*if(ingredientForm.controls.profileType?.value){
-    }*/
+    if(data?.notes){
+        ingredientForm.addControl( 'notes', createIngredientNoteList( data.notes ) );
+    }
 
 
 

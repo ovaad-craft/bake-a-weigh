@@ -1,1 +1,1 @@
-//export * from './form-controls/src/form-controls/form-controls.component';
+export * from './elements/primative-inputs/text-input/text-input.component';
