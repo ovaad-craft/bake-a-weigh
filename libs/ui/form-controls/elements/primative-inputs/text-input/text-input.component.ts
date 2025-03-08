@@ -20,12 +20,14 @@ USER STORIES :
 
 
 
+import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'lib-text-input',
   templateUrl: './text-input.component.html',
+  imports: [ CommonModule, FormsModule],
   styleUrls: ['./text-input.component.css'],
   providers: [
     {
@@ -48,7 +50,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   ngOnInit():void{ this.setInputSize(); }
 
   onChange : any = () =>{/* */};
-  onTouch : any = () => {/* */};
+  onTouch  : any = () => {/* */};
 
   set value(val : string){
     this.field = val;
