@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NutritionGroup } from '../../views/ingredient-editor/form-generator/form-types';
 import { NumberInputComponent } from '@form-controls';
+import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 
 
 
@@ -34,7 +35,14 @@ import { NumberInputComponent } from '@form-controls';
 
 @Component({
     selector    : 'lib-nutrition-group',
-    imports     : [ CommonModule, FormsModule, ReactiveFormsModule, NumberInputComponent ],
+    imports     : [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NumberInputComponent,
+        IngredientListComponent
+
+    ],
     templateUrl : './nutrition-group.component.html',
     styleUrls   : [ './nutrition-group.component.css' ]
 })
