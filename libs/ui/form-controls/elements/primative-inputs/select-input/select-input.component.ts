@@ -33,5 +33,9 @@ export class SelectInputComponent<ValueType> {
   @Input() OptionType! : ValueType;
   @Input() OptionList! : ValueType[];
   @Input() Control!    : FormControl< ValueType | null>;
+
+  updateValue(value : ValueType) : void {
+    this.Control.setValue(value);
+  }
   
 }
