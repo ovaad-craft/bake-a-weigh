@@ -22,7 +22,8 @@ USER STORIES :
 
 
 
-import { Component } from '@angular/core';
+import { Component }    from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -30,6 +31,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector    : 'lib-<%= fileName %>',
+    imports     : [ CommonModule ],
     templateUrl : './<%= fileName %>.component.html',
     styleUrls   : [ './<%= fileName %>.component.css' ]
 })

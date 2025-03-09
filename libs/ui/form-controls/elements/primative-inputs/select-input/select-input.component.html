@@ -1,0 +1,34 @@
+<section class="mainContainer">
+
+
+
+
+    <article class="displayContainer">
+
+        <p class="display">{{Control.value}}</p>
+
+        <div class="buttonContainer">
+            <!-- needs an arrow icon -->
+            &lt;
+        </div>
+
+    </article>
+
+
+    <article class="selectionContainer">
+        @for(item of OptionList; track $index){
+            <p>{{item}}</p>
+        }
+    </article>
+
+
+    <input
+        type="text"
+        class="control" hidden
+        [(ngModel)]="Control.value"
+    />
+
+
+
+
+</section>

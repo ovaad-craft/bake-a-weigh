@@ -72,6 +72,10 @@ export interface NutrientTrackerGroup{
 
 }
 
+export interface FormArrayControlList<T>{
+    list : FormArray< FormControl< T | null > >;
+}
+
 
 
 export interface NutritionGroup {
@@ -84,7 +88,7 @@ export interface NutritionGroup {
     totalCarbohydrates?  : FormGroup< NutrientCategoryGroup >;
     protein?             : FormGroup< NutrientCategoryGroup >;
     vitaminsAndMinerals? : FormArray< FormGroup< NutrientGroupType > >;
-    ingredients          : FormArray< FormControl< string | null > >;
+    ingredients          : FormGroup< FormArrayControlList< string > >;
 
 }
 

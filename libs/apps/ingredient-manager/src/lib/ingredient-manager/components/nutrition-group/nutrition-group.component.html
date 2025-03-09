@@ -1,0 +1,19 @@
+<section class="mainContainer" [formGroup]="Control">
+    
+    <h4>nutrition</h4>
+
+    <lib-number-input
+        [Control]="Control.controls.calories"
+        ngDefaultControl
+        [formControlName]="'calories'"
+        [Label]="'calories'"
+        [InputSize]="5"
+    />
+
+    <lib-ingredient-list
+        [Control]="Control.controls.ingredients"
+        ngDefaultControl
+        [formArrayName]="'ingredients'"
+    />
+
+</section>

@@ -7,5 +7,24 @@
         [formControlName]="'name'"
         [InputSize]="44"
     />
+    
+    <lib-text-input
+        [label]="'brand'"
+        ngDefaultControl
+        [Control]="IngredientEditorForm.controls.brand"
+        [formControlName]="'brand'"
+        [InputSize]="44"
+    />
+
+    @if (IngredientEditorForm.controls.nutrition) {
+        
+        <lib-nutrition-group
+            ngDefaultControl
+            [formGroupName]="'nutrition'"
+            [Control]="IngredientEditorForm.controls.nutrition"
+        />
+
+    }
+
 
 </form>
