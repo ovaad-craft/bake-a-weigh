@@ -1,5 +1,7 @@
 <section class="mainContainer" [formGroup]="Control">
 
+    <h4 class="title">serving size</h4>
+
     <lib-number-input
         [Control]="Control.controls.amount"
         ngDefaultControl
@@ -13,5 +15,7 @@
         [Control]="Control.controls.weightType"
         ngDefaultControl
         [formControlName]="'weightType'"
+        [Label]="'weight'"
     />
+
 </section>

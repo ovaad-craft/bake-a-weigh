@@ -4,22 +4,27 @@
 
 
     <article class="displayContainer">
+        <h5 class="label">{{Label}}</h5>
 
-        <p class="display">{{Control.value}}</p>
+        <article class="display">{{Control.value}}</article>
 
-        <div class="buttonContainer">
+        <button class="buttonContainer" (click)="toggleOptions()">
             <!-- needs an arrow icon -->
             &lt;
-        </div>
+        </button>
 
     </article>
 
 
-    <article class="selectionContainer">
-        @for(item of OptionList; track $index){
-            <button (click)="updateValue(item)">{{item}}</button>
-        }
-    </article>
+    @if(ToggleOptions){
+        
+        <article class="selectionContainer">
+            @for(item of OptionList; track $index){
+                <button (click)="updateValue(item)">{{item}}</button>
+            }
+        </article>
+
+    }
 
 
     <input
