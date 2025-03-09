@@ -19,6 +19,8 @@
     @if (IngredientEditorForm.controls.nutrition) {
         
         <lib-nutrition-group
+            ngDefaultControl
+            [formGroupName]="'nutrition'"
             [Control]="IngredientEditorForm.controls.nutrition"
         />
 
