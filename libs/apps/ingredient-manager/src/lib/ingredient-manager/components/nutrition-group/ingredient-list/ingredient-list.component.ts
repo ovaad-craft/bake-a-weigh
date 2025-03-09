@@ -18,8 +18,9 @@ USER STORIES :
 
 */
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-ingredient-list',
@@ -27,4 +28,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './ingredient-list.component.html',
   styleUrls: ['./ingredient-list.component.css'],
 })
-export class IngredientListComponent {}
+export class IngredientListComponent {
+
+  @Input()Control! : FormArray<FormControl< string | null > >;
+}
