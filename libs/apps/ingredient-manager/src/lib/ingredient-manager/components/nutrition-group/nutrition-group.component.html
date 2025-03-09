@@ -1,5 +1,13 @@
 <section class="mainContainer" [formGroup]="Control">
+    
+    <h4>nutrition</h4>
 
-    <p>{{Control.value | json}}</p>
+    <lib-number-input
+        [Control]="Control.controls.calories"
+        ngDefaultControl
+        [formControlName]="'calories'"
+        [Label]="'calories'"
+        [InputSize]="5"
+    />
 
 </section>

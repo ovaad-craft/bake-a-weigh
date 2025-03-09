@@ -1,1 +1,12 @@
-<p>number-input works</p>
+<label class="inputShell">
+
+    <h5 class="inputLabel" *ngIf="Label">{{Label}}</h5>
+
+    <input
+      class="inputField"
+      [ngStyle]="{'--width': InputSize}"
+      type="text"
+      [(ngModel)]="Control.value"
+    />
+
+</label>
