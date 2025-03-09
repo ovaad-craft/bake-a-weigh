@@ -7,4 +7,11 @@
         [Label]="'amount'"
         [InputSize]="5"
     />
+
+    <lib-select-input
+        [OptionList]="WeightOptions"
+        [Control]="Control.controls.weightType"
+        ngDefaultControl
+        [formControlName]="'weightType'"
+    />
 </section>
