@@ -20,36 +20,36 @@ USER STORIES :
 
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextInputComponent } from '@form-controls';
+import { FormArrayControlList } from '../../../views/ingredient-editor/form-generator/form-types';
 
 @Component({
   selector: 'lib-ingredient-list',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TextInputComponent],
   templateUrl: './ingredient-list.component.html',
   styleUrls: ['./ingredient-list.component.css'],
 })
 export class IngredientListComponent {
 
-  @Input()Control! : FormArray<FormControl< string | null > >;
+  @Input()Control! : FormGroup< FormArrayControlList< string > >;
 
-  @Input()Label? : string;
+  @Input()Label?   : string;
 
 
 
   addIngredient() : void {
 
-    const newControl : FormControl< string | null > = new FormControl< string | null >('');
-
-    this.Control.controls.push( newControl );
+    this.Control.controls.list.push( new FormControl< string | null >('') );
 
   }
 
-  removeIngredient(index : number) : void {
+  removeIngredient( index : number ) : void {
 
-    this.Control.removeAt(index);
+    this.Control.controls.list.removeAt( index );
 
   }
 
 
-  
+
 }
