@@ -1,1 +1,19 @@
-<p>vitamins-and-minerals-list works</p>
+<section class="mainContainer" [formGroup]="Control">
+
+    <h5 class="title">vitamins and minerals</h5>
+
+    <article class="listContainer" [formArrayName]="'list'">
+
+        @for (a of Control.controls.list.controls; track $index) {
+
+            <div>
+                <div>{{a.value | json}}</div>
+                <button (click)="removeItem($index)">remove item</button>
+            </div>
+        }
+
+    </article>
+    
+    <button (click)="addItem()">add item</button>
+
+</section>
