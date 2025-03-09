@@ -1,1 +1,10 @@
-<p>serving-size works</p>
+<section class="mainContainer" [formGroup]="Control">
+
+    <lib-number-input
+        [Control]="Control.controls.amount"
+        ngDefaultControl
+        [formControlName]="'amount'"
+        [Label]="'amount'"
+        [InputSize]="5"
+    />
+</section>
