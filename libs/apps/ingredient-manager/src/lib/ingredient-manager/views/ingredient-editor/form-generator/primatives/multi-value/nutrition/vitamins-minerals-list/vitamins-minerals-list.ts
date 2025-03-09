@@ -1,25 +1,29 @@
 import { FormArray, FormGroup } from "@angular/forms";
 import { Nutrient }             from "@bake-a-weigh/site-types";
-import { NutrientGroupType }    from "../../../../form-types";
+import { FormArrayGroupList, NutrientGroupType } from "../../../../form-types";
 import { createNutrientGroup }  from "../nutrient-group/nutrient-group";
 
 
 
 
 
-export function createVitaminsAndMineralsArray( defaultList? : Nutrient[] ) : FormArray< FormGroup< NutrientGroupType > > {
+export function createVitaminsAndMineralsArray( defaultList? : Nutrient[] ) : FormGroup< FormArrayGroupList< NutrientGroupType > > {
 
 
 
-    const list : FormArray< FormGroup< NutrientGroupType > > = new FormArray< FormGroup< NutrientGroupType > >([]);
+    const group : FormGroup< FormArrayGroupList< NutrientGroupType > > = new FormGroup< FormArrayGroupList< NutrientGroupType > >({
+
+        list : new FormArray< FormGroup< NutrientGroupType > >( [] )
+
+    });
+    
+
 
     if( defaultList ) {
         
         defaultList.forEach( a => {
-            const group : FormGroup<NutrientGroupType> = createNutrientGroup(a);
             
-            list.push( group );
-            console.log(group);
+            group.controls.list.push( createNutrientGroup( a ) );
 
         } );
 
@@ -27,7 +31,7 @@ export function createVitaminsAndMineralsArray( defaultList? : Nutrient[] ) : Fo
 
 
 
-    return list;
+    return group;
 
 
 
