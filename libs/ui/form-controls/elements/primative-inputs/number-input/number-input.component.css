@@ -1,0 +1,5 @@
+.inputField{
+    --targetWidth: calc(1ch * var(--width));
+    width: min(var(--targetWidth), 100%);
+    place-self: center;
+}
