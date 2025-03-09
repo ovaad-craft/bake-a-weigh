@@ -1,1 +1,26 @@
-<p>{{Control.value | json}}</p>
+<section class="mainContainer" [formGroup]="Control">
+
+    <h5>Ingrediets:</h5>
+
+    <article formArrayName="list">
+    
+    @for(item of Control.controls.list.controls; track $index){
+        <article class="controlContainer">
+            <lib-text-input
+                [Control]="item"
+                ngDefaultControl
+                [formControlName]="$index"
+                [InputSize]="13"
+            />
+
+            <button (click)="removeIngredient($index)">
+                delete item
+            </button>
+
+        </article>
+        }
+    </article>
+    <button class="addButton" (click)="addIngredient()">
+        add item
+    </button>
+</section>
