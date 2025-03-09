@@ -20,7 +20,7 @@ USER STORIES :
 
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextInputComponent } from '@form-controls';
 import { FormArrayControlList } from '../../../views/ingredient-editor/form-generator/form-types';
 
