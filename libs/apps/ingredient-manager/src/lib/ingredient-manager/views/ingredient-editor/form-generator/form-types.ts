@@ -332,7 +332,8 @@ export type IngredientDataGroupType =
         photo?       : FormControl< string | null >;
         icon?        : FormControl< string | null >;
         nutrition?   : FormGroup< NutritionGroup >;
-        notes?       : FormArray< FormGroup< IngredientNoteFormGroup > >;
+        notes?       : FormGroup< FormArrayGroupList< IngredientNoteFormGroup > >;
+        //notes?       : FormArray< FormGroup< IngredientNoteFormGroup > >;
         profileType? : FormControl< string | null >;
         data?        : IngredientDataGroupType;
         locations    : FormArray< FormControl< string | null > >;
