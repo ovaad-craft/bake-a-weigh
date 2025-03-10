@@ -2521,7 +2521,7 @@ export class IngredientManagerService {
 
   getIngredientToEdit() : IngredientProfile {
     
-    return DemoIngredients[0];
+    return DemoIngredients[1];
     //return this.IngredientToEdit
 
   }
