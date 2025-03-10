@@ -1,1 +1,20 @@
-<p>note-list works</p>
+<section class="mainContainer" [formGroup]="Control">
+
+    <h5>notes</h5>
+
+
+
+    <article class="noteListContainer">
+
+        @for ( a of Control.controls.list.controls; track $index ) {
+
+            <lib-note/>
+
+        }
+
+    </article>
+
+
+
+
+</section>
