@@ -15,6 +15,17 @@
         [Label]="'calories'"
         [InputSize]="5"
     />
+
+    @if( TotalFatToggle ){
+
+        <lib-nutrient-category
+            [Control]="Control.controls.totalFat!"
+            ngDefaultControl
+            [formGroupName]="'totalFat'"
+        />
+
+    }
+
     
     @if (Control.controls.vitaminsAndMinerals) {
 
