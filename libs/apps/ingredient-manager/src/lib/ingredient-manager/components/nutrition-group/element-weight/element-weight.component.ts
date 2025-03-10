@@ -20,10 +20,10 @@ USER STORIES :
 
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule }             from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ElementWeightGroupType }   from '../../../views/ingredient-editor/form-generator/form-types';
 import { WeightType }               from '@bake-a-weigh/site-types';
-import { NumberInputComponent, SelectInputComponent } from '@form-controls';
+import { NutrientGroupType }        from '../../../views/ingredient-editor/form-generator/form-types';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NumberInputComponent, SelectInputComponent }  from '@form-controls';
 
 @Component({
   selector : 'lib-element-weight',
@@ -38,7 +38,7 @@ import { NumberInputComponent, SelectInputComponent } from '@form-controls';
 })
 export class ElementWeightComponent implements OnInit {
 
-  @Input() Control! : FormGroup<ElementWeightGroupType >;
+  @Input() Control! : FormGroup< NutrientGroupType >;
 
   WeightOptions : WeightType[] = [ 'g','mcg','mg','ml' ];
 
