@@ -1,31 +1,36 @@
 <section class="mainContainer" [formGroup]="Control">
 
-    @if( NameToggle ) {
+    @if( NameEnabled ){
 
-        <article class="nameContainer">
-
-            <lib-text-input
-                [Control]="Control.controls.name!"
-                ngDefaultControl
-                [formControlName]="'name'"
-                [label]="'name'"
-            />
-
-            <button (click)="removeName()">remove name</button>
-        </article>
-
+        @if( NameToggle ) {
+    
+            <article class="nameContainer">
+    
+                <lib-text-input
+                    [Control]="Control.controls.name!"
+                    ngDefaultControl
+                    [formControlName]="'name'"
+                    [label]="'name'"
+                />
+    
+                <button (click)="removeName()">remove name</button>
+            </article>
+    
+    
+        }
+        @else {
+    
+            <button (click)="addName()">add name</button>
+        }
 
     }
-    @else {
 
-        <button (click)="addName()">add name</button>
-    }
 
 
     <lib-weight
         [Control]="Control.controls.totalAmount"
         ngDefaultControl
-        [formControlName]="'totalAmount'"
+        [formGroupName]="'totalAmount'"
     />
 
     @if( NutrientsToggle ) {
@@ -40,8 +45,9 @@
     
                         <lib-nutrient-category
                             [Control]="a"
+                            [NameEnabled]="true"
                             ngDefaultControl
-                            [formGroupName]="$index"
+                            [formGroup]="Control.controls.nutrients!.controls.list.controls[$index]"
                         />
     
                         <button (click)="removeItem( $index )">delete</button>

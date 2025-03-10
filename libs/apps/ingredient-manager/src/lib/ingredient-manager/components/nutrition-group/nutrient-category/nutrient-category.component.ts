@@ -47,6 +47,7 @@ import { createNutrientCategoryGroup }                 from '../../../views/ingr
 export class NutrientCategoryComponent implements OnInit {
 
   @Input() Control! : FormGroup< NutrientCategoryGroup >;
+  @Input() NameEnabled! : boolean;
 
   NameToggle      = false;
   NutrientsToggle = false;

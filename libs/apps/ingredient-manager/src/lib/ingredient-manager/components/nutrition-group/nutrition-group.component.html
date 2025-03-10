@@ -16,15 +16,23 @@
         [InputSize]="5"
     />
 
-    @if( TotalFatToggle ){
+    <article class="nutrientContainer">
+        
+        <h5>Total Fat</h5>
 
-        <lib-nutrient-category
-            [Control]="Control.controls.totalFat!"
-            ngDefaultControl
-            [formGroupName]="'totalFat'"
-        />
+        @if( TotalFatToggle ){
+    
+            <lib-nutrient-category
+                [Control]="Control.controls.totalFat!"
+                [NameEnabled]="false"
+                ngDefaultControl
+                [formGroupName]="'totalFat'"
+            />
+    
+        }
 
-    }
+    </article>
+
 
     
     @if (Control.controls.vitaminsAndMinerals) {
