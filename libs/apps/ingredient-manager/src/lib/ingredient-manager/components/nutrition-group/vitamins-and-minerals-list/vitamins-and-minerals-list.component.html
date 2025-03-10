@@ -6,10 +6,11 @@
 
         @for (a of Control.controls.list.controls; track $index) {
 
-            <div>
-                <div>{{a.value | json}}</div>
-                <button (click)="removeItem($index)">remove item</button>
-            </div>
+            <lib-element-weight
+                [Control]="a"
+                ngDefaultControl
+                [formGroupName]="$index"
+            />
         }
 
     </article>

@@ -20,13 +20,14 @@ USER STORIES :
 
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormArrayGroupList, NutrientGroupType } from '../../../views/ingredient-editor/form-generator/form-types';
 import { createNutrientGroup } from '../../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/nutrient-group/nutrient-group';
+import { ElementWeightComponent } from '../element-weight/element-weight.component';
 
 @Component({
   selector: 'lib-vitamins-and-minerals-list',
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ElementWeightComponent],
   templateUrl: './vitamins-and-minerals-list.component.html',
   styleUrls: ['./vitamins-and-minerals-list.component.css'],
 })
@@ -50,6 +51,6 @@ export class VitaminsAndMineralsListComponent {
 
   }
 
-  
+
 
 }

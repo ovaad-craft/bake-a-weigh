@@ -22,14 +22,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule }             from '@angular/common';
 import { WeightType }               from '@bake-a-weigh/site-types';
 import { NutrientGroupType }        from '../../../views/ingredient-editor/form-generator/form-types';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NumberInputComponent, SelectInputComponent }  from '@form-controls';
+import { FormControl, FormGroup, ReactiveFormsModule }                    from '@angular/forms';
+import { NumberInputComponent, SelectInputComponent, TextInputComponent } from '@form-controls';
 
 @Component({
   selector : 'lib-element-weight',
   imports  : [
     CommonModule,
     ReactiveFormsModule,
+    TextInputComponent,
     NumberInputComponent,
     SelectInputComponent
   ],
