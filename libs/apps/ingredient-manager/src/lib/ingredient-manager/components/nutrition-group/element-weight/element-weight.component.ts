@@ -18,13 +18,60 @@ USER STORIES :
 
 */
 
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule }             from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ElementWeightGroupType }   from '../../../views/ingredient-editor/form-generator/form-types';
+import { WeightType }               from '@bake-a-weigh/site-types';
+import { NumberInputComponent, SelectInputComponent } from '@form-controls';
 
 @Component({
-  selector: 'lib-element-weight',
-  imports: [CommonModule],
-  templateUrl: './element-weight.component.html',
-  styleUrls: ['./element-weight.component.css'],
+  selector : 'lib-element-weight',
+  imports  : [
+    CommonModule,
+    ReactiveFormsModule,
+    NumberInputComponent,
+    SelectInputComponent
+  ],
+  templateUrl : './element-weight.component.html',
+  styleUrls   : [ './element-weight.component.css' ],
 })
-export class ElementWeightComponent {}
+export class ElementWeightComponent implements OnInit {
+
+  @Input() Control! : FormGroup<ElementWeightGroupType >;
+
+  WeightOptions : WeightType[] = [ 'g','mcg','mg','ml' ];
+
+  PercentageToggle = false;
+
+
+
+  ngOnInit() : void {
+      
+    if( this.Control.controls.percentage ){ this.PercentageToggle = true; }
+
+  }
+
+
+
+  addPercentage() : void {
+
+    this.Control.addControl( 'percentage', new FormControl< number | null >( null ) );
+
+    this.PercentageToggle = true;
+
+  }
+
+
+
+  removePercentage() : void {
+
+    this.Control.removeControl( 'percentage' );
+
+    this.PercentageToggle = false;
+
+  }
+
+
+
+}
