@@ -1,1 +1,14 @@
-<p>nutrient-category works</p>
+<section class="mainContainer" [formGroup]="Control">
+
+    @if( Control.controls.name ) {
+
+        <lib-text-input
+            [Control]="Control.controls.name"
+            ngDefaultControl
+            [label]="'name'"
+        />
+
+    }
+
+    <lib-element-weight/>
+</section>
