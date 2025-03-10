@@ -29,6 +29,7 @@ import { NutritionGroup } from '../../views/ingredient-editor/form-generator/for
 import { NumberInputComponent } from '@form-controls';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 import { ServingSizeComponent } from "./serving-size/serving-size.component";
+import { VitaminsAndMineralsListComponent } from './vitamins-and-minerals-list/vitamins-and-minerals-list.component';
 
 
 
@@ -42,7 +43,8 @@ import { ServingSizeComponent } from "./serving-size/serving-size.component";
     ReactiveFormsModule,
     NumberInputComponent,
     IngredientListComponent,
-    ServingSizeComponent
+    ServingSizeComponent,
+    VitaminsAndMineralsListComponent
 ],
     templateUrl : './nutrition-group.component.html',
     styleUrls   : [ './nutrition-group.component.css' ]

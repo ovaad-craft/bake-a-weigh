@@ -15,6 +15,17 @@
         [Label]="'calories'"
         [InputSize]="5"
     />
+    
+    @if (Control.controls.vitaminsAndMinerals) {
+
+        <lib-vitamins-and-minerals-list
+            [Control]="Control.controls.vitaminsAndMinerals"
+            ngDefaultControl
+            [formGroupName]="'vitaminsAndMinerals'"
+        />
+
+    }
+
 
     <lib-ingredient-list
         [Control]="Control.controls.ingredients"
