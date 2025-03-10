@@ -1,0 +1,51 @@
+<section class="mainContainer" [formGroup]="Control">
+
+    
+
+    <lib-text-input
+        [Control]="Control.controls.name"
+        ngDefaultControl
+        [formControlName]="'name'"
+        [label]="'name'"
+        [InputSize]="22"
+    />
+
+
+    <lib-number-input
+        [Control]="Control.controls.amount"
+        ngDefaultControl
+        [formControlName]="'amount'"
+        [Label]="'amount'"
+        [InputSize]="5"
+    />
+
+    <lib-select-input
+        [OptionList]="WeightOptions"
+        [Control]="Control.controls.weightType"
+        ngDefaultControl
+        [formControlName]="'weightType'"
+        [Label]="'weight'"
+    />
+    
+    <article class="percentageContainer">
+
+        @if ( PercentageToggle ) {
+
+            <lib-number-input
+                [Control]="Control.controls.percentage!"
+                ngDefaultControl
+                [formControlName]="'percentage'"
+                [Label]="'percent'"
+            />
+
+            <button (click)="removePercentage()">remove</button>
+
+        }
+        @else {
+
+            <button (click)="addPercentage()">percentage</button>
+        }
+
+    </article>
+
+</section>

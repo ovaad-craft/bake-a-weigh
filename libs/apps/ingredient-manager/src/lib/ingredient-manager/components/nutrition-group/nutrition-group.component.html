@@ -1,6 +1,12 @@
 <section class="mainContainer" [formGroup]="Control">
     
     <h4>nutrition</h4>
+    
+    <lib-serving-size
+        [Control]="Control.controls.servingSize"
+        ngDefaultControl
+        [formGroupName]="'servingSize'"
+    />
 
     <lib-number-input
         [Control]="Control.controls.calories"
@@ -9,6 +15,36 @@
         [Label]="'calories'"
         [InputSize]="5"
     />
+
+    <article class="nutrientContainer">
+        
+        <h5>Total Fat</h5>
+
+        @if( TotalFatToggle ){
+    
+            <lib-nutrient-category
+                [Control]="Control.controls.totalFat!"
+                [NameEnabled]="false"
+                ngDefaultControl
+                [formGroupName]="'totalFat'"
+            />
+    
+        }
+
+    </article>
+
+
+    
+    @if (Control.controls.vitaminsAndMinerals) {
+
+        <lib-vitamins-and-minerals-list
+            [Control]="Control.controls.vitaminsAndMinerals"
+            ngDefaultControl
+            [formGroupName]="'vitaminsAndMinerals'"
+        />
+
+    }
+
 
     <lib-ingredient-list
         [Control]="Control.controls.ingredients"

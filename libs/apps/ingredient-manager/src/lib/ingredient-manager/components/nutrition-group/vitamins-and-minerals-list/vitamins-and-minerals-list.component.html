@@ -1,0 +1,20 @@
+<section class="mainContainer" [formGroup]="Control">
+
+    <h5 class="title">vitamins and minerals</h5>
+
+    <article class="listContainer" [formArrayName]="'list'">
+
+        @for (a of Control.controls.list.controls; track $index) {
+
+            <lib-element-weight
+                [Control]="a"
+                ngDefaultControl
+                [formGroupName]="$index"
+            />
+        }
+
+    </article>
+    
+    <button (click)="addItem()">add item</button>
+
+</section>

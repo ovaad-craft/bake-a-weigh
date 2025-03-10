@@ -1,4 +1,4 @@
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, ExtractState, ExtractType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
 
 
@@ -58,8 +58,8 @@ export interface NutrientCategoryGroup{
 
     name?       : FormControl< string | null >;
     totalAmount : FormGroup< ElementWeightGroupType >;
-    nutrients?  : FormArray< FormGroup< NutrientCategoryGroup > >;
-
+    nutrients?  : FormGroup< FormArrayGroupList< NutrientCategoryGroup > >;
+    //nutrients?  : FormArray< FormGroup< NutrientCategoryGroup > >;
 }
 
 
@@ -72,8 +72,16 @@ export interface NutrientTrackerGroup{
 
 }
 
-export interface FormArrayControlList<T>{
+export interface FormArrayControlList< T > {
     list : FormArray< FormControl< T | null > >;
+}
+
+
+
+export interface FormArrayGroupList< T extends { [ K in keyof T ] : AbstractControl< any, any > } > {
+
+    list : FormArray< FormGroup< T > >;
+
 }
 
 
@@ -87,7 +95,7 @@ export interface NutritionGroup {
     sodium?              : FormGroup< NutrientCategoryGroup >;
     totalCarbohydrates?  : FormGroup< NutrientCategoryGroup >;
     protein?             : FormGroup< NutrientCategoryGroup >;
-    vitaminsAndMinerals? : FormArray< FormGroup< NutrientGroupType > >;
+    vitaminsAndMinerals? : FormGroup< FormArrayGroupList< NutrientGroupType > >;
     ingredients          : FormGroup< FormArrayControlList< string > >;
 
 }

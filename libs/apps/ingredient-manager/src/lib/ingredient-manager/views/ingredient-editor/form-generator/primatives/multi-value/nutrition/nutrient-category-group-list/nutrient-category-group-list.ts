@@ -1,24 +1,28 @@
 import { FormArray, FormGroup }        from "@angular/forms";
 import { NutrientCategory }            from "@bake-a-weigh/site-types";
-import { NutrientCategoryGroup }       from "../../../../form-types";
+import { FormArrayGroupList, NutrientCategoryGroup }       from "../../../../form-types";
 import { createNutrientCategoryGroup } from "../nutrient-category-group/nutrient-category-group";
 
 
 
 
 
-export function createNutrientCategoryGroupArray( defaultData? : NutrientCategory[] ) : FormArray< FormGroup< NutrientCategoryGroup > > {
+export function createNutrientCategoryGroupArray( defaultData? : NutrientCategory[] ) : FormGroup< FormArrayGroupList< NutrientCategoryGroup > > {
 
 
 
-    const nutrients : FormArray< FormGroup< NutrientCategoryGroup > > = new FormArray< FormGroup < NutrientCategoryGroup > >( [] );
+    const group : FormGroup< FormArrayGroupList< NutrientCategoryGroup > > = new FormGroup< FormArrayGroupList< NutrientCategoryGroup > >({
+
+        list : new FormArray< FormGroup< NutrientCategoryGroup > >([])
+         
+    });
 
 
-    if( defaultData ){ defaultData.forEach( a => nutrients.push( createNutrientCategoryGroup( a ) ) ); }
+    if( defaultData ){ defaultData.forEach( a => group.controls.list.push( createNutrientCategoryGroup( a ) ) ); }
 
 
 
-    return nutrients;
+    return group;
 
 
     

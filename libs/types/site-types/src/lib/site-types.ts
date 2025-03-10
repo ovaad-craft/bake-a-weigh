@@ -26,6 +26,9 @@ export interface NutrientCategory{
   nutrients?  : NutrientCategory[];
 }
 
+export type NutritionOptionType = 'totalFat' | 'cholesterol' | 'sodium' | 'totalCarbohydrates' |
+                                  'protein';
+
 export interface Nutrition{
   servingSize         : ElementWeightType;
   calories            : number;

@@ -33,5 +33,17 @@ export class SelectInputComponent<ValueType> {
   @Input() OptionType! : ValueType;
   @Input() OptionList! : ValueType[];
   @Input() Control!    : FormControl< ValueType | null>;
+  @Input() Label!      : string;
+
+  ToggleOptions = false;
+
+  updateValue(value : ValueType) : void {
+
+    this.Control.setValue(value);
+    this.ToggleOptions = false;
+
+  }
+
+  toggleOptions(){ this.ToggleOptions = !this.ToggleOptions; }
   
 }

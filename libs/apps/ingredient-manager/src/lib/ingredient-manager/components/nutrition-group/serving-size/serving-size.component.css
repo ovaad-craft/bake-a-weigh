@@ -1,0 +1,15 @@
+:host{
+    display: grid;
+    width : var(--tiny-1-4);
+}
+
+.mainContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: var(--line-thick);
+    row-gap: var(--line-bold);
+}
+
+.title{
+    grid-area: 1/1/2/3;
+}

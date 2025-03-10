@@ -1,0 +1,4 @@
+:host{
+    display : grid;
+    width : var(--xTiny-2-4);
+}
