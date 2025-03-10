@@ -59,7 +59,6 @@ export interface NutrientCategoryGroup{
     name?       : FormControl< string | null >;
     totalAmount : FormGroup< ElementWeightGroupType >;
     nutrients?  : FormGroup< FormArrayGroupList< NutrientCategoryGroup > >;
-    //nutrients?  : FormArray< FormGroup< NutrientCategoryGroup > >;
 }
 
 
