@@ -136,6 +136,20 @@ const DemoIngredients : IngredientProfile[] = [
     brand : 'Badia',
     id : 'flax_seed_id1100011',
     icon : 'some icon',
+    notes : [
+      {
+        title : 'Make sure to blahblah',
+        description : 'If you forget to blahblah it might get a lil yaddayadda which can cause this that and this.'
+      },
+      {
+        title : 'Dont use with such and such',
+        description : 'Such and such can cause whooptie-woo because of blah-zay-blah.'
+      },
+      {
+        title : 'Only use with this that and the other.',
+        description : 'In the event of wanting to woo woo woo, only use this that and the other because using this that and this can cause whooptie-woo blah-zay-blah while this that and the other helps to form a good such and such.'
+      }
+    ],
     nutrition : {
       servingSize : {
         amount : 14,
