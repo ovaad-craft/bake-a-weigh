@@ -4,11 +4,15 @@
 
 
 
-    <article class="noteListContainer">
+    <article class="noteListContainer" [formArrayName]="'list'">
 
         @for ( a of Control.controls.list.controls; track $index ) {
 
-            <lib-note/>
+            <lib-note
+                [Control]="a"
+                ngDefaultControl
+                [formGroupName]="$index"
+            />
 
         }
 

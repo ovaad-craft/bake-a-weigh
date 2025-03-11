@@ -1,1 +1,9 @@
-<p>note works</p>
+<section class="mainContainer" [formGroup]="Control">
+
+    <lib-text-input
+        [Control]="Control.controls.title"
+        ngDefaultControl
+        [formControlName]="'title'"
+        [InputSize]="33"
+    />
+</section>
