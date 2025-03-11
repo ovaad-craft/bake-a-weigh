@@ -13,6 +13,23 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "componentType" : {
+      "type": "OvaadComponentType",
+      "description" : "",
+      "x-prompt" : {
+        "type" : "list",
+        "items": [
+          {
+            "value" : "standard",
+            "label" : "standard"
+          },
+          {
+            "value" : "custom form control",
+            "label" : "custom form control"
+          }
+        ]
+      }
+    },
     "project" : {
       "type": "string",
       "description": "",
@@ -24,5 +41,5 @@
       "x-prompt" : "Add the path from the project root to the location you'd like this component generated"
     }
   },
-  "required": ["name", "project"]
+  "required": ["name", "componentType", "project"]
 }
