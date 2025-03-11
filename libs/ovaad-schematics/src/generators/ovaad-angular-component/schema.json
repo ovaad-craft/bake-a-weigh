@@ -14,20 +14,38 @@
       "x-prompt": "What name would you like to use?"
     },
     "componentType" : {
-      "type": "OvaadComponentType",
+      "type": "string",
+      "enum" : ["standard", "custom form control"],
       "description" : "",
-      "x-prompt" : {
-        "type" : "list",
-        "items": [
-          {
-            "value" : "standard",
-            "label" : "standard"
-          },
-          {
-            "value" : "custom form control",
-            "label" : "custom form control"
+      "x-prompt" : "What type of component would you like to generate?"
+    },
+    "controlInfo" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "controlType" : {
+          "type" : "string",
+          "enum" : [ "FormGroup", "FormControl", "FormArrayGroup" ],
+          "description" : "",
+          "x-prompt" : "What type of control do you need?"
+        },
+        "typeAnnotation" : {
+          "type" : "string",
+          "description" : "note: don't include outer brackets",
+          "x-prompt" : "What is the type of your control?"
+        },
+        "listPropertyName" : {
+          "type" : "string",
+          "description" : "",
+          "x-prompt" : "What is the property name of your FormArray?",
+          "ui" : {
+            "if" : { "properties" : { "controlInfo" : { "properties" : { "typeAnnotation" : { "const" : "FormArrayGroup" } } } } }
           }
-        ]
+        }
+      },
+      "x-prompt" : "What type of form control do you need?",
+      "ui" : {
+        "if" : { "properties" : { "componentType" : { "const" : "custom form control" } } }
       }
     },
     "project" : {
