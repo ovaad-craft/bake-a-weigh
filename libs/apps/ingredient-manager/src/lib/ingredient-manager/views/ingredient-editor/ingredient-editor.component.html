@@ -16,6 +16,15 @@
         [InputSize]="44"
     />
 
+    @if ( NotesToggle ) {
+
+        <lib-note-list
+            [Control]="IngredientEditorForm.controls.notes!"
+            ngDefaultControl
+            [formGroupName]="'notes'"
+        />
+    }
+
     @if (IngredientEditorForm.controls.nutrition) {
         
         <lib-nutrition-group
