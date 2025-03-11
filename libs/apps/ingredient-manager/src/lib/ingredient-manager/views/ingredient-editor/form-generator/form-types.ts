@@ -333,7 +333,6 @@ export type IngredientDataGroupType =
         icon?        : FormControl< string | null >;
         nutrition?   : FormGroup< NutritionGroup >;
         notes?       : FormGroup< FormArrayGroupList< IngredientNoteFormGroup > >;
-        //notes?       : FormArray< FormGroup< IngredientNoteFormGroup > >;
         profileType? : FormControl< string | null >;
         data?        : IngredientDataGroupType;
         locations    : FormArray< FormControl< string | null > >;

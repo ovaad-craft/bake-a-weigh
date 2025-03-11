@@ -25,6 +25,22 @@
         />
     }
 
+
+
+    @if ( ProfileTypeToggle ) {
+
+        <lib-text-input
+            [Control]="IngredientEditorForm.controls.profileType!"
+            ngDefaultControl
+            [formGroupName]="'profileType'"
+            [label]="'profile type'"
+            [InputSize]="33"
+        />
+        
+    }
+
+
+
     @if (IngredientEditorForm.controls.nutrition) {
         
         <lib-nutrition-group
