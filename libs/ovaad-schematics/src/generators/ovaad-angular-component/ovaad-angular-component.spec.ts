@@ -6,7 +6,7 @@ import { OvaadAngularComponentGeneratorSchema } from './schema';
 
 describe('ovaad-angular-component generator', () => {
   let tree: Tree;
-  const options: OvaadAngularComponentGeneratorSchema = { name: 'test' };
+  const options: OvaadAngularComponentGeneratorSchema = { name: 'test', project : '', location: '', componentType : '' };
 
   beforeEach(() => {
     tree = createTreeWithEmptyWorkspace();
