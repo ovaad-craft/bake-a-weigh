@@ -29,6 +29,20 @@
           "description" : "",
           "x-prompt" : "What type of control do you need?"
         },
+        "hasGlobalTypePath" : {
+          "type" : "string",
+          "enum" : [ "yes", "no" ],
+          "description" : "",
+          "x-prompt" : "Do you have a global path to your types/interfaces? If not you'll have to add type imports manually."
+        },
+        "globalTypePath" : {
+          "type" : "string",
+          "description" : "",
+          "x-path" : "What is the path to your types/interfaces?",
+          "ui" : {
+            "if" : { "properties" : { "controlInfo" : { "hasGlobalTypePath" : { "const" : "yes" } } } }
+          }
+        },
         "typeAnnotation" : {
           "type" : "string",
           "description" : "note: don't include outer brackets",
