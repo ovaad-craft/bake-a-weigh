@@ -16,6 +16,10 @@ export interface OvaadAngularComponentGeneratorSchema {
   project       : string;
   location      : string;
   componentType : string;
-  controlInfo?  : CustomFormControlSpecs;
-  
+  controlType?    : string;
+  typeAnnotation? : string;
+  hasGlobalTypePath? : string;
+  globalTypePath? : string;
+  listPropertyName?  : string;
+  //controlInfo?  : CustomFormControlSpecs;  
 }

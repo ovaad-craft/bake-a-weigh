@@ -6,71 +6,78 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
       "x-prompt": "What name would you like to use?"
     },
-    "componentType" : {
+    "componentType": {
       "type": "string",
-      "enum" : ["standard", "custom form control"],
-      "description" : "",
-      "x-prompt" : "What type of component would you like to generate?"
+      "enum": ["standard", "custom form control"],
+      "x-prompt": "What type of component would you like to generate?"
     },
-    "controlInfo" : {
-      "type" : "object",
-      "description" : "",
-      "properties" : {
-        "controlType" : {
-          "type" : "string",
-          "enum" : [ "FormGroup", "FormControl", "FormArrayGroup" ],
-          "description" : "",
-          "x-prompt" : "What type of control do you need?"
-        },
-        "hasGlobalTypePath" : {
-          "type" : "string",
-          "enum" : [ "yes", "no" ],
-          "description" : "",
-          "x-prompt" : "Do you have a global path to your types/interfaces? If not you'll have to add type imports manually."
-        },
-        "globalTypePath" : {
-          "type" : "string",
-          "description" : "",
-          "x-path" : "What is the path to your types/interfaces?",
-          "ui" : {
-            "if" : { "properties" : { "controlInfo" : { "hasGlobalTypePath" : { "const" : "yes" } } } }
-          }
-        },
-        "typeAnnotation" : {
-          "type" : "string",
-          "description" : "note: don't include outer brackets",
-          "x-prompt" : "What is the type of your control?"
-        },
-        "listPropertyName" : {
-          "type" : "string",
-          "description" : "",
-          "x-prompt" : "What is the property name of your FormArray?",
-          "ui" : {
-            "if" : { "properties" : { "controlInfo" : { "properties" : { "typeAnnotation" : { "const" : "FormArrayGroup" } } } } }
+    "controlType": {
+      "type": "string",
+      "enum": ["FormGroup", "FormControl", "FormArrayGroup"],
+      "x-prompt": "What type of control do you need?",
+      "ui": {
+        "if": {
+          "properties": {
+            "componentType": { "const": "custom form control" }
           }
         }
-      },
-      "x-prompt" : "What type of form control do you need?",
-      "ui" : {
-        "if" : { "properties" : { "componentType" : { "const" : "custom form control" } } }
       }
     },
-    "project" : {
+    "hasGlobalTypePath": {
       "type": "string",
-      "description": "",
-      "x-prompt" : "What project would you like to add this new component to?"
+      "enum": ["yes", "no"],
+      "x-prompt": "Do you have a global path to your types/interfaces?",
+      "ui": {
+        "if": {
+          "properties": {
+            "componentType": { "const": "custom form control" }
+          }
+        }
+      }
     },
-    "location" : {
-      "type" : "string",
-      "description" : "",
-      "x-prompt" : "Add the path from the project root to the location you'd like this component generated"
+    "globalTypePath": {
+      "type": "string",
+      "x-prompt": "What is the path to your types/interfaces?",
+      "ui": {
+        "if": {
+          "properties": {
+            "controlType": { "const": "FormControl" },
+            "hasGlobalTypePath": { "const": "yes" }
+          }
+        }
+      }
+    },
+    "typeAnnotation": {
+      "type": "string",
+      "x-prompt": "What is the type of your control?",
+      "ui": {
+        "if": {
+          "properties": {
+            "componentType": { "const": "custom form control" }
+          }
+        }
+      }
+    },
+    "listPropertyName": {
+      "type": "string",
+      "x-prompt": "What is the property name of your FormArray?",
+      "ui": {
+        "if": {
+          "properties": {
+            "controlType": { "const": "FormArrayGroup" }
+          }
+        }
+      }
+    },
+    "project": {
+      "type": "string",
+      "x-prompt": "What project would you like to add this new component to?"
+    },
+    "location": {
+      "type": "string",
+      "x-prompt": "Add the path from the project root to the location you'd like this component generated"
     }
   },
   "required": ["name", "componentType", "project"]

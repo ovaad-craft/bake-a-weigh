@@ -18,15 +18,15 @@ function createImportScript( items : string[], location : string ) : string {
 
 }
 
-function createPropAnnotation( item : CustomFormControlSpecs) : string {
+function createPropAnnotation( item : string, annotation : string ) : string {
 
-  return `${ item.controlType }< ${ item.typeAnnotation } >`;
+  return `${ item }< ${ annotation } >`;
 
 }
 
-function createControlInput( item : CustomFormControlSpecs ) : string {
+function createControlInput( item : string, annotation: string ) : string {
 
-  return `@Input() Control! : ${ createPropAnnotation( item ) };`;
+  return `@Input() Control! : ${ createPropAnnotation( item, annotation ) };`;
 
 }
 
@@ -68,27 +68,33 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
     importList.push( createImportScript( [ 'Input' ], '@angular/core' ) );
 
-    if( options.controlInfo?.controlType === 'FormGroup' || options.controlInfo?.controlType === 'FormArrayGroup' ) {
-
-      importList.push( createImportScript( [ 'ReactiveFormsModule', 'FormGroup' ], '@angular/forms' ) );
-      metaDataImports.push( 'ReactiveFormsModule' );
+    if(options.controlType) {
       
-    }
+      if( options.controlType === 'FormGroup' || options.controlType === 'FormArrayGroup' ) {
+  
+        importList.push( createImportScript( [ 'ReactiveFormsModule', 'FormGroup' ], '@angular/forms' ) );
+        metaDataImports.push( 'ReactiveFormsModule' );
+        
+      }
+
+      if( options.controlType === 'FormControl' ) {
+  
+        importList.push( createImportScript( [ 'FormsModule', 'FormControl' ], '@angular/forms' ) );
+        metaDataImports.push( 'FormsModule' );
+  
+      }
+
+      propList.push( createControlInput( options.controlType, options.typeAnnotation! ) );
+
+    }    
     
-    if( options.controlInfo?.controlType === 'FormControl' ) {
 
-      importList.push( createImportScript( [ 'FormsModule', 'FormControl' ], '@angular/forms' ) );
-      metaDataImports.push( 'FormsModule' );
+    if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
 
-    }
-
-    if( options.controlInfo?.hasGlobalTypePath === 'yes' && options.controlInfo.globalTypePath ) {
-
-      importList.push( createImportScript( [`${options.controlInfo.typeAnnotation}`], options.controlInfo.globalTypePath));
+      importList.push( createImportScript( [`${options.typeAnnotation}`], options.globalTypePath ) );
 
     }
 
-    propList.push( createControlInput(options.controlInfo!) );
 
   }
 
