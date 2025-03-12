@@ -3,82 +3,24 @@
   "$id": "OvaadAngularComponent",
   "title": "",
   "type": "object",
-  "properties": {
-    "name": {
-      "type": "string",
-      "x-prompt": "What name would you like to use?"
+  "properties" : {
+    "name" : {
+      "type" : "string",
+      "x-prompt" : "What would you like to name this component?"
     },
-    "componentType": {
-      "type": "string",
-      "enum": ["standard", "custom form control"],
-      "x-prompt": "What type of component would you like to generate?"
+    "project" : {
+      "type" : "string",
+      "x-prompt" : "which project are you adding this to?"
     },
-    "controlType": {
-      "type": "string",
-      "enum": ["FormGroup", "FormControl", "FormArrayGroup"],
-      "x-prompt": "What type of control do you need?",
-      "ui": {
-        "if": {
-          "properties": {
-            "componentType": { "const": "custom form control" }
-          }
-        }
-      }
+    "location" : {
+      "type" : "string",
+      "x-prompt" : "Where do you want this component generated within the project?"
     },
-    "hasGlobalTypePath": {
-      "type": "string",
-      "enum": ["yes", "no"],
-      "x-prompt": "Do you have a global path to your types/interfaces?",
-      "ui": {
-        "if": {
-          "properties": {
-            "componentType": { "const": "custom form control" }
-          }
-        }
-      }
-    },
-    "globalTypePath": {
-      "type": "string",
-      "x-prompt": "What is the path to your types/interfaces?",
-      "ui": {
-        "if": {
-          "properties": {
-            "controlType": { "const": "FormControl" },
-            "hasGlobalTypePath": { "const": "yes" }
-          }
-        }
-      }
-    },
-    "typeAnnotation": {
-      "type": "string",
-      "x-prompt": "What is the type of your control?",
-      "ui": {
-        "if": {
-          "properties": {
-            "componentType": { "const": "custom form control" }
-          }
-        }
-      }
-    },
-    "listPropertyName": {
-      "type": "string",
-      "x-prompt": "What is the property name of your FormArray?",
-      "ui": {
-        "if": {
-          "properties": {
-            "controlType": { "const": "FormArrayGroup" }
-          }
-        }
-      }
-    },
-    "project": {
-      "type": "string",
-      "x-prompt": "What project would you like to add this new component to?"
-    },
-    "location": {
-      "type": "string",
-      "x-prompt": "Add the path from the project root to the location you'd like this component generated"
+    "componentType" : {
+      "type" : "string",
+      "enum" : ["standard", "custom form control"],
+      "x-prompt" : "What type of component will this be?"
     }
   },
-  "required": ["name", "componentType", "project"]
+  "required":[ "name", "project", "location", "componentType" ]
 }

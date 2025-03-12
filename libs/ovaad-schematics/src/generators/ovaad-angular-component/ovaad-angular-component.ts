@@ -3,9 +3,11 @@ import {
   generateFiles,
   Tree,
   names,
-  getProjects
+  getProjects,
+  GeneratorCallback
 } from '@nx/devkit';
 import * as path from 'path';
+import * as enquirer from 'enquirer';
 import { CustomFormControlSpecs, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
 
 
@@ -44,8 +46,79 @@ export interface OvaadComponentOptions {
 
 export async function ovaadAngularComponentGenerator( tree: Tree, options: Schema ) {
 
+  console.log(options);
+
+
+
+  if ( options.componentType === "custom form control" ) {
+
+    const response = await enquirer.prompt< { controlType: "FormGroup" | "FormControl" | "FormArrayGroup" } > ([
+      {
+        type    : 'select',
+        name    : 'controlType',
+        message : 'What type of control will this be?',
+        choices : ['FormGroup', 'FormControl', 'FormArrayGroup'],
+      },
+    ]);
+    options.controlType = response.controlType;
+  }
+
+  // Ask for typeAnnotation if componentType is "custom form control"
+  if (options.componentType === "custom form control") {
+    const response = await enquirer.prompt<{ typeAnnotation: string }>([
+      {
+        type    : 'input',
+        name    : 'typeAnnotation',
+        message : 'What is the type of your control? (Exclude outer brackets)',
+      },
+    ]);
+    options.typeAnnotation = response.typeAnnotation;
+  }
+
+  // Ask for listPropertyName ONLY IF controlType is "FormArrayGroup"
+  if (options.controlType === "FormArrayGroup") {
+    const response = await enquirer.prompt<{ listPropertyName: string }>([
+      {
+        type: 'input',
+        name: 'listPropertyName',
+        message: 'What is the property name of your FormArray?',
+      },
+    ]);
+    options.listPropertyName = response.listPropertyName;
+  }
+
+  if( options.componentType === "custom form control" ){
+
+    const response = await enquirer.prompt<{ hasGlobalTypePath : "yes" | "no" }>([
+      {
+        type: 'select',
+        name : 'hasGlobalTypePath',
+        message : 'Do you have a globally registered path to your types/interfaces?  If not the import path will need to be added manually.',
+        choices : ['yes', 'no']
+      }
+    ]);
+
+    
+    options.hasGlobalTypePath = response.hasGlobalTypePath;
+    console.log(response.hasGlobalTypePath);
+  }
+
+  // Ask for globalTypePath ONLY IF hasGlobalTypePath is "yes"
+  if (options.hasGlobalTypePath === "yes" ) {
+    const response = await enquirer.prompt<{ globalTypePath: string }>([
+      {
+        type: 'input',
+        name: 'globalTypePath',
+        message: 'What is the path to your global types/interfaces?',
+      },
+    ]);
+    options.globalTypePath = response.globalTypePath;
+  }
+
+
+
+
   const componentNames          = names(options.name);
-  //const componentVars           = { componentType : options.componentType, ...componentNames};
   const projects                = getProjects(tree);
   const targetProject           = projects.get(options.project);
 
@@ -66,7 +139,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   if ( options.componentType === 'custom form control' ) {
 
-    importList.push( createImportScript( [ 'Input' ], '@angular/core' ) );
+    //importList.push( createImportScript( [ 'Input' ], '@angular/core' ) );
 
     if(options.controlType) {
       
@@ -84,7 +157,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
   
       }
 
-      propList.push( createControlInput( options.controlType, options.typeAnnotation! ) );
+      propList.push( createControlInput( options.controlType === "FormArrayGroup" ? 'FormGroup' : options.controlType, options.typeAnnotation! ) );
 
     }    
     
@@ -99,9 +172,10 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
   }
 
   const componentOptions = {
-    importList : [...importList],
-    metaDataImports : [...metaDataImports],
-    propList : [...propList],
+    componentType   : options.componentType,
+    importList      : [ ...importList      ],
+    metaDataImports : [ ...metaDataImports ],
+    propList        : [ ...propList        ],
     ...componentNames
   }
 
@@ -115,8 +189,6 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
   );
   
   await formatFiles(tree);
-
-
 
 }
 
