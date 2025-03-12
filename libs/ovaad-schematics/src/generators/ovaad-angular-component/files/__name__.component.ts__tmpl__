@@ -24,15 +24,8 @@ USER STORIES :
 
 import { Component }    from '@angular/core';
 import { CommonModule } from '@angular/common';
-<% if( importList.length > 0 ) { %>
-
-    <% for( let i = 0; i < importList; i++) {%>
-
-        <%- i %>
-
-    <% } %>
-
-<% } %>
+<% if( importList.length > 0 ) { %><% for( let i = 0; i < importList.length; i++) {%>
+<%- importList[i] %><% } %><% } %>
 
 
 
@@ -41,13 +34,8 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector    : 'lib-<%= fileName %>',
     imports     : [
-        CommonModule<% if( metaDataImports.length > 0 ) { %>,
-        <% for( let i = 0; i < importList; i++) {%>
-
-        <%- i+',' %>
-
-    <% } %>
-        FormsModule<% } %>
+        CommonModule,<% if( metaDataImports.length > 0 ) { %><% for( let i = 0; i < metaDataImports.length; i++) {%>
+        <%-metaDataImports[i]+','%><% } %><% } %>
     ],
     templateUrl : './<%= fileName %>.component.html',
     styleUrls   : [ './<%= fileName %>.component.css' ]
@@ -56,11 +44,6 @@ import { CommonModule } from '@angular/common';
 export class <%= className %>Component {
 
     <% if( propList.length > 0 ) { %>
-    @Input() Label! : string;
-        <% for( let i = 0; i < propList; i++) {%>
-
-            <%- i %>
-
-        <% } %>
-    <% } %>
+    @Input() Label! : string;<% for( let i = 0; i < propList.length; i++) {%>
+    <%- propList[i] %><% } %><% } %>
 }
