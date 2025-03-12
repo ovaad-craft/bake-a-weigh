@@ -1,0 +1,66 @@
+/*
+
+<%= className %>
+
+PURPOSE :
+
+VIEWS :
+
+ELEMENTS :
+
+INTERACTIVITY :
+
+GETS DATA FROM :
+
+SENDS DATA TO :
+
+USER STORIES :
+
+*/
+
+
+
+
+
+import { Component }    from '@angular/core';
+import { CommonModule } from '@angular/common';
+<% if( importList.length > 0 ) { %>
+
+    <% for( let i = 0; i < importList; i++) {%>
+
+        <%- i %>
+
+    <% } %>
+
+<% } %>
+
+
+
+
+
+@Component({
+    selector    : 'lib-<%= fileName %>',
+    imports     : [
+        CommonModule<% if( metaDataImports.length > 0 ) { %>,
+        <% for( let i = 0; i < importList; i++) {%>
+
+        <%- i+',' %>
+
+    <% } %>
+        FormsModule<% } %>
+    ],
+    templateUrl : './<%= fileName %>.component.html',
+    styleUrls   : [ './<%= fileName %>.component.css' ]
+})
+
+export class <%= className %>Component {
+
+    <% if( propList.length > 0 ) { %>
+    @Input() Label! : string;
+        <% for( let i = 0; i < propList; i++) {%>
+
+            <%- i %>
+
+        <% } %>
+    <% } %>
+}
