@@ -1,18 +1,48 @@
-<section class="mainContainer">
+<section class="mainContainer"
+    <% if(controlType === 'FormGroup' || controlType === 'FormArrayGroup') { %>
+        <%-`[formGroup]="Control"`%>
+    <% } %> >
+
+
+
 
 <% if(componentType === 'standard'){%>
     <p><%-`${fileName} ready for awesomeness!!!`%></p>
 <%}%>
 
+
+
+
+
 <% if(componentType === 'custom form control'){%>
 
+
+
+
+    <% if(controlType === 'FormControl'){%>
+    
     <label>
     
         <h6>{{Label}}</h6>
 
         <input [(ngModel)]="Control.value" />
     
-    </label>
+    </label>    
+    
+    <%}%>
+
+
+
+
+
+    <% if(controlType === 'FormGroup'){%>
+    
+    <p>{{ Control.value | json }}</p>
+    
+    <%}%>
+
+
+
 
 <%}%>
 
