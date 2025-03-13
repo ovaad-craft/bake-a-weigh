@@ -267,7 +267,8 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
     componentType   : options.componentType,
     controlType     : options.controlType  ?? undefined,
-    listPropertType : options.listItemType ?? undefined,
+    listPropertyType : options.listItemType ?? undefined,
+    listItemAnnotation : options.listItemAnnotation ?? undefined,
     importList      : [ ...importList      ],
     metaDataImports : [ ...metaDataImports ],
     propList        : [ ...propList        ],
