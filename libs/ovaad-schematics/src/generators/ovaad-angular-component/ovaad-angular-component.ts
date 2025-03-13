@@ -28,7 +28,7 @@ function createPropAnnotation( item : string, annotation : string ) : string {
 
 function createControlInput( item : string, annotation: string ) : string {
 
-  return `@Input() Control! : ${ createPropAnnotation( item, annotation ) };`;
+  return `@Input() Control! : ${ createPropAnnotation( item, (item === 'FormControl' ? `${annotation} | null` : annotation ) ) };`;
 
 }
 
@@ -61,7 +61,7 @@ export interface CustomControlOptions {
 
 export async function ovaadAngularComponentGenerator( tree: Tree, options: Schema ) {
 
-  console.log(options);
+  //console.log(options);
 
 
 
@@ -164,7 +164,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
       }
     ]);
 
-    options.listItemType = response.listItemAnnotation
+    options.listItemAnnotation = response.listItemAnnotation
   }
 
   if( options.controlType === 'FormArrayGroup' && options.globalTypePath !== undefined ) {
@@ -228,8 +228,12 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
     if(options.controlType) {
       
       if( options.controlType === 'FormGroup' || options.controlType === 'FormArrayGroup' ) {
+
+        const moduleImports : string[] = ['ReactiveFormsModule', 'FormGroup'];
+
+        if(options.listItemType === 'FormControl'){ moduleImports.push('FormControl'); }
   
-        importList.push( createImportScript( [ 'ReactiveFormsModule', 'FormGroup' ], '@angular/forms' ) );
+        importList.push( createImportScript( moduleImports, '@angular/forms' ) );
         metaDataImports.push( 'ReactiveFormsModule' );
         
       }
@@ -243,7 +247,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
       propList.push( createControlInput( options.controlType === "FormArrayGroup" ? 'FormGroup' : options.controlType, options.typeAnnotation! ) );
 
-    }    
+    }
     
 
     if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
@@ -251,7 +255,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
       const importItems : string[] = [ `${options.typeAnnotation}` ];
 
       if( options.isListItemTypeGlobal === 'yes' && options.listItemType ){
-        importItems.push(options.listItemType);
+        importItems.push(options.listItemAnnotation!);
       }
 
       importList.push( createImportScript( [ ...importItems ], options.globalTypePath ) );
@@ -272,7 +276,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
     componentType   : options.componentType,
     controlType     : options.controlType  ?? undefined,
     listPropertyName : options.listPropertyName ?? undefined,
-    listPropertyType : options.listItemType ?? undefined,
+    listItemType : options.listItemType ?? undefined,
     listItemAnnotation : options.listItemAnnotation ?? undefined,
     importList      : [ ...importList      ],
     metaDataImports : [ ...metaDataImports ],

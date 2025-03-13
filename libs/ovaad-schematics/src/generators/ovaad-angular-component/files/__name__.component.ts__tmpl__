@@ -49,23 +49,23 @@ export class <%= className %>Component {
 
 
 
-    <% if( componentType === 'FormArrayGroup' ){%>
+    <% if( controlType === 'FormArrayGroup' ){%>
     addControl() : void {
 
         this.Control.controls.<%-listPropertyName%>.controls.push( new 
-        <%_if(listItemType === 'FormGroup' || listItemType === 'FormArrayGroup'){%>
-            <%-`FormGroup< ${listItemAnnotation} >({/* set up defaults */});`%><%}%>
-        <%_else{%>
-            <%-`FormControl< ${listItemAnnotation} | null >( null );`%>
-        <%}%> );
+        <% if(listItemType === 'FormGroup' || listItemType === 'FormArrayGroup'){ %>
+            <%-`FormGroup< ${listItemAnnotation} >({/* set up defaults */})`%>
+        <% } else { %>
+            <%-`FormControl< ${listItemAnnotation} | null >( null )`%>
+        <% } %> );
 
     }
 
     removeControl( index : number ) : void {
 
-        this.Control.<%-listPropertyName%>.controls.removeAt( index );
+        this.Control.controls.<%-listPropertyName%>.controls.removeAt( index );
 
     }
-    <%}%>
+    <% } %>
 
 }
