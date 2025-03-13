@@ -92,30 +92,6 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
     options.typeAnnotation = response.typeAnnotation;
   }
 
-  // Ask for listPropertyName ONLY IF controlType is "FormArrayGroup"
-  if (options.controlType === "FormArrayGroup") {
-    const response = await enquirer.prompt<{ listPropertyName: string }>([
-      {
-        type: 'input',
-        name: 'listPropertyName',
-        message: 'What is the property name of your FormArray?',
-      },
-    ]);
-    options.listPropertyName = response.listPropertyName;
-  }
-
-  if( options.controlType === "FormArrayGroup") {
-    const response = await enquirer.prompt<{ listPropertyType : string }>([
-      {
-        type: 'input',
-        name : 'listPropertyType',
-        message : 'What is the type of the item the FormArray will iterate?'
-      }
-    ]);
-
-    options.listPropertyType = response.listPropertyType
-  }
-
   if( options.componentType === "custom form control" ){
 
     const response = await enquirer.prompt<{ hasGlobalTypePath : "yes" | "no" }>([
@@ -126,29 +102,108 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
         choices : ['yes', 'no']
       }
     ]);
-
     
     options.hasGlobalTypePath = response.hasGlobalTypePath;
+
   }
 
   // Ask for globalTypePath ONLY IF hasGlobalTypePath is "yes"
-  if (options.hasGlobalTypePath === "yes" ) {
-    const response = await enquirer.prompt<{ globalTypePath: string }>([
+  if ( options.hasGlobalTypePath === "yes" ) {
+
+
+    const response = await enquirer.prompt< { globalTypePath : string } > ([
+      
+      {
+        type    : 'input',
+        name    : 'globalTypePath',
+        message : 'What is the path to your global types/interfaces?',
+      }
+
+    ]);
+
+    options.globalTypePath = response.globalTypePath;
+
+
+  }
+
+  // Ask for listPropertyName ONLY IF controlType is "FormArrayGroup"
+  if (options.controlType === "FormArrayGroup") {
+    const response = await enquirer.prompt<{ listPropertyName: string }>([
       {
         type: 'input',
-        name: 'globalTypePath',
-        message: 'What is the path to your global types/interfaces?',
+        name: 'listPropertyName',
+        message: 'What is the name of your FormArray control?',
       },
     ]);
-    options.globalTypePath = response.globalTypePath;
+    options.listPropertyName = response.listPropertyName;
+  }
+
+  if( options.controlType === "FormArrayGroup") {
+    const response = await enquirer.prompt<{ listItemType : "FormControl" | "FormGroup" | "FormArrayGroup" }>([
+      {
+        type: 'select',
+        name : 'listItemType',
+        message : 'What type of item will the FormArray iterate?',
+        choices : [ 'FormControl', 'FormGroup', 'FormArrayGroup' ]
+      }
+    ]);
+
+    options.listItemType = response.listItemType
+  }
+
+  if( options.controlType === "FormArrayGroup") {
+    const response = await enquirer.prompt<{ listItemAnnotation : string }>([
+      {
+        type: 'input',
+        name : 'listItemAnnotation',
+        message : 'What is the type of this item?'
+      }
+    ]);
+
+    options.listItemType = response.listItemAnnotation
+  }
+
+  if( options.controlType === 'FormArrayGroup' && options.globalTypePath !== undefined ) {
+
+    const response = await enquirer.prompt< { isListItemTypeImportGlobal : 'yes' | 'no'} >([
+
+      {
+        type : 'select',
+        name : 'isListItemTypeImportGlobal',
+        message : 'Is the type/interface for this item imported from your global path?',
+        choices : [ 'yes', 'no' ]
+      }
+    ]);
+
+    options.isListItemTypeGlobal = response.isListItemTypeImportGlobal;
+
+  }
+
+  if( options.isListItemTypeGlobal === 'no' ) {
+
+    const response = await enquirer.prompt< { listItemTypeImport : string | null } >([
+
+      {
+        type : 'input',
+        name : 'listItemTypeImport',
+        message : 'Would you like to enter another path?  Leave blank if no'
+      }
+    ]);
+
+    if(response.listItemTypeImport !== '' && response.listItemTypeImport !== null ){
+
+      options.listItemTypeImport = response.listItemTypeImport;
+
+    }
+
   }
 
 
 
 
-  const componentNames          = names(options.name);
-  const projects                = getProjects(tree);
-  const targetProject           = projects.get(options.project);
+  const componentNames = names( options.name );
+  const projects       = getProjects( tree );
+  const targetProject  = projects.get( options.project );
 
 
   
@@ -158,11 +213,10 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
   
   const targetPath = path.join( targetProject.root, options.location, componentNames.fileName );
 
-  const importList : string[] = [];
 
+  const importList      : string[] = [];
   const metaDataImports : string[] = [];
-
-  const propList : string[] = [];
+  const propList        : string[] = [];
 
 
   if ( options.componentType === 'custom form control' ) {
@@ -192,7 +246,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
     if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
 
-      importList.push( createImportScript( [`${options.typeAnnotation}`], options.globalTypePath ) );
+      importList.push( createImportScript( [ `${options.typeAnnotation}` ], options.globalTypePath ) );
 
     }
 
@@ -200,11 +254,15 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
   }
 
   const componentOptions = {
+
     componentType   : options.componentType,
+    controlType     : options.controlType  ?? undefined,
+    listPropertType : options.listItemType ?? undefined,
     importList      : [ ...importList      ],
     metaDataImports : [ ...metaDataImports ],
     propList        : [ ...propList        ],
     ...componentNames
+
   }
 
   

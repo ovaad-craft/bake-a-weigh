@@ -22,6 +22,8 @@ export interface OvaadAngularComponentGeneratorSchema {
   hasGlobalTypePath? : string;
   globalTypePath? : string;
   listPropertyName?  : string;
-  listPropertyType? : string;
-  //controlInfo?  : CustomFormControlSpecs;  
+  listItemType? : string;
+  listItemAnnotation? : string;
+  isListItemTypeGlobal? : string;
+  listItemTypeImport? : string;  
 }
