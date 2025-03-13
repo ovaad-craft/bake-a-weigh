@@ -8,6 +8,7 @@ export interface CustomFormControlSpecs{
   hasGlobalTypePath? : string;
   globalTypePath? : string;
   listPropertyName?  : string;
+  listPropertyType?  : string;
 }
 
 export interface OvaadAngularComponentGeneratorSchema {
@@ -21,5 +22,6 @@ export interface OvaadAngularComponentGeneratorSchema {
   hasGlobalTypePath? : string;
   globalTypePath? : string;
   listPropertyName?  : string;
+  listPropertyType? : string;
   //controlInfo?  : CustomFormControlSpecs;  
 }

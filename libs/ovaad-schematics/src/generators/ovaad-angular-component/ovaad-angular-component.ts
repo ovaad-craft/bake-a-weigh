@@ -39,6 +39,17 @@ export interface OvaadComponentOptions {
 }
 
 
+export type CustomControlType = "FormGroup" | "FormControl" | "FormArrayGroup";
+
+export interface CustomControlOptions {
+
+  controlType       : CustomControlType;
+  typeAnnotation    : string;
+  hasGlobalTypePath : boolean;
+
+}
+
+
 
 
 
@@ -47,6 +58,12 @@ export interface OvaadComponentOptions {
 export async function ovaadAngularComponentGenerator( tree: Tree, options: Schema ) {
 
   console.log(options);
+
+
+
+  /*if ( options.componentType === 'custom form control' ) {
+    const response = await enquirer.prompt<{}>
+  }*/
 
 
 
@@ -87,6 +104,18 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
     options.listPropertyName = response.listPropertyName;
   }
 
+  if( options.controlType === "FormArrayGroup") {
+    const response = await enquirer.prompt<{ listPropertyType : string }>([
+      {
+        type: 'input',
+        name : 'listPropertyType',
+        message : 'What is the type of the item the FormArray will iterate?'
+      }
+    ]);
+
+    options.listPropertyType = response.listPropertyType
+  }
+
   if( options.componentType === "custom form control" ){
 
     const response = await enquirer.prompt<{ hasGlobalTypePath : "yes" | "no" }>([
@@ -100,7 +129,6 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
     
     options.hasGlobalTypePath = response.hasGlobalTypePath;
-    console.log(response.hasGlobalTypePath);
   }
 
   // Ask for globalTypePath ONLY IF hasGlobalTypePath is "yes"
