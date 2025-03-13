@@ -46,4 +46,26 @@ export class <%= className %>Component {
     <% if( propList.length > 0 ) { %>
     @Input() Label! : string;<% for( let i = 0; i < propList.length; i++) {%>
     <%- propList[i] %><% } %><% } %>
+
+
+
+    <% if( componentType === 'FormArrayGroup' ){%>
+    addControl() : void {
+
+        this.Control.controls.<%-listPropertyName%>.controls.push( new 
+        <%_if(listItemType === 'FormGroup' || listItemType === 'FormArrayGroup'){%>
+            <%-`FormGroup< ${listItemAnnotation} >({/* set up defaults */});`%><%}%>
+        <%_else{%>
+            <%-`FormControl< ${listItemAnnotation} | null >( null );`%>
+        <%}%> );
+
+    }
+
+    removeControl( index : number ) : void {
+
+        this.Control.<%-listPropertyName%>.controls.removeAt( index );
+
+    }
+    <%}%>
+
 }

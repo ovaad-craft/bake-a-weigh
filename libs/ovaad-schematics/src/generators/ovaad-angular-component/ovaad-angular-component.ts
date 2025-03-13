@@ -32,6 +32,10 @@ function createControlInput( item : string, annotation: string ) : string {
 
 }
 
+
+
+
+
 export interface OvaadComponentOptions {
   importList? : string[];
   metaDataImports : string[];
@@ -267,6 +271,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
     componentType   : options.componentType,
     controlType     : options.controlType  ?? undefined,
+    listPropertyName : options.listPropertyName ?? undefined,
     listPropertyType : options.listItemType ?? undefined,
     listItemAnnotation : options.listItemAnnotation ?? undefined,
     importList      : [ ...importList      ],
