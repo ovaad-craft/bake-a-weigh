@@ -44,6 +44,33 @@
 
 
 
+
+    <% if(controlType === 'FormArrayGroup'){%>
+    
+        <article class="listContainer" [formArrayName]="'<%-`${listPropertyName}`%>'">
+
+            @for(a of Control.controls.<%-`${listPropertyName}`%>.controls; track $index){
+                
+                    <article>
+
+
+                        <p>{{ a.value | json }}</p>
+
+                        <button (click)="removeControl($index)">delete item</button>
+
+
+                    </article>
+            }
+
+        </article>
+
+        <button (click)="addControl()">add item</button>
+    
+    <%}%>
+
+
+
+
 <%}%>
 
 
