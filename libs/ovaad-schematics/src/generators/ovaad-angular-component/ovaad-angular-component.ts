@@ -186,7 +186,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
       {
         type : 'input',
         name : 'listItemTypeImport',
-        message : 'Would you like to enter another path?  Leave blank if no'
+        message : 'Would you like to enter another path?  Leave blank if no.'
       }
     ]);
 
