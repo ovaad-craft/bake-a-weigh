@@ -221,8 +221,6 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   if ( options.componentType === 'custom form control' ) {
 
-    //importList.push( createImportScript( [ 'Input' ], '@angular/core' ) );
-
     if(options.controlType) {
       
       if( options.controlType === 'FormGroup' || options.controlType === 'FormArrayGroup' ) {
@@ -246,7 +244,19 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
     if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
 
-      importList.push( createImportScript( [ `${options.typeAnnotation}` ], options.globalTypePath ) );
+      const importItems : string[] = [ `${options.typeAnnotation}` ];
+
+      if( options.isListItemTypeGlobal === 'yes' && options.listItemType ){
+        importItems.push(options.listItemType);
+      }
+
+      importList.push( createImportScript( [ ...importItems ], options.globalTypePath ) );
+
+    }
+
+    if( options.isListItemTypeGlobal === 'no' && options.listItemTypeImport ){
+
+      importList.push( createImportScript( [ `${options.listItemType}` ], options.listItemTypeImport ) );
 
     }
 
