@@ -44,7 +44,7 @@ import { CommonModule } from '@angular/common';
 export class <%= className %>Component {
 
     <% if( propList.length > 0 ) { %>
-    @Input() Label! : string;<% for( let i = 0; i < propList.length; i++) {%>
+    @Input() Label! : string = 'item label';<% for( let i = 0; i < propList.length; i++) {%>
     <%- propList[i] %><% } %><% } %>
 
 

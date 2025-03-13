@@ -1,1 +1,23 @@
-<p><%= name %> works</p>
+<section class="mainContainer">
+
+<% if(componentType === 'standard'){%>
+    <p><%-`${fileName} ready for awesomeness!!!`%></p>
+<%}%>
+
+<% if(componentType === 'custom form control'){%>
+
+    <label>
+    
+        <h6>{{Label}}</h6>
+
+        <input [(ngModel)]="Control.value" />
+    
+    </label>
+
+<%}%>
+
+
+
+
+
+</section>
