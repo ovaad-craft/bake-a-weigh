@@ -4,11 +4,11 @@ import {
   Tree,
   names,
   getProjects,
-  GeneratorCallback
+  readProjectConfiguration
 } from '@nx/devkit';
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { CustomFormControlSpecs, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { OvaadAngularComponentGeneratorSchema as Schema } from './schema';
 
 
 
@@ -61,19 +61,17 @@ export interface CustomControlOptions {
 
 export async function ovaadAngularComponentGenerator( tree: Tree, options: Schema ) {
 
-  //console.log(options);
+
+
+  //  Prompt options that load after entering the name of the component and the type of component
+  //  you want to generate.
 
 
 
-  /*if ( options.componentType === 'custom form control' ) {
-    const response = await enquirer.prompt<{}>
-  }*/
-
-
-
+  //  Define the type of form controll you're generating.
   if ( options.componentType === "custom form control" ) {
 
-    const response = await enquirer.prompt< { controlType: "FormGroup" | "FormControl" | "FormArrayGroup" } > ([
+    const response = await enquirer.prompt< { controlType : "FormGroup" | "FormControl" | "FormArrayGroup" } > ([
       {
         type    : 'select',
         name    : 'controlType',
@@ -81,29 +79,39 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
         choices : ['FormGroup', 'FormControl', 'FormArrayGroup'],
       },
     ]);
+
     options.controlType = response.controlType;
+
   }
 
-  // Ask for typeAnnotation if componentType is "custom form control"
-  if (options.componentType === "custom form control") {
-    const response = await enquirer.prompt<{ typeAnnotation: string }>([
+
+
+  // Define type annotation of your custom form control
+  if ( options.componentType === "custom form control" ) {
+
+    const response = await enquirer.prompt< { typeAnnotation : string } >([
       {
         type    : 'input',
         name    : 'typeAnnotation',
         message : 'What is the type of your control? (Exclude outer brackets)',
       },
     ]);
+
     options.typeAnnotation = response.typeAnnotation;
+
   }
 
+
+
+  // Ask if there' s a global import path for types / interfaces
   if( options.componentType === "custom form control" ){
 
-    const response = await enquirer.prompt<{ hasGlobalTypePath : "yes" | "no" }>([
+    const response = await enquirer.prompt< { hasGlobalTypePath : "yes" | "no" } >([
       {
-        type: 'select',
-        name : 'hasGlobalTypePath',
+        type    : 'select',
+        name    : 'hasGlobalTypePath',
         message : 'Do you have a globally registered path to your types/interfaces?  If not the import path will need to be added manually.',
-        choices : ['yes', 'no']
+        choices : [ 'yes', 'no' ]
       }
     ]);
     
@@ -111,7 +119,9 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   }
 
-  // Ask for globalTypePath ONLY IF hasGlobalTypePath is "yes"
+  
+  
+  // Add global import path for types / interfaces
   if ( options.hasGlobalTypePath === "yes" ) {
 
 
@@ -130,50 +140,67 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   }
 
-  // Ask for listPropertyName ONLY IF controlType is "FormArrayGroup"
-  if (options.controlType === "FormArrayGroup") {
-    const response = await enquirer.prompt<{ listPropertyName: string }>([
+  
+  
+  // Enter name of FormArrayGroup property
+  if ( options.controlType === "FormArrayGroup" ) {
+
+    const response = await enquirer.prompt< { listPropertyName : string } >([
       {
-        type: 'input',
-        name: 'listPropertyName',
-        message: 'What is the name of your FormArray control?',
+        type    : 'input',
+        name    : 'listPropertyName',
+        message : 'What is the name of your FormArray control?',
       },
     ]);
+
     options.listPropertyName = response.listPropertyName;
+
   }
 
-  if( options.controlType === "FormArrayGroup") {
-    const response = await enquirer.prompt<{ listItemType : "FormControl" | "FormGroup" | "FormArrayGroup" }>([
+  
+  
+  //  Define the type of form control the FormArrayGroup iterates.
+  if( options.controlType === "FormArrayGroup" ) {
+
+    const response = await enquirer.prompt< { listItemType : "FormControl" | "FormGroup" | "FormArrayGroup" } >([
       {
-        type: 'select',
-        name : 'listItemType',
+        type    : 'select',
+        name    : 'listItemType',
         message : 'What type of item will the FormArray iterate?',
         choices : [ 'FormControl', 'FormGroup', 'FormArrayGroup' ]
       }
     ]);
 
-    options.listItemType = response.listItemType
+    options.listItemType = response.listItemType;
+
   }
 
-  if( options.controlType === "FormArrayGroup") {
-    const response = await enquirer.prompt<{ listItemAnnotation : string }>([
+
+
+  //  Enter the type annotation of the item iterated in the FormArrayGroup.
+  if( options.controlType === "FormArrayGroup" ) {
+    
+    const response = await enquirer.prompt< { listItemAnnotation : string } >([
       {
-        type: 'input',
-        name : 'listItemAnnotation',
+        type    : 'input',
+        name    : 'listItemAnnotation',
         message : 'What is the type of this item?'
       }
     ]);
 
-    options.listItemAnnotation = response.listItemAnnotation
+    options.listItemAnnotation = response.listItemAnnotation;
+
   }
 
+  
+  
+  //  Check if import path for FormArrayGroup item's type annotation is the same as global type import.
   if( options.controlType === 'FormArrayGroup' && options.globalTypePath !== undefined ) {
 
-    const response = await enquirer.prompt< { isListItemTypeImportGlobal : 'yes' | 'no'} >([
-
+    const response = await enquirer.prompt< { isListItemTypeImportGlobal : 'yes' | 'no' } >([
       {
-        type : 'select',
-        name : 'isListItemTypeImportGlobal',
+        type    : 'select',
+        name    : 'isListItemTypeImportGlobal',
         message : 'Is the type/interface for this item imported from your global path?',
         choices : [ 'yes', 'no' ]
       }
@@ -183,41 +210,46 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   }
 
+  
+  
+  //  Check to see if they'd like to enter another import path if different from global.
   if( options.isListItemTypeGlobal === 'no' ) {
 
     const response = await enquirer.prompt< { listItemTypeImport : string | null } >([
-
       {
-        type : 'input',
-        name : 'listItemTypeImport',
+        type    : 'input',
+        name    : 'listItemTypeImport',
         message : 'Would you like to enter another path?  Leave blank if no.'
       }
     ]);
 
-    if(response.listItemTypeImport !== '' && response.listItemTypeImport !== null ){
+
+
+    if( response.listItemTypeImport !== '' && response.listItemTypeImport !== null ){
 
       options.listItemTypeImport = response.listItemTypeImport;
 
     }
+
+
 
   }
 
 
 
 
-  const componentNames = names( options.name );
+  
+  
+  //  Fetch the target project to add component to.
   const projects       = getProjects( tree );
   const targetProject  = projects.get( options.project );
-
-
   
-  if ( !targetProject ) { throw new Error(`Project "${options.project}" not found.`); }
+  //  Make sure project exist before continuing and stop process if not.
+  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); } 
   
-  
-  
-  const targetPath = path.join( targetProject.root, options.location, componentNames.fileName );
-
-
+  //  For preparing data to use in __tmpl__ files.
+  const componentNames  = names( options.name );
+  const targetPath      = path.join( targetProject.root, options.location, componentNames.fileName );
   const importList      : string[] = [];
   const metaDataImports : string[] = [];
   const propList        : string[] = [];
@@ -225,7 +257,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   if ( options.componentType === 'custom form control' ) {
 
-    if(options.controlType) {
+    if( options.controlType ) {
       
       if( options.controlType === 'FormGroup' || options.controlType === 'FormArrayGroup' ) {
 
@@ -273,14 +305,15 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
 
   const componentOptions = {
 
-    componentType   : options.componentType,
-    controlType     : options.controlType  ?? undefined,
-    listPropertyName : options.listPropertyName ?? undefined,
-    listItemType : options.listItemType ?? undefined,
+    componentType      : options.componentType,
+    controlType        : options.controlType  ?? undefined,
+    listItemType       : options.listItemType ?? undefined,
+    listPropertyName   : options.listPropertyName   ?? undefined,
     listItemAnnotation : options.listItemAnnotation ?? undefined,
-    importList      : [ ...importList      ],
-    metaDataImports : [ ...metaDataImports ],
-    propList        : [ ...propList        ],
+    importList         : [ ...importList      ],
+    metaDataImports    : [ ...metaDataImports ],
+    propList           : [ ...propList        ],
+    projectPrefix      : targetProject.prefix,
     ...componentNames
 
   }
@@ -294,7 +327,7 @@ export async function ovaadAngularComponentGenerator( tree: Tree, options: Schem
     { ...componentOptions,  tmpl : '' }
   );
   
-  await formatFiles(tree);
+  await formatFiles( tree );
 
 }
 

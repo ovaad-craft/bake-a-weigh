@@ -32,7 +32,7 @@ import { CommonModule } from '@angular/common';
 
 
 @Component({
-    selector    : 'lib-<%= fileName %>',
+    selector    : '<%=projectPrefix%>-<%= fileName %>',
     imports     : [
         CommonModule,<% if( metaDataImports.length > 0 ) { %><% for( let i = 0; i < metaDataImports.length; i++) {%>
         <%-metaDataImports[i]+','%><% } %><% } %>
