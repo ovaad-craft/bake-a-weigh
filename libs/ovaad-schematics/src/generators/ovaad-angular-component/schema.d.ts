@@ -11,6 +11,18 @@ export interface CustomFormControlSpecs{
   listPropertyType?  : string;
 }
 
+export interface LineSelector {
+  start : number;
+  end : number;
+}
+
+export interface ComponentInjectionSpecs{
+  componentClassName : string;
+  templateItem  : string;
+  removeCode? : LineSelector;
+  insertAt : number;
+}
+
 export interface OvaadAngularComponentGeneratorSchema {
 
   name          : string;
@@ -25,5 +37,6 @@ export interface OvaadAngularComponentGeneratorSchema {
   listItemType? : string;
   listItemAnnotation? : string;
   isListItemTypeGlobal? : string;
-  listItemTypeImport? : string;  
+  listItemTypeImport? : string;
+  insertInto? : ComponentInjectionSpecs;
 }
