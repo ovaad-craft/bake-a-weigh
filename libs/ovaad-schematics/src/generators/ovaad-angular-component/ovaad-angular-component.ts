@@ -59,12 +59,19 @@ export interface CustomControlOptions {
 
 
 
-export async function ovaadAngularComponentGenerator( tree: Tree, options: Schema ) {
+export async function ovaadAngularComponentGenerator( tree : Tree, options : Schema ) {
 
 
 
   //  Prompt options that load after entering the name of the component and the type of component
   //  you want to generate.
+
+
+
+  if ( options.componentType === 'standard') {
+
+    //const response = await enquirer.prompt
+  }
 
 
 
