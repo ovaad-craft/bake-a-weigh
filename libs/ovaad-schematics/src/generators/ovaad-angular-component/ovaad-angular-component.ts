@@ -7,7 +7,9 @@ import {
 } from '@nx/devkit';
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { ComponentInjectionSpecs, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { ComponentInjectionSpecs, OvaadComponentType, OvaadFormControlType, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { OvaadControlTypes } from 'libs/apps/ingredient-manager/src/lib/ingredient-manager/views/ingredient-editor/form-generator/form-types';
+import { input } from '@angular/core';
 
 
 
@@ -84,7 +86,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     
     //  Determine if component should have any inputs and whether it should be immediately
     //  imported into another component. 
-    const response = await enquirer.prompt< { addInputs : string, insertToggle : boolean, insertInto : ComponentInjectionSpecs } >([
+    const insertionResponses = await enquirer.prompt< { addInputs : string, insertToggle : boolean, insertInto : ComponentInjectionSpecs } >([
 
       {
         type    : "list",
@@ -99,7 +101,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     ]);
 
-    responses.addInputs = [ ...response.addInputs ];
+    responses.addInputs = [ ...insertionResponses.addInputs ];
 
 
 
@@ -107,9 +109,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     
     
-    const insertComponent = response.insertToggle;
-
-
+    const insertComponent = insertionResponses.insertToggle;
 
     //  If user chooses to immediately import the new component into an existing component.
     if( insertComponent ){
@@ -171,7 +171,49 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
       }
 
+
+
+      if ( responses.addInputs.length > 0 ) {
+
+        const response = await enquirer.prompt< { connectInputs : string[] } > ([
+
+          {
+            type    : 'list',
+            name    : 'connectInputs',
+            message : 'Would you like to immediately pass data into your inputs?  If so make a comma separated list in the following format. => YourInput:YourData.propA, AnotherInput:YourData.propB'
+          }
+
+        ]);
+
+        responses.connectInputs = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
+
+      }
+
     }
+
+
+
+    const importResponse = await enquirer.prompt< { globalTypePath : string } > ([
+
+      {
+        type    : 'input',
+        name    : 'globalTypePath',
+        message : 'Do you have a global import path for your types/interfaces?  If so enter it below, if not leave blank and continue.'
+      }
+
+    ]);
+
+
+
+    if( importResponse.globalTypePath && importResponse.globalTypePath !== '' ) {
+
+      responses.globalTypePath = importResponse.globalTypePath;
+
+    }
+
+
+
+    
 
     options = { ...responses };
 
@@ -179,7 +221,158 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
-  //  Define the type of form controll you're generating.
+  //  Prompts for generating custom form control.
+  if ( options.componentType === 'custom form control' ) {
+
+
+
+    let responses! : Schema;
+
+
+
+    const response = await enquirer.prompt< { controlType : OvaadFormControlType, typeAnnotation : string, globalTypePath : string } >([
+
+      {
+        type    : 'select',
+        name    : 'controlType',
+        message : 'What type of control will this be?',
+        choices : ['FormGroup', 'FormControl', 'FormArrayGroup'],
+      },
+      {
+        type    : 'input',
+        name    : 'typeAnnotation',
+        message : 'Enter the type annotation of your control. (Exclude outer brackets)',
+      },
+      {
+        type    : 'input',
+        name    : 'hasGlobalPath',
+        message : 'Do you have a globally registered path for your types/interfaces?  If not leave blank and continue.'
+      }
+
+    ]);
+
+    responses.controlType    = response.controlType;
+    responses.typeAnnotation = response.typeAnnotation;
+    responses.globalTypePath = ( response.globalTypePath !== '' ? response.globalTypePath : undefined );
+
+
+
+    if ( responses.controlType === 'FormArrayGroup' ) {
+
+      const response = await enquirer.prompt< { listPropertyName : string, listItemType : OvaadFormControlType, listItemAnnotation : string } > ([
+
+        {
+          type    : 'input',
+          name    : 'listPropertyName',
+          message : 'What is the name of your FormArray control?',
+        },
+        {
+          type    : 'select',
+          name    : 'listItemType',
+          message : 'What type of item will the FormArray iterate?',
+          choices : [ 'FormControl', 'FormGroup', 'FormArrayGroup' ]
+        },
+        {
+          type    : 'input',
+          name    : 'listItemAnnotation',
+          message : 'What is the type annotation of this item?'
+        }
+
+      ]);
+
+      responses.listPropertyName   = response.listPropertyName;
+      responses.listItemType       = response.listItemType;
+      responses.listItemAnnotation = response.listItemAnnotation;
+      
+    }
+
+
+
+    if( responses.controlType === 'FormArrayGroup' && responses.globalTypePath !== undefined ) {
+
+      const response = await enquirer.prompt< { isListItemTypeImportGlobal : boolean } >([
+
+        {
+          type    : 'confirm',
+          name    : 'isListItemTypeImportGlobal',
+          message : 'Is the type/interface for this item imported from your global path?'
+        }
+
+      ]);
+  
+      if ( !response.isListItemTypeImportGlobal ) {
+
+        const response = await enquirer.prompt< { listItemTypeImport : string } > ([
+
+          {
+            type    : 'input',
+            name    : 'listItemTypeImport',
+            message : 'Is there another path you want to enter?  If not leave blank and continue.'
+          }
+
+        ]);
+
+        responses.listItemTypeImport = ( response.listItemTypeImport !== '' ? response.listItemTypeImport : undefined );
+
+      }
+  
+    }
+
+    const inputResponses = await enquirer.prompt< { addInputs : string[] } > ([
+
+      {
+        type    : "list",
+        name    : 'addInputs',
+        message : "Would you like to add additional Inputs to this component? list them along with their types as in the following example > YourInputName01:InputType01, YourInputName02:InputType02.",
+      },
+    ]);
+
+    responses.addInputs = ( inputResponses.addInputs.length > 0 ? [ ...inputResponses.addInputs ] : undefined );
+
+
+
+    const insertionResponse = await enquirer.prompt< { componentClassName : string } >([
+
+      {
+        type    : 'input',
+        name    : 'insertToggle',
+        message : 'Would you like to immediately import this into a component?  If not leave blank and continue.'
+      }
+
+    ]);
+
+    if ( insertionResponse.componentClassName !== '' ) {
+
+      responses!.insertInto!.componentClassName = insertionResponse.componentClassName;
+
+
+
+      if ( responses.addInputs && responses.addInputs.length > 0 ) {
+
+        const response = await enquirer.prompt< { connectInputs : string[] } > ([
+  
+          {
+            type    : 'list',
+            name    : 'connectInputs',
+            message : 'Would you like to immediately pass data into your inputs?  If so make a comma separated list in the following format. => YourInput:YourData.propA, AnotherInput:YourData.propB'
+          }
+  
+        ]);
+  
+        responses.connectInputs = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
+  
+      }
+
+    }
+    
+    options = { ...responses };
+
+
+  }
+
+
+
+  /*//  Define the type of form controll you're generating.
   if ( options.componentType === 'custom form control' ) {
 
     const response = await enquirer.prompt< { controlType : "FormGroup" | "FormControl" | "FormArrayGroup" } > ([
@@ -344,7 +537,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
-  }
+  }*/
 
 
 
@@ -356,7 +549,9 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
   const targetProject  = projects.get( options.project );
   
   //  Make sure project exist before continuing and stop process if not.
-  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); } 
+  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
+  
+  const parentComponent = ()
   
   //  For preparing data to use in __tmpl__ files.
   const componentNames  = names( options.name );

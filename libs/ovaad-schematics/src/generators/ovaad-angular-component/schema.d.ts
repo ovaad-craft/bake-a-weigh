@@ -54,4 +54,5 @@ export interface OvaadAngularComponentGeneratorSchema {
   listItemTypeImport?   : string;
   insertInto?           : ComponentInjectionSpecs;
   addInputs?            : string[];
+  connectInputs?        : string[];
 }
