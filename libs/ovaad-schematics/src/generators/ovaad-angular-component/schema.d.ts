@@ -39,18 +39,19 @@ export interface ComponentInjectionSpecs{
 
 export interface OvaadAngularComponentGeneratorSchema {
 
-  name          : string;
-  project       : string;
-  location      : string;
-  componentType : string;
+  name            : string;
+  project         : string;
+  location        : string;
+  componentType   : string;
   controlType?    : string;
   typeAnnotation? : string;
-  hasGlobalTypePath? : string;
-  globalTypePath? : string;
-  listPropertyName?  : string;
-  listItemType? : string;
-  listItemAnnotation? : string;
+  hasGlobalTypePath?    : string;
+  globalTypePath?       : string;
+  listPropertyName?     : string;
+  listItemType?         : string;
+  listItemAnnotation?   : string;
   isListItemTypeGlobal? : string;
-  listItemTypeImport? : string;
-  insertInto? : ComponentInjectionSpecs;
+  listItemTypeImport?   : string;
+  insertInto?           : ComponentInjectionSpecs;
+  addInputs?            : string[];
 }

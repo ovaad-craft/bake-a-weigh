@@ -3,12 +3,11 @@ import {
   generateFiles,
   Tree,
   names,
-  getProjects,
-  readProjectConfiguration
+  getProjects
 } from '@nx/devkit';
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { ComponentInjectionSpecs, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
 
 
 
@@ -68,9 +67,88 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
-  if ( options.componentType === 'standard') {
+  if ( options.componentType === 'standard' ) {
 
-    //const response = await enquirer.prompt
+    const response = await enquirer.prompt< { addInputs : string, insertToggle : boolean, insertInto : ComponentInjectionSpecs } >([
+
+      {
+        type    : "list",
+        name    : 'addInputs',
+        message : "Would you like to add Inputs to this component? list them along with their types as in the following example > YourInputName01:InputType01, YourInputName02:InputType02.",
+      },
+      {
+        type    : 'confirm',
+        name    : 'insertToggle',
+        message : 'Would you like to immediately import this into a component?'
+      }
+
+    ]);
+
+    options.addInputs = [ ...response.addInputs ];
+
+
+
+    const insertComponent = response.insertToggle;
+    
+    let promptResponses! : ComponentInjectionSpecs;
+
+    if( insertComponent ){
+
+
+      const response = await enquirer.prompt< { componentClassName : string, replaceCode : boolean } >([
+
+        {
+          type    : "input",
+          name    : "componentClassName",
+          message : 'What is the class name of this component?'
+        },
+        {
+          type    : 'confirm',
+          name    : 'replaceCode',
+          message : 'Would you like this element to replace something in your HTML?'
+        }
+        
+      ]);
+
+      promptResponses.componentClassName = response.componentClassName;
+
+      if ( response.replaceCode ) {
+
+        const response = await enquirer.prompt< { lines : number[] } >([
+
+          {
+            type : 'list',
+            name : 'lines',
+            message : 'Enter the first and last lines of code you want to replace separate by a comma. => example: 8, 23'
+          }
+
+        ]);
+
+        promptResponses.removeCode = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
+        promptResponses.insertAt   = response.lines[ 0 ];
+
+      }
+
+      else {
+
+        const response = await enquirer.prompt< { line : number } >([
+
+          {
+            type    : 'number',
+            name    : 'line',
+            message : 'What line would you like to insert your component on?'
+          }
+
+        ]);
+
+        promptResponses.insertAt = response.line;
+
+      }
+
+    }
+
+    options.insertInto = { ...promptResponses };
+
   }
 
 
