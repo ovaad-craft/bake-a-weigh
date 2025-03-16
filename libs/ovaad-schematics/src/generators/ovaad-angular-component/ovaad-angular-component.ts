@@ -25,6 +25,12 @@ function createPropAnnotation( item : string, annotation : string ) : string {
 
 }
 
+function createStandardInput( name : string, annotation : string, defaultVal? : string ) : string {
+
+  return `@Input() ${ name }${ !defaultVal ? '!' : '' } : ${ annotation }${ defaultVal ? ` = ${ defaultVal }` : '' };`;
+
+}
+
 function createControlInput( item : string, annotation: string ) : string {
 
   return `@Input() Control! : ${ createPropAnnotation( item, (item === 'FormControl' ? `${annotation} | null` : annotation ) ) };`;
