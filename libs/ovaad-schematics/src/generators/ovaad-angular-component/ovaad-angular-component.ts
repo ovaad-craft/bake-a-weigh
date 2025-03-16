@@ -15,7 +15,7 @@ import { ComponentInjectionSpecs, OvaadAngularComponentGeneratorSchema as Schema
 
 function createImportScript( items : string[], location : string ) : string {
   
-  return `import { ${ items.length > 1 ? items.join(', ') : items[0] } } from '${location}';`;
+  return `import { ${ items.length > 1 ? items.join(', ') : items[ 0 ] } } from '${ location }';`;
 
 }
 
@@ -42,9 +42,11 @@ function createControlInput( item : string, annotation: string ) : string {
 
 
 export interface OvaadComponentOptions {
-  importList? : string[];
+
+  importList?     : string[];
   metaDataImports : string[];
-  propList : string[];
+  propList        : string[];
+
 }
 
 
@@ -75,6 +77,10 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
   if ( options.componentType === 'standard' ) {
 
+
+    
+    //  Determine if component should have any inputs and whether it should be immediately
+    //  imported into another component. 
     const response = await enquirer.prompt< { addInputs : string, insertToggle : boolean, insertInto : ComponentInjectionSpecs } >([
 
       {
@@ -94,13 +100,21 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
-    const insertComponent = response.insertToggle;
-    
-    let promptResponses! : ComponentInjectionSpecs;
 
+
+    
+    
+    const insertComponent = response.insertToggle;    
+    let promptResponses!  : ComponentInjectionSpecs;
+
+
+
+    //  If user chooses to immediately import the new component into an existing component.
     if( insertComponent ){
 
-
+      
+      //  Get name of component to insert new component into and destermine if an HTML element
+      //  should be replaced by the new component.
       const response = await enquirer.prompt< { componentClassName : string, replaceCode : boolean } >([
 
         {
@@ -118,6 +132,9 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
       promptResponses.componentClassName = response.componentClassName;
 
+
+      
+      //  Determine the lines of code to replace if user chooses to replace code.
       if ( response.replaceCode ) {
 
         const response = await enquirer.prompt< { lines : number[] } >([
@@ -137,6 +154,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
       else {
 
+        //  Determine line to insert new component on if user chooses not to replace code.
         const response = await enquirer.prompt< { line : number } >([
 
           {
@@ -160,7 +178,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
   //  Define the type of form controll you're generating.
-  if ( options.componentType === "custom form control" ) {
+  if ( options.componentType === 'custom form control' ) {
 
     const response = await enquirer.prompt< { controlType : "FormGroup" | "FormControl" | "FormArrayGroup" } > ([
       {
