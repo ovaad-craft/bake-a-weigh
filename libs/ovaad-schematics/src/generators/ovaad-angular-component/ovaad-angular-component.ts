@@ -7,9 +7,9 @@ import {
 } from '@nx/devkit';
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { ComponentInjectionSpecs, OvaadComponentType, OvaadFormControlType, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
-import { OvaadControlTypes } from 'libs/apps/ingredient-manager/src/lib/ingredient-manager/views/ingredient-editor/form-generator/form-types';
-import { input } from '@angular/core';
+import { ComponentInjectionSpecs, OvaadFormControlType, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+
+
 
 
 
@@ -36,6 +36,20 @@ function createStandardInput( name : string, annotation : string, defaultVal? : 
 function createControlInput( item : string, annotation: string ) : string {
 
   return `@Input() Control! : ${ createPropAnnotation( item, (item === 'FormControl' ? `${annotation} | null` : annotation ) ) };`;
+
+}
+
+interface InputConnection { name : string; value : string; }
+
+function createInputConnection( inputData : InputConnection ) : string {
+
+  return `[${ inputData.name }]="${ inputData.value }"`;
+
+}
+
+function createElementTag( name : string, selfClosing : boolean, inputs? : InputConnection[] ) : string {
+
+  return `<${ name } ${ inputs ? inputs.map(a => createInputConnection(a)) : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
 
 }
 
@@ -66,8 +80,6 @@ export interface CustomControlOptions {
 
 
 
-
-
 export async function ovaadAngularComponentGenerator( tree : Tree, options : Schema ) {
 
 
@@ -80,7 +92,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
   //  Prompts for generating standard component.
   if ( options.componentType === 'standard' ) {
 
-    let responses! : Schema;
+    const responses : Schema = options;
 
 
     
@@ -101,7 +113,11 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     ]);
 
-    responses.addInputs = [ ...insertionResponses.addInputs ];
+    if ( insertionResponses.addInputs.length > 0 ) {
+      
+      if( !responses.addInputs ) { responses.addInputs = [ ...insertionResponses.addInputs ]; }
+
+    }
 
 
 
@@ -112,7 +128,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     const insertComponent = insertionResponses.insertToggle;
 
     //  If user chooses to immediately import the new component into an existing component.
-    if( insertComponent ){
+    if( insertComponent ) {
 
       
       //  Get name of component to insert new component into and destermine if an HTML element
@@ -173,7 +189,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
-      if ( responses.addInputs.length > 0 ) {
+      if ( responses && responses.addInputs && responses.addInputs.length > 0 ) {
 
         const response = await enquirer.prompt< { connectInputs : string[] } > ([
 
@@ -213,8 +229,6 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
-    
-
     options = { ...responses };
 
   }
@@ -236,7 +250,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
         type    : 'select',
         name    : 'controlType',
         message : 'What type of control will this be?',
-        choices : ['FormGroup', 'FormControl', 'FormArrayGroup'],
+        choices : [ 'FormGroup', 'FormControl', 'FormArrayGroup' ],
       },
       {
         type    : 'input',
@@ -547,12 +561,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
   //  Fetch the target project to add component to.
   const projects       = getProjects( tree );
   const targetProject  = projects.get( options.project );
+
+  console.log( targetProject );
   
   //  Make sure project exist before continuing and stop process if not.
   if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
   
-  const parentComponent = ()
-  
+    
   //  For preparing data to use in __tmpl__ files.
   const componentNames  = names( options.name );
   const targetPath      = path.join( targetProject.root, options.location, componentNames.fileName );
