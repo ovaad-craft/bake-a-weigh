@@ -49,7 +49,7 @@ function createInputConnection( inputData : InputConnection ) : string {
 
 function createElementTag( name : string, selfClosing : boolean, inputs? : InputConnection[] ) : string {
 
-  return `<${ name } ${ inputs ? inputs.map(a => createInputConnection(a)) : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
+  return `<${ name } ${ inputs ? inputs.map(a => createInputConnection(a)).join(' ') : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
 
 }
 
