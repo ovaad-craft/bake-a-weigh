@@ -75,7 +75,10 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
 
+  //  Prompts for generating standard component.
   if ( options.componentType === 'standard' ) {
+
+    let responses! : Schema;
 
 
     
@@ -96,7 +99,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     ]);
 
-    options.addInputs = [ ...response.addInputs ];
+    responses.addInputs = [ ...response.addInputs ];
 
 
 
@@ -104,8 +107,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     
     
-    const insertComponent = response.insertToggle;    
-    let promptResponses!  : ComponentInjectionSpecs;
+    const insertComponent = response.insertToggle;
 
 
 
@@ -130,7 +132,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
         
       ]);
 
-      promptResponses.componentClassName = response.componentClassName;
+      responses.insertInto!.componentClassName = response.componentClassName;
 
 
       
@@ -147,8 +149,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
         ]);
 
-        promptResponses.removeCode = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
-        promptResponses.insertAt   = response.lines[ 0 ];
+        responses.insertInto!.removeCode = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
+        responses.insertInto!.insertAt   = response.lines[ 0 ];
 
       }
 
@@ -165,13 +167,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
         ]);
 
-        promptResponses.insertAt = response.line;
+        responses.insertInto!.insertAt = response.line;
 
       }
 
     }
 
-    options.insertInto = { ...promptResponses };
+    options = { ...responses };
 
   }
 
