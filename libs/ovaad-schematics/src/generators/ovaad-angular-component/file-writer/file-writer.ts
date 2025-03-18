@@ -72,4 +72,35 @@ export class OvaadFileWriter {
 
     }
 
+
+
+
+
+    //  Create new item for import array.
+    createNewImportArrayItem( item : string ) : ts.Identifier {
+
+        return ts.factory.createIdentifier( item );
+
+    }
+
+
+
+
+
+    //  Get Component metadata
+    getComponentMetadata( className : ts.ClassDeclaration ) : ts.Decorator | undefined {
+
+        const decorators = ts.getDecorators( className ) as ts.Decorator[];
+
+        return decorators?.find( ( a : ts.Decorator ) => {
+
+            const expression = a.expression          as ts.CallExpression;
+            const identifier = expression.expression as ts.Identifier;
+
+            return identifier.text === 'Component';
+
+        });
+
+    }
+
 }
