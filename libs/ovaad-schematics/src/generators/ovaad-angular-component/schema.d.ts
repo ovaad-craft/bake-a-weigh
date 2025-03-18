@@ -34,6 +34,7 @@ export interface ComponentInjectionSpecs{
   removeCode?        : LineSelector;
   insertAt           : number;
   dataSetup?         : DataConfiguration[];
+  //componentPath    : string;
 
 }
 
