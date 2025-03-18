@@ -78,6 +78,36 @@ export class OvaadFileWriter {
 
 
 
+    //  Add to existing import declaration.
+    addToExistingImportDeclaration( newItem : string, declaration : ts.ImportDeclaration ) : ts.ImportDeclaration {
+
+        const newItemSpecifier : ts.ImportSpecifier = this.createNewImportDecalarationItem( newItem );
+        const bindings = declaration.importClause?.namedBindings;
+        
+        if( bindings && ts.isNamedImports( bindings ) ) {
+            
+            const newList = [...bindings.elements, newItemSpecifier ];
+           
+           return ts.factory.createImportDeclaration(
+   
+               undefined,
+               ts.factory.createImportClause( false, undefined, ts.factory.createNamedImports( newList ) ),
+               declaration.moduleSpecifier,
+               undefined
+               
+           );
+
+        }
+
+        throw new Error("Something went wrong with updating import declaration.");
+        
+
+    }
+
+
+
+
+
     //  Create new item for import array.
     createNewImportArrayItem( item : string ) : ts.Identifier {
 
@@ -129,6 +159,54 @@ export class OvaadFileWriter {
 
         return nodes.find( node => node.name?.text === name && this.getComponentMetadata( node ) );
     
+    }
+
+
+
+
+
+    //  Check if import path already exists
+    checkIfPathExist( source : ts.SourceFile, importPath : string ) : ts.ImportDeclaration | undefined {
+
+        const declarations = this.scanNode<ts.SourceFile, ts.ImportDeclaration>( source, ts.isImportDeclaration );
+
+        return declarations.find( declaration => {
+
+            const specifier = ( declaration.moduleSpecifier as ts.StringLiteral ).text;
+
+            return specifier === importPath;
+
+        });
+
+    }
+
+
+
+
+
+    //  Add new component to existing component
+    addNewComponentToComponent( parentComponent : string, childComponent : ComponentInjectionSpecs ) : ts.Node {
+
+        const parent : ts.ClassDeclaration | undefined = this.findComponentInProject( parentComponent );
+
+        if( parent === undefined ) { console.error( `${ parentComponent } not found in project.`); }
+
+        const location : ts.ImportDeclaration | undefined = this.checkIfPathExist( parent!.getSourceFile(), childComponent.componentPath );
+        let newImportDeclaration;
+
+        if( location ){
+
+            const newItem : ts.ImportSpecifier = this.createNewImportDecalarationItem( childComponent.componentClassName );
+            const bindings = location.importClause?.namedBindings;
+
+            if( bindings && ts.isNamedImports( bindings ) ) {
+
+                const newList : ts.ImportSpecifier[] = [...bindings.elements, newItem ];
+
+                newImportDeclaration = this.createNewImportDeclaration( newList, location.moduleSpecifier );
+            }
+
+        }
     }
 
 }
