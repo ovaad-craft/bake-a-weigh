@@ -1,4 +1,6 @@
+import path = require("path");
 import ts = require("typescript");
+import { ComponentInjectionSpecs } from "../schema";
 
 
 
@@ -101,6 +103,32 @@ export class OvaadFileWriter {
 
         });
 
+    }
+
+
+
+
+
+    // Create import path to new component
+    createImportPath( parentPath : string, childPath : string ) : string {
+
+        const relativePath = path.relative( path.dirname( parentPath ), childPath );
+
+        return relativePath.startsWith('.') ? relativePath : `./${ relativePath }`;
+
+    }
+
+
+
+
+
+    //  Find component in project
+    findComponentInProject( name : string ) : ts.ClassDeclaration | undefined {
+
+        const nodes = this.scanNode< ts.SourceFile, ts.ClassDeclaration >( this.Project as ts.SourceFile, ts.isClassDeclaration );
+
+        return nodes.find( node => node.name?.text === name && this.getComponentMetadata( node ) );
+    
     }
 
 }
