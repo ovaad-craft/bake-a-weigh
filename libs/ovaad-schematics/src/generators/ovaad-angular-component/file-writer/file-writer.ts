@@ -1,5 +1,6 @@
 import path = require("path");
 import ts = require("typescript");
+import * as fs from 'fs';
 import { ComponentInjectionSpecs } from "../schema";
 
 
@@ -191,22 +192,150 @@ export class OvaadFileWriter {
 
         if( parent === undefined ) { console.error( `${ parentComponent } not found in project.`); }
 
-        const location : ts.ImportDeclaration | undefined = this.checkIfPathExist( parent!.getSourceFile(), childComponent.componentPath );
-        let newImportDeclaration;
 
-        if( location ){
+        
+        
+        const updatedImportDeclarationList : ts.ImportDeclaration[] = [];
+        const updatedDecoratorImportArray  : ts.Identifier[]        = [];
+        let   updatedTemplateFile          : string;
 
-            const newItem : ts.ImportSpecifier = this.createNewImportDecalarationItem( childComponent.componentClassName );
-            const bindings = location.importClause?.namedBindings;
 
-            if( bindings && ts.isNamedImports( bindings ) ) {
 
-                const newList : ts.ImportSpecifier[] = [...bindings.elements, newItem ];
 
-                newImportDeclaration = this.createNewImportDeclaration( newList, location.moduleSpecifier );
+        const declarationList : ts.ImportDeclaration[] | undefined = this.scanNode< ts.SourceFile, ts.ImportDeclaration >( parent!.getSourceFile(), ts.isImportDeclaration );
+        let addedToExistingPath = false;
+
+
+        declarationList.forEach( a => {
+
+            const checker : boolean = ( a.moduleSpecifier as ts.StringLiteral ).text  === childComponent.componentPath ? true : false;
+
+            if( checker ) {
+
+
+                
+                const bindings = a.importClause?.namedBindings;
+
+                if( bindings && ts.isNamedImports( bindings ) ) {
+
+                
+                    const newImportSpecifiers : ts.ImportSpecifier[] = [ ...bindings.elements, this.createNewImportDecalarationItem( childComponent.componentClassName ) ];
+
+                    updatedImportDeclarationList.push(
+                        ts.factory.createImportDeclaration(
+                            a.modifiers?? undefined,
+                            ts.factory.createImportClause( false, undefined, ts.factory.createNamedImports( newImportSpecifiers ) ),
+                            a.moduleSpecifier?? undefined,
+                            undefined
+                        )
+                    );
+
+                    addedToExistingPath = true;
+
+
+                }
+
+
+
+            }
+
+            else { updatedImportDeclarationList.push( a ); }
+
+
+        });
+
+        if( !addedToExistingPath ) {
+
+           updatedImportDeclarationList.push(
+
+            ...declarationList,
+            this.createNewImportDeclaration( childComponent.componentClassName, childComponent.componentPath )
+
+          );
+
+
+        }
+
+
+
+        const decoratorObject = this.getComponentMetadata( parent! );
+
+        if( decoratorObject ){
+
+            const decoratorMetadata = ( decoratorObject.expression as ts.CallExpression ).arguments[ 0 ] as ts.ObjectLiteralExpression;
+            const metadataImports   = decoratorMetadata.properties.find( a =>
+
+                ts.isPropertyAssignment( a ) &&
+                ts.isIdentifier( a.name ) &&
+                a.name.text === 'imports'
+
+            ) as ts.PropertyAssignment;
+
+
+
+            if ( metadataImports ) {
+
+                const metadataImportsArray = metadataImports.initializer as ts.ArrayLiteralExpression;
+
+                const updatedImportsArray = ts.factory.createArrayLiteralExpression([
+
+                    ...metadataImportsArray.elements,
+                    this.createNewImportArrayItem( childComponent.componentClassName )
+
+                ]);
+
+
+
+                updatedImportsArray.forEachChild( a => updatedDecoratorImportArray.push( a as ts.Identifier ) );
+
+
+            }
+
+
+        }
+
+
+
+        const parentPath : string | undefined = parent?.getSourceFile().fileName;
+        const parentTemplatePath : string = parentPath ? parentPath.replace( /\.ts$/, 'html' ) : '';
+
+        if ( parentTemplatePath !== '' ) {
+
+            const parentTemplateFile = fs.readFileSync( parentTemplatePath, 'utf-8' );
+            const templateLines : string[] = parentTemplateFile.split( '\n' );
+
+            if ( childComponent.removeCode ) {
+
+                const newTemplateLines : string[] = [
+
+                    ...templateLines.slice( 0, childComponent.removeCode.start -1 ),
+                    childComponent.templateItem,
+                    ...templateLines.slice( childComponent.removeCode.end )
+
+                ];
+
+                updatedTemplateFile = newTemplateLines.join( '\n' );
+
+            }
+
+            else {
+
+                if ( childComponent.insertAt ) {
+
+                    const newTemplateLines : string[] = [
+
+                        ...templateLines.slice( 0, childComponent.insertAt - 2 ),
+                        childComponent.templateItem,
+                        ...templateLines.slice( childComponent.insertAt - 1 )
+
+                    ];
+
+                    updatedTemplateFile = newTemplateLines.join( '\n' );
+                    
+                }
             }
 
         }
-    }
 
+    }
 }
