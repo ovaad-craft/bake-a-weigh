@@ -32,9 +32,9 @@ export interface ComponentInjectionSpecs{
   componentClassName : string;
   templateItem       : string;
   removeCode?        : LineSelector;
-  insertAt           : number;
+  insertAt?          : number;
   dataSetup?         : DataConfiguration[];
-  componentPath    : string;
+  componentPath      : string;
 
 }
 

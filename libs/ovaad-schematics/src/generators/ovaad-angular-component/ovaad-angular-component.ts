@@ -3,11 +3,14 @@ import {
   generateFiles,
   Tree,
   names,
-  getProjects
+  getProjects,
+  ProjectConfiguration
 } from '@nx/devkit';
+import  ts = require('typescript');
 import * as path from 'path';
 import * as enquirer from 'enquirer';
 import { ComponentInjectionSpecs, OvaadFormControlType, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { OvaadFileWriter } from './file-writer/file-writer';
 
 
 
@@ -90,7 +93,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
   //  Prompts for generating standard component.
-  if ( options.componentType === 'standard' ) {
+  /*if ( options.componentType === 'standard' ) {
 
     const responses : Schema = options;
 
@@ -231,12 +234,12 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     options = { ...responses };
 
-  }
+  }*/
 
 
 
   //  Prompts for generating custom form control.
-  if ( options.componentType === 'custom form control' ) {
+  /*if ( options.componentType === 'custom form control' ) {
 
 
 
@@ -382,7 +385,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     options = { ...responses };
 
 
-  }
+  }*/
 
 
 
@@ -557,15 +560,51 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
   
+ const sampleChildComponent : Schema = {
+   name : 'test-child',
+   project : 'ingredient-manager',
+   location : 'src',
+   componentType : 'custom form control',
+   controlType : 'FormGroup',
+   typeAnnotation : 'ElementWeightGroupType',
+   hasGlobalTypePath : '@bake-a-weigh/site-types',
+   connectInputs : [ 'Control:Control.controls.servingSize' ],
+   insertInto : {
+     componentClassName : 'TestParentComponent',
+     templateItem : `<lib-test-child [Control]="Control.controls.servingSize" />`,
+     removeCode : {
+       start : 5,
+       end : 9,
+     },
+     componentPath : 'src/test-child'
+   }
+
+ }
   
   //  Fetch the target project to add component to.
   const projects       = getProjects( tree );
-  const targetProject  = projects.get( options.project );
+  const targetProject  = projects.get( sampleChildComponent.project );
 
-  console.log( targetProject );
+  //console.log(targetProject);
+
+  if( targetProject !== undefined ) {
+    
+    const sampleParentComponent = new OvaadFileWriter( targetProject );
+
+    const updatedProject = sampleParentComponent.addNewComponentToComponent('tester-parent', sampleChildComponent.insertInto!);
+
+    console.log(updatedProject );
+
+    //console.log(sampleParentComponent);
+  }
+
+
+  //console.log(options);
+
+  //console.log( targetProject );
   
   //  Make sure project exist before continuing and stop process if not.
-  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
+  /*if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
   
     
   //  For preparing data to use in __tmpl__ files.
@@ -637,18 +676,18 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     projectPrefix      : targetProject.prefix,
     ...componentNames
 
-  }
+  }*/
 
   
   
-  generateFiles(
+  /*generateFiles(
     tree,
     path.join(__dirname, 'files'),
     targetPath,
     { ...componentOptions,  tmpl : '' }
   );
   
-  await formatFiles( tree );
+  await formatFiles( tree );*/
 
 }
 
