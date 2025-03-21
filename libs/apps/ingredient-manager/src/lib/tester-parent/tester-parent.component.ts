@@ -51,8 +51,8 @@ import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/fo
     ServingSizeComponent,
     VitaminsAndMineralsListComponent
 ],
-    templateUrl : './tester-parent.component.html',
-    styleUrls   : [ './tester-parent.component.css' ]
+    templateUrl : 'tester-parent.component.html',
+    styleUrls   : [ 'tester-parent.component.css' ]
 })
 
 export class TesterParentComponent implements OnInit {

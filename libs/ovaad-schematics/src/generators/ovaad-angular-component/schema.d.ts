@@ -29,12 +29,15 @@ export interface DataConfiguration{
 
 export interface ComponentInjectionSpecs{
 
-  componentClassName : string;
+  parentComponentFileName : string;
+  parentComponentClassName : string;
+  childComponentFileName : string;
+  childComponentClassName : string;
   templateItem       : string;
   removeCode?        : LineSelector;
   insertAt?          : number;
   dataSetup?         : DataConfiguration[];
-  componentPath      : string;
+  childComponentPath      : string;
 
 }
 

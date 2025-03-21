@@ -6,6 +6,7 @@ import {
   getProjects,
   ProjectConfiguration
 } from '@nx/devkit';
+import * as fs from 'fs';
 import  ts = require('typescript');
 import * as path from 'path';
 import * as enquirer from 'enquirer';
@@ -570,41 +571,40 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
    hasGlobalTypePath : '@bake-a-weigh/site-types',
    connectInputs : [ 'Control:Control.controls.servingSize' ],
    insertInto : {
-     componentClassName : 'TestParentComponent',
+     parentComponentFileName : 'tester-parent',
+     parentComponentClassName : 'TesterParentComponent',
+     childComponentFileName : 'test-child',
+     childComponentClassName : 'TestChildComponent',
      templateItem : `<lib-test-child [Control]="Control.controls.servingSize" />`,
      removeCode : {
        start : 5,
        end : 9,
      },
-     componentPath : 'src/test-child'
+     childComponentPath : 'libs/apps/ingredient-manager/src/test-child/test-child.component'
    }
 
  }
+
+ options = sampleChildComponent;
   
   //  Fetch the target project to add component to.
   const projects       = getProjects( tree );
-  const targetProject  = projects.get( sampleChildComponent.project );
+  const targetProject  = projects.get( options.project );
 
-  //console.log(targetProject);
 
-  if( targetProject !== undefined ) {
+  /*if( targetProject !== undefined ) {
     
     const sampleParentComponent = new OvaadFileWriter( targetProject );
 
-    const updatedProject = sampleParentComponent.addNewComponentToComponent('tester-parent', sampleChildComponent.insertInto!);
+    const updatedProject = sampleParentComponent.addNewComponentToComponent(sampleChildComponent.insertInto!.componentClassName, sampleChildComponent.insertInto!);
 
-    console.log(updatedProject );
-
-    //console.log(sampleParentComponent);
-  }
-
-
-  //console.log(options);
-
-  //console.log( targetProject );
+    const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+    const updatedCode = printer.printFile( updatedProject!.newFile! );
+    fs.writeFileSync(updatedProject!.path, updatedCode, "utf-8");
+  }*/
   
   //  Make sure project exist before continuing and stop process if not.
-  /*if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
+  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
   
     
   //  For preparing data to use in __tmpl__ files.
@@ -676,18 +676,37 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     projectPrefix      : targetProject.prefix,
     ...componentNames
 
-  }*/
+  }
 
   
   
-  /*generateFiles(
+  generateFiles(
     tree,
     path.join(__dirname, 'files'),
     targetPath,
     { ...componentOptions,  tmpl : '' }
   );
   
-  await formatFiles( tree );*/
+  await formatFiles( tree );
+
+
+
+  if( options.insertInto !== undefined ) {
+
+    const parentComponent = new OvaadFileWriter( targetProject );
+    //console.log(parentComponent);
+    const updatedProject = parentComponent.addNewComponentToComponent(options.insertInto!);
+
+    //console.log(updatedProject);
+    const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+    const updatedCode = printer.printFile( updatedProject!.newFile! );
+    fs.writeFileSync(updatedProject!.path, updatedCode, "utf-8");
+
+  }
+
+
+
+
 
 }
 
