@@ -402,12 +402,11 @@ export class OvaadFileWriter {
 
         if ( parentFilePath === undefined ){ console.error( `Path for ${parentComponent} not found.` ) }
 
+
+
         const parentFile = this.parseComponentFile( parentFilePath! );
 
-        if( parentFile === undefined ) {
-            
-            console.error( `${ parentComponent } not found in project.` );
-        }
+        if( parentFile === undefined ) { console.error( `${ parentComponent } not found in project.` ); }
 
 
 
@@ -420,7 +419,7 @@ export class OvaadFileWriter {
         const updatedDecoratorImportArray  : ts.Identifier[]        = [];
         let newComponentDecorator : ts.Decorator;
         let originalDecoratorMetadata;
-        let   updatedTemplateFile          = '';
+        //let   updatedTemplateFile          = '';
         const updatedTemplateFileArray : string[] = [];
 
         const originalImportDeclarationPositions : { start : number, end : number }[] = [];
@@ -624,7 +623,7 @@ export class OvaadFileWriter {
                 
 
 
-                updatedTemplateFile = newTemplateLines.join( '\n' );
+                //updatedTemplateFile = newTemplateLines.join( '\n' );
 
                 newTemplateLines.forEach(a => updatedTemplateFileArray.push(a) );
 
@@ -644,7 +643,7 @@ export class OvaadFileWriter {
 
                     ];
 
-                    updatedTemplateFile = newTemplateLines.join( '\n' );
+                    //updatedTemplateFile = newTemplateLines.join( '\n' );
 
                     newTemplateLines.forEach(a => updatedTemplateFileArray.push(a) );
 

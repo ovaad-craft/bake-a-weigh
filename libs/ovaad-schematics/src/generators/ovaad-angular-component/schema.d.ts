@@ -2,21 +2,28 @@ export type OvaadComponentType = 'standard' | 'custom form control';
 
 export type OvaadFormControlType = 'FormGroup' | 'FormControl' | 'FormArrayGroup';
 
+export interface FormArrayGroupSchema {
+
+  propertyName           : string;
+  controlType            : OvaadFormControlType;
+  controlTypeAnnotation  : string;
+  annotationImportPath?  : string;
+
+}
+
 export interface CustomFormControlSpecs{
 
   controlType    : string;
   typeAnnotation : string;
-  hasGlobalTypePath? : string;
-  globalTypePath?    : string;
-  listPropertyName?  : string;
-  listPropertyType?  : string;
+  annotationImportPath? : string;
+  formArraySpecs? : FormArrayGroupSchema;
 
 }
 
 export interface LineSelector {
 
   start : number;
-  end   : number;
+  end?  : number;
 
 }
 
@@ -38,6 +45,36 @@ export interface ComponentInjectionSpecs{
   insertAt?          : number;
   dataSetup?         : DataConfiguration[];
   childComponentPath      : string;
+
+}
+
+export interface InputDetailsSchema {
+
+  declarations      : string[];
+  bindings?         : string[];
+  ImportPath?       : string;
+
+}
+
+
+
+export interface ComponentInjectionPromptSchema {
+
+  parentComponentClassName : string;
+  templateinsertionPoint   : LineSelector;
+
+}
+
+
+
+export interface PromptSchema{
+
+  name          : string;
+  project       : string;
+  location      : string;
+  componentType : string;
+  addInputs?    : InputDetailsSchema;
+  customControlSpecs : CustomFormControlSpecs;
 
 }
 
