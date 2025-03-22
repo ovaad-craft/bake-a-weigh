@@ -34,8 +34,11 @@ export interface DataConfiguration{
 
 }
 
-export interface ComponentInjectionSpecs{
 
+
+
+export interface ComponentInjectionSpecs{
+  
   parentComponentFileName : string;
   parentComponentClassName : string;
   childComponentFileName : string;
@@ -45,26 +48,25 @@ export interface ComponentInjectionSpecs{
   insertAt?          : number;
   dataSetup?         : DataConfiguration[];
   childComponentPath      : string;
-
+  
 }
 
 export interface InputDetailsSchema {
-
+  
   declarations      : string[];
   bindings?         : string[];
   ImportPath?       : string;
-
+  
 }
 
 
 
 export interface ComponentInjectionPromptSchema {
-
+  
   parentComponentClassName : string;
-  templateinsertionPoint   : LineSelector;
-
+  templateInsertionPoint   : LineSelector;
+  
 }
-
 
 
 export interface PromptSchema{
@@ -73,8 +75,9 @@ export interface PromptSchema{
   project       : string;
   location      : string;
   componentType : string;
-  addInputs?    : InputDetailsSchema;
-  customControlSpecs : CustomFormControlSpecs;
+  inputSpecs?   : InputDetailsSchema;
+  customControlSpecs? : CustomFormControlSpecs;
+  insertionSpecs? : ComponentInjectionPromptSchema;
 
 }
 

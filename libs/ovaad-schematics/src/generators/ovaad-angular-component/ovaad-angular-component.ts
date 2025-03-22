@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import  ts = require('typescript');
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { ComponentInjectionSpecs, OvaadFormControlType, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { ComponentInjectionSpecs, OvaadFormControlType, PromptSchema, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
 import { OvaadFileWriter } from './file-writer/file-writer';
 
 
@@ -84,7 +84,7 @@ export interface CustomControlOptions {
 
 
 
-export async function ovaadAngularComponentGenerator( tree : Tree, options : Schema ) {
+export async function ovaadAngularComponentGenerator( tree : Tree, options : PromptSchema ) {
 
 
 
@@ -94,9 +94,9 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
 
   //  Prompts for generating standard component.
-  /*if ( options.componentType === 'standard' ) {
+  if ( options.componentType === 'standard' ) {
 
-    const responses : Schema = options;
+    const responses : PromptSchema = options;
 
 
     
@@ -119,7 +119,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     if ( insertionResponses.addInputs.length > 0 ) {
       
-      if( !responses.addInputs ) { responses.addInputs = [ ...insertionResponses.addInputs ]; }
+      if( !responses.inputSpecs ) { responses.inputSpecs = { declarations : [ ...insertionResponses.addInputs ] }; }
 
     }
 
@@ -152,7 +152,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
         
       ]);
 
-      responses.insertInto!.componentClassName = response.componentClassName;
+      responses.insertionSpecs!.parentComponentClassName = response.componentClassName;
 
 
       
@@ -169,8 +169,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
         ]);
 
-        responses.insertInto!.removeCode = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
-        responses.insertInto!.insertAt   = response.lines[ 0 ];
+        responses.insertionSpecs!.templateInsertionPoint = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
+        //responses.insertInto!.insertAt   = response.lines[ 0 ];
 
       }
 
@@ -187,13 +187,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
         ]);
 
-        responses.insertInto!.insertAt = response.line;
+        responses.insertionSpecs!.templateInsertionPoint.start = response.line;
 
       }
 
 
 
-      if ( responses && responses.addInputs && responses.addInputs.length > 0 ) {
+      if ( responses && responses.inputSpecs && responses.inputSpecs.declarations.length > 0 ) {
 
         const response = await enquirer.prompt< { connectInputs : string[] } > ([
 
@@ -205,7 +205,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
         ]);
 
-        responses.connectInputs = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
+        responses.inputSpecs.bindings = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
 
       }
 
@@ -227,7 +227,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     if( importResponse.globalTypePath && importResponse.globalTypePath !== '' ) {
 
-      responses.globalTypePath = importResponse.globalTypePath;
+      responses.inputSpecs!.annotationImportPath = importResponse.globalTypePath;
 
     }
 
@@ -235,16 +235,16 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     options = { ...responses };
 
-  }*/
+  }
 
 
 
   //  Prompts for generating custom form control.
-  /*if ( options.componentType === 'custom form control' ) {
+  if ( options.componentType === 'custom form control' ) {
 
 
 
-    let responses! : Schema;
+    let responses! : PromptSchema;
 
 
 
@@ -269,13 +269,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     ]);
 
-    responses.controlType    = response.controlType;
-    responses.typeAnnotation = response.typeAnnotation;
-    responses.globalTypePath = ( response.globalTypePath !== '' ? response.globalTypePath : undefined );
+    responses.customControlSpecs!.controlType    = response.controlType;
+    responses.customControlSpecs!.typeAnnotation = response.typeAnnotation;
+    responses.customControlSpecs!.annotationImportPath = ( response.globalTypePath !== '' ? response.globalTypePath : undefined );
 
 
 
-    if ( responses.controlType === 'FormArrayGroup' ) {
+    if ( responses.customControlSpecs!.controlType === 'FormArrayGroup' ) {
 
       const response = await enquirer.prompt< { listPropertyName : string, listItemType : OvaadFormControlType, listItemAnnotation : string } > ([
 
@@ -298,15 +298,15 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
       ]);
 
-      responses.listPropertyName   = response.listPropertyName;
-      responses.listItemType       = response.listItemType;
-      responses.listItemAnnotation = response.listItemAnnotation;
+      responses.customControlSpecs!.formArraySpecs!.propertyName          = response.listPropertyName;
+      responses.customControlSpecs!.formArraySpecs!.controlType           = response.listItemType;
+      responses.customControlSpecs!.formArraySpecs!.controlTypeAnnotation = response.listItemAnnotation;
       
     }
 
 
 
-    if( responses.controlType === 'FormArrayGroup' && responses.globalTypePath !== undefined ) {
+    if( responses.customControlSpecs!.controlType === 'FormArrayGroup' && responses.customControlSpecs!.annotationImportPath !== undefined ) {
 
       const response = await enquirer.prompt< { isListItemTypeImportGlobal : boolean } >([
 
@@ -330,9 +330,11 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
         ]);
 
-        responses.listItemTypeImport = ( response.listItemTypeImport !== '' ? response.listItemTypeImport : undefined );
+        responses.customControlSpecs!.formArraySpecs!.annotationImportPath = ( response.listItemTypeImport !== '' ? response.listItemTypeImport : undefined );
 
       }
+
+      else { responses.customControlSpecs!.formArraySpecs!.annotationImportPath = responses.customControlSpecs?.annotationImportPath; }
   
     }
 
@@ -345,7 +347,14 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
       },
     ]);
 
-    responses.addInputs = ( inputResponses.addInputs.length > 0 ? [ ...inputResponses.addInputs ] : undefined );
+
+
+    if ( inputResponses.addInputs.length > 0 ) {
+
+      responses.inputSpecs!.declarations = [ ...inputResponses.addInputs ];
+
+    }
+
 
 
 
@@ -361,11 +370,11 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
     if ( insertionResponse.componentClassName !== '' ) {
 
-      responses!.insertInto!.componentClassName = insertionResponse.componentClassName;
+      responses.insertionSpecs!.parentComponentClassName = insertionResponse.componentClassName;
 
 
 
-      if ( responses.addInputs && responses.addInputs.length > 0 ) {
+      if ( responses.inputSpecs && responses.inputSpecs.declarations.length > 0 ) {
 
         const response = await enquirer.prompt< { connectInputs : string[] } > ([
   
@@ -377,7 +386,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
   
         ]);
   
-        responses.connectInputs = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
+        responses.inputSpecs.bindings = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
   
       }
 
@@ -386,7 +395,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     options = { ...responses };
 
 
-  }*/
+  }
 
 
 
@@ -594,13 +603,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
   /*if( targetProject !== undefined ) {
     
-    const sampleParentComponent = new OvaadFileWriter( targetProject );
+    const sampleParentComponent = new OvaadFileWriter( targetProject, options.insertInto! );
 
-    const updatedProject = sampleParentComponent.addNewComponentToComponent(sampleChildComponent.insertInto!.componentClassName, sampleChildComponent.insertInto!);
+    const updatedProject = sampleParentComponent.addNewComponentToComponent(options.insertInto!);
 
-    const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-    const updatedCode = printer.printFile( updatedProject!.newFile! );
-    fs.writeFileSync(updatedProject!.path, updatedCode, "utf-8");
+    //const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+    //const updatedCode = printer.printFile( updatedProject!.newFile! );
+    //fs.writeFileSync(updatedProject!.path, updatedCode, "utf-8");
   }*/
   
   //  Make sure project exist before continuing and stop process if not.
@@ -709,10 +718,6 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
     fs.writeFileSync(updatedProject!.templatePath, updatedTemplateCode,  'utf-8' );
 
   }
-
-
-
-
 
 }
 

@@ -3,7 +3,7 @@
   "$id": "OvaadAngularComponent",
   "title": "",
   "type": "object",
-  /*"properties" : {
+  "properties" : {
     "name" : {
       "type" : "string",
       "x-prompt" : "What would you like to name this component?"
@@ -22,5 +22,5 @@
       "x-prompt" : "What type of component will this be?"
     }
   },
-  "required":[ "name", "project", "location", "componentType" ]*/
+  "required":[ "name", "project", "location", "componentType" ]
 }
