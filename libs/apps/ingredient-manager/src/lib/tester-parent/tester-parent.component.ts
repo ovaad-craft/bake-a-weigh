@@ -40,8 +40,8 @@ import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/fo
 
 
 @Component({
-    selector    : 'lib-tester-parent',
-    imports: [
+    selector : 'lib-nutrition-group',
+    imports : [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

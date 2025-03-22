@@ -1,7 +1,7 @@
 import path = require("path");
-import ts = require("typescript");
+import * as ts from 'typescript';
 import * as fs from 'fs';
-import { ComponentInjectionSpecs } from "../schema";
+import { ComponentInjectionSpecs, LineSelector, ParsedComponentFile } from "../schema";
 import { ProjectConfiguration } from "@nx/devkit";
 
 
@@ -9,13 +9,149 @@ import { ProjectConfiguration } from "@nx/devkit";
 
 export class OvaadFileWriter {
 
-    Project! : ProjectConfiguration;
+    Project!             : ProjectConfiguration;
+    InsertionData!       : ComponentInjectionSpecs;
+    ParentComponentFile! : ParsedComponentFile;
+    ParentComponentPath! : string;
+    ChildComponentPath!  : string;
 
 
 
 
 
-    constructor( public project : ProjectConfiguration ) { this.Project = project; }
+    constructor( public project : ProjectConfiguration, insertionData : ComponentInjectionSpecs ) {
+        
+        this.Project            = project;
+        this.InsertionData      = insertionData;
+        this.ChildComponentPath = insertionData.childComponentPath;
+        this.parentInfoInit();
+
+    }
+
+
+
+    parentInfoInit() : void {
+
+        
+        const parentFilePath = this.findComponentFile( this.Project, this.InsertionData.parentComponentFileName );
+
+
+        
+        if ( parentFilePath === undefined ){ throw new Error( `${this.InsertionData.parentComponentClassName} not found in targeted project.` ) }
+
+        else{
+            
+            const parentFile  = this.parseComponentFile( parentFilePath );
+
+
+
+            this.ParentComponentPath = parentFilePath;
+
+            if( parentFile !== undefined ){ this.ParentComponentFile = parentFile; }
+
+        }
+
+    }
+
+
+
+    /*getImportDeclarationsFromSourceFile( parentFile : ts.SourceFile ) {
+
+        const declarationList : ts.ImportDeclaration[] | undefined = this.scanNode< ts.SourceFile, ts.ImportDeclaration >( parentFile, ts.isImportDeclaration );
+
+
+
+        if( declarationList ){
+
+
+            let addedToExistingPath = false;
+
+            const importTextArray   : string[]       = [];
+            const itemLinePositions : LineSelector[] = [];
+
+
+
+            declarationList.forEach( a => {
+
+                const checkIfLocationExist : boolean = ( a.moduleSpecifier as ts.StringLiteral ).text  === this.ChildComponentPath ? true : false;
+
+                itemLinePositions.push( { start : a.getStart(), end : a.getEnd() } );
+
+
+
+                if( checkIfLocationExist ){
+
+
+
+                    const bindings = a.importClause?.namedBindings;
+
+                    if( bindings && ts.isNamedImports( bindings ) ) {
+
+
+
+                        const newImportSpecifiers : ts.ImportSpecifier[] = [ ...bindings.elements, this.createNewImportDecalarationItem( this.InsertionData.childComponentClassName ) ];
+
+                        const newImportStatement  : ts.ImportDeclaration = ts.factory.createImportDeclaration(
+
+                            a.modifiers?? undefined,
+                            ts.factory.createImportClause( false, undefined, ts.factory.createNamedImports( newImportSpecifiers ) ),
+                            a.moduleSpecifier?? undefined,
+                            undefined
+
+                        );
+
+                        importTextArray.push( newImportStatement.getText() );
+
+
+
+                    }
+
+                    addedToExistingPath = true;
+
+                  
+                    
+                }
+
+                else { importTextArray.push( a.getText() ); }
+
+            });
+
+
+
+            if ( !addedToExistingPath ) {
+
+                const relativePath : string = this.createImportPath( this.ParentComponentPath, this.ChildComponentPath );
+                const newImportDeclaration : ts.ImportDeclaration   = this.createNewImportDeclaration( this.InsertionData.childComponentClassName, relativePath );
+                const newDeclarationArray  : ts.ImportDeclaration[] = [
+                    ...declarationList,
+                    newImportDeclaration
+                ];
+
+
+                //console.log(newImportDeclaration.getText());
+                //declarationList.push( newImportDeclaration );
+                //const declarationTextList : string[] = newDeclarationArray.map( a=> a.getFullText() );
+                //importTextArray.push( newImportDeclaration.getText() );
+                
+                console.log(newDeclarationArray);
+
+            }
+
+            //console.log( importTextArray );
+
+            return importTextArray;
+        }
+        else{ throw new Error('No import declarations were found in the parent file.  Check your configuration.' ) }
+    }*/
+
+
+
+
+
+
+
+
+
 
 
     
@@ -189,19 +325,6 @@ export class OvaadFileWriter {
 
 
 
-    //  Find component in project
-    /*findComponentInProject( name : string ) : ts.ClassDeclaration | undefined {
-
-        const nodes = this.scanNode< ts.SourceFile, ts.ClassDeclaration >( this.Project, ts.isClassDeclaration );
-
-        return nodes.find( node => node.name?.text === name && this.getComponentMetadata( node ) );
-    
-    }*/
-
-
-
-
-
     //  Check if import path already exists
     checkIfPathExist( source : ts.SourceFile, importPath : string ) : ts.ImportDeclaration | undefined {
 
@@ -272,9 +395,9 @@ export class OvaadFileWriter {
 
 
     //  Add new component to existing component
-    addNewComponentToComponent( insertionData : ComponentInjectionSpecs, parentComponent? : string, childComponent? : ComponentInjectionSpecs ) : { newFile : ts.SourceFile, path: string } | undefined {
+    addNewComponentToComponent( insertionData : ComponentInjectionSpecs, parentComponent? : string, childComponent? : ComponentInjectionSpecs ) : { newComponentFile : string, newTemplateFile : string[], componentPath: string, templatePath : string } | undefined {
 
-        //const parent : ts.ClassDeclaration | undefined = this.findComponentInProject( parentComponent );
+
         const parentFilePath = this.findComponentFile( this.Project, insertionData.parentComponentFileName );
 
         if ( parentFilePath === undefined ){ console.error( `Path for ${parentComponent} not found.` ) }
@@ -285,8 +408,6 @@ export class OvaadFileWriter {
             
             console.error( `${ parentComponent } not found in project.` );
         }
-
-        //console.log(parentFile.classNode?.modifiers?.map( a => ts.SyntaxKind[a.kind]));
 
 
 
@@ -300,6 +421,9 @@ export class OvaadFileWriter {
         let newComponentDecorator : ts.Decorator;
         let originalDecoratorMetadata;
         let   updatedTemplateFile          = '';
+        const updatedTemplateFileArray : string[] = [];
+
+        const originalImportDeclarationPositions : { start : number, end : number }[] = [];
 
 
 
@@ -307,12 +431,12 @@ export class OvaadFileWriter {
         const declarationList : ts.ImportDeclaration[] | undefined = this.scanNode< ts.SourceFile, ts.ImportDeclaration >( parentFile.sourceFile, ts.isImportDeclaration );
         let addedToExistingPath = false;
 
-        //console.log(childComponent.componentPath);
-
 
         declarationList.forEach( a => {
 
             const checker : boolean = ( a.moduleSpecifier as ts.StringLiteral ).text  === insertionData.childComponentPath ? true : false;
+
+            originalImportDeclarationPositions.push( { start : a.getStart(), end : a.getEnd() } );
 
             if( checker ) {
 
@@ -322,13 +446,11 @@ export class OvaadFileWriter {
 
                 if( bindings && ts.isNamedImports( bindings ) ) {
 
-                    //console.log(childComponent.componentClassName);
-
                 
                     const newImportSpecifiers : ts.ImportSpecifier[] = [ ...bindings.elements, this.createNewImportDecalarationItem( insertionData.parentComponentClassName ) ];
 
-                    //if(childComponent.componentClassName === 'tester-parent'){ console.log( newImportSpecifiers)}
 
+                    
                     updatedImportDeclarationList.push(
                         ts.factory.createImportDeclaration(
                             a.modifiers?? undefined,
@@ -351,8 +473,8 @@ export class OvaadFileWriter {
 
 
         });
+        
 
-        //console.log(declarationList);
 
         if( !addedToExistingPath ) {
 
@@ -360,15 +482,12 @@ export class OvaadFileWriter {
 
            updatedImportDeclarationList.push(
 
-            //...declarationList,
             this.createNewImportDeclaration( insertionData.childComponentClassName, pathToChild )
 
           );
 
 
         }
-
-        //console.log(updatedImportDeclarationList)
 
 
 
@@ -386,16 +505,14 @@ export class OvaadFileWriter {
                 a.name.text === 'imports'
 
             ) as ts.PropertyAssignment;
-
-            //console.log(metadataImports);
+            
 
             const newImportArrayItems : ts.Identifier[] = [];
 
 
 
             if ( metadataImports ) {
-
-                //console.log('inside condition')
+                
 
                 const metadataImportsArray = metadataImports.initializer as ts.ArrayLiteralExpression;
 
@@ -405,14 +522,12 @@ export class OvaadFileWriter {
                     this.createNewImportArrayItem( insertionData.childComponentClassName )
 
                 ]);
-
-                //console.log(updatedImportsArray)
+                
 
 
 
                 updatedImportsArray.elements.forEach( a => newImportArrayItems.push( a as ts.Identifier ) );
-
-                //console.log( updatedDecoratorImportArray );
+                
 
 
             }
@@ -434,7 +549,7 @@ export class OvaadFileWriter {
 
             const existingProperties = decoratorMetadata.properties.filter(
                 (prop) => {
-                    // Ensure we keep everything except 'imports', which we are replacing
+                    
                     return ts.isPropertyAssignment(prop) && prop.name.getText() !== 'imports';
                 }
             );
@@ -446,14 +561,14 @@ export class OvaadFileWriter {
                     undefined,
                     [
                         
-                        // Ensure the argument is a properly structured ObjectLiteralExpression
+                        
                         ts.factory.createObjectLiteralExpression([
                             ...existingProperties,
                             ts.factory.createPropertyAssignment(
                                 ts.factory.createIdentifier('imports'),
-                                ts.factory.createArrayLiteralExpression(newImportArrayItems, true) // True for preserving formatting
+                                ts.factory.createArrayLiteralExpression(newImportArrayItems, true)
                             ),
-                            // Add other properties if needed, e.g., template, selector, etc.
+                            
                         ])
                     ]
                 )
@@ -473,23 +588,53 @@ export class OvaadFileWriter {
             const parentTemplateFile = fs.readFileSync( parentTemplatePath, 'utf-8' );
             const templateLines : string[] = parentTemplateFile.split( '\n' );
 
+            const calculateSpaces  = (item : string) => {
+
+                const itemArray : string[] = item.split(' ');
+                let index = 0;
+                const spaces : string[] = [];
+                let stopCount = false;
+
+                while(!stopCount){
+                    
+                    if(item[index] !== ' '){ stopCount = true; }
+                    else{
+                        spaces.push(' ');
+                        index++;
+                    }
+                }
+
+                return spaces.join('');               
+
+            };
+
             if ( insertionData.removeCode ) {
+
+                
+                
+                const spaces : string = calculateSpaces( templateLines[ insertionData.removeCode.start - 1 ] );
 
                 const newTemplateLines : string[] = [
 
-                    ...templateLines.slice( 0, insertionData.removeCode.start -1 ),
-                    insertionData.templateItem,
+                    ...templateLines.slice( 0, insertionData.removeCode.start - 1 ),
+                    spaces + insertionData.templateItem,
                     ...templateLines.slice( insertionData.removeCode.end )
 
                 ];
+                
+
 
                 updatedTemplateFile = newTemplateLines.join( '\n' );
+
+                newTemplateLines.forEach(a => updatedTemplateFileArray.push(a) );
+
+                
 
             }
 
             else {
 
-                if ( insertionData.insertAt ) {
+                if ( !insertionData.removeCode && insertionData.insertAt ) {
 
                     const newTemplateLines : string[] = [
 
@@ -500,6 +645,8 @@ export class OvaadFileWriter {
                     ];
 
                     updatedTemplateFile = newTemplateLines.join( '\n' );
+
+                    newTemplateLines.forEach(a => updatedTemplateFileArray.push(a) );
 
                 }
             }
@@ -516,14 +663,14 @@ export class OvaadFileWriter {
             const updatedImportsProperty = ts.factory.createPropertyAssignment(
                 ts.factory.createIdentifier('imports'),
                 ts.factory.createArrayLiteralExpression(
-                    updatedDecoratorImportArray, // This is your array of identifiers
-                    true // Preserve formatting
+                    updatedDecoratorImportArray,
+                    true
                 )
             );
 
             const updatedMetadataProperties = originalDecoratorMetadata!.properties.map(prop => {
                 if (ts.isPropertyAssignment(prop) && prop.name.getText() === 'imports') {
-                    return updatedImportsProperty; // Replace old imports array
+                    return updatedImportsProperty;
                 }
                 return prop;
             });
@@ -533,13 +680,13 @@ export class OvaadFileWriter {
                     ts.factory.createIdentifier("Component"),
                     undefined,
                     [
-                        // Ensure the argument is a properly structured ObjectLiteralExpression
+                        
                         ts.factory.createObjectLiteralExpression([
                             ts.factory.createPropertyAssignment(
                                 ts.factory.createIdentifier('imports'),
-                                ts.factory.createArrayLiteralExpression(updatedDecoratorImportArray, true) // True for preserving formatting
+                                ts.factory.createArrayLiteralExpression(updatedDecoratorImportArray, true)
                             ),
-                            // Add other properties if needed, e.g., template, selector, etc.
+                            
                         ])
                     ]
                 )
@@ -556,23 +703,7 @@ export class OvaadFileWriter {
                 parentFile.classNode.name,
                 parentFile.classNode.typeParameters,
                 parentFile.classNode.heritageClauses,
-                [
-                    ...parentFile.classNode!.members,
-                    ts.factory.createMethodDeclaration(
-                        undefined,
-                        undefined,
-                        'template',
-                        undefined,
-                        undefined,
-                        [],
-                        undefined,
-                        ts.factory.createBlock([
-                            ts.factory.createReturnStatement(
-                                ts.factory.createStringLiteral( updatedTemplateFile )
-                            )
-                        ])
-                    )
-                ]
+                [ ...parentFile.classNode!.members ]
     
             );
 
@@ -581,18 +712,22 @@ export class OvaadFileWriter {
             
 
             const allUpdatedItems = [
-                ...updatedImportDeclarationList,
-                //newComponentDecorator!,
-                updatedClassDeclaration
-            ];
 
-            const newSourceFile = ts.factory.updateSourceFile(
+                ...updatedImportDeclarationList,
+                updatedClassDeclaration
+
+            ];
+            
+            
+            
+            /*const newSourceFile = ts.factory.updateSourceFile(
                 parentFile.sourceFile,
                 allUpdatedItems 
-            );
+            );*/
 
             const printer = ts.createPrinter({
                 newLine: ts.NewLineKind.LineFeed,
+                omitTrailingSemicolon: false,
                 removeComments : false
             });
 
@@ -602,17 +737,31 @@ export class OvaadFileWriter {
                 parentFile.sourceFile
             );
 
-            const updatedSourceFile = ts.createSourceFile(
+            /*const updatedSourceFile = ts.createSourceFile(
                 parentPath,
                 updatedSourceText,
                 ts.ScriptTarget.Latest,
                 true,
                 ts.ScriptKind.TS
-            );
+            );*/
 
-            return { newFile : updatedSourceFile, path : parentFilePath! };
+            const templatePath : string = parentPath ? parentPath.replace( /\.ts$/, '.html' ) : '';
+
+            /*const updatedHtmlFile = ts.createSourceFile(
+                parentTemplatePath,
+                updatedTemplateFileArray.join('\n'),
+                ts.ScriptTarget.Latest,
+                true,
+                ts.ScriptKind.Unknown
+            );*/
+            
+
+
+            return { newComponentFile : updatedSourceText, newTemplateFile : updatedTemplateFileArray, componentPath : parentFilePath!, templatePath : templatePath };
+
+
         }
 
-
     }
+
 }

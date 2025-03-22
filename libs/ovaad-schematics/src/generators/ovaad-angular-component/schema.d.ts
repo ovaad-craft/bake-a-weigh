@@ -60,3 +60,9 @@ export interface OvaadAngularComponentGeneratorSchema {
   addInputs?            : string[];
   connectInputs?        : string[];
 }
+
+export interface ParsedComponentFile {
+  sourceFile: ts.SourceFile,
+  classNode: ts.ClassDeclaration | undefined,
+  decoratorNode: ts.Decorator | undefined
+}

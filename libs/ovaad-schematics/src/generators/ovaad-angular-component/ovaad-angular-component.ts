@@ -680,27 +680,33 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Sch
 
   
   
-  generateFiles(
+  /*generateFiles(
     tree,
     path.join(__dirname, 'files'),
     targetPath,
     { ...componentOptions,  tmpl : '' }
   );
   
-  await formatFiles( tree );
+  await formatFiles( tree );*/
 
 
 
   if( options.insertInto !== undefined ) {
 
-    const parentComponent = new OvaadFileWriter( targetProject );
+    const parentComponent = new OvaadFileWriter( targetProject, options.insertInto );
     //console.log(parentComponent);
-    const updatedProject = parentComponent.addNewComponentToComponent(options.insertInto!);
+    const updatedProject = parentComponent.addNewComponentToComponent( options.insertInto! );
 
     //console.log(updatedProject);
-    const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-    const updatedCode = printer.printFile( updatedProject!.newFile! );
-    fs.writeFileSync(updatedProject!.path, updatedCode, "utf-8");
+    //const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+
+    //const updatedComponentCode = printer.printFile( updatedProject!.newComponentFile! );
+    //const updatedTemplateCode = printer.printFile( updatedProject!.newTemplateFile!.join('\n') );
+    const updatedTemplateCode = updatedProject!.newTemplateFile!.join('\n');
+
+
+    fs.writeFileSync(updatedProject!.componentPath, updatedProject!.newComponentFile!, 'utf-8' );
+    fs.writeFileSync(updatedProject!.templatePath, updatedTemplateCode,  'utf-8' );
 
   }
 
