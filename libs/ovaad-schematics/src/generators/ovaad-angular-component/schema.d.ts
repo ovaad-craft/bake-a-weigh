@@ -70,6 +70,19 @@ export interface ComponentInjectionPromptSchema {
 
 
 
+export interface ParentComponentPrepSchema {
+  
+  parentComponentClassName : string;
+  childComponentClassName  : string;
+  childComponentFileName   : string;
+  childComponentPath : string;
+  childComponentTag  : string;
+  insertionPoint     : LineSelector;
+
+}
+
+
+
 export interface ParentComponentSchema {
 
   parentComponentClassName : string;

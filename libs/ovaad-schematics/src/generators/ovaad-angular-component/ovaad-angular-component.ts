@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import  ts = require('typescript');
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { ComponentInjectionSpecs, OvaadFormControlType, PromptSchema, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { ComponentInjectionSpecs, OvaadFormControlType, ParentComponentPrepSchema, ParentComponentSchema, PromptSchema, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
 import { OvaadFileWriter } from './file-writer/file-writer';
 
 
@@ -51,9 +51,9 @@ function createInputConnection( inputData : InputConnection ) : string {
 
 }
 
-function createElementTag( name : string, selfClosing : boolean, inputs? : InputConnection[] ) : string {
+function createElementTag( prefix : string, name : string, selfClosing : boolean, inputs? : InputConnection[] ) : string {
 
-  return `<${ name } ${ inputs ? inputs.map(a => createInputConnection(a)).join(' ') : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
+  return `<${prefix}-${ name } ${ inputs ? inputs.map(a => createInputConnection( a ) ).join(' ') : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
 
 }
 
@@ -594,7 +594,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
  }
 
- options = sampleChildComponent;
+ //options = sampleChildComponent;
   
   //  Fetch the target project to add component to.
   const projects       = getProjects( tree );
@@ -695,8 +695,6 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
         ));
 
-
-
       }
 
 
@@ -735,6 +733,33 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
     }*/
 
+
+  }
+
+
+
+  let   parentComponentData! : ParentComponentPrepSchema;
+
+  if ( options.insertionSpecs ) {
+
+    const bindings : InputConnection[] = [];
+
+
+
+    if ( options.inputSpecs && options.inputSpecs.bindings ) {
+
+      options.inputSpecs.bindings.forEach( a => bindings.push( { name : a.split( ':' )[ 0 ], value : a.split( ':' )[ 1 ] } ) );
+
+    }
+
+
+
+    parentComponentData.parentComponentClassName = options.insertionSpecs.parentComponentClassName;
+    parentComponentData.childComponentClassName  = componentNames.className;
+    parentComponentData.childComponentFileName   = componentNames.fileName;
+    parentComponentData.childComponentPath       = targetPath;
+    parentComponentData.childComponentTag        = createElementTag(targetProject.prefix, componentNames.name, true, bindings );
+    parentComponentData.insertionPoint           = options.insertionSpecs.templateInsertionPoint;
 
   }
 
