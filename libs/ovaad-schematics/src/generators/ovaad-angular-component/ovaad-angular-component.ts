@@ -626,32 +626,98 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
   if ( options.componentType === 'custom form control' ) {
 
-    if( options.controlType ) {
+
+
+    if( options.customControlSpecs!.controlType ) {
       
-      if( options.controlType === 'FormGroup' || options.controlType === 'FormArrayGroup' ) {
+      
+      
+      if( options.customControlSpecs!.controlType === 'FormGroup' || options.customControlSpecs!.controlType === 'FormArrayGroup' ) {
 
         const moduleImports : string[] = ['ReactiveFormsModule', 'FormGroup'];
 
-        if(options.listItemType === 'FormControl'){ moduleImports.push('FormControl'); }
+
+
+        if(options.customControlSpecs!.formArraySpecs!.controlType === 'FormControl'){ moduleImports.push('FormControl'); }
   
         importList.push( createImportScript( moduleImports, '@angular/forms' ) );
         metaDataImports.push( 'ReactiveFormsModule' );
         
       }
 
-      if( options.controlType === 'FormControl' ) {
+      if( options.customControlSpecs!.controlType === 'FormControl' ) {
   
         importList.push( createImportScript( [ 'FormsModule', 'FormControl' ], '@angular/forms' ) );
         metaDataImports.push( 'FormsModule' );
   
       }
 
-      propList.push( createControlInput( options.controlType === "FormArrayGroup" ? 'FormGroup' : options.controlType, options.typeAnnotation! ) );
+      propList.push( createControlInput( options.customControlSpecs!.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs!.controlType, options.customControlSpecs!.typeAnnotation ) );
 
     }
+
+
+
+
+
+    if( options.customControlSpecs?.annotationImportPath ) {
+
+      const importIdentifiers : string[] = [ options.customControlSpecs.typeAnnotation ];
+
+      
+
+      if(
+
+        options.customControlSpecs.formArraySpecs &&
+        options.customControlSpecs.formArraySpecs.annotationImportPath &&
+        options.customControlSpecs.formArraySpecs.annotationImportPath ===
+        options.customControlSpecs.annotationImportPath
+
+      ){ importIdentifiers.push( options.customControlSpecs.formArraySpecs.controlTypeAnnotation ) }
+
+
+
+      importList.push(createImportScript( importIdentifiers, options.customControlSpecs.annotationImportPath ) );
+
+    }
+
+
+    else {
+
+
+
+      if( options.customControlSpecs?.formArraySpecs?.annotationImportPath) {
+
+        importList.push( createImportScript(
+
+          [ options.customControlSpecs.formArraySpecs.controlTypeAnnotation ],
+          options.customControlSpecs.formArraySpecs.annotationImportPath
+
+        ));
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+    /*if ( options.customControlSpecs?.annotationImportPath === options.customControlSpecs?.formArraySpecs?.annotationImportPath ) {
+
+      const importIdentifiers : string[] = [ options.customControlSpecs!.annotationImportPath!, options.customControlSpecs!.formArraySpecs!.annotationImportPath! ];
+
+      importIdentifiers.push( options.customControlSpecs!.formArraySpecs!.annotationImportPath! )
+
+      const importStatement = createImportScript( importIdentifiers, options.customControlSpecs!.annotationImportPath! );
+
+    }*/
     
 
-    if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
+    /*if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
 
       const importItems : string[] = [ `${options.typeAnnotation}` ];
 
@@ -661,13 +727,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       importList.push( createImportScript( [ ...importItems ], options.globalTypePath ) );
 
-    }
+    }*/
 
-    if( options.isListItemTypeGlobal === 'no' && options.listItemTypeImport ){
+    /*if( options.isListItemTypeGlobal === 'no' && options.listItemTypeImport ){
 
       importList.push( createImportScript( [ `${options.listItemType}` ], options.listItemTypeImport ) );
 
-    }
+    }*/
 
 
   }
