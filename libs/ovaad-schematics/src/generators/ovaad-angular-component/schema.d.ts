@@ -51,11 +51,11 @@ export interface ComponentInjectionSpecs{
   
 }
 
-export interface InputDetailsSchema {
+export interface InputDetailSchema {
   
   declarations      : string[];
   bindings?         : string[];
-  ImportPath?       : string;
+  annotationImportPath? : string;
   
 }
 
@@ -69,13 +69,28 @@ export interface ComponentInjectionPromptSchema {
 }
 
 
+
+export interface ParentComponentSchema {
+
+  parentComponentClassName : string;
+  parentComponentFileName  : string;
+  childComponentClassName  : string;
+  childComponentFileName   : string;
+  childComponentPath : string;
+  childTemplateTag   : string;
+  insertionPoint     : LineSelector;
+  bindings           : DataConfiguration[];
+  
+}
+
+
 export interface PromptSchema{
 
   name          : string;
   project       : string;
   location      : string;
-  componentType : string;
-  inputSpecs?   : InputDetailsSchema;
+  componentType : OvaadComponentType;
+  inputSpecs?   : InputDetailSchema;
   customControlSpecs? : CustomFormControlSpecs;
   insertionSpecs? : ComponentInjectionPromptSchema;
 
