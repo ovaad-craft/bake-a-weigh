@@ -94,15 +94,10 @@ function shapeInputData( data : string[] ) : ShapeInputResponse {
 
     else {
 
-      const splitProps : string[] = a[ 0 ].split(' ');
+      const splitProp : string[] = a.split( ':' );
+      //console.log(splitProp);
 
-      splitProps.forEach( b => {
-
-        const prop : string[] = b.split( ':' );
-
-        definitions.push( { name : prop[ 0 ], type : prop[ 1 ] } );
-
-      });
+      definitions.push( { name : splitProp[ 0 ], type : splitProp[ 1 ] } );
 
     }
 
@@ -664,7 +659,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         if ( !promptResponses.inputSpecs ) {
 
           promptResponses.inputSpecs = { bindings :  response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined };
-          
+
         }
 
         else {
@@ -737,7 +732,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    if( options.customControlSpecs?.annotationImportPath ) {
+    /*if( options.customControlSpecs?.annotationImportPath ) {
 
       const importIdentifiers : string[] = [ options.customControlSpecs.typeAnnotation ];
 
@@ -776,7 +771,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    }
+    }*/
 
 
 
@@ -815,7 +810,31 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-  if( options.inputSpecs ){
+  if ( options.annotationSpecs ) {
+
+    options.annotationSpecs.forEach( a => {
+
+      importList.push( createImportScript( a.items, a.path ) );
+
+    });
+
+  }
+
+  if ( options.inputSpecs ) {
+
+    const metadataImportList : string[] = [];
+
+    options.inputSpecs.declarations.forEach( a => {
+      console.log(a);
+      inputList.push( createStandardInput( a.name, a.type ) );
+
+    });
+
+  }
+
+
+
+  /*if( options.inputSpecs ){
 
     const annotations : string[] = [];
 
@@ -839,7 +858,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     
     importList.push( createImportScript( annotations, options.inputSpecs.annotationImportPath!) );
 
-  }
+  }*/
 
 
 
