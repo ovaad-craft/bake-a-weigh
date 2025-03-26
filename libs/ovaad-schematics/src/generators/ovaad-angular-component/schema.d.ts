@@ -53,7 +53,7 @@ export interface ComponentInjectionSpecs{
 
 export interface InputDetailSchema {
   
-  declarations      : string[];
+  declarations      : InputPropDefinition[];
   bindings?         : string[];
   annotationImportPath? : string;
   
@@ -73,6 +73,8 @@ export interface ComponentInjectionPromptSchema {
 export interface ParentComponentPrepSchema {
   
   parentComponentClassName : string;
+  parentComponentFileName  : string;
+  parentComponentPath      : string;
   childComponentClassName  : string;
   childComponentFileName   : string;
   childComponentPath : string;
@@ -96,6 +98,23 @@ export interface ParentComponentSchema {
   
 }
 
+export interface AnnotationSpecs {
+  path : string;
+  items : string[];
+}
+
+export interface InputPropDefinition {
+  name : string;
+  type : string;
+}
+
+export interface ShapeInputResponse {
+
+  annotations : AnnotationSpecs[];
+  definitions : InputPropDefinition[];
+
+}
+
 
 export interface PromptSchema{
 
@@ -106,6 +125,7 @@ export interface PromptSchema{
   inputSpecs?   : InputDetailSchema;
   customControlSpecs? : CustomFormControlSpecs;
   insertionSpecs? : ComponentInjectionPromptSchema;
+  annotationSpecs? : AnnotationSpecs[];
 
 }
 
@@ -133,4 +153,31 @@ export interface ParsedComponentFile {
   sourceFile: ts.SourceFile,
   classNode: ts.ClassDeclaration | undefined,
   decoratorNode: ts.Decorator | undefined
+}
+
+
+
+
+
+
+
+export interface CustomFomrControlOptions {
+
+  controlType    : string;
+  typeAnnotation : string;
+  annotationImportPath? : string;
+  formArraySpecs? : Partial<FormArrayGroupSchema>;
+
+}
+
+export interface PromptOptions{
+
+  name          : string;
+  project       : string;
+  location      : string;
+  componentType : Partial<OvaadComponentType>;
+  inputSpecs?   : Partial<InputDetailSchema>;
+  customControlSpecs? : Partial<CustomFormControlOptions>;
+  insertionSpecs? : Partial<ComponentInjectionPromptSchema>;
+  annotationSpecs? : Partial<AnnotationSpecs[]>;
 }

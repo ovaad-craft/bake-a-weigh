@@ -6,7 +6,7 @@
   "properties" : {
     "name" : {
       "type" : "string",
-      "x-prompt" : "What would you like to name this component?"
+      "x-prompt" : "What would you like to name this component?\n"
     },
     "project" : {
       "type" : "string",
@@ -14,7 +14,7 @@
     },
     "location" : {
       "type" : "string",
-      "x-prompt" : "Where do you want this component generated within the project?"
+      "x-prompt" : "Where do you want this component generated within the project?\n"
     },
     "componentType" : {
       "type" : "string",

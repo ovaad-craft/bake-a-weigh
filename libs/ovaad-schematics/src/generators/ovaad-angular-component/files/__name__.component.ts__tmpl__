@@ -22,7 +22,7 @@ USER STORIES :
 
 
 
-import { Component<% if( componentType !== "standard" ){%><%-`, Input`%><%}%> }    from '@angular/core';
+import { Component<% if( inputList.length > 0 ){%><%-`, Input`%><%}%> }    from '@angular/core';
 import { CommonModule } from '@angular/common';
 <% if( importList.length > 0 ) { %><% for( let i = 0; i < importList.length; i++) {%>
 <%- importList[i] %><% } %><% } %>
@@ -43,9 +43,13 @@ import { CommonModule } from '@angular/common';
 
 export class <%= className %>Component {
 
+    <% if( inputList.length > 0 ) { %>
+    <% for( let i = 0; i < inputList.length; i++) { %>
+    <%- inputList[ i ] %><% } %><% } %>
+
     <% if( propList.length > 0 ) { %>
-    @Input() Label = 'item label';<% for( let i = 0; i < propList.length; i++) {%>
-    <%- propList[i] %><% } %><% } %>
+    <% for( let i = 0; i < propList.length; i++ ) { %>
+    <%- propList[ i ] %><% } %><% } %>
 
 
 

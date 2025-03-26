@@ -17,12 +17,7 @@ SENDS DATA TO :
 USER STORIES :
 
 */
-
-
-
-
-
-import { Component, Input, OnInit }    from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NutritionGroup } from '../../views/ingredient-editor/form-generator/form-types';
@@ -34,98 +29,73 @@ import { NutrientCategoryComponent } from './nutrient-category/nutrient-category
 import { NutritionOptionType } from '@bake-a-weigh/site-types';
 import { createNutrientCategoryGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/nutrient-category-group/nutrient-category-group';
 import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/vitamins-minerals-list/vitamins-minerals-list';
-
-
-
-
-
-@Component({
-    selector : 'lib-nutrition-group',
-    imports : [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NumberInputComponent,
-    NutrientCategoryComponent,
-    IngredientListComponent,
-    ServingSizeComponent,
-    VitaminsAndMineralsListComponent
-],
-    templateUrl : 'tester-parent.component.html',
-    styleUrls   : [ 'tester-parent.component.css' ]
-})
-
+import { TestChild02Component } from "../../test-child-02/test-child-02.component";
+import { TestChild02Component } from "../../test-child-02/test-child-02.component";
+import { TestChild02Component } from "../../test-child-02/test-child-02.component";
+import { TestChild02Component } from "../../test-child-02/test-child-02.component";
+@Component({ selector: 'lib-nutrition-group',
+    templateUrl: 'tester-parent.component.html',
+    styleUrls: ['tester-parent.component.css'], imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NumberInputComponent,
+        NutrientCategoryComponent,
+        IngredientListComponent,
+        ServingSizeComponent,
+        VitaminsAndMineralsListComponent,
+        TestChild02Component,
+        TestChild02Component,
+        TestChild02Component,
+        TestChild02Component
+    ] })
 export class TesterParentComponent implements OnInit {
-
-    @Input() Control! : FormGroup< NutritionGroup >;
-
-    SodiumToggle      = false;
-    ProteinToggle     = false;
-    TotalFatToggle    = false;
+    @Input()
+    Control!: FormGroup<NutritionGroup>;
+    SodiumToggle = false;
+    ProteinToggle = false;
+    TotalFatToggle = false;
     CholesterolToggle = false;
-    TotalCarbohydratesToggle  = false;
-    VitaminsAndMineralsToggle = false
-
-
-
+    TotalCarbohydratesToggle = false;
+    VitaminsAndMineralsToggle = false;
     ngOnInit(): void {
-        
-        if( this.Control.controls.sodium              ) { this.SodiumToggle              = true; }
-        if( this.Control.controls.protein             ) { this.ProteinToggle             = true; }
-        if( this.Control.controls.totalFat            ) { this.TotalFatToggle            = true; }
-        if( this.Control.controls.cholesterol         ) { this.CholesterolToggle         = true; }
-        if( this.Control.controls.totalCarbohydrates  ) { this.TotalCarbohydratesToggle  = true; }
-        if( this.Control.controls.vitaminsAndMinerals ) { this.VitaminsAndMineralsToggle = true; }
-
-    }
-
-
-
-    addGroup( group : NutritionOptionType ) : void {
-
-        if( !this.Control.controls[ `${ group }` ] ) {
-
-            this.Control.addControl( `${ group }`, createNutrientCategoryGroup() );
-
+        if (this.Control.controls.sodium) {
+            this.SodiumToggle = true;
         }
-
-    }
-
-
-
-    removeGroup( group : NutritionOptionType ) : void {
-
-        if( this.Control.controls[ `${ group }` ] ) {
-
-            this.Control.removeControl( `${ group }` );
-
+        if (this.Control.controls.protein) {
+            this.ProteinToggle = true;
         }
-
-    }
-
-
-
-    addVitamins() : void {
-
-        if( !this.Control.controls.vitaminsAndMinerals ) {
-
-            this.Control.addControl( 'vitaminsAndMinerals', createVitaminsAndMineralsArray() );
+        if (this.Control.controls.totalFat) {
+            this.TotalFatToggle = true;
         }
-
-    }
-
-
-
-    removeVitamins() : void {
-
-        if( this.Control.controls.vitaminsAndMinerals ) {
-
-            this.Control.removeControl( 'vitaminsAndMinerals' );
-
+        if (this.Control.controls.cholesterol) {
+            this.CholesterolToggle = true;
         }
-
+        if (this.Control.controls.totalCarbohydrates) {
+            this.TotalCarbohydratesToggle = true;
+        }
+        if (this.Control.controls.vitaminsAndMinerals) {
+            this.VitaminsAndMineralsToggle = true;
+        }
     }
-
-
-
+    addGroup(group: NutritionOptionType): void {
+        if (!this.Control.controls[`${group}`]) {
+            this.Control.addControl(`${group}`, createNutrientCategoryGroup());
+        }
+    }
+    removeGroup(group: NutritionOptionType): void {
+        if (this.Control.controls[`${group}`]) {
+            this.Control.removeControl(`${group}`);
+        }
+    }
+    addVitamins(): void {
+        if (!this.Control.controls.vitaminsAndMinerals) {
+            this.Control.addControl('vitaminsAndMinerals', createVitaminsAndMineralsArray());
+        }
+    }
+    removeVitamins(): void {
+        if (this.Control.controls.vitaminsAndMinerals) {
+            this.Control.removeControl('vitaminsAndMinerals');
+        }
+    }
 }

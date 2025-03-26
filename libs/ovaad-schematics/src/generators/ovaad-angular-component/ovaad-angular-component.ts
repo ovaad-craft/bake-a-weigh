@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import  ts = require('typescript');
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { ComponentInjectionSpecs, OvaadFormControlType, ParentComponentPrepSchema, ParentComponentSchema, PromptSchema, OvaadAngularComponentGeneratorSchema as Schema } from './schema';
+import { AnnotationSpecs, ComponentInjectionPromptSchema, ComponentInjectionSpecs, InputPropDefinition, LineSelector, OvaadFormControlType, ParentComponentPrepSchema, ParentComponentSchema, PromptOptions, PromptSchema, OvaadAngularComponentGeneratorSchema as Schema, ShapeInputResponse } from './schema';
 import { OvaadFileWriter } from './file-writer/file-writer';
 
 
@@ -57,6 +57,61 @@ function createElementTag( prefix : string, name : string, selfClosing : boolean
 
 }
 
+function shapeInputData( data : string[] ) : ShapeInputResponse {
+
+  const annotations : AnnotationSpecs[]     = [];
+  const definitions : InputPropDefinition[] = [];
+
+  data.forEach( a => {
+
+    const hasImport : boolean = a.includes( '|' );
+
+    if( hasImport ){
+
+      const splitFromAnnotation : string[] = a.split( '|' );
+      const splitProps : string[] = splitFromAnnotation[ 0 ].split(' ');
+
+      const annotationList : string[] = [];
+
+      splitProps.forEach( b => {
+
+        const prop : string[] = b.split( ':' );
+
+        definitions.push( { name : prop[ 0 ], type : prop[ 1 ] } );
+        annotationList.push( prop[ 1 ] );
+
+      });
+
+      annotations.push({
+
+        path : splitFromAnnotation[ 1 ],
+        items : [ ...annotationList ]
+
+      });
+
+
+    }
+
+    else {
+
+      const splitProps : string[] = a[ 0 ].split(' ');
+
+      splitProps.forEach( b => {
+
+        const prop : string[] = b.split( ':' );
+
+        definitions.push( { name : prop[ 0 ], type : prop[ 1 ] } );
+
+      });
+
+    }
+
+  });
+
+  return { annotations, definitions };
+
+}
+
 
 
 
@@ -86,6 +141,53 @@ export interface CustomControlOptions {
 
 export async function ovaadAngularComponentGenerator( tree : Tree, options : PromptSchema ) {
 
+  //  Fetch the target project to add component to.
+  const projects       = getProjects( tree );
+  const targetProject  = projects.get( options.project );
+
+  //  Make sure project exist before continuing and stop process if not.
+  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
+
+  const promptResponses : Partial<PromptOptions> = {
+
+    name     : options.name,
+    project  : options.project,
+    location : options.location,
+    componentType : options.componentType
+
+  };
+
+  const addAnnotationSpecs = ( annotation : AnnotationSpecs ) : void => {
+
+    const newAnnotationList : AnnotationSpecs[] = [];
+    let addedToExistingItem  = false;
+
+    if ( !promptResponses.annotationSpecs ) { promptResponses.annotationSpecs = [ annotation ]; }
+
+    else {
+
+      promptResponses.annotationSpecs.forEach( a => {
+
+
+        if ( a && a.path === annotation.path ) {
+          
+          a.items.push( ...annotation.items );
+          newAnnotationList.push( a );
+          addedToExistingItem = true;
+
+        }
+        else { newAnnotationList.push( a! ) }
+
+
+      });
+
+    }
+
+    if ( !addedToExistingItem ) { newAnnotationList.push( annotation ); }
+
+  }
+
+
 
 
   //  Prompt options that load after entering the name of the component and the type of component
@@ -96,30 +198,40 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
   //  Prompts for generating standard component.
   if ( options.componentType === 'standard' ) {
 
-    const responses : PromptSchema = options;
+    //const responses : PromptSchema = options;
 
 
     
     //  Determine if component should have any inputs and whether it should be immediately
     //  imported into another component. 
-    const insertionResponses = await enquirer.prompt< { addInputs : string, insertToggle : boolean, insertInto : ComponentInjectionSpecs } >([
+    const insertionResponses = await enquirer.prompt< { addInputs : string[], insertToggle : boolean, insertInto : ComponentInjectionSpecs } >([
 
       {
         type    : "list",
         name    : 'addInputs',
-        message : "Would you like to add Inputs to this component? list them along with their types as in the following example > YourInputName01:InputType01, YourInputName02:InputType02.",
+        message : "Would you like to add Inputs to this component? If so list them along with their types and locations as in the following examples.\n\n primative types example: YourInputName01:string, YourInputName02:number\n\n custom types example ; YourInputName01:CustomType01 YourInputName02:CustomType02|path/to/types01, YourInputName03:CustomType03|path/to/types02\n\nmixture example : YourInputName01:string, YourInputName02:number, YourInputName03:CustomType01 YourInputName04:CustomType02|path/to/types\n",
       },
       {
         type    : 'confirm',
         name    : 'insertToggle',
-        message : 'Would you like to immediately import this into a component?'
+        message : 'Would you like to immediately import this new component into an existing component?\n'
       }
 
     ]);
 
     if ( insertionResponses.addInputs.length > 0 ) {
       
-      if( !responses.inputSpecs ) { responses.inputSpecs = { declarations : [ ...insertionResponses.addInputs ] }; }
+      if( !promptResponses.inputSpecs ) {
+
+        const processInputResponses : ShapeInputResponse = shapeInputData( insertionResponses.addInputs );
+
+
+        
+        promptResponses.inputSpecs      = { declarations : [ ...processInputResponses.definitions ] };
+        //promptResponses.annotationSpecs = [ ...processInputResponses.annotations ];
+        processInputResponses.annotations.forEach( a => addAnnotationSpecs( a ) );
+
+      }
 
     }
 
@@ -130,6 +242,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     
     
     const insertComponent = insertionResponses.insertToggle;
+    /*let parentComponentClassName : string;
+    let insertionPoint : LineSelector;*/
 
     //  If user chooses to immediately import the new component into an existing component.
     if( insertComponent ) {
@@ -142,17 +256,21 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         {
           type    : "input",
           name    : "componentClassName",
-          message : 'What is the class name of this component?'
+          message : 'What is the name of this component?\ncorrect : item-name, incorrect: ItemNameComponent\n'
         },
         {
           type    : 'confirm',
           name    : 'replaceCode',
-          message : 'Would you like this element to replace something in your HTML?'
+          message : 'Would you like this element to replace something in your HTML?\n'
         }
         
       ]);
 
-      responses.insertionSpecs!.parentComponentClassName = response.componentClassName;
+      if( !promptResponses.insertionSpecs ) {
+        
+        promptResponses.insertionSpecs = { parentComponentClassName : response.componentClassName };
+
+      }
 
 
       
@@ -164,13 +282,12 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
           {
             type : 'list',
             name : 'lines',
-            message : 'Enter the first and last lines of code you want to replace separate by a comma. => example: 8, 23'
+            message : 'Enter the first and last lines of code you want to replace separate by a comma.\nexample: 8, 23\n'
           }
 
         ]);
 
-        responses.insertionSpecs!.templateInsertionPoint = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
-        //responses.insertInto!.insertAt   = response.lines[ 0 ];
+        promptResponses.insertionSpecs.templateInsertionPoint = { start : response.lines[ 0 ], end : response.lines[ 1 ] };
 
       }
 
@@ -182,30 +299,49 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
           {
             type    : 'number',
             name    : 'line',
-            message : 'What line would you like to insert your component on?'
+            message : 'What line would you like to insert your component on?\n'
           }
 
         ]);
 
-        responses.insertionSpecs!.templateInsertionPoint.start = response.line;
+        promptResponses.insertionSpecs.templateInsertionPoint = { start : response.line };
 
       }
 
+      /*if( promptResponses.insertionSpecs.parentComponentClassName !== undefined ) {
 
 
-      if ( responses && responses.inputSpecs && responses.inputSpecs.declarations.length > 0 ) {
+        responses.insertionSpecs = {
+
+          parentComponentClassName : parentComponentClassName,
+          templateInsertionPoint   : insertionPoint
+
+        }; 
+
+      }*/
+
+
+
+      if (
+
+        promptResponses &&
+        promptResponses.inputSpecs &&
+        promptResponses.inputSpecs.declarations &&
+        promptResponses.inputSpecs.declarations.length > 0
+
+      ) {
 
         const response = await enquirer.prompt< { connectInputs : string[] } > ([
 
           {
             type    : 'list',
             name    : 'connectInputs',
-            message : 'Would you like to immediately pass data into your inputs?  If so make a comma separated list in the following format. => YourInput:YourData.propA, AnotherInput:YourData.propB'
+            message : 'Would you like to immediately pass data into your inputs?  If so make a comma separated list in the following format.\nYourInput:YourData.propA, AnotherInput:YourData.propB\n'
           }
 
         ]);
 
-        responses.inputSpecs.bindings = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
+        promptResponses.inputSpecs.bindings = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
 
       }
 
@@ -218,7 +354,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       {
         type    : 'input',
         name    : 'globalTypePath',
-        message : 'Do you have a global import path for your types/interfaces?  If so enter it below, if not leave blank and continue.'
+        message : 'Do you have a global import path for your types/interfaces?  If so enter it below, if not leave blank and continue.\n'
       }
 
     ]);
@@ -227,13 +363,22 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
     if( importResponse.globalTypePath && importResponse.globalTypePath !== '' ) {
 
-      responses.inputSpecs!.annotationImportPath = importResponse.globalTypePath;
+      if ( !promptResponses.inputSpecs ) {
+
+        promptResponses.inputSpecs = { annotationImportPath : importResponse.globalTypePath };
+      }
+      else {
+
+        promptResponses.inputSpecs.annotationImportPath = importResponse.globalTypePath;
+
+      }
+
 
     }
 
 
 
-    options = { ...responses };
+    options = { ...promptResponses as PromptSchema };
 
   }
 
@@ -244,11 +389,11 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    let responses! : PromptSchema;
+    //let responses! : PromptSchema;
 
 
 
-    const response = await enquirer.prompt< { controlType : OvaadFormControlType, typeAnnotation : string, globalTypePath : string } >([
+    const response = await enquirer.prompt< { controlType : OvaadFormControlType, typeAnnotation : string[], globalTypePath : string } >([
 
       {
         type    : 'select',
@@ -259,30 +404,50 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       {
         type    : 'input',
         name    : 'typeAnnotation',
-        message : 'Enter the type annotation of your control. (Exclude outer brackets)',
+        message : `Enter the type annotation of your control followed by a "|" and the location of your type. If it's a primative type that doesn't need to be imported just add the type.\n\nimport example : YourType|path/to/location\n\nno import example : string\n`,
       },
-      {
+      /*{
         type    : 'input',
-        name    : 'hasGlobalPath',
+        name    : 'globalTypePath',
         message : 'Do you have a globally registered path for your types/interfaces?  If not leave blank and continue.'
-      }
+      }*/
 
     ]);
 
-    responses.customControlSpecs!.controlType    = response.controlType;
-    responses.customControlSpecs!.typeAnnotation = response.typeAnnotation;
-    responses.customControlSpecs!.annotationImportPath = ( response.globalTypePath !== '' ? response.globalTypePath : undefined );
+    if ( !promptResponses.customControlSpecs ) {
+
+      const newAnnotation : ShapeInputResponse = shapeInputData( response.typeAnnotation );
+
+      promptResponses.customControlSpecs = {
+
+        controlType    : response.controlType,
+        typeAnnotation : response.typeAnnotation,
+        annotationImportPath : response.globalTypePath ? response.globalTypePath : undefined
+        
+      }
+      //console.log(`typePath : '${response.globalTypePath}'`);
+
+    }
+
+    else {
+
+      promptResponses.customControlSpecs.controlType    = response.controlType;
+      promptResponses.customControlSpecs.typeAnnotation = response.typeAnnotation;
+      promptResponses.customControlSpecs.annotationImportPath = ( response.globalTypePath ? response.globalTypePath : undefined );
+
+    }
 
 
 
-    if ( responses.customControlSpecs!.controlType === 'FormArrayGroup' ) {
+
+    if ( promptResponses.customControlSpecs.controlType === 'FormArrayGroup' ) {
 
       const response = await enquirer.prompt< { listPropertyName : string, listItemType : OvaadFormControlType, listItemAnnotation : string } > ([
 
         {
           type    : 'input',
           name    : 'listPropertyName',
-          message : 'What is the name of your FormArray control?',
+          message : 'What is the name of your FormArray control?\n',
         },
         {
           type    : 'select',
@@ -293,27 +458,44 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         {
           type    : 'input',
           name    : 'listItemAnnotation',
-          message : 'What is the type annotation of this item?'
+          message : 'What is the type annotation of this item?\n'
         }
 
       ]);
 
-      responses.customControlSpecs!.formArraySpecs!.propertyName          = response.listPropertyName;
-      responses.customControlSpecs!.formArraySpecs!.controlType           = response.listItemType;
-      responses.customControlSpecs!.formArraySpecs!.controlTypeAnnotation = response.listItemAnnotation;
+      if ( !promptResponses.customControlSpecs.formArraySpecs ) {
+
+        promptResponses.customControlSpecs.formArraySpecs = {
+
+          propertyName : response.listPropertyName,
+          controlType  : response.listItemType,
+          controlTypeAnnotation : response.listItemAnnotation
+
+        };
+
+      }
+
+      else {
+
+        promptResponses.customControlSpecs.formArraySpecs.propertyName = response.listPropertyName;
+        promptResponses.customControlSpecs.formArraySpecs.controlType  = response.listItemType;
+        promptResponses.customControlSpecs.formArraySpecs.controlTypeAnnotation = response.listItemAnnotation;
+
+      }
+
       
     }
 
 
 
-    if( responses.customControlSpecs!.controlType === 'FormArrayGroup' && responses.customControlSpecs!.annotationImportPath !== undefined ) {
+    if( promptResponses.customControlSpecs.controlType === 'FormArrayGroup' && promptResponses.customControlSpecs.annotationImportPath !== undefined ) {
 
       const response = await enquirer.prompt< { isListItemTypeImportGlobal : boolean } >([
 
         {
           type    : 'confirm',
           name    : 'isListItemTypeImportGlobal',
-          message : 'Is the type/interface for this item imported from your global path?'
+          message : 'Is the type/interface for this item imported from your global path?\n'
         }
 
       ]);
@@ -325,16 +507,16 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
           {
             type    : 'input',
             name    : 'listItemTypeImport',
-            message : 'Is there another path you want to enter?  If not leave blank and continue.'
+            message : 'Is there another path you want to enter?  If not leave blank and continue.\n'
           }
 
         ]);
 
-        responses.customControlSpecs!.formArraySpecs!.annotationImportPath = ( response.listItemTypeImport !== '' ? response.listItemTypeImport : undefined );
+        promptResponses.customControlSpecs.formArraySpecs.annotationImportPath = ( response.listItemTypeImport !== '' ? response.listItemTypeImport : undefined );
 
       }
 
-      else { responses.customControlSpecs!.formArraySpecs!.annotationImportPath = responses.customControlSpecs?.annotationImportPath; }
+      else { promptResponses.customControlSpecs.formArraySpecs.annotationImportPath = promptResponses.customControlSpecs.annotationImportPath; }
   
     }
 
@@ -343,7 +525,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       {
         type    : "list",
         name    : 'addInputs',
-        message : "Would you like to add additional Inputs to this component? list them along with their types as in the following example > YourInputName01:InputType01, YourInputName02:InputType02.",
+        message : "Would you like to add Inputs to this component? If so list them along with their types and locations as in the following examples.\n\n primative types example: YourInputName01:string, YourInputName02:number\n\n custom types example ; YourInputName01:CustomType01 YourInputName02:CustomType02|path/to/types01, YourInputName03:CustomType03|path/to/types02\n\nmixture example : YourInputName01:string, YourInputName02:number, YourInputName03:CustomType01 YourInputName04:CustomType02|path/to/types\n",
       },
     ]);
 
@@ -351,7 +533,24 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
     if ( inputResponses.addInputs.length > 0 ) {
 
-      responses.inputSpecs!.declarations = [ ...inputResponses.addInputs ];
+      const inputData : ShapeInputResponse = shapeInputData( inputResponses.addInputs );
+
+
+
+      if ( ! promptResponses.inputSpecs ) {
+
+        promptResponses.inputSpecs = { declarations : [ ...inputData.definitions ] };
+
+      }
+
+      else {
+
+        promptResponses.inputSpecs.declarations = [ ...inputData.definitions ];
+
+      }
+
+      inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
+
 
     }
 
@@ -362,258 +561,100 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       {
         type    : 'input',
-        name    : 'insertToggle',
-        message : 'Would you like to immediately import this into a component?  If not leave blank and continue.'
+        name    : 'componentClassName',
+        message : `Would you like to immediately import this new component into another component?\nIf so enter the component's class name below, if not leave blank and continue.\n\ncorrect : item-name, incorrect: ItemNameComponent\n`
       }
 
     ]);
 
-    if ( insertionResponse.componentClassName !== '' ) {
+    //console.log(insertionResponse.componentClassName );
 
-      responses.insertionSpecs!.parentComponentClassName = insertionResponse.componentClassName;
+    if ( insertionResponse.componentClassName !== undefined && insertionResponse.componentClassName !== '' ) {
+
+      //console.log(insertionResponse.componentClassName)
+
+      const response = await enquirer.prompt< { replaceCode : number[] } > ([
+
+        {
+          type : 'list',
+          name: 'replaceCode',
+          message : `Would you like your new component to replace anything in the parent component's HTML?\nIf so enter the start and end lines below separated by a comma. If not, enter the line you want to insert your component\nreplacement example: 4,17\ninsert example: 4\n`
+        }
+      ]);
+
+      if ( !promptResponses.insertionSpecs ){
+
+        promptResponses.insertionSpecs = {
+          
+          parentComponentClassName : insertionResponse.componentClassName,
+          templateInsertionPoint   : {
+
+            start : response.replaceCode[ 0 ],
+            end   : response.replaceCode[ 1 ] ?? undefined
+
+          }
+          
+        };
+
+        //console.log(promptResponses)
+
+      }
+
+      else {
+
+        promptResponses.insertionSpecs.parentComponentClassName = insertionResponse.componentClassName;
+        promptResponses.insertionSpecs.templateInsertionPoint = {
+
+          start : response.replaceCode[ 0 ],
+          end   : response.replaceCode[ 1 ] ?? undefined
+
+        };
+
+        console.log(promptResponses)
+
+      }
 
 
 
-      if ( responses.inputSpecs && responses.inputSpecs.declarations.length > 0 ) {
+
+      if (
+
+        promptResponses.inputSpecs &&
+        promptResponses.inputSpecs.declarations &&
+        promptResponses.inputSpecs.declarations.length > 0
+
+      ) {
 
         const response = await enquirer.prompt< { connectInputs : string[] } > ([
   
           {
             type    : 'list',
             name    : 'connectInputs',
-            message : 'Would you like to immediately pass data into your inputs?  If so make a comma separated list in the following format. => YourInput:YourData.propA, AnotherInput:YourData.propB'
+            message : 'Would you like to immediately pass data into your inputs?  If so make a comma separated list in the following format.\nYourInput:YourData.propA, AnotherInput:YourData.propB\n'
           }
   
         ]);
+
+        if ( !promptResponses.inputSpecs ) {
+
+          promptResponses.inputSpecs = { bindings :  response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined };
+        }
+
+        else {
+
+          promptResponses.inputSpecs.bindings = response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined;
+
+        }
   
-        responses.inputSpecs.bindings = ( response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined );
   
       }
 
     }
     
-    options = { ...responses };
+    options = { ...promptResponses as PromptSchema };
 
 
   }
-
-
-
-  /*//  Define the type of form controll you're generating.
-  if ( options.componentType === 'custom form control' ) {
-
-    const response = await enquirer.prompt< { controlType : "FormGroup" | "FormControl" | "FormArrayGroup" } > ([
-      {
-        type    : 'select',
-        name    : 'controlType',
-        message : 'What type of control will this be?',
-        choices : ['FormGroup', 'FormControl', 'FormArrayGroup'],
-      },
-    ]);
-
-    options.controlType = response.controlType;
-
-  }
-
-
-
-  // Define type annotation of your custom form control
-  if ( options.componentType === "custom form control" ) {
-
-    const response = await enquirer.prompt< { typeAnnotation : string } >([
-      {
-        type    : 'input',
-        name    : 'typeAnnotation',
-        message : 'What is the type of your control? (Exclude outer brackets)',
-      },
-    ]);
-
-    options.typeAnnotation = response.typeAnnotation;
-
-  }
-
-
-
-  // Ask if there' s a global import path for types / interfaces
-  if( options.componentType === "custom form control" ){
-
-    const response = await enquirer.prompt< { hasGlobalTypePath : "yes" | "no" } >([
-      {
-        type    : 'select',
-        name    : 'hasGlobalTypePath',
-        message : 'Do you have a globally registered path to your types/interfaces?  If not the import path will need to be added manually.',
-        choices : [ 'yes', 'no' ]
-      }
-    ]);
-    
-    options.hasGlobalTypePath = response.hasGlobalTypePath;
-
-  }
-
-  
-  
-  // Add global import path for types / interfaces
-  if ( options.hasGlobalTypePath === "yes" ) {
-
-
-    const response = await enquirer.prompt< { globalTypePath : string } > ([
-      
-      {
-        type    : 'input',
-        name    : 'globalTypePath',
-        message : 'What is the path to your global types/interfaces?',
-      }
-
-    ]);
-
-    options.globalTypePath = response.globalTypePath;
-
-
-  }
-
-  
-  
-  // Enter name of FormArrayGroup property
-  if ( options.controlType === "FormArrayGroup" ) {
-
-    const response = await enquirer.prompt< { listPropertyName : string } >([
-      {
-        type    : 'input',
-        name    : 'listPropertyName',
-        message : 'What is the name of your FormArray control?',
-      },
-    ]);
-
-    options.listPropertyName = response.listPropertyName;
-
-  }
-
-  
-  
-  //  Define the type of form control the FormArrayGroup iterates.
-  if( options.controlType === "FormArrayGroup" ) {
-
-    const response = await enquirer.prompt< { listItemType : "FormControl" | "FormGroup" | "FormArrayGroup" } >([
-      {
-        type    : 'select',
-        name    : 'listItemType',
-        message : 'What type of item will the FormArray iterate?',
-        choices : [ 'FormControl', 'FormGroup', 'FormArrayGroup' ]
-      }
-    ]);
-
-    options.listItemType = response.listItemType;
-
-  }
-
-
-
-  //  Enter the type annotation of the item iterated in the FormArrayGroup.
-  if( options.controlType === "FormArrayGroup" ) {
-    
-    const response = await enquirer.prompt< { listItemAnnotation : string } >([
-      {
-        type    : 'input',
-        name    : 'listItemAnnotation',
-        message : 'What is the type of this item?'
-      }
-    ]);
-
-    options.listItemAnnotation = response.listItemAnnotation;
-
-  }
-
-  
-  
-  //  Check if import path for FormArrayGroup item's type annotation is the same as global type import.
-  if( options.controlType === 'FormArrayGroup' && options.globalTypePath !== undefined ) {
-
-    const response = await enquirer.prompt< { isListItemTypeImportGlobal : 'yes' | 'no' } >([
-      {
-        type    : 'select',
-        name    : 'isListItemTypeImportGlobal',
-        message : 'Is the type/interface for this item imported from your global path?',
-        choices : [ 'yes', 'no' ]
-      }
-    ]);
-
-    options.isListItemTypeGlobal = response.isListItemTypeImportGlobal;
-
-  }
-
-  
-  
-  //  Check to see if they'd like to enter another import path if different from global.
-  if( options.isListItemTypeGlobal === 'no' ) {
-
-    const response = await enquirer.prompt< { listItemTypeImport : string | null } >([
-      {
-        type    : 'input',
-        name    : 'listItemTypeImport',
-        message : 'Would you like to enter another path?  Leave blank if no.'
-      }
-    ]);
-
-
-
-    if( response.listItemTypeImport !== '' && response.listItemTypeImport !== null ){
-
-      options.listItemTypeImport = response.listItemTypeImport;
-
-    }
-
-
-
-  }*/
-
-
-
-
-  
- const sampleChildComponent : Schema = {
-   name : 'test-child',
-   project : 'ingredient-manager',
-   location : 'src',
-   componentType : 'custom form control',
-   controlType : 'FormGroup',
-   typeAnnotation : 'ElementWeightGroupType',
-   hasGlobalTypePath : '@bake-a-weigh/site-types',
-   connectInputs : [ 'Control:Control.controls.servingSize' ],
-   insertInto : {
-     parentComponentFileName : 'tester-parent',
-     parentComponentClassName : 'TesterParentComponent',
-     childComponentFileName : 'test-child',
-     childComponentClassName : 'TestChildComponent',
-     templateItem : `<lib-test-child [Control]="Control.controls.servingSize" />`,
-     removeCode : {
-       start : 5,
-       end : 9,
-     },
-     childComponentPath : 'libs/apps/ingredient-manager/src/test-child/test-child.component'
-   }
-
- }
-
- //options = sampleChildComponent;
-  
-  //  Fetch the target project to add component to.
-  const projects       = getProjects( tree );
-  const targetProject  = projects.get( options.project );
-
-
-  /*if( targetProject !== undefined ) {
-    
-    const sampleParentComponent = new OvaadFileWriter( targetProject, options.insertInto! );
-
-    const updatedProject = sampleParentComponent.addNewComponentToComponent(options.insertInto!);
-
-    //const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-    //const updatedCode = printer.printFile( updatedProject!.newFile! );
-    //fs.writeFileSync(updatedProject!.path, updatedCode, "utf-8");
-  }*/
-  
-  //  Make sure project exist before continuing and stop process if not.
-  if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
   
     
   //  For preparing data to use in __tmpl__ files.
@@ -622,38 +663,47 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
   const importList      : string[] = [];
   const metaDataImports : string[] = [];
   const propList        : string[] = [];
+  const inputList       : string[] = [];
 
+
+
+  
+
+  //console.log(options.componentType);
 
   if ( options.componentType === 'custom form control' ) {
 
+    //console.log(options);
 
 
-    if( options.customControlSpecs!.controlType ) {
+
+    if( options.customControlSpecs && options.customControlSpecs.controlType ) {
       
       
-      
-      if( options.customControlSpecs!.controlType === 'FormGroup' || options.customControlSpecs!.controlType === 'FormArrayGroup' ) {
+      if( options.customControlSpecs.controlType === 'FormGroup' || options.customControlSpecs.controlType === 'FormArrayGroup' ) {
+        
+        //console.log(`control type condition : ${options.customControlSpecs.controlType}`);
+        const moduleImports : string[] = [ 'ReactiveFormsModule', 'FormGroup' ];
 
-        const moduleImports : string[] = ['ReactiveFormsModule', 'FormGroup'];
 
 
-
-        if(options.customControlSpecs!.formArraySpecs!.controlType === 'FormControl'){ moduleImports.push('FormControl'); }
+        if( options.customControlSpecs.formArraySpecs && options.customControlSpecs.formArraySpecs.controlType === 'FormControl' ) { moduleImports.push( 'FormControl' ); }
   
         importList.push( createImportScript( moduleImports, '@angular/forms' ) );
         metaDataImports.push( 'ReactiveFormsModule' );
         
       }
 
-      if( options.customControlSpecs!.controlType === 'FormControl' ) {
+      if( options.customControlSpecs.controlType === 'FormControl' ) {
   
         importList.push( createImportScript( [ 'FormsModule', 'FormControl' ], '@angular/forms' ) );
         metaDataImports.push( 'FormsModule' );
   
       }
 
-      propList.push( createControlInput( options.customControlSpecs!.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs!.controlType, options.customControlSpecs!.typeAnnotation ) );
+      inputList.push( createControlInput( options.customControlSpecs.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs.controlType, options.customControlSpecs.typeAnnotation ) );
 
+      //console.log(`control input : ${createControlInput( options.customControlSpecs!.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs!.controlType, options.customControlSpecs!.typeAnnotation )}`)
     }
 
 
@@ -673,11 +723,11 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         options.customControlSpecs.formArraySpecs.annotationImportPath ===
         options.customControlSpecs.annotationImportPath
 
-      ){ importIdentifiers.push( options.customControlSpecs.formArraySpecs.controlTypeAnnotation ) }
+      ){ importIdentifiers.push( options.customControlSpecs.formArraySpecs.controlTypeAnnotation ); }
 
 
 
-      importList.push(createImportScript( importIdentifiers, options.customControlSpecs.annotationImportPath ) );
+      importList.push( createImportScript( importIdentifiers, options.customControlSpecs.annotationImportPath ) );
 
     }
 
@@ -686,7 +736,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-      if( options.customControlSpecs?.formArraySpecs?.annotationImportPath) {
+      if( options.customControlSpecs?.formArraySpecs?.annotationImportPath ) {
 
         importList.push( createImportScript(
 
@@ -738,11 +788,88 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-  let   parentComponentData! : ParentComponentPrepSchema;
+  if( options.inputSpecs ){
 
-  if ( options.insertionSpecs ) {
+    const annotations : string[] = [];
+
+    options.inputSpecs.declarations.forEach( a => {
+      
+      const prop : string[] = a.split( ':' );
+
+      if(
+
+        prop[ 1 ] !== 'string'  &&
+        prop[ 1 ] !== 'number'  &&
+        prop[ 1 ] !== 'boolean' &&
+        prop[ 1 ] !== 'object'  &&
+        prop[ 1 ] !== 'array'
+
+      ){ annotations.push( prop[ 1 ] ); }
+      
+      inputList.push( createStandardInput( a.split( ':' )[ 0 ], a.split( ':' )[ 1 ] ) );
+
+    });
+    
+    importList.push( createImportScript( annotations, options.inputSpecs.annotationImportPath!) );
+
+  }
+
+
+
+
+  const componentOptions = {
+
+    componentType      : options.componentType,
+    controlType        : options.customControlSpecs?.controlType                           ?? undefined,
+    listItemType       : options.customControlSpecs?.formArraySpecs?.controlType           ?? undefined,
+    listPropertyName   : options.customControlSpecs?.formArraySpecs?.propertyName          ?? undefined,
+    listItemAnnotation : options.customControlSpecs?.formArraySpecs?.controlTypeAnnotation ?? undefined,
+    importList         : [ ...importList      ],
+    metaDataImports    : [ ...metaDataImports ],
+    inputList          : [ ...inputList       ],
+    propList           : [ ...propList        ],
+    projectPrefix      : targetProject.prefix,
+    ...componentNames
+
+  }
+
+  console.log(componentOptions);
+
+  
+  
+  generateFiles(
+    tree,
+    path.join(__dirname, 'files'),
+    targetPath,
+    { ...componentOptions,  tmpl : '' }
+  );
+  
+  await formatFiles( tree );
+
+
+
+  if ( options.insertionSpecs !== undefined ) {
+    
+    let   parentComponentData   : ParentComponentPrepSchema;
+    const parentComponentWriter : OvaadFileWriter = new OvaadFileWriter();
 
     const bindings : InputConnection[] = [];
+
+
+
+    parentComponentWriter.setProject( targetProject );
+
+
+
+    const parentPath : string | undefined = parentComponentWriter.findComponentFile( options.insertionSpecs.parentComponentClassName );
+
+    //console.log(options.insertionSpecs.parentComponentClassName);
+    //console.log(parentPath);
+    if( parentPath === undefined ) { throw new Error( `Path to ${ options.insertionSpecs.parentComponentClassName } not found. Line 956.` ); }
+
+
+
+    const parentFileName : string = path.basename( parentPath );
 
 
 
@@ -754,46 +881,43 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    parentComponentData.parentComponentClassName = options.insertionSpecs.parentComponentClassName;
-    parentComponentData.childComponentClassName  = componentNames.className;
-    parentComponentData.childComponentFileName   = componentNames.fileName;
-    parentComponentData.childComponentPath       = targetPath;
-    parentComponentData.childComponentTag        = createElementTag(targetProject.prefix, componentNames.name, true, bindings );
-    parentComponentData.insertionPoint           = options.insertionSpecs.templateInsertionPoint;
+    parentComponentData = {
+
+      parentComponentClassName : options.insertionSpecs.parentComponentClassName,
+      parentComponentFileName  : parentFileName,
+      parentComponentPath      : parentPath,
+      childComponentClassName  : `${componentNames.className}Component`,
+      childComponentFileName   : componentNames.fileName,
+      childComponentPath : `${ targetPath }/${ componentNames.fileName }.component`,
+      childComponentTag  : createElementTag( targetProject.prefix, componentNames.name, true, bindings ),
+      insertionPoint     : options.insertionSpecs.templateInsertionPoint
+      
+    };
+
+    //console.log(parentComponentData);
+
+
+
+    parentComponentWriter.setInsertionData( parentComponentData );
+    const updatedProject = parentComponentWriter.addNewComponentToComponent();
+
+    //console.log( updatedProject );
+    if( updatedProject !== undefined ){
+
+      fs.writeFileSync(updatedProject.componentPath, updatedProject.newComponentFile, 'utf-8' );
+      fs.writeFileSync(updatedProject.templatePath, updatedProject.newTemplateFile.join('\n'),  'utf-8' );
+
+    }
+
+
 
   }
 
-  const componentOptions = {
-
-    componentType      : options.componentType,
-    controlType        : options.controlType  ?? undefined,
-    listItemType       : options.listItemType ?? undefined,
-    listPropertyName   : options.listPropertyName   ?? undefined,
-    listItemAnnotation : options.listItemAnnotation ?? undefined,
-    importList         : [ ...importList      ],
-    metaDataImports    : [ ...metaDataImports ],
-    propList           : [ ...propList        ],
-    projectPrefix      : targetProject.prefix,
-    ...componentNames
-
-  }
-
-  
-  
-  /*generateFiles(
-    tree,
-    path.join(__dirname, 'files'),
-    targetPath,
-    { ...componentOptions,  tmpl : '' }
-  );
-  
-  await formatFiles( tree );*/
 
 
+  /*if( options.insertionSpecs !== undefined ) {
 
-  if( options.insertInto !== undefined ) {
-
-    const parentComponent = new OvaadFileWriter( targetProject, options.insertInto );
+    //const parentComponent = new OvaadFileWriter( targetProject, parentComponentData );
     //console.log(parentComponent);
     const updatedProject = parentComponent.addNewComponentToComponent( options.insertInto! );
 
@@ -805,10 +929,10 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     const updatedTemplateCode = updatedProject!.newTemplateFile!.join('\n');
 
 
-    fs.writeFileSync(updatedProject!.componentPath, updatedProject!.newComponentFile!, 'utf-8' );
-    fs.writeFileSync(updatedProject!.templatePath, updatedTemplateCode,  'utf-8' );
+    //fs.writeFileSync(updatedProject!.componentPath, updatedProject!.newComponentFile!, 'utf-8' );
+    //fs.writeFileSync(updatedProject!.templatePath, updatedTemplateCode,  'utf-8' );
 
-  }
+  }*/
 
 }
 

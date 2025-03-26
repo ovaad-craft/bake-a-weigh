@@ -1,7 +1,7 @@
 import path = require("path");
 import * as ts from 'typescript';
 import * as fs from 'fs';
-import { ComponentInjectionSpecs, LineSelector, ParsedComponentFile } from "../schema";
+import { ComponentInjectionSpecs, LineSelector, ParentComponentPrepSchema, ParentComponentSchema, ParsedComponentFile } from "../schema";
 import { ProjectConfiguration } from "@nx/devkit";
 
 
@@ -10,7 +10,7 @@ import { ProjectConfiguration } from "@nx/devkit";
 export class OvaadFileWriter {
 
     Project!             : ProjectConfiguration;
-    InsertionData!       : ComponentInjectionSpecs;
+    InsertionData!       : ParentComponentPrepSchema;
     ParentComponentFile! : ParsedComponentFile;
     ParentComponentPath! : string;
     ChildComponentPath!  : string;
@@ -19,14 +19,20 @@ export class OvaadFileWriter {
 
 
 
-    constructor( public project : ProjectConfiguration, insertionData : ComponentInjectionSpecs ) {
+    constructor( /*public project : ProjectConfiguration, insertionData : ParentComponentPrepSchema*/ ) {
         
-        this.Project            = project;
-        this.InsertionData      = insertionData;
-        this.ChildComponentPath = insertionData.childComponentPath;
-        this.parentInfoInit();
+        //this.Project            = project;
+        //this.InsertionData      = insertionData;
+        //this.ChildComponentPath = insertionData.childComponentPath;
+        //this.parentInfoInit();
 
     }
+
+
+
+    setProject( project : ProjectConfiguration ) : void { this.Project = project; }
+
+    setInsertionData( data : ParentComponentPrepSchema ) : void { this.InsertionData = data; }
 
 
 
@@ -292,26 +298,37 @@ export class OvaadFileWriter {
 
 
 
-    findComponentFile(projectConfig: ProjectConfiguration, componentName: string): string | undefined {
+    findComponentFile( componentName: string): string | undefined {
 
-        const sourceRoot = projectConfig.sourceRoot;
+        if( !this.Project ) { throw new Error('Project is undefined.  Execute setProject() method prior to executing findComponentFile() method.'); }
 
-        if ( !sourceRoot ) return undefined;
+        const sourceRoot = this.Project.sourceRoot;
+
+        if ( !sourceRoot ) { { throw new Error( `Project's source root can't be accessed.` ); } };
         
         
-        //const files = fs.readdirSync(sourceRoot);
+        
+        function findFileRecursively( dir: string ): string | undefined {
 
-        function findFileRecursively(dir: string): string | undefined {
-            const entries = fs.readdirSync(dir, { withFileTypes: true });
+            const entries = fs.readdirSync( dir, { withFileTypes: true } );
     
-            for (const entry of entries) {
-                const fullPath = path.join(dir, entry.name);
+            for ( const entry of entries ) {
+
+                const fullPath = path.join( dir, entry.name );
     
-                if (entry.isDirectory()) {
-                    const found = findFileRecursively(fullPath);
+                if ( entry.isDirectory() ) {
+                    
+                    const found = findFileRecursively( fullPath );
+
                     if (found) return found;
-                } else if (entry.isFile() && entry.name.endsWith('.component.ts') && entry.name.includes(componentName)) {
+
+
+                }
+
+                else if ( entry.isFile() && entry.name.endsWith( '.component.ts' ) && entry.name.includes( componentName ) ) {
+
                     return fullPath;
+
                 }
             }
     
@@ -395,18 +412,15 @@ export class OvaadFileWriter {
 
 
     //  Add new component to existing component
-    addNewComponentToComponent( insertionData : ComponentInjectionSpecs, parentComponent? : string, childComponent? : ComponentInjectionSpecs ) : { newComponentFile : string, newTemplateFile : string[], componentPath: string, templatePath : string } | undefined {
+    addNewComponentToComponent() : { newComponentFile : string, newTemplateFile : string[], componentPath: string, templatePath : string } | undefined {
 
 
-        const parentFilePath = this.findComponentFile( this.Project, insertionData.parentComponentFileName );
-
-        if ( parentFilePath === undefined ){ console.error( `Path for ${parentComponent} not found.` ) }
-
+        const parentFilePath = this.InsertionData.parentComponentPath;
+        const parentFile     = this.parseComponentFile( parentFilePath! );
 
 
-        const parentFile = this.parseComponentFile( parentFilePath! );
 
-        if( parentFile === undefined ) { console.error( `${ parentComponent } not found in project.` ); }
+        if( !parentFile ) { console.error( `${ this.InsertionData.parentComponentClassName } not found in project.` ); }
 
 
 
@@ -433,7 +447,7 @@ export class OvaadFileWriter {
 
         declarationList.forEach( a => {
 
-            const checker : boolean = ( a.moduleSpecifier as ts.StringLiteral ).text  === insertionData.childComponentPath ? true : false;
+            const checker : boolean = ( a.moduleSpecifier as ts.StringLiteral ).text  === this.InsertionData.childComponentPath ? true : false;
 
             originalImportDeclarationPositions.push( { start : a.getStart(), end : a.getEnd() } );
 
@@ -446,7 +460,7 @@ export class OvaadFileWriter {
                 if( bindings && ts.isNamedImports( bindings ) ) {
 
                 
-                    const newImportSpecifiers : ts.ImportSpecifier[] = [ ...bindings.elements, this.createNewImportDecalarationItem( insertionData.parentComponentClassName ) ];
+                    const newImportSpecifiers : ts.ImportSpecifier[] = [ ...bindings.elements, this.createNewImportDecalarationItem( this.InsertionData.parentComponentClassName ) ];
 
 
                     
@@ -477,11 +491,11 @@ export class OvaadFileWriter {
 
         if( !addedToExistingPath ) {
 
-            const pathToChild : string = this.createImportPath( parentFilePath!, insertionData.childComponentPath );
+            const pathToChild : string = this.createImportPath( parentFilePath!, this.InsertionData.childComponentPath );
 
            updatedImportDeclarationList.push(
 
-            this.createNewImportDeclaration( insertionData.childComponentClassName, pathToChild )
+            this.createNewImportDeclaration( this.InsertionData.childComponentClassName, pathToChild )
 
           );
 
@@ -518,7 +532,7 @@ export class OvaadFileWriter {
                 const updatedImportsArray = ts.factory.createArrayLiteralExpression([
 
                     ...metadataImportsArray.elements,
-                    this.createNewImportArrayItem( insertionData.childComponentClassName )
+                    this.createNewImportArrayItem( this.InsertionData.childComponentClassName )
 
                 ]);
                 
@@ -607,17 +621,17 @@ export class OvaadFileWriter {
 
             };
 
-            if ( insertionData.removeCode ) {
+            if (this.InsertionData.insertionPoint && this.InsertionData.insertionPoint.end ) {
 
                 
                 
-                const spaces : string = calculateSpaces( templateLines[ insertionData.removeCode.start - 1 ] );
+                const spaces : string = calculateSpaces( templateLines[ this.InsertionData.insertionPoint.start - 1 ] );
 
                 const newTemplateLines : string[] = [
 
-                    ...templateLines.slice( 0, insertionData.removeCode.start - 1 ),
-                    spaces + insertionData.templateItem,
-                    ...templateLines.slice( insertionData.removeCode.end )
+                    ...templateLines.slice( 0, this.InsertionData.insertionPoint.start - 1 ),
+                    spaces + this.InsertionData.childComponentTag,
+                    ...templateLines.slice( this.InsertionData.insertionPoint.end )
 
                 ];
                 
@@ -633,13 +647,13 @@ export class OvaadFileWriter {
 
             else {
 
-                if ( !insertionData.removeCode && insertionData.insertAt ) {
+                if ( this.InsertionData.insertionPoint && !this.InsertionData.insertionPoint.end ) {
 
                     const newTemplateLines : string[] = [
 
-                        ...templateLines.slice( 0, insertionData.insertAt - 2 ),
-                        insertionData.templateItem,
-                        ...templateLines.slice( insertionData.insertAt - 1 )
+                        ...templateLines.slice( 0, this.InsertionData.insertionPoint.start - 2 ),
+                        this.InsertionData.childComponentTag,
+                        ...templateLines.slice( this.InsertionData.insertionPoint.start - 1 )
 
                     ];
 

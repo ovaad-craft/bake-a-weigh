@@ -1,12 +1,8 @@
 <section class="mainContainer" [formGroup]="Control">
     
     <h4>nutrition</h4>
-    
-    <lib-serving-size
-        [Control]="Control.controls.servingSize"
-        ngDefaultControl
-        [formGroupName]="'servingSize'"
-    />
+<lib-test-child-02 [SomeProp]="Control.controls.someProp" />
+    <lib-test-child-02  />
 
     <lib-number-input
         [Control]="Control.controls.calories"
