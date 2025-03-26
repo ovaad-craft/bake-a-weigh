@@ -458,18 +458,34 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         {
           type    : 'input',
           name    : 'listItemAnnotation',
-          message : 'What is the type annotation of this item?\n'
+          message : `Enter the type annotation for this item followed by a "|" and the location of your type. If it's a primative type that doesn't need to be imported just add the type.\n\nimport example : YourType|path/to/location\n\nno import example : string\n`
         }
 
       ]);
 
+
+
+      const annotationResponse : string[]        = response.listItemAnnotation.split( '|' );
+      const newAnnotationData  : AnnotationSpecs = { items : [ annotationResponse[ 0 ] ], path : annotationResponse[ 1 ] };
+
       if ( !promptResponses.customControlSpecs.formArraySpecs ) {
+
+        const pathCheck : boolean = response.listItemAnnotation.includes( '|' );
+        let selectedType! : string;
+
+        if ( pathCheck ){
+
+          addAnnotationSpecs( newAnnotationData );
+          selectedType = annotationResponse[ 1 ];
+
+        }
+
 
         promptResponses.customControlSpecs.formArraySpecs = {
 
           propertyName : response.listPropertyName,
           controlType  : response.listItemType,
-          controlTypeAnnotation : response.listItemAnnotation
+          controlTypeAnnotation : pathCheck ? selectedType : response.listItemAnnotation
 
         };
 
@@ -477,9 +493,19 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       else {
 
+        const pathCheck : boolean = response.listItemAnnotation.includes( '|' );
+        let selectedType! : string;
+
+        if ( pathCheck ){
+
+          addAnnotationSpecs( newAnnotationData );
+          selectedType = annotationResponse[ 1 ];
+
+        }
+
         promptResponses.customControlSpecs.formArraySpecs.propertyName = response.listPropertyName;
         promptResponses.customControlSpecs.formArraySpecs.controlType  = response.listItemType;
-        promptResponses.customControlSpecs.formArraySpecs.controlTypeAnnotation = response.listItemAnnotation;
+        promptResponses.customControlSpecs.formArraySpecs.controlTypeAnnotation = pathCheck ? selectedType : response.listItemAnnotation;
 
       }
 
@@ -488,7 +514,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    if( promptResponses.customControlSpecs.controlType === 'FormArrayGroup' && promptResponses.customControlSpecs.annotationImportPath !== undefined ) {
+    /*if( promptResponses.customControlSpecs.controlType === 'FormArrayGroup' && promptResponses.customControlSpecs.annotationImportPath !== undefined ) {
 
       const response = await enquirer.prompt< { isListItemTypeImportGlobal : boolean } >([
 
@@ -518,7 +544,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       else { promptResponses.customControlSpecs.formArraySpecs.annotationImportPath = promptResponses.customControlSpecs.annotationImportPath; }
   
-    }
+    }*/
 
     const inputResponses = await enquirer.prompt< { addInputs : string[] } > ([
 
@@ -638,6 +664,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         if ( !promptResponses.inputSpecs ) {
 
           promptResponses.inputSpecs = { bindings :  response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined };
+          
         }
 
         else {
