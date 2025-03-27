@@ -1,0 +1,24 @@
+<section class="mainContainer" [formGroup]="Control">
+
+    <h5>notes</h5>
+
+
+
+    <article class="noteListContainer" [formArrayName]="'list'">
+
+        @for ( a of Control.controls.list.controls; track $index ) {
+
+            <lib-note
+                [Control]="a"
+                ngDefaultControl
+                [formGroupName]="$index"
+            />
+
+        }
+
+    </article>
+
+
+
+
+</section>

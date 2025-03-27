@@ -59,7 +59,6 @@ export interface NutrientCategoryGroup{
     name?       : FormControl< string | null >;
     totalAmount : FormGroup< ElementWeightGroupType >;
     nutrients?  : FormGroup< FormArrayGroupList< NutrientCategoryGroup > >;
-    //nutrients?  : FormArray< FormGroup< NutrientCategoryGroup > >;
 }
 
 
@@ -333,9 +332,59 @@ export type IngredientDataGroupType =
         photo?       : FormControl< string | null >;
         icon?        : FormControl< string | null >;
         nutrition?   : FormGroup< NutritionGroup >;
-        notes?       : FormArray< FormGroup< IngredientNoteFormGroup > >;
+        notes?       : FormGroup< FormArrayGroupList< IngredientNoteFormGroup > >;
         profileType? : FormControl< string | null >;
         data?        : IngredientDataGroupType;
         locations    : FormArray< FormControl< string | null > >;
 
     }
+
+
+
+
+
+export type OvaadControlTypes = 'text-field' | 'text-area' | 'number-field' | 'counter' | 'radio' | 'select' | 'checkbox' | 'range' | 'group' | 'array';
+
+type OvaadControlSpecs = {
+    control : OvaadControlTypes;
+    default? : string | number | boolean;
+    label? : string;
+}
+
+//type OvaadControlSPecObject = [ prop : string ] : OvaadControlSpecs;
+
+/*export interface OvaadControlSpecs<[CONTROLTYPES]> {
+    control : CONTROLTYPES;
+    default? : DEFAULT;
+    label? : LABEL;
+}*/
+
+export interface OvaadControlSpecObject {
+    [ prop : string ] : OvaadControlSpecs;
+}
+
+export interface OvaadControlSpecProp{
+    _$_controlSpecs : OvaadControlSpecObject;
+}
+
+
+export interface SomeInterfaceExperiment extends OvaadControlSpecProp{
+    propA : string;
+    propB : number;
+    _$_controlSpecs : {
+        propA : {
+            control : 'text-field';
+            label : 'Item Name';
+        };
+        propB : {
+            control : 'number-field';
+            label : 'Quantity'
+        };
+
+    };
+    
+}
+
+export interface SomeOtherInterface{
+    propC : SomeInterfaceExperiment;
+}

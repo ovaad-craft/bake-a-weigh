@@ -3,26 +3,24 @@
   "$id": "OvaadAngularComponent",
   "title": "",
   "type": "object",
-  "properties": {
-    "name": {
-      "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use?"
+  "properties" : {
+    "name" : {
+      "type" : "string",
+      "x-prompt" : "What would you like to name this component?\n"
     },
     "project" : {
-      "type": "string",
-      "description": "",
-      "x-prompt" : "What project would you like to add this new component to?"
+      "type" : "string",
+      "x-prompt" : "which project are you adding this to?"
     },
     "location" : {
       "type" : "string",
-      "description" : "",
-      "x-prompt" : "Add the path from the project root to the location you'd like this component generated"
+      "x-prompt" : "Where do you want this component generated within the project?\n"
+    },
+    "componentType" : {
+      "type" : "string",
+      "enum" : ["standard", "custom form control"],
+      "x-prompt" : "What type of component will this be?"
     }
   },
-  "required": ["name", "project"]
+  "required":[ "name", "project", "location", "componentType" ]
 }

@@ -16,6 +16,31 @@
         [InputSize]="44"
     />
 
+    @if ( NotesToggle ) {
+
+        <lib-note-list
+            [Control]="IngredientEditorForm.controls.notes!"
+            ngDefaultControl
+            [formGroupName]="'notes'"
+        />
+    }
+
+
+
+    @if ( ProfileTypeToggle ) {
+
+        <lib-text-input
+            [Control]="IngredientEditorForm.controls.profileType!"
+            ngDefaultControl
+            [formGroupName]="'profileType'"
+            [label]="'profile type'"
+            [InputSize]="33"
+        />
+        
+    }
+
+
+
     @if (IngredientEditorForm.controls.nutrition) {
         
         <lib-nutrition-group

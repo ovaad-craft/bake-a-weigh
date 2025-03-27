@@ -1,0 +1,15 @@
+<section class="mainContainer" [formGroup]="Control">
+
+    <lib-text-input
+        [Control]="Control.controls.title"
+        ngDefaultControl
+        [formControlName]="'title'"
+        [InputSize]="33"
+    />
+
+    <lib-text-area
+        [Control]="Control.controls.description"
+        ngDefaultControl
+        [formControlName]="'description'"
+    />
+</section>

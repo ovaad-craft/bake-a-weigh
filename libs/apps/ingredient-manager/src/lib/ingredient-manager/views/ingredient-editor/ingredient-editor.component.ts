@@ -41,6 +41,7 @@ import { IngredientForm } from './form-generator/form-types';
 import { createIngredientForm } from './form-generator/ingredient-form';
 import { TextInputComponent } from '@form-controls';
 import { NutritionGroupComponent } from '../../components/nutrition-group/nutrition-group.component';
+import { NoteListComponent } from "../../components/note-list/note-list.component";
 
 
 
@@ -54,8 +55,9 @@ import { NutritionGroupComponent } from '../../components/nutrition-group/nutrit
     CommonModule,
     ReactiveFormsModule,
     TextInputComponent,
-    NutritionGroupComponent
-  ],
+    NutritionGroupComponent,
+    NoteListComponent
+],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
 })
@@ -65,13 +67,21 @@ export class IngredientEditorComponent implements OnInit{
 
   IngredientEditorForm! : FormGroup< IngredientForm >;
 
+  NotesToggle = false;
+  ProfileTypeToggle = false;
+
   constructor( private ingredientService : IngredientManagerService ){}
 
   ngOnInit(): void {
+
       this.Ingredient           = this.ingredientService.getIngredientToEdit();
       this.IngredientEditorForm = createIngredientForm( this.ingredientService.getIngredientToEdit() );
-      
+   
       console.log(this.IngredientEditorForm);
+
+      if( this.IngredientEditorForm.controls.notes ) { this.NotesToggle = true; }
+      if( this.IngredientEditorForm.controls.profileType ) { this.ProfileTypeToggle = true; }
+      
   }
 
 }

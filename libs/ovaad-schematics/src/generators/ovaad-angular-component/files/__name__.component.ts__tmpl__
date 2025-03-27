@@ -1,0 +1,75 @@
+/*
+
+<%= className %>
+
+PURPOSE :
+
+VIEWS :
+
+ELEMENTS :
+
+INTERACTIVITY :
+
+GETS DATA FROM :
+
+SENDS DATA TO :
+
+USER STORIES :
+
+*/
+
+
+
+
+
+import { Component<% if( inputList.length > 0 ){%><%-`, Input`%><%}%> }    from '@angular/core';
+import { CommonModule } from '@angular/common';
+<% if( importList.length > 0 ) { %><% for( let i = 0; i < importList.length; i++) {%>
+<%- importList[i] %><% } %><% } %>
+
+
+
+
+
+@Component({
+    selector    : '<%=projectPrefix%>-<%= fileName %>',
+    imports     : [
+        CommonModule,<% if( metaDataImports.length > 0 ) { %><% for( let i = 0; i < metaDataImports.length; i++) {%>
+        <%-metaDataImports[i]+','%><% } %><% } %>
+    ],
+    templateUrl : './<%= fileName %>.component.html',
+    styleUrls   : [ './<%= fileName %>.component.css' ]
+})
+
+export class <%= className %>Component {
+
+    <% if( inputList.length > 0 ) { %>
+    <% for( let i = 0; i < inputList.length; i++) { %>
+    <%- inputList[ i ] %><% } %><% } %>
+
+    <% if( propList.length > 0 ) { %>
+    <% for( let i = 0; i < propList.length; i++ ) { %>
+    <%- propList[ i ] %><% } %><% } %>
+
+
+
+    <% if( controlType === 'FormArrayGroup' ){%>
+    addControl() : void {
+
+        this.Control.controls.<%-listPropertyName%>.controls.push( new 
+        <% if(listItemType === 'FormGroup' || listItemType === 'FormArrayGroup'){ %>
+            <%-`FormGroup< ${listItemAnnotation} >({/* set up defaults */})`%>
+        <% } else { %>
+            <%-`FormControl< ${listItemAnnotation} | null >( null )`%>
+        <% } %> );
+
+    }
+
+    removeControl( index : number ) : void {
+
+        this.Control.controls.<%-listPropertyName%>.controls.removeAt( index );
+
+    }
+    <% } %>
+
+}
