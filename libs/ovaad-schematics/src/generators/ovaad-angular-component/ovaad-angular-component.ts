@@ -52,9 +52,9 @@ function createInputConnection( inputData : InputConnection ) : string {
 
 }
 
-function createElementTag( prefix : string, name : string, selfClosing : boolean, inputs? : InputConnection[] ) : string {
+function createElementTag( prefix : string, name : string, selfClosing : boolean, control : boolean, inputs? : InputConnection[] ) : string {
 
-  return `<${prefix}-${ name } ${ inputs ? inputs.map(a => createInputConnection( a ) ).join(' ') : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
+  return `<${prefix}-${ name } ${ control ? 'ngDefaultControl' : '' } ${ inputs ? inputs.map(a => createInputConnection( a ) ).join(' ') : '' }${ selfClosing ? ' />' : ` ></${ name }>`}`;
 
 }
 
@@ -830,7 +830,14 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       childComponentClassName  : `${componentNames.className}Component`,
       childComponentFileName   : componentNames.fileName,
       childComponentPath : `${ targetPath }/${ componentNames.fileName }.component`,
-      childComponentTag  : createElementTag( targetProject.prefix, componentNames.name, true, bindings ),
+      childComponentTag  : createElementTag(
+
+        targetProject.prefix,
+        componentNames.name, true,
+        ( options.componentType === 'standard' ? false : true ),
+        bindings
+        
+      ),
       insertionPoint     : options.insertionSpecs.templateInsertionPoint
       
     };
