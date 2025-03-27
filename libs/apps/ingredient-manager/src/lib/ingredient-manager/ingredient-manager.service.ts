@@ -1970,6 +1970,125 @@ const DemoIngredients : IngredientProfile[] = [
       ingredients : ['Extra Virgin Olive Oil']
     },
     locations : ['olive_oils_category_id1100011']
+  },
+  {
+    name : 'Whole Milk',
+    brand : 'Kemps',
+    id : 'milk_id1100011',
+    icon : 'some icon',
+    nutrition : {
+      servingSize: {
+        amount : 236,
+        weightType : 'ml'
+      },
+      calories : 150,
+      totalFat : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'g',
+          percentage : 10
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 5,
+              weightType : 'g',
+              percentage : 25
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 35,
+          weightType : 'mg',
+          percentage : 12
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 125,
+          weightType : 'mg'
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 12,
+          weightType : 'g'
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 12,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Includes 0g Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount :{
+          amount : 8,
+          weightType : 'g',
+          percentage : 16
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 2.5,
+          weightType : 'mcg',
+          percentage : 10
+        },
+        {
+          name : 'Calcium',
+          amount : 300,
+          weightType : 'mg',
+          percentage : 25
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 400,
+          weightType : 'mg',
+          percentage : 8
+        }
+      ],
+      ingredients : ['milk']
+    },
+    locations : ['milk_category_id1100011']
   }
 ]
 
@@ -2120,7 +2239,15 @@ const DemoKeys : CategoryKey[] = [
   {
     name: 'Dairy',
     id: 'dairy_category_id1100011',
-    removable: false
+    removable: false,
+    subCategories : [
+      {
+        name : 'Milk',
+        id : 'milk_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      }
+    ]
   },
   {
     name: 'Produce',
@@ -2535,7 +2662,7 @@ export class IngredientManagerService {
 
   getIngredientToEdit() : IngredientProfile {
     
-    return DemoIngredients[1];
+    return DemoIngredients[DemoIngredients.length - 1];
     //return this.IngredientToEdit
 
   }
