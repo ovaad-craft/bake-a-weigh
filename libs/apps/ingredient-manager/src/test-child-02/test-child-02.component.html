@@ -1,3 +1,14 @@
-<section class="mainContainer">
-  <p>test-child-02 ready for awesomeness!!!</p>
+<section class="mainContainer" [formGroup]="Control">
+  <article class="listContainer" [formArrayName]="'someArrayControl'">
+    @for(a of Control.controls.someArrayControl.controls; track $index){
+
+    <article>
+      <p>{{ a.value | json }}</p>
+
+      <button (click)="removeControl($index)">delete item</button>
+    </article>
+    }
+  </article>
+
+  <button (click)="addControl()">add item</button>
 </section>

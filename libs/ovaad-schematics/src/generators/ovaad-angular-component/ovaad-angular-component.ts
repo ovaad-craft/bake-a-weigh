@@ -163,22 +163,31 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       promptResponses.annotationSpecs.forEach( a => {
 
+        if ( a ) {
 
-        if ( a && a.path === annotation.path ) {
-          
-          a.items.push( ...annotation.items );
-          newAnnotationList.push( a );
-          addedToExistingItem = true;
+          if ( a.path === annotation.path ) {
+            
+            a.items.push( ...annotation.items );
+            newAnnotationList.push( a );
+            addedToExistingItem = true;
+  
+          }
+          else { newAnnotationList.push( a ) }
 
         }
-        else { newAnnotationList.push( a! ) }
-
 
       });
 
+      promptResponses.annotationSpecs = [ ...newAnnotationList ];
+
     }
 
-    if ( !addedToExistingItem ) { newAnnotationList.push( annotation ); }
+    if ( !addedToExistingItem ) {
+      
+      newAnnotationList.push( annotation );
+      promptResponses.annotationSpecs = [ ...newAnnotationList ];
+
+    }
 
   }
 
@@ -344,7 +353,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    const importResponse = await enquirer.prompt< { globalTypePath : string } > ([
+    /*const importResponse = await enquirer.prompt< { globalTypePath : string } > ([
 
       {
         type    : 'input',
@@ -352,11 +361,11 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         message : 'Do you have a global import path for your types/interfaces?  If so enter it below, if not leave blank and continue.\n'
       }
 
-    ]);
+    ]);*/
 
 
 
-    if( importResponse.globalTypePath && importResponse.globalTypePath !== '' ) {
+    /*if( importResponse.globalTypePath && importResponse.globalTypePath !== '' ) {
 
       if ( !promptResponses.inputSpecs ) {
 
@@ -369,7 +378,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       }
 
 
-    }
+    }*/
 
 
 
@@ -388,7 +397,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    const response = await enquirer.prompt< { controlType : OvaadFormControlType, typeAnnotation : string[], globalTypePath : string } >([
+    const response = await enquirer.prompt< { controlType : OvaadFormControlType, typeAnnotation : string, globalTypePath : string } >([
 
       {
         type    : 'select',
@@ -411,15 +420,18 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
     if ( !promptResponses.customControlSpecs ) {
 
-      const newAnnotation : ShapeInputResponse = shapeInputData( response.typeAnnotation );
+      //const newAnnotation : ShapeInputResponse = shapeInputData( [ response.typeAnnotation ] );
+      const newAnnotation : string[] = response.typeAnnotation.split('|');
 
       promptResponses.customControlSpecs = {
 
         controlType    : response.controlType,
-        typeAnnotation : response.typeAnnotation,
+        typeAnnotation : newAnnotation[ 0 ],
         annotationImportPath : response.globalTypePath ? response.globalTypePath : undefined
         
       }
+
+      addAnnotationSpecs( { items : [ newAnnotation[ 0 ] ], path : newAnnotation[ 1 ] } );
       //console.log(`typePath : '${response.globalTypePath}'`);
 
     }
@@ -453,56 +465,58 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         {
           type    : 'input',
           name    : 'listItemAnnotation',
-          message : `Enter the type annotation for this item followed by a "|" and the location of your type. If it's a primative type that doesn't need to be imported just add the type.\n\nimport example : YourType|path/to/location\n\nno import example : string\n`
+          message : `Enter the type annotation for this item followed by a "|" and the location of your type. If it's a primative type that doesn't need to be imported just add the type.\n\nimport example : YourType|path/to/location\n\nprimative example : string\n`
         }
 
       ]);
-
-
-
+      
       const annotationResponse : string[]        = response.listItemAnnotation.split( '|' );
       const newAnnotationData  : AnnotationSpecs = { items : [ annotationResponse[ 0 ] ], path : annotationResponse[ 1 ] };
 
       if ( !promptResponses.customControlSpecs.formArraySpecs ) {
-
+        
         const pathCheck : boolean = response.listItemAnnotation.includes( '|' );
         let selectedType! : string;
-
+        
         if ( pathCheck ){
-
+          
           addAnnotationSpecs( newAnnotationData );
-          selectedType = annotationResponse[ 1 ];
-
+          selectedType = annotationResponse[ 0 ];
+        
         }
-
-
+        
         promptResponses.customControlSpecs.formArraySpecs = {
-
+          
           propertyName : response.listPropertyName,
           controlType  : response.listItemType,
           controlTypeAnnotation : pathCheck ? selectedType : response.listItemAnnotation
-
+        
         };
-
+      
       }
-
+      
+      
       else {
-
+        
         const pathCheck : boolean = response.listItemAnnotation.includes( '|' );
         let selectedType! : string;
-
+        
         if ( pathCheck ){
-
+          
           addAnnotationSpecs( newAnnotationData );
           selectedType = annotationResponse[ 1 ];
-
+        
         }
-
+        
         promptResponses.customControlSpecs.formArraySpecs.propertyName = response.listPropertyName;
         promptResponses.customControlSpecs.formArraySpecs.controlType  = response.listItemType;
         promptResponses.customControlSpecs.formArraySpecs.controlTypeAnnotation = pathCheck ? selectedType : response.listItemAnnotation;
-
+  
       }
+
+
+
+
 
       
     }
@@ -555,22 +569,27 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     if ( inputResponses.addInputs.length > 0 ) {
 
       const inputData : ShapeInputResponse = shapeInputData( inputResponses.addInputs );
+      //console.log(inputData.annotations);
 
 
 
-      if ( ! promptResponses.inputSpecs ) {
+      if ( !promptResponses.inputSpecs ) {
 
         promptResponses.inputSpecs = { declarations : [ ...inputData.definitions ] };
+        //inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
 
       }
 
       else {
 
         promptResponses.inputSpecs.declarations = [ ...inputData.definitions ];
+        //inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
 
       }
 
       inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
+
+      //console.log(promptResponses.annotationSpecs);
 
 
     }
@@ -631,7 +650,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
         };
 
-        console.log(promptResponses)
+        //console.log(promptResponses)
 
       }
 
@@ -724,6 +743,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       }
 
       inputList.push( createControlInput( options.customControlSpecs.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs.controlType, options.customControlSpecs.typeAnnotation ) );
+      inputList.push( createStandardInput( 'Label', 'string' ) );
 
       //console.log(`control input : ${createControlInput( options.customControlSpecs!.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs!.controlType, options.customControlSpecs!.typeAnnotation )}`)
     }
@@ -811,7 +831,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
   if ( options.annotationSpecs ) {
-
+    //console.log(options.annotationSpecs);
     options.annotationSpecs.forEach( a => {
 
       importList.push( createImportScript( a.items, a.path ) );
@@ -822,10 +842,10 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
   if ( options.inputSpecs ) {
 
-    const metadataImportList : string[] = [];
+    //const metadataImportList : string[] = [];
 
     options.inputSpecs.declarations.forEach( a => {
-      console.log(a);
+      //console.log(a);
       inputList.push( createStandardInput( a.name, a.type ) );
 
     });
@@ -879,7 +899,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
   }
 
-  console.log(componentOptions);
+  //console.log(componentOptions);
 
   
   
