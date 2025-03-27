@@ -3,14 +3,15 @@ import {
   generateFiles,
   Tree,
   names,
-  getProjects,
-  ProjectConfiguration
+  getProjects
 } from '@nx/devkit';
 import * as fs from 'fs';
-import  ts = require('typescript');
 import * as path from 'path';
 import * as enquirer from 'enquirer';
-import { AnnotationSpecs, ComponentInjectionPromptSchema, ComponentInjectionSpecs, InputPropDefinition, LineSelector, OvaadFormControlType, ParentComponentPrepSchema, ParentComponentSchema, PromptOptions, PromptSchema, OvaadAngularComponentGeneratorSchema as Schema, ShapeInputResponse } from './schema';
+import {
+  AnnotationSpecs, ComponentInjectionSpecs, InputPropDefinition, OvaadFormControlType,
+  ParentComponentPrepSchema, PromptOptions, PromptSchema, ShapeInputResponse
+} from './schema';
 import { OvaadFileWriter } from './file-writer/file-writer';
 
 
@@ -136,13 +137,22 @@ export interface CustomControlOptions {
 
 export async function ovaadAngularComponentGenerator( tree : Tree, options : PromptSchema ) {
 
-  //  Fetch the target project to add component to.
+  //  Fetch the target project to add new component to.
   const projects       = getProjects( tree );
   const targetProject  = projects.get( options.project );
 
-  //  Make sure project exist before continuing and stop process if not.
+
+
+  //  Make sure project exist before continuing.
   if ( !targetProject ) { throw new Error( `Project "${ options.project }" not found.` ); }
 
+
+
+
+
+  
+
+  //  For storing user's prompt responses asynchronously.
   const promptResponses : Partial<PromptOptions> = {
 
     name     : options.name,
@@ -152,6 +162,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
   };
 
+
+
+
+
+
+
+  //  Organizes and updates data for generating import declarations.
   const addAnnotationSpecs = ( annotation : AnnotationSpecs ) : void => {
 
     const newAnnotationList : AnnotationSpecs[] = [];
@@ -194,15 +211,16 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-  //  Prompt options that load after entering the name of the component and the type of component
-  //  you want to generate.
+  
+  
+  
+  //  Prompt options that load after providing name, project, componentType
+  //  and location.
 
 
 
   //  Prompts for generating standard component.
   if ( options.componentType === 'standard' ) {
-
-    //const responses : PromptSchema = options;
 
 
     
@@ -232,7 +250,6 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
         
         promptResponses.inputSpecs      = { declarations : [ ...processInputResponses.definitions ] };
-        //promptResponses.annotationSpecs = [ ...processInputResponses.annotations ];
         processInputResponses.annotations.forEach( a => addAnnotationSpecs( a ) );
 
       }
@@ -246,8 +263,6 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     
     
     const insertComponent = insertionResponses.insertToggle;
-    /*let parentComponentClassName : string;
-    let insertionPoint : LineSelector;*/
 
     //  If user chooses to immediately import the new component into an existing component.
     if( insertComponent ) {
@@ -270,11 +285,17 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         
       ]);
 
+
+
       if( !promptResponses.insertionSpecs ) {
         
         promptResponses.insertionSpecs = { parentComponentClassName : response.componentClassName };
 
       }
+
+
+
+
 
 
       
@@ -295,9 +316,9 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       }
 
+      //  Determine line to insert new component on if user chooses not to replace code.
       else {
 
-        //  Determine line to insert new component on if user chooses not to replace code.
         const response = await enquirer.prompt< { line : number } >([
 
           {
@@ -312,20 +333,14 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
       }
 
-      /*if( promptResponses.insertionSpecs.parentComponentClassName !== undefined ) {
-
-
-        responses.insertionSpecs = {
-
-          parentComponentClassName : parentComponentClassName,
-          templateInsertionPoint   : insertionPoint
-
-        }; 
-
-      }*/
 
 
 
+
+
+
+      //  Check if user would immediately like to pass data into their
+      //  new component's inputs.
       if (
 
         promptResponses &&
@@ -353,38 +368,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    /*const importResponse = await enquirer.prompt< { globalTypePath : string } > ([
-
-      {
-        type    : 'input',
-        name    : 'globalTypePath',
-        message : 'Do you have a global import path for your types/interfaces?  If so enter it below, if not leave blank and continue.\n'
-      }
-
-    ]);*/
-
-
-
-    /*if( importResponse.globalTypePath && importResponse.globalTypePath !== '' ) {
-
-      if ( !promptResponses.inputSpecs ) {
-
-        promptResponses.inputSpecs = { annotationImportPath : importResponse.globalTypePath };
-      }
-      else {
-
-        promptResponses.inputSpecs.annotationImportPath = importResponse.globalTypePath;
-
-      }
-
-
-    }*/
-
-
-
     options = { ...promptResponses as PromptSchema };
 
   }
+
+
+
+
 
 
 
@@ -393,10 +383,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    //let responses! : PromptSchema;
-
-
-
+    //  Determine the kind of form control the user wants to create along with the type annotation.
     const response = await enquirer.prompt< { controlType : OvaadFormControlType, typeAnnotation : string, globalTypePath : string } >([
 
       {
@@ -409,18 +396,14 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
         type    : 'input',
         name    : 'typeAnnotation',
         message : `Enter the type annotation of your control followed by a "|" and the location of your type. If it's a primative type that doesn't need to be imported just add the type.\n\nimport example : YourType|path/to/location\n\nno import example : string\n`,
-      },
-      /*{
-        type    : 'input',
-        name    : 'globalTypePath',
-        message : 'Do you have a globally registered path for your types/interfaces?  If not leave blank and continue.'
-      }*/
+      }
 
     ]);
 
     if ( !promptResponses.customControlSpecs ) {
 
-      //const newAnnotation : ShapeInputResponse = shapeInputData( [ response.typeAnnotation ] );
+      
+
       const newAnnotation : string[] = response.typeAnnotation.split('|');
 
       promptResponses.customControlSpecs = {
@@ -432,7 +415,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       }
 
       addAnnotationSpecs( { items : [ newAnnotation[ 0 ] ], path : newAnnotation[ 1 ] } );
-      //console.log(`typePath : '${response.globalTypePath}'`);
+      
 
     }
 
@@ -447,6 +430,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
+    //  Determine the kind of form control the user wants to iterate if they choose to create
+    //  a FormArrayGroup.
     if ( promptResponses.customControlSpecs.controlType === 'FormArrayGroup' ) {
 
       const response = await enquirer.prompt< { listPropertyName : string, listItemType : OvaadFormControlType, listItemAnnotation : string } > ([
@@ -472,6 +457,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       
       const annotationResponse : string[]        = response.listItemAnnotation.split( '|' );
       const newAnnotationData  : AnnotationSpecs = { items : [ annotationResponse[ 0 ] ], path : annotationResponse[ 1 ] };
+
+
 
       if ( !promptResponses.customControlSpecs.formArraySpecs ) {
         
@@ -523,38 +510,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
-    /*if( promptResponses.customControlSpecs.controlType === 'FormArrayGroup' && promptResponses.customControlSpecs.annotationImportPath !== undefined ) {
-
-      const response = await enquirer.prompt< { isListItemTypeImportGlobal : boolean } >([
-
-        {
-          type    : 'confirm',
-          name    : 'isListItemTypeImportGlobal',
-          message : 'Is the type/interface for this item imported from your global path?\n'
-        }
-
-      ]);
-  
-      if ( !response.isListItemTypeImportGlobal ) {
-
-        const response = await enquirer.prompt< { listItemTypeImport : string } > ([
-
-          {
-            type    : 'input',
-            name    : 'listItemTypeImport',
-            message : 'Is there another path you want to enter?  If not leave blank and continue.\n'
-          }
-
-        ]);
-
-        promptResponses.customControlSpecs.formArraySpecs.annotationImportPath = ( response.listItemTypeImport !== '' ? response.listItemTypeImport : undefined );
-
-      }
-
-      else { promptResponses.customControlSpecs.formArraySpecs.annotationImportPath = promptResponses.customControlSpecs.annotationImportPath; }
-  
-    }*/
-
+    
+    //  Determine if the user would like to add additional inputs to the new component.
     const inputResponses = await enquirer.prompt< { addInputs : string[] } > ([
 
       {
@@ -569,27 +526,22 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     if ( inputResponses.addInputs.length > 0 ) {
 
       const inputData : ShapeInputResponse = shapeInputData( inputResponses.addInputs );
-      //console.log(inputData.annotations);
 
 
 
       if ( !promptResponses.inputSpecs ) {
 
         promptResponses.inputSpecs = { declarations : [ ...inputData.definitions ] };
-        //inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
-
+        
       }
 
       else {
 
         promptResponses.inputSpecs.declarations = [ ...inputData.definitions ];
-        //inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
 
       }
 
       inputData.annotations.forEach( a => addAnnotationSpecs( a ) );
-
-      //console.log(promptResponses.annotationSpecs);
 
 
     }
@@ -597,6 +549,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
+    //  Determine if the user would like to immediately import the new component into an
+    //  existing component.
     const insertionResponse = await enquirer.prompt< { componentClassName : string } >([
 
       {
@@ -606,13 +560,14 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       }
 
     ]);
-
-    //console.log(insertionResponse.componentClassName );
+    
 
     if ( insertionResponse.componentClassName !== undefined && insertionResponse.componentClassName !== '' ) {
 
-      //console.log(insertionResponse.componentClassName)
+      
 
+      //  Determine if the user would like the new component to replace an element
+      //  in the template or be added on a specific line.
       const response = await enquirer.prompt< { replaceCode : number[] } > ([
 
         {
@@ -635,9 +590,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
           }
           
         };
-
-        //console.log(promptResponses)
-
+        
       }
 
       else {
@@ -650,13 +603,13 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
         };
 
-        //console.log(promptResponses)
-
       }
 
 
 
 
+      //  Determine if the user would like to immediately pass data into their
+      //  new component's inputs.
       if (
 
         promptResponses.inputSpecs &&
@@ -675,6 +628,8 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
   
         ]);
 
+
+
         if ( !promptResponses.inputSpecs ) {
 
           promptResponses.inputSpecs = { bindings :  response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined };
@@ -685,8 +640,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
           promptResponses.inputSpecs.bindings = response.connectInputs.length > 0 ? [ ...response.connectInputs ] : undefined;
 
-        }
-  
+        }  
   
       }
 
@@ -694,10 +648,14 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
     
     options = { ...promptResponses as PromptSchema };
 
-
   }
   
     
+  
+  
+  
+  
+  
   //  For preparing data to use in __tmpl__ files.
   const componentNames  = names( options.name );
   const targetPath      = path.join( targetProject.root, options.location, componentNames.fileName );
@@ -705,36 +663,46 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
   const metaDataImports : string[] = [];
   const propList        : string[] = [];
   const inputList       : string[] = [];
-
-
-
   
-
-  //console.log(options.componentType);
-
+  
+  
+  
+  
+  //  Proccess data into elements needed to generate contents of
+  //  custom form control.
   if ( options.componentType === 'custom form control' ) {
-
-    //console.log(options);
 
 
 
     if( options.customControlSpecs && options.customControlSpecs.controlType ) {
       
       
+      //  Handle if user opts to create a FormGroup or FormArrayGroup.
       if( options.customControlSpecs.controlType === 'FormGroup' || options.customControlSpecs.controlType === 'FormArrayGroup' ) {
-        
-        //console.log(`control type condition : ${options.customControlSpecs.controlType}`);
+                
+
+
+        //  For items to import from @angular/forms.
         const moduleImports : string[] = [ 'ReactiveFormsModule', 'FormGroup' ];
 
 
 
-        if( options.customControlSpecs.formArraySpecs && options.customControlSpecs.formArraySpecs.controlType === 'FormControl' ) { moduleImports.push( 'FormControl' ); }
+        //  If user creates a FormArrayGroup and wants it to iterate a FormControl, add FormControl to
+        //  module imports.
+        if( options.customControlSpecs.formArraySpecs && options.customControlSpecs.formArraySpecs.controlType === 'FormControl' ) {
+          
+          moduleImports.push( 'FormControl' );
+
+        }
   
         importList.push( createImportScript( moduleImports, '@angular/forms' ) );
         metaDataImports.push( 'ReactiveFormsModule' );
         
       }
 
+      
+
+      //  Handle if user opts to create a FormControl.
       if( options.customControlSpecs.controlType === 'FormControl' ) {
   
         importList.push( createImportScript( [ 'FormsModule', 'FormControl' ], '@angular/forms' ) );
@@ -745,93 +713,18 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       inputList.push( createControlInput( options.customControlSpecs.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs.controlType, options.customControlSpecs.typeAnnotation ) );
       inputList.push( createStandardInput( 'Label', 'string' ) );
 
-      //console.log(`control input : ${createControlInput( options.customControlSpecs!.controlType === 'FormArrayGroup' ? 'FormGroup' : options.customControlSpecs!.controlType, options.customControlSpecs!.typeAnnotation )}`)
-    }
-
-
-
-
-
-    /*if( options.customControlSpecs?.annotationImportPath ) {
-
-      const importIdentifiers : string[] = [ options.customControlSpecs.typeAnnotation ];
-
-      
-
-      if(
-
-        options.customControlSpecs.formArraySpecs &&
-        options.customControlSpecs.formArraySpecs.annotationImportPath &&
-        options.customControlSpecs.formArraySpecs.annotationImportPath ===
-        options.customControlSpecs.annotationImportPath
-
-      ){ importIdentifiers.push( options.customControlSpecs.formArraySpecs.controlTypeAnnotation ); }
-
-
-
-      importList.push( createImportScript( importIdentifiers, options.customControlSpecs.annotationImportPath ) );
-
-    }
-
-
-    else {
-
-
-
-      if( options.customControlSpecs?.formArraySpecs?.annotationImportPath ) {
-
-        importList.push( createImportScript(
-
-          [ options.customControlSpecs.formArraySpecs.controlTypeAnnotation ],
-          options.customControlSpecs.formArraySpecs.annotationImportPath
-
-        ));
-
-      }
-
-
-
-    }*/
-
-
-
-
-    /*if ( options.customControlSpecs?.annotationImportPath === options.customControlSpecs?.formArraySpecs?.annotationImportPath ) {
-
-      const importIdentifiers : string[] = [ options.customControlSpecs!.annotationImportPath!, options.customControlSpecs!.formArraySpecs!.annotationImportPath! ];
-
-      importIdentifiers.push( options.customControlSpecs!.formArraySpecs!.annotationImportPath! )
-
-      const importStatement = createImportScript( importIdentifiers, options.customControlSpecs!.annotationImportPath! );
-
-    }*/
     
-
-    /*if( options.hasGlobalTypePath === 'yes' && options.globalTypePath ) {
-
-      const importItems : string[] = [ `${options.typeAnnotation}` ];
-
-      if( options.isListItemTypeGlobal === 'yes' && options.listItemType ){
-        importItems.push(options.listItemAnnotation!);
-      }
-
-      importList.push( createImportScript( [ ...importItems ], options.globalTypePath ) );
-
-    }*/
-
-    /*if( options.isListItemTypeGlobal === 'no' && options.listItemTypeImport ){
-
-      importList.push( createImportScript( [ `${options.listItemType}` ], options.listItemTypeImport ) );
-
-    }*/
-
+    }
 
   }
 
 
 
+  
+  
+  //  Generate import declarations for new component.
   if ( options.annotationSpecs ) {
-    //console.log(options.annotationSpecs);
+    
     options.annotationSpecs.forEach( a => {
 
       importList.push( createImportScript( a.items, a.path ) );
@@ -840,49 +733,28 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
   }
 
+  
+  
+  
+  
+  //  Generate @Inputs for the new component.
   if ( options.inputSpecs ) {
 
-    //const metadataImportList : string[] = [];
-
     options.inputSpecs.declarations.forEach( a => {
-      //console.log(a);
+      
       inputList.push( createStandardInput( a.name, a.type ) );
 
     });
 
   }
-
-
-
-  /*if( options.inputSpecs ){
-
-    const annotations : string[] = [];
-
-    options.inputSpecs.declarations.forEach( a => {
-      
-      const prop : string[] = a.split( ':' );
-
-      if(
-
-        prop[ 1 ] !== 'string'  &&
-        prop[ 1 ] !== 'number'  &&
-        prop[ 1 ] !== 'boolean' &&
-        prop[ 1 ] !== 'object'  &&
-        prop[ 1 ] !== 'array'
-
-      ){ annotations.push( prop[ 1 ] ); }
-      
-      inputList.push( createStandardInput( a.split( ':' )[ 0 ], a.split( ':' )[ 1 ] ) );
-
-    });
-    
-    importList.push( createImportScript( annotations, options.inputSpecs.annotationImportPath!) );
-
-  }*/
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  //  Data processed into content for __tmpl__ files.
   const componentOptions = {
 
     componentType      : options.componentType,
@@ -899,10 +771,9 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
   }
 
-  //console.log(componentOptions);
-
   
   
+  //  Generate files for new component and save to project.
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
@@ -914,6 +785,12 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
 
+  
+  
+  
+  
+  //  Handle if user opts to import their new component into
+  //  an existing component.
   if ( options.insertionSpecs !== undefined ) {
     
     let   parentComponentData   : ParentComponentPrepSchema;
@@ -928,9 +805,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
 
     const parentPath : string | undefined = parentComponentWriter.findComponentFile( options.insertionSpecs.parentComponentClassName );
-
-    //console.log(options.insertionSpecs.parentComponentClassName);
-    //console.log(parentPath);
+    
     if( parentPath === undefined ) { throw new Error( `Path to ${ options.insertionSpecs.parentComponentClassName } not found. Line 956.` ); }
 
 
@@ -959,15 +834,16 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
       insertionPoint     : options.insertionSpecs.templateInsertionPoint
       
     };
-
-    //console.log(parentComponentData);
+    
 
 
 
     parentComponentWriter.setInsertionData( parentComponentData );
+
+
     const updatedProject = parentComponentWriter.addNewComponentToComponent();
 
-    //console.log( updatedProject );
+    
     if( updatedProject !== undefined ){
 
       fs.writeFileSync(updatedProject.componentPath, updatedProject.newComponentFile, 'utf-8' );
@@ -975,30 +851,7 @@ export async function ovaadAngularComponentGenerator( tree : Tree, options : Pro
 
     }
 
-
-
   }
-
-
-
-  /*if( options.insertionSpecs !== undefined ) {
-
-    //const parentComponent = new OvaadFileWriter( targetProject, parentComponentData );
-    //console.log(parentComponent);
-    const updatedProject = parentComponent.addNewComponentToComponent( options.insertInto! );
-
-    //console.log(updatedProject);
-    //const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-
-    //const updatedComponentCode = printer.printFile( updatedProject!.newComponentFile! );
-    //const updatedTemplateCode = printer.printFile( updatedProject!.newTemplateFile!.join('\n') );
-    const updatedTemplateCode = updatedProject!.newTemplateFile!.join('\n');
-
-
-    //fs.writeFileSync(updatedProject!.componentPath, updatedProject!.newComponentFile!, 'utf-8' );
-    //fs.writeFileSync(updatedProject!.templatePath, updatedTemplateCode,  'utf-8' );
-
-  }*/
 
 }
 
