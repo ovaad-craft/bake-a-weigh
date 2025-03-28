@@ -1976,6 +1976,17 @@ const DemoIngredients : IngredientProfile[] = [
     brand : 'Kemps',
     id : 'milk_id1100011',
     icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'milk',
+      pasturized : true,
+      homogenized : true,
+      specs : {
+        type : 'whole',
+        state : 'liquid'
+      }
+    },
     nutrition : {
       servingSize: {
         amount : 236,
@@ -2089,6 +2100,219 @@ const DemoIngredients : IngredientProfile[] = [
       ingredients : ['milk']
     },
     locations : ['milk_category_id1100011']
+  },
+  {
+    name : 'Pure Irish Butter',
+    brand : 'Kerrygold',
+    id : 'butter_id1100011',
+    profileType: 'dairy',
+    data : {
+      type : 'cow',
+      form : 'butter',
+      pasturized : true,
+      homogenized : true,
+      specs : {
+        type : 'unsalted'
+      }
+    },
+    nutrition : {
+      servingSize :{
+        amount : 14,
+        weightType : 'g'
+      },
+      calories : 100,
+      totalFat : {
+        totalAmount : {
+          amount : 11,
+          weightType : 'g',
+          percentage : 14
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 7,
+              weightType : 'g',
+              percentage : 37
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 30,
+          weightType : 'mg',
+          percentage : 10
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 100,
+          weightType : 'mg',
+          percentage : 4
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : [
+        'Pasturized Cream',
+        'Salt'
+      ]
+    },
+    locations : ['butter_category_id1100011']
+  },
+  {
+    name : 'Heavy Whipping Cream',
+    brand : 'Kemps',
+    id : 'cream_id1100011',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'cream',
+      pasturized : true,
+      homogenized : true,
+      specs : {
+        type : 'heavy cream',
+        state : 'liquid'
+      }
+    },
+    nutrition : {
+      servingSize : {
+        amount : 15,
+        weightType : 'ml'
+      },
+      calories : 50,
+      totalFat : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 6
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 3.5,
+              weightType : 'g',
+              percentage : 18
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 20,
+          weightType : 'mg',
+          percentage : 7
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            },
+            nutrients : [
+              {
+                name : 'Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Potassium',
+          amount : 15,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Vitamin A',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Phosphorus',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+      ],
+      ingredients : [
+        'Heavy Cream',
+        'Milk',
+        'Carrageenan',
+        'Mono and Diglycerides and Polysorbate 80'
+      ]
+    },
+    locations: ['cream_category_id1100011']
   }
 ]
 
@@ -2246,7 +2470,19 @@ const DemoKeys : CategoryKey[] = [
         id : 'milk_category_id1100011',
         icon : 'some icon',
         removable : true
-      }
+      },
+      {
+        name : 'Butter',
+        id : 'butter_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
+      {
+        name : 'Cream',
+        id : 'cream_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
     ]
   },
   {
