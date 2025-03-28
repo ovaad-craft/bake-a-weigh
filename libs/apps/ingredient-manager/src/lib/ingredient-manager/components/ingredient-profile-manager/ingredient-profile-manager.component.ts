@@ -18,7 +18,7 @@ USER STORIES :
 
 */
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DairyProfileComponent } from './profiles/dairy-profile/dairy-profile.component';
 import { ExtractProfileComponent } from './profiles/extract-profile/extract-profile.component';
@@ -31,6 +31,8 @@ import { ProduceProfileComponent } from './profiles/produce-profile/produce-prof
 import { SaltProfileComponent } from './profiles/salt-profile/salt-profile.component';
 import { SugarProfileComponent } from './profiles/sugar-profile/sugar-profile.component';
 import { SweetenerProfileComponent } from './profiles/sweetener-profile/sweetener-profile.component';
+import { IngredientDataGroupType } from '../../views/ingredient-editor/form-generator/form-types';
+import { IngredientProfileType } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-ingredient-profile-manager',
@@ -52,4 +54,9 @@ import { SweetenerProfileComponent } from './profiles/sweetener-profile/sweetene
   templateUrl: './ingredient-profile-manager.component.html',
   styleUrls: ['./ingredient-profile-manager.component.css'],
 })
-export class IngredientProfileManagerComponent {}
+export class IngredientProfileManagerComponent {
+
+  @Input() Profile!     : IngredientDataGroupType;
+  @Input() ProfileType! : IngredientProfileType;
+  
+}
