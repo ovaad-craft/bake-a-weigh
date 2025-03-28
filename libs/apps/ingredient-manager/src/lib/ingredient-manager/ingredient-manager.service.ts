@@ -2105,6 +2105,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Pure Irish Butter',
     brand : 'Kerrygold',
     id : 'butter_id1100011',
+    icon : 'some icon',
     profileType: 'dairy',
     data : {
       type : 'cow',
@@ -2176,6 +2177,7 @@ const DemoIngredients : IngredientProfile[] = [
     name : 'Heavy Whipping Cream',
     brand : 'Kemps',
     id : 'cream_id1100011',
+    icon : 'some icon',
     profileType : 'dairy',
     data : {
       type : 'cow',
