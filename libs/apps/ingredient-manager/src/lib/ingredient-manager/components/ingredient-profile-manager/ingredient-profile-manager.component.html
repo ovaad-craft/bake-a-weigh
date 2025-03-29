@@ -1,1 +1,123 @@
-<p>ingredient-profile-manager works</p>
+<section class="mainContainer">
+
+
+
+    @if( Control !== undefined ) {
+
+        @switch ( ProfileType ) {
+
+            @case ( 'flour' ) {
+
+                <lib-flour-profile
+                    ngDefaultControl
+                    [Control]="getFlourProfile()"
+                />
+            
+            }
+
+            @case ( 'salt' ) {
+
+                <lib-salt-profile
+                    ngDefaultControl
+                    [Control]="getSaltProfile()"
+                />
+
+            }
+            
+            @case ( 'sugar' ) {
+
+                <lib-sugar-profile
+                    ngDefaultControl
+                    [Control]="getSugarProfile()"
+                />
+
+            }
+            
+            @case ( 'grain' ) {
+
+                <lib-grain-profile
+                    ngDefaultControl
+                    [Control]="getGrainProfile()"
+                />
+
+            }
+            
+            @case ( 'nut' ) {
+
+                <lib-nut-profile
+                    ngDefaultControl
+                    [Control]="getNutProfile()"
+                />
+
+            }
+            
+            @case ( 'seed' ) {
+
+                <lib-seed-profile
+                    ngDefaultControl
+                    [Control]="getSeedProfile()"
+                />
+
+            }
+            
+            @case ( 'dairy' ) {
+
+                <lib-dairy-profile
+                    ngDefaultControl
+                    [Control]="getDairyProfile()"
+                />
+
+            }
+            
+            @case ( 'produce' ) {
+
+                <lib-produce-profile
+                    ngDefaultControl
+                    [Control]="getProduceProfile()"
+                />
+
+            }
+            
+            @case ( 'oil' ) {
+
+                <lib-oil-profile
+                    ngDefaultControl
+                    [Control]="getOilProfile()"
+                />
+
+            }
+            
+            @case ( 'herb' ) {
+
+                <lib-herb-profile
+                    ngDefaultControl
+                    [Control]="getHerbProfile()"
+                />
+
+            }
+            
+            @case ( 'extract' ) {
+
+                <lib-extract-profile
+                    ngDefaultControl
+                    [Control]="getExtractProfile()"
+                />
+
+            }
+            
+            @case ( 'sweetener' ) {
+
+                <lib-sweetener-profile
+                    ngDefaultControl
+                    [Control]="getSweetenerProfile()"
+                />
+
+            }
+
+        }
+
+    }
+
+
+
+</section>
