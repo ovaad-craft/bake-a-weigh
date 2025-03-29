@@ -22,7 +22,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule, FormControl } from '@angular/forms';
-import { boolean } from 'undefined';
 
 @Component({
   selector: 'lib-toggle-input',
@@ -33,4 +32,8 @@ import { boolean } from 'undefined';
 export class ToggleInputComponent {
   @Input() Control!: FormControl<boolean | null>;
   @Input() Label!: string;
+
+
+
+  toggleControl() : void { this.Control.setValue( !this.Control.value ); }
 }
