@@ -42,6 +42,8 @@ import { createIngredientForm } from './form-generator/ingredient-form';
 import { TextInputComponent } from '@form-controls';
 import { NutritionGroupComponent } from '../../components/nutrition-group/nutrition-group.component';
 import { NoteListComponent } from "../../components/note-list/note-list.component";
+import { IngredientProfileManagerComponent } from '../../components/ingredient-profile-manager/ingredient-profile-manager.component';
+
 
 
 
@@ -50,13 +52,13 @@ import { NoteListComponent } from "../../components/note-list/note-list.componen
 
 
 @Component({
-  selector: 'lib-im-ingredient-editor',
   imports: [
     CommonModule,
     ReactiveFormsModule,
     TextInputComponent,
     NutritionGroupComponent,
-    NoteListComponent
+    NoteListComponent,
+    IngredientProfileManagerComponent
 ],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',

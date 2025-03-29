@@ -41,6 +41,16 @@
 
 
 
+    @if ( IngredientEditorForm.controls.data ) {
+
+        <lib-ingredient-profile-manager
+            ngDefaultControl
+            [Control]="IngredientEditorForm.controls.data"
+        />
+    }
+
+
+
     @if (IngredientEditorForm.controls.nutrition) {
         
         <lib-nutrition-group

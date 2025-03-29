@@ -22,6 +22,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { HerbProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
 
 @Component({
   selector: 'lib-herb-profile',
