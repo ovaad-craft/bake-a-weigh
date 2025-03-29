@@ -16,5 +16,17 @@
     [OptionList]="[ 'milk', 'cream', 'yogurt', 'butter', 'cheese' ]"
   />
 
+  <lib-toggle-input
+    ngDefaultControl
+    [Control]="Control.controls.pasturized"
+    [Label]="'pasturized'"
+  />
+  
+  <lib-toggle-input
+    ngDefaultControl
+    [Control]="Control.controls.homogenized"
+    [Label]="'homogenized'"
+  />
+
   <p>{{ Control.value | json }}</p>
 </section>
