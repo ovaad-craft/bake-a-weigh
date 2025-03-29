@@ -20,6 +20,7 @@ USER STORIES :
 
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DairyProfileGroup, ExtractProfileGroup, FlourProfileGroup, GrainProfileGroup, HerbProfileGroup, IngredientDataGroupType, NutProfileGroup, OilProfileGroup, ProduceProfileGroup, SaltProfileGroup, SpeciesPrimative, SugarProfileGroup, SweetenerProfileGroup } from '../../views/ingredient-editor/form-generator/form-types';
 import { DairyProfileComponent } from './profiles/dairy-profile/dairy-profile.component';
 import { ExtractProfileComponent } from './profiles/extract-profile/extract-profile.component';
 import { FlourProfileComponent } from './profiles/flour-profile/flour-profile.component';
@@ -31,10 +32,9 @@ import { ProduceProfileComponent } from './profiles/produce-profile/produce-prof
 import { SaltProfileComponent } from './profiles/salt-profile/salt-profile.component';
 import { SugarProfileComponent } from './profiles/sugar-profile/sugar-profile.component';
 import { SweetenerProfileComponent } from './profiles/sweetener-profile/sweetener-profile.component';
-import { DairyProfileGroup, ExtractProfileGroup, GrainProfileGroup, HerbProfileGroup, IngredientDataGroupType, NutProfileGroup, OilProfileGroup, ProduceProfileGroup, SaltProfileGroup, SpeciesPrimative, SugarProfileGroup, SweetenerProfileGroup } from '../../views/ingredient-editor/form-generator/form-types';
 import { IngredientProfileType } from '@bake-a-weigh/site-types';
+import { SeedProfileComponent } from './profiles/seed-profile/seed-profile.component';
 import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FlourProfileGroup } from '../../views/ingredient-editor/form-generator/form-types';
 
 @Component({
   selector: 'lib-ingredient-profile-manager',
@@ -47,6 +47,7 @@ import { FlourProfileGroup } from '../../views/ingredient-editor/form-generator/
     GrainProfileComponent,
     HerbProfileComponent,
     NutProfileComponent,
+    SeedProfileComponent,
     OilProfileComponent,
     ProduceProfileComponent,
     SaltProfileComponent,
