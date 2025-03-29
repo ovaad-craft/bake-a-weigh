@@ -1,3 +1,20 @@
 <section class="mainContainer" [formGroup]="Control">
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.type"
+    [Label]="'type'"
+    [OptionType]="'DairyType'"
+    [OptionList]="[ 'cow', 'goat' ]"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.form"
+    [Label]="'form'"
+    [OptionType]="'DairyForm'"
+    [OptionList]="[ 'milk', 'cream', 'yogurt', 'butter', 'cheese' ]"
+  />
+
   <p>{{ Control.value | json }}</p>
 </section>

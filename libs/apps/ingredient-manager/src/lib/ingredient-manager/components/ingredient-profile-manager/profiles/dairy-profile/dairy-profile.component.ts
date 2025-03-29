@@ -23,10 +23,16 @@ import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { DairyProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
+import { SelectInputComponent } from '@form-controls';
 
 @Component({
   selector: 'lib-dairy-profile',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SelectInputComponent
+
+  ],
   templateUrl: './dairy-profile.component.html',
   styleUrls: ['./dairy-profile.component.css'],
 })

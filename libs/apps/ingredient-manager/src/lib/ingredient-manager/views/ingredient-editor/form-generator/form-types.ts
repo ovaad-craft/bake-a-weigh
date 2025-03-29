@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
-import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, ExtractState, ExtractType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
+import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, ExtractState, ExtractType, FlourClassification, FlourType, IngredientProfileType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
 
 
 
@@ -333,7 +333,7 @@ export type IngredientDataGroupType =
         icon?        : FormControl< string | null >;
         nutrition?   : FormGroup< NutritionGroup >;
         notes?       : FormGroup< FormArrayGroupList< IngredientNoteFormGroup > >;
-        profileType? : FormControl< string | null >;
+        profileType? : FormControl< IngredientProfileType | null >;
         data?        : IngredientDataGroupType;
         locations    : FormArray< FormControl< string | null > >;
 

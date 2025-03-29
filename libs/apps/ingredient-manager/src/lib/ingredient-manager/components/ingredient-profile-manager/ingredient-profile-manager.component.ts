@@ -61,7 +61,7 @@ import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 export class IngredientProfileManagerComponent {
 
   @Input() Control!     : IngredientDataGroupType;
-  @Input() ProfileType! : IngredientProfileType;
+  @Input() ProfileType! : IngredientProfileType | null | undefined;
 
 
 

@@ -50,8 +50,8 @@ import { IngredientProfileManagerComponent } from '../../components/ingredient-p
 
 
 
-
 @Component({
+  selector: 'lib-im-ingredient-editor',
   imports: [
     CommonModule,
     ReactiveFormsModule,
