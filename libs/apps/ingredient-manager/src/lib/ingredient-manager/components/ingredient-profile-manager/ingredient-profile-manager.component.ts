@@ -31,13 +31,16 @@ import { ProduceProfileComponent } from './profiles/produce-profile/produce-prof
 import { SaltProfileComponent } from './profiles/salt-profile/salt-profile.component';
 import { SugarProfileComponent } from './profiles/sugar-profile/sugar-profile.component';
 import { SweetenerProfileComponent } from './profiles/sweetener-profile/sweetener-profile.component';
-import { IngredientDataGroupType } from '../../views/ingredient-editor/form-generator/form-types';
+import { DairyProfileGroup, ExtractProfileGroup, GrainProfileGroup, HerbProfileGroup, IngredientDataGroupType, NutProfileGroup, OilProfileGroup, ProduceProfileGroup, SaltProfileGroup, SpeciesPrimative, SugarProfileGroup, SweetenerProfileGroup } from '../../views/ingredient-editor/form-generator/form-types';
 import { IngredientProfileType } from '@bake-a-weigh/site-types';
+import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FlourProfileGroup } from '../../views/ingredient-editor/form-generator/form-types';
 
 @Component({
   selector: 'lib-ingredient-profile-manager',
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     DairyProfileComponent,
     ExtractProfileComponent,
     FlourProfileComponent,
@@ -56,7 +59,116 @@ import { IngredientProfileType } from '@bake-a-weigh/site-types';
 })
 export class IngredientProfileManagerComponent {
 
-  @Input() Profile!     : IngredientDataGroupType;
+  @Input() Control!     : IngredientDataGroupType;
   @Input() ProfileType! : IngredientProfileType;
-  
+
+
+
+
+
+
+
+  getFlourProfile() : FormGroup< FlourProfileGroup > {
+
+    return this.Control as FormGroup< FlourProfileGroup >;
+    
+  }
+
+
+
+  getSaltProfile() : FormGroup< SaltProfileGroup > {
+
+    return this.Control as FormGroup< SaltProfileGroup >;
+
+  }
+
+
+  getSugarProfile() : FormGroup< SugarProfileGroup > {
+
+    return this.Control as FormGroup< SugarProfileGroup >;
+
+  }
+
+
+
+  getGrainProfile() : FormGroup< GrainProfileGroup > {
+
+    return this.Control as FormGroup< GrainProfileGroup >;
+
+  }
+
+
+
+  getNutProfile() : FormGroup< NutProfileGroup > {
+
+    return this.Control as FormGroup< NutProfileGroup >;
+
+  }
+
+
+
+  getSeedProfile() : FormGroup< SpeciesPrimative > {
+
+    return this.Control as FormGroup< SpeciesPrimative >;
+
+  }
+
+
+
+  getDairyProfile() : FormGroup< DairyProfileGroup > {
+
+    return this.Control as FormGroup< DairyProfileGroup >;
+
+  }
+
+
+
+  getProduceProfile() : FormGroup< ProduceProfileGroup > {
+
+    return this.Control as FormGroup< ProduceProfileGroup >;
+
+  }
+
+
+
+  getOilProfile() : FormGroup< OilProfileGroup > {
+
+    return this.Control as FormGroup< OilProfileGroup >;
+
+  }
+
+
+
+  getHerbProfile() : FormGroup< HerbProfileGroup > {
+
+    return this.Control as FormGroup< HerbProfileGroup >;
+
+  }
+
+
+
+  getExtractProfile() : FormGroup< ExtractProfileGroup > {
+
+    return this.Control as FormGroup< ExtractProfileGroup >;
+
+  }
+
+
+
+  getSweetenerProfile() : FormGroup< SweetenerProfileGroup > {
+
+    return this.Control as FormGroup< SweetenerProfileGroup >;
+
+  }
+
+
+
+ /* getGroup = this.getControlGroup.bind( this );
+
+  getControlGroup< GroupType extends Record< string, AbstractControl< any, any > > >() : FormGroup< GroupType > {
+
+    return this.Control as unknown as FormGroup< GroupType >;
+
+  }*/
+
 }
