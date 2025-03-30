@@ -20,13 +20,9 @@ USER STORIES :
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { DairyProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
+import { DairyProfileGroup, MilkSpecsGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
 import { SelectInputComponent, ToggleInputComponent } from '@form-controls';
-import { MilkSpecsComponent } from "./components/milk-specs/milk-specs.component";
-import { CreamSpecsComponent } from './components/cream-specs/cream-specs.component';
-import { YogurtSpecsComponent } from './components/yogurt-specs/yogurt-specs.component';
-import { ButterSpecsComponent } from './components/butter-specs/butter-specs.component';
-import { CheeseSpecsComponent } from './components/cheese-specs/cheese-specs.component';
+import { DairySpecManagerComponent } from './components/dairy-spec-manager/dairy-spec-manager.component';
 
 
 
@@ -41,11 +37,7 @@ import { CheeseSpecsComponent } from './components/cheese-specs/cheese-specs.com
     ReactiveFormsModule,
     SelectInputComponent,
     ToggleInputComponent,
-    MilkSpecsComponent,
-    CreamSpecsComponent,
-    YogurtSpecsComponent,
-    ButterSpecsComponent,
-    CheeseSpecsComponent
+    DairySpecManagerComponent,
   ]
 })
 

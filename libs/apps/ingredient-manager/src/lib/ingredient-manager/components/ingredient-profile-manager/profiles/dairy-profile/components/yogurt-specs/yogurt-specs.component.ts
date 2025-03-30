@@ -30,6 +30,7 @@ import { YogurtSpecsGroup } from '../../../../../../views/ingredient-editor/form
   templateUrl: './yogurt-specs.component.html',
   styleUrls: ['./yogurt-specs.component.css'],
 })
+
 export class YogurtSpecsComponent {
   @Input() Control!: FormGroup<YogurtSpecsGroup>;
   @Input() Label!: string;

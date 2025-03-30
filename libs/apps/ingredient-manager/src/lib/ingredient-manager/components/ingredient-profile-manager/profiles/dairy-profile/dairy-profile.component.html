@@ -16,6 +16,12 @@
     [OptionList]="[ 'milk', 'cream', 'yogurt', 'butter', 'cheese' ]"
   />
 
+  <lib-dairy-spec-manager
+    ngDefaultControl
+    [Control]="Control.controls.specs"
+    [ControlType]="Control.value.form!"
+  />
+
   <lib-toggle-input
     ngDefaultControl
     [Control]="Control.controls.pasturized"
