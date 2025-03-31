@@ -17,7 +17,7 @@
       <lib-cream-specs
         ngDefaultControl
         [Control]="getCreamSpecs()"
-        [Label]="'specs'"
+        [Label]="'details'"
       />
 
     }
@@ -27,7 +27,7 @@
       <lib-yogurt-specs
         ngDefaultControl
         [Control]="getYogurtSpecs()"
-        [Label]="'specs'"
+        [Label]="'details'"
       />
 
     }
@@ -37,7 +37,7 @@
       <lib-butter-specs
         ngDefaultControl
         [Control]="getButterSpecs()"
-        [Label]="'specs'"
+        [Label]="'details'"
       />
 
     }
@@ -47,12 +47,12 @@
       <lib-cheese-specs
         ngDefaultControl
         [Control]="getCheeseSpecs()"
-        [Label]="'specs'"
+        [Label]="'details'"
       />
 
     }
 
   }
 
-  <p>{{ Control.value | json }}</p>
+  <!--<p>{{ Control.value | json }}</p>-->
 </section>
