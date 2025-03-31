@@ -2315,6 +2315,146 @@ const DemoIngredients : IngredientProfile[] = [
       ]
     },
     locations: ['cream_category_id1100011']
+  },
+  {
+    name : 'Mozzarella Cheese',
+    brand : 'Sargento',
+    id : 'cheese_id1100011',
+    icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'cheese',
+      specs : {
+        kind : 'cheddar',
+        texture : 'solid',
+        hydration : 'dry',
+        state : 'shredded'
+      },
+      homogenized : true,
+      pasturized : true
+    },
+    nutrition: {
+      servingSize : {
+        amount : 28,
+        weightType : 'g'
+      },
+      calories : 90,
+      totalFat : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 7
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 3,
+              weightType : 'g',
+              percentage : 15
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 15,
+          weightType : 'mg',
+          percentage : 5
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 190,
+          weightType : 'mg',
+          percentage : 8
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 1
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 1
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Includes 0g Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 7,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0.1,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Calcium',
+          amount : 200,
+          weightType : 'mg',
+          percentage : 15
+        },
+        {
+          name : 'Iron',
+          amount : 0.1,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 50,
+          weightType : 'mg',
+          percentage : 0
+        }
+      ],
+      ingredients : [
+        'Pasturized Part-Skim Milk',
+        'Cheese Culture',
+        'Salt',
+        'Enzymes',
+        'Potato Starch (to prevent caking)',
+        'Powdered Cellulose (to prevent caking)',
+        'Natamycin (a natural mold inhibitor)'
+      ]
+    },
+    locations : [ 'cheese_category_id110011']
   }
 ]
 
@@ -2485,6 +2625,12 @@ const DemoKeys : CategoryKey[] = [
         icon : 'some icon',
         removable : true
       },
+      {
+        name : 'Cheese',
+        id : 'cheese_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      }
     ]
   },
   {
