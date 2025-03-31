@@ -1,3 +1,11 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.type"
+    [OptionType]="ButterTypeSelect"
+    [OptionList]="[ 'unsalted', 'salted' ]"
+    [Label]="'type'"
+  />
+
 </section>
