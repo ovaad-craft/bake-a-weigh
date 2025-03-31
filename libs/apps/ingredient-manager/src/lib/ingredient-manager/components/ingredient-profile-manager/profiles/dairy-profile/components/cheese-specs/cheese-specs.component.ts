@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CheeseSpecsGroup } from '../../../../../../views/ingredient-editor/form-generator/form-types';
 import { SelectInputComponent, TextInputComponent } from '@form-controls';
+import { CheeseHydrationType, CheeseState, CheeseTextureType } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-cheese-specs',
@@ -40,4 +41,8 @@ import { SelectInputComponent, TextInputComponent } from '@form-controls';
 export class CheeseSpecsComponent {
   @Input() Control!: FormGroup<CheeseSpecsGroup>;
   @Input() Label!: string;
+
+  TextureSelect   : CheeseTextureType   = 'crumbly';
+  HydrationSelect : CheeseHydrationType = 'damp';
+  StateSelect     : CheeseState         = 'ball';
 }
