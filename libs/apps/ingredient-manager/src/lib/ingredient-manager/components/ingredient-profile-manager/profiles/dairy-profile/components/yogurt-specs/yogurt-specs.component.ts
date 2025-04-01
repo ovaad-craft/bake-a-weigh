@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { YogurtSpecsGroup } from '../../../../../../views/ingredient-editor/form-generator/form-types';
 import { SelectInputComponent, TextInputComponent } from '@form-controls';
+import { YogurtType } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-yogurt-specs',
@@ -40,4 +41,6 @@ import { SelectInputComponent, TextInputComponent } from '@form-controls';
 export class YogurtSpecsComponent {
   @Input() Control!: FormGroup<YogurtSpecsGroup>;
   @Input() Label!: string;
+
+  YogurtSelectionType : YogurtType = 'plain';
 }
