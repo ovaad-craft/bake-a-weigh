@@ -2457,7 +2457,7 @@ const DemoIngredients : IngredientProfile[] = [
     locations : [ 'cheese_category_id110011']
   },
   {
-    name : 'Low Fat Yogurt',
+    name : 'Low Fat Strawberry Yogurt',
     brand : 'Yoplait',
     id : 'yogurt_id1100011',
     icon : 'some icon',
@@ -3203,7 +3203,7 @@ export class IngredientManagerService {
 
   getIngredientToEdit() : IngredientProfile {
     
-    return DemoIngredients[DemoIngredients.length -4 ];
+    return DemoIngredients[DemoIngredients.length -1 ];
     //return this.IngredientToEdit
 
   }
