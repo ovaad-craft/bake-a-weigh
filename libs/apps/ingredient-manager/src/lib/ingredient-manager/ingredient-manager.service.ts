@@ -2606,6 +2606,227 @@ const DemoIngredients : IngredientProfile[] = [
       ]
     },
     locations : [ 'yogurt_category_id1100011']
+  },
+  {
+    name : 'Vanilla Extract',
+    brand : 'Mc Cormick',
+    id : 'extract_id1100011',
+    icon : 'some icon',
+    profileType : 'extract',
+    data : {
+      type : 'alcohol',
+      state : 'liquid'
+    },
+    nutrition : {
+      servingSize : {
+        amount : 100,
+        weightType : 'g'
+      },
+      calories : 292,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Pollyunsaturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Monunsaturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 12,
+          weightType : 'g',
+          percentage : 4
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 12,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Sugar Alcohol',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Calcium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Potassium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin A',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Vitamin C',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin E',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin K',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Thiamin',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Riboflavin',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Niacin',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin B6',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Folate',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Vitamin B12',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Pathothenic Acid',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Phosphorus',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Magnesium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Zinc',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Selenium',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Copper',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Manganese',
+          amount : 0,
+          weightType : 'mg'
+        }
+      ],
+      ingredients : [
+        'Water',
+        'Alcohol (35%)',
+        'Sugar',
+        'Vanilla Bean Extractives'
+      ]
+    },
+    locations : [ 'extract_category_id1100011' ]
   }
 ]
 

@@ -45,6 +45,6 @@ import { DairySpecManagerComponent } from './components/dairy-spec-manager/dairy
 export class DairyProfileComponent {
 
     @Input() Label = 'item label';
-    @Input() Control!: FormGroup<DairyProfileGroup>;
+    @Input() Control!: FormGroup< DairyProfileGroup >;
 
 }
