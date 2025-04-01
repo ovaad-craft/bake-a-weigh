@@ -2455,6 +2455,157 @@ const DemoIngredients : IngredientProfile[] = [
       ]
     },
     locations : [ 'cheese_category_id110011']
+  },
+  {
+    name : 'Low Fat Yogurt',
+    brand : 'Yoplait',
+    id : 'yogurt_id1100011',
+    icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'yogurt',
+      specs : {
+        type : 'flavored',
+        flavor : 'strawberry'
+      },
+      pasturized : true,
+      homogenized : true
+    },
+    nutrition :{
+      servingSize : {
+        amount : 170,
+        weightType : 'g'
+      },
+      calories : 140,
+      totalFat : {
+        totalAmount : {
+          amount : 1.5,
+          weightType : 'g',
+          percentage : 2
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 1,
+              weightType : 'g',
+              percentage : 5
+            }            
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'mg',
+          percentage : 2
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 85,
+          weightType : 'mg',
+          percentage : 4
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 26,
+          weightType : 'g',
+          percentage : 9
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 18,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Incl. Added Sugars',
+                totalAmount : {
+                  amount : 13,
+                  weightType : 'g',
+                  percentage : 26
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 10
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 3,
+          weightType: 'mcg',
+          percentage : 15
+        },
+        {
+          name : 'Calcium',
+          amount : 200,
+          weightType : 'mg',
+          percentage : 15
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 260,
+          weightType : 'mg',
+          percentage : 6
+        },
+        {
+          name : 'Vitamin A',
+          amount : 180,
+          weightType : 'mcg',
+          percentage : 20
+        }
+      ],
+      ingredients : [
+        'Cultured Grade A Low Fat Milk',
+        'Sugar',
+        'Strawberries',
+        'Modified Food Starch',
+        'Water',
+        'Contains 1% or less of:',
+        'Kosher Gelatin',
+        'Corn Starch',
+        'Carmine (for color)',
+        'Pectin',
+        'Natural Flavor',
+        'Vitamin A Acetate',
+        'Vitamin D3'
+      ]
+    },
+    locations : [ 'yogurt_category_id1100011']
   }
 ]
 
@@ -2628,6 +2779,12 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Cheese',
         id : 'cheese_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
+      {
+        name : 'Yogurt',
+        id : 'yogurt_category_id1100011',
         icon : 'some icon',
         removable : true
       }
