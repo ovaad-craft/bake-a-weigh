@@ -20,7 +20,7 @@ USER STORIES :
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { DairyProfileGroup, MilkSpecsGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
+import { DairyProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
 import { SelectInputComponent, ToggleInputComponent } from '@form-controls';
 import { DairySpecManagerComponent } from './components/dairy-spec-manager/dairy-spec-manager.component';
 
