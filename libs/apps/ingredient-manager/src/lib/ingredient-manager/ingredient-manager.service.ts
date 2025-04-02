@@ -2986,6 +2986,129 @@ const DemoIngredients : IngredientProfile[] = [
       ingredients : [ 'Walnuts' ]
     },
     locations : [ 'nuts_category_id1100011' ]
+  },
+  {
+    name : 'HoneyCrisp',
+    brand : 'Dole',
+    id : 'apples_id1100011',
+    icon : 'some icon',
+    profileType : 'produce',
+    data : {
+      type : 'fruit',
+      state : 'fresh'
+    },
+    nutrition : {
+      servingSize : {
+        amount : 125,
+        weightType : 'g'
+      },
+      calories : 70,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 17,
+          weightType : 'g',
+          percentage : 7
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 3,
+              weightType : 'g',
+              percentage : 11
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 13,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount: 0,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        {
+          name : 'Calcium',
+          amount : 8,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 0.15,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 135,
+          weightType : 'mg',
+          percentage : 2
+        }
+      ],
+      ingredients : [ 'apple' ]
+    },
+    locations : [ 'apple_category_id1100011' ]
   }
 ]
 
@@ -3191,7 +3314,15 @@ const DemoKeys : CategoryKey[] = [
             name : 'Fresh',
             id : 'fresh_fruit_category_id1100011',
             icon : 'some icon',
-            removable: true
+            removable: true,
+            subCategories : [
+              {
+                name : 'Apples',
+                id : 'apple_category_id1100011',
+                icon : 'some icon',
+                removable : true
+              }
+            ]
           }
         ]
       },
