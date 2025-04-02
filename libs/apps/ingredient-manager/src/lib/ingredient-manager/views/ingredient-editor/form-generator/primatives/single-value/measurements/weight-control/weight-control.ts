@@ -9,7 +9,7 @@ export function createWeightControl( defaultWeight? : WeightType ) : FormControl
 
 
 
-    return new FormControl< WeightType | null >(defaultWeight ?? null );
+    return new FormControl< WeightType | null >( defaultWeight ?? null );
 
 
 

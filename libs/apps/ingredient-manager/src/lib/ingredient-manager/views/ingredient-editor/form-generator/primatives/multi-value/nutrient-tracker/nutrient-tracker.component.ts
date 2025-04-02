@@ -22,15 +22,25 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { NutrientTrackerGroup } from 'undefined';
+import { NutrientTrackerGroup } from '../../../form-types';
+import { NumberInputComponent, SelectInputComponent, TextInputComponent } from '@form-controls';
 
 @Component({
   selector: 'lib-nutrient-tracker',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TextInputComponent,
+    SelectInputComponent,
+    NumberInputComponent
+
+  ],
   templateUrl: './nutrient-tracker.component.html',
   styleUrls: ['./nutrient-tracker.component.css'],
 })
 export class NutrientTrackerComponent {
-  @Input() Control!: FormGroup<NutrientTrackerGroup>;
-  @Input() Label!: string;
+  @Input() Control! : FormGroup< NutrientTrackerGroup >;
+  @Input() Label!   : string;
+
+  
 }

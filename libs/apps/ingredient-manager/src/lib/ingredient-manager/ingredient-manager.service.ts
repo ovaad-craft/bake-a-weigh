@@ -1605,7 +1605,19 @@ const DemoIngredients : IngredientProfile[] = [
     data : {
       type : 'wheat',
       classification : 'other',
-      bleached : false
+      bleached : false,
+      maxHydration : 80,
+      protein : {
+        name : 'protein',
+        servingSize : {
+          amount : 45,
+          weightType : 'g'
+        },
+        amount : {
+          amount : 3,
+          weightType : 'g'
+        }
+      }
     },
     locations : ['semolina_flours_category_id1100011']
   },

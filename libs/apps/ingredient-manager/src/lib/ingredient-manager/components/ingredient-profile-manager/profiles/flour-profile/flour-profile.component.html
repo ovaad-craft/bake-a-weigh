@@ -25,4 +25,26 @@
     [Label]="'bleached'"
   />
 
+  @if ( Control.controls.maxHydration ) {
+
+    <lib-number-input
+      ngDefaultControl
+      [formControlName]="'maxHydration'"
+      [Control]="Control.controls.maxHydration"
+      [Label]="'max hydration'"
+    />
+
+  }
+
+  @if ( Control.controls.protein ) {
+
+    <lib-nutrient-tracker
+      ngDefaultControl
+      [formGroupName]="'protein'"
+      [Control]="Control.controls.protein"
+      [Label]="'protein'"
+    />
+
+  }
+
 </section>

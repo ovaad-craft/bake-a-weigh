@@ -25,6 +25,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { FlourProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
 import { NumberInputComponent, SelectInputComponent, ToggleInputComponent } from '@form-controls';
 import { FlourClassification, FlourType } from '@bake-a-weigh/site-types';
+import { NutrientTrackerComponent } from '../../../../views/ingredient-editor/form-generator/primatives/multi-value/nutrient-tracker/nutrient-tracker.component';
 
 @Component({
   selector: 'lib-flour-profile',
@@ -33,6 +34,7 @@ import { FlourClassification, FlourType } from '@bake-a-weigh/site-types';
     ReactiveFormsModule,
     SelectInputComponent,
     ToggleInputComponent,
+    NutrientTrackerComponent,
     NumberInputComponent
   ],
   templateUrl: './flour-profile.component.html',

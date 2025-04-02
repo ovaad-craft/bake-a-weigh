@@ -115,7 +115,7 @@ export interface FlourProfileGroup{
     type           : FormControl< FlourType | null >;
     classification : FormControl< FlourClassification | null >;
     bleached       : FormControl< boolean | null >;
-    maxHydration?  : FormControl< number | null >;
+    maxHydration?  : FormControl< number  | null >;
     protein?       : FormGroup< NutrientTrackerGroup >;
 
 }
