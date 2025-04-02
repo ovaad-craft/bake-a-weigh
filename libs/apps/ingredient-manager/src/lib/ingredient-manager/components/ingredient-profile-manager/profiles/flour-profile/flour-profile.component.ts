@@ -32,5 +32,5 @@ import { FlourProfileGroup } from '../../../../views/ingredient-editor/form-gene
 })
 export class FlourProfileComponent {
   @Input() Label = 'item label';
-  @Input() Control!: FormGroup<FlourProfileGroup>;
+  @Input() Control!: FormGroup< FlourProfileGroup >;
 }

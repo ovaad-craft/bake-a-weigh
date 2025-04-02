@@ -1604,7 +1604,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'flour',
     data : {
       type : 'wheat',
-      classification : '00',
+      classification : 'other',
       bleached : false
     },
     locations : ['semolina_flours_category_id1100011']
@@ -3423,8 +3423,13 @@ export class IngredientManagerService {
 
 
   getIngredientToEdit() : IngredientProfile {
+    //const item = 'semolina_flour_id1100011';
+    //const ingredient = DemoIngredients.filter( a => a.id === item);
+    return DemoIngredients[17];
+
+    //console.log(ingredient);
     
-    return DemoIngredients[DemoIngredients.length -1 ];
+    //return ingredient[0];
     //return this.IngredientToEdit
 
   }

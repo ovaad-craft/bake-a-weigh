@@ -69,7 +69,7 @@ export class IngredientEditorComponent implements OnInit{
 
   IngredientEditorForm! : FormGroup< IngredientForm >;
 
-  NotesToggle = false;
+  NotesToggle       = false;
   ProfileTypeToggle = false;
 
   constructor( private ingredientService : IngredientManagerService ){}
@@ -78,10 +78,10 @@ export class IngredientEditorComponent implements OnInit{
 
       this.Ingredient           = this.ingredientService.getIngredientToEdit();
       this.IngredientEditorForm = createIngredientForm( this.ingredientService.getIngredientToEdit() );
-   
-      console.log(this.IngredientEditorForm);
 
-      if( this.IngredientEditorForm.controls.notes ) { this.NotesToggle = true; }
+
+
+      if( this.IngredientEditorForm.controls.notes )       { this.NotesToggle       = true; }
       if( this.IngredientEditorForm.controls.profileType ) { this.ProfileTypeToggle = true; }
       
   }

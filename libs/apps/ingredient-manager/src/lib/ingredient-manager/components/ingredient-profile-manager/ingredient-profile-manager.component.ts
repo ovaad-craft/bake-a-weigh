@@ -18,7 +18,7 @@ USER STORIES :
 
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DairyProfileGroup, ExtractProfileGroup, FlourProfileGroup, GrainProfileGroup, HerbProfileGroup, IngredientDataGroupType, NutProfileGroup, OilProfileGroup, ProduceProfileGroup, SaltProfileGroup, SpeciesPrimative, SugarProfileGroup, SweetenerProfileGroup } from '../../views/ingredient-editor/form-generator/form-types';
 import { DairyProfileComponent } from './profiles/dairy-profile/dairy-profile.component';
@@ -58,11 +58,16 @@ import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
   templateUrl: './ingredient-profile-manager.component.html',
   styleUrls: ['./ingredient-profile-manager.component.css'],
 })
-export class IngredientProfileManagerComponent {
+export class IngredientProfileManagerComponent implements OnInit {
 
   @Input() Control!     : IngredientDataGroupType;
   @Input() ProfileType! : IngredientProfileType | null | undefined;
 
+
+
+  ngOnInit(): void {
+    console.log(this.Control);
+  }
 
 
 
@@ -70,6 +75,7 @@ export class IngredientProfileManagerComponent {
 
 
   getFlourProfile() : FormGroup< FlourProfileGroup > {
+    //console.log(this.Control);
 
     return this.Control as FormGroup< FlourProfileGroup >;
     
