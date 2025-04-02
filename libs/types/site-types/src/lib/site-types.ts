@@ -2,7 +2,7 @@
   return 'site-types';
 }*/
 
-export type WeightType = 'mcg' | 'mg' | 'g' | 'ml';
+export type WeightType = 'mcg' | 'mg' | 'g' | 'oz' | 'ml';
 export interface IngredientNote{
   title       : string;
   description : string;
