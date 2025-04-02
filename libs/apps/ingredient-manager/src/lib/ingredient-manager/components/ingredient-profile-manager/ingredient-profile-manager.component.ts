@@ -58,16 +58,10 @@ import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
   templateUrl: './ingredient-profile-manager.component.html',
   styleUrls: ['./ingredient-profile-manager.component.css'],
 })
-export class IngredientProfileManagerComponent implements OnInit {
+export class IngredientProfileManagerComponent {
 
   @Input() Control!     : IngredientDataGroupType;
   @Input() ProfileType! : IngredientProfileType | null | undefined;
-
-
-
-  ngOnInit(): void {
-    console.log(this.Control);
-  }
 
 
 
@@ -75,7 +69,6 @@ export class IngredientProfileManagerComponent implements OnInit {
 
 
   getFlourProfile() : FormGroup< FlourProfileGroup > {
-    //console.log(this.Control);
 
     return this.Control as FormGroup< FlourProfileGroup >;
     
