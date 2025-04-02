@@ -3451,7 +3451,7 @@ export class IngredientManagerService {
   getIngredientToEdit() : IngredientProfile {
     //const item = 'semolina_flour_id1100011';
     //const ingredient = DemoIngredients.filter( a => a.id === item);
-    return DemoIngredients[18];
+    return DemoIngredients[4];
 
     //console.log(ingredient);
     

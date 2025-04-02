@@ -23,14 +23,23 @@ import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { HerbProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
+import { PlantPart } from '@bake-a-weigh/site-types';
+import { SelectInputComponent, TextInputComponent } from '@form-controls';
 
 @Component({
   selector: 'lib-herb-profile',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TextInputComponent,
+    SelectInputComponent
+  ],
   templateUrl: './herb-profile.component.html',
   styleUrls: ['./herb-profile.component.css'],
 })
 export class HerbProfileComponent {
   @Input() Label = 'item label';
-  @Input() Control!: FormGroup<HerbProfileGroup>;
+  @Input() Control!: FormGroup< HerbProfileGroup >;
+
+  HerbPartSelection : PlantPart = 'bark';
 }
