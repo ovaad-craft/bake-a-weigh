@@ -1774,6 +1774,20 @@ const DemoIngredients : IngredientProfile[] = [
       ],
       ingredients : ['Steel Cut Oats']
     },
+    profileType : 'grain',
+    data : {
+      protein : {
+        name : 'protein',
+        servingSize : {
+          amount : 40,
+          weightType : 'g'
+        },
+        amount : {
+          amount : 12,
+          weightType : 'g'
+        }
+      }
+    },
     locations : ['oats_category_id1100011']
   },
   {
@@ -3437,7 +3451,7 @@ export class IngredientManagerService {
   getIngredientToEdit() : IngredientProfile {
     //const item = 'semolina_flour_id1100011';
     //const ingredient = DemoIngredients.filter( a => a.id === item);
-    return DemoIngredients[17];
+    return DemoIngredients[18];
 
     //console.log(ingredient);
     

@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NutrientTrackerGroup } from '../../../form-types';
-import { NumberInputComponent, SelectInputComponent, TextInputComponent } from '@form-controls';
+import { TextInputComponent } from '@form-controls';
 import { WeightMeasurementGroupComponent } from '../../../../../../components/weight-measurement-group/weight-measurement-group.component';
 
 @Component({
@@ -32,8 +32,6 @@ import { WeightMeasurementGroupComponent } from '../../../../../../components/we
     CommonModule,
     ReactiveFormsModule,
     TextInputComponent,
-    SelectInputComponent,
-    NumberInputComponent,
     WeightMeasurementGroupComponent
 
   ],

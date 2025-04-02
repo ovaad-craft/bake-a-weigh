@@ -1,3 +1,25 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+
+  @if ( Control.controls.protein) {
+
+    <lib-nutrient-tracker
+      ngDefaultControl
+      [formGroupName]="'protein'"
+      [Control]="Control.controls.protein"
+      [Label]="'protein'"
+    />
+
+  }
+
+  @if ( Control.controls.maxObsorption ) {
+
+    <lib-number-input
+      ngDefaultControl
+      [formControlName]="'maxObsorption'"
+      [Control]="Control.controls.maxObsorption"
+      [Label]="'max obsorption'"
+    />
+
+  }
+  
 </section>
