@@ -2853,6 +2853,134 @@ const DemoIngredients : IngredientProfile[] = [
       ]
     },
     locations : [ 'extract_category_id1100011' ]
+  },
+  {
+    name : 'Chopped Walnuts',
+    brand : 'Fisher',
+    id : 'walnuts_id1100011',
+    icon : 'some icon',
+    profileType : 'nut',
+    data : {
+      species : 'walnut',
+      roasted : true,
+      salted : false
+    },
+    nutrition : {
+      servingSize : {
+        amount : 1,
+        weightType : 'oz'
+      },
+      calories : 180,
+      totalFat : {
+        totalAmount : {
+          amount : 18,
+          weightType : 'g',
+          percentage : 23
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 1.5,
+              weightType : 'g',
+              percentage : 8
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Polyunsaturated Fat',
+            totalAmount : {
+              amount : 13,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Monounsaturated Fat',
+            totalAmount : {
+              amount : 2.5,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 4,
+          weightType : 'g',
+          percentage : 1
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 7
+            }
+          },
+          {
+            name : 'Sugars',
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 4,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Calcium',
+          amount : 30,
+          weightType : 'mg',
+          percentage : 2
+        },
+        {
+          name : 'Iron',
+          amount : 8,
+          weightType : 'mg',
+          percentage : 44
+        },
+        {
+          name : 'Potassium',
+          amount : 120,
+          weightType : 'mg',
+          percentage : 3
+        }
+      ],
+      ingredients : [ 'Walnuts' ]
+    },
+    locations : [ 'nuts_category_id1100011' ]
   }
 ]
 
@@ -3449,13 +3577,9 @@ export class IngredientManagerService {
 
 
   getIngredientToEdit() : IngredientProfile {
-    //const item = 'semolina_flour_id1100011';
-    //const ingredient = DemoIngredients.filter( a => a.id === item);
-    return DemoIngredients[4];
-
-    //console.log(ingredient);
     
-    //return ingredient[0];
+    return DemoIngredients[DemoIngredients.length - 1];
+    
     //return this.IngredientToEdit
 
   }
