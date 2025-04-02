@@ -190,6 +190,7 @@ export interface SpeciesPrimative {
 
 export interface NutProfileGroup extends SpeciesPrimative {
 
+    species : FormControl< string  | null >;
     roasted : FormControl< boolean | null >;
     salted  : FormControl< boolean | null >;
 
