@@ -1950,6 +1950,11 @@ const DemoIngredients : IngredientProfile[] = [
     brand : 'Kroger',
     id : 'olive_oil_id2200022',
     icon : 'some icon',
+    profileType : 'oil',
+    data : {
+      type : 'olive',
+      state : 'liquid'
+    },
     nutrition : {
       servingSize : {
         amount : 15,
@@ -3578,7 +3583,7 @@ export class IngredientManagerService {
 
   getIngredientToEdit() : IngredientProfile {
     
-    return DemoIngredients[DemoIngredients.length - 1];
+    return DemoIngredients[DemoIngredients.length - 8];
     
     //return this.IngredientToEdit
 
