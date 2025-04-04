@@ -1,3 +1,9 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  <lib-text-input
+    ngDefaultControl
+    [Control]="Control.controls.species"
+    [label]="'species'"
+  />
+
 </section>
