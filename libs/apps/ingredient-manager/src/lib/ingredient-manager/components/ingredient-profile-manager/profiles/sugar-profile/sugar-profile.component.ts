@@ -32,5 +32,5 @@ import { SugarProfileGroup } from '../../../../views/ingredient-editor/form-gene
 })
 export class SugarProfileComponent {
   @Input() Label = 'item label';
-  @Input() Control!: FormGroup<SugarProfileGroup>;
+  @Input() Control! : FormGroup< SugarProfileGroup >;
 }
