@@ -23,19 +23,22 @@ import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { SugarInfoPartial } from '../../../../../../views/ingredient-editor/form-generator/form-types';
-import { TextInputComponent } from '@form-controls';
+import { SelectInputComponent } from '@form-controls';
+import { SugarConsistencyType } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-sugar-info-partial',
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TextInputComponent
+    SelectInputComponent
   ],
   templateUrl: './sugar-info-partial.component.html',
   styleUrls: ['./sugar-info-partial.component.css'],
 })
 export class SugarInfoPartialComponent {
-  @Input() Control!: FormGroup< SugarInfoPartial >;
-  @Input() Label!: string;
+  @Input() Control! : FormGroup< SugarInfoPartial >;
+  @Input() Label!   : string;
+
+  SugarConsistencyOptions : SugarConsistencyType = 'small granules';
 }
