@@ -118,6 +118,7 @@ export type SugarInfoTypeMap ={
 
 export interface SugarProfile{
   type   : SugarType;
+  infoType : string;
   info   : SugarInfoTypeMap[this['type']];
   source : string;
 }

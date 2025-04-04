@@ -1269,6 +1269,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sugar',
     data : {
       type : 'cane',
+      infoType : 'group',
       info : {
         type : 'dark brown',
         consistency : 'small granules'
@@ -1391,6 +1392,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sugar',
     data : {
       type : 'cane',
+      infoType : 'group',
       info : {
         type : 'light brown',
         consistency : 'small granules'
@@ -1451,6 +1453,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sugar',
     data : {
       type : 'cane',
+      infoType : 'group',
       info : {
         type : 'white',
         consistency : 'small granules'
@@ -3715,7 +3718,7 @@ export class IngredientManagerService {
   getIngredientToEdit() : IngredientProfile {
     
     //return DemoIngredients[DemoIngredients.length - 2];
-    return DemoIngredients[2];
+    return DemoIngredients[14];
     
     //return this.IngredientToEdit
 
