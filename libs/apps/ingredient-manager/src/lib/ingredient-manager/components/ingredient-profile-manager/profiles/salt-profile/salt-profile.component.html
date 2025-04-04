@@ -1,3 +1,39 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'type'"
+    [Control]="Control.controls.type"
+    [Label]="'type'"
+    [OptionType]="SaltTypeSelection"
+    [OptionList]="[ 'table salt', 'sea salt', 'kosher salt', 'other' ]"
+  />
+  
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'consistency'"
+    [Control]="Control.controls.consistency"
+    [Label]="'consistency'"
+    [OptionType]="SaltConsistencySelection"
+    [OptionList]="[ 'extra fine', 'fine', 'coarse', 'fine crystal', 'crystal', 'other' ]"
+  />
+
+  <lib-toggle-input
+    ngDefaultControl
+    [formControlName]="'iodized'"
+    [Control]="Control.controls.iodized"
+    [Label]="'iodized'"
+  />
+
+  @if ( Control.controls.sodium ) {
+
+    <lib-nutrient-tracker
+      ngDefaultControl
+      [formGroupName]="'sodium'"
+      [Control]="Control.controls.sodium"
+      [Label]="'sodium'"
+    />
+
+  }
+  
 </section>
