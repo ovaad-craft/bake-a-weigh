@@ -1,0 +1,37 @@
+<section class="mainContainer" [formGroup]="Control">
+
+
+
+  <article class="listContainer" [formArrayName]="'list'">
+
+    @for(a of Control.controls.list.controls; track $index){
+
+
+
+    <article>
+
+
+      <lib-text-input
+        ngDefaultControl
+        [Control]="a"
+        [formControlName]="$index"
+      />
+
+      <button (click)="removeControl($index)">delete item</button>
+
+
+    </article>
+
+
+
+    }
+
+  </article>
+
+
+
+  <button (click)="addControl()">add item</button>
+
+
+
+</section>
