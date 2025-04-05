@@ -43,6 +43,7 @@ import { TextInputComponent } from '@form-controls';
 import { NutritionGroupComponent } from '../../components/nutrition-group/nutrition-group.component';
 import { NoteListComponent } from "../../components/note-list/note-list.component";
 import { IngredientProfileManagerComponent } from '../../components/ingredient-profile-manager/ingredient-profile-manager.component';
+import { LocationListComponent } from '../../components/location-list/location-list.component';
 
 
 
@@ -58,7 +59,8 @@ import { IngredientProfileManagerComponent } from '../../components/ingredient-p
     TextInputComponent,
     NutritionGroupComponent,
     NoteListComponent,
-    IngredientProfileManagerComponent
+    IngredientProfileManagerComponent,
+    LocationListComponent
 ],
   templateUrl: './ingredient-editor.component.html',
   styleUrl: './ingredient-editor.component.css',
