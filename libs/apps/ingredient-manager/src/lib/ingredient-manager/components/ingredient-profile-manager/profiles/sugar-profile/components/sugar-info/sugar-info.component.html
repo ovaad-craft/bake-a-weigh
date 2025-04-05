@@ -1,0 +1,29 @@
+<section class="mainContainer" [formGroup]="Control">
+
+
+
+  @switch ( InfoType ) {
+
+    @case ( 'partial' ) {
+
+      <lib-sugar-info-partial
+        ngDefaultControl
+        [Control]="getPartialInfo()"
+      />
+      
+    }
+
+    @case ( 'group' ) {
+
+      <lib-sugar-info-group
+        ngDefaultControl
+        [Control]="getCaneInfo()"
+      />
+
+    }
+
+  }
+
+
+  
+</section>

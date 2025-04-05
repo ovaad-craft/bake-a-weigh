@@ -168,7 +168,7 @@ export interface SugarProfileGroup {
 
     type     : FormControl< SugarType | null >;
     infoType : FormControl< string | null >;
-    info?  : FormGroup< SugarInfoPartial > | FormGroup< CaneInfoGroup >;
+    info?  : SugarInfoGroupType;
     source : FormControl< string | null >;
 
 }

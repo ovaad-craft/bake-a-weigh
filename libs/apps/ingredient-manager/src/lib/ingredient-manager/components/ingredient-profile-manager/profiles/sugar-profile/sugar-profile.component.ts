@@ -23,14 +23,23 @@ import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { SugarProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
+import { SelectInputComponent, TextInputComponent } from '@form-controls';
+import { SugarType } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-sugar-profile',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SelectInputComponent,
+    TextInputComponent
+  ],
   templateUrl: './sugar-profile.component.html',
   styleUrls: ['./sugar-profile.component.css'],
 })
 export class SugarProfileComponent {
   @Input() Label = 'item label';
   @Input() Control! : FormGroup< SugarProfileGroup >;
+
+  SugarTypeOptions : SugarType = 'other'
 }
