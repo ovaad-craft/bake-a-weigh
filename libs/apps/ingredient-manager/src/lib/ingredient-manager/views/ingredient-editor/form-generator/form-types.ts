@@ -166,8 +166,9 @@ export type SugarInfoGroupMap = {
 
 export interface SugarProfileGroup {
 
-    type   : FormControl< SugarType | null >;
-    info   : FormGroup< SugarInfoPartial > | FormGroup< CaneInfoGroup >;
+    type     : FormControl< SugarType | null >;
+    infoType : FormControl< string | null >;
+    info?  : SugarInfoGroupType;
     source : FormControl< string | null >;
 
 }

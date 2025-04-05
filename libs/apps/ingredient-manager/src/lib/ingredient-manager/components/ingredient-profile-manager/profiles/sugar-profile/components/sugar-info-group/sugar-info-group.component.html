@@ -1,0 +1,19 @@
+<section class="mainContainer" [formGroup]="Control">
+  
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.consistency"
+    [OptionType]="SugarConsistencyOptions"
+    [OptionList]="[ 'powdered', 'small granules', 'large granules', 'crystals', 'rock', 'block', 'cake', 'paste', 'liquid' ]"
+    [Label]="'consistency'"
+  />
+  
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.type"
+    [OptionType]="SugarTypeOptions"
+    [OptionList]="[ 'white', 'light brown', 'dark brown', 'raw' ]"
+    [Label]="'type'"
+  />
+
+</section>
