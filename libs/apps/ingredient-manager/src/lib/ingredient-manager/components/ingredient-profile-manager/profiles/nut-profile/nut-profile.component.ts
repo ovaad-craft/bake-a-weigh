@@ -22,10 +22,17 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { NutProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
+import { TextInputComponent, ToggleInputComponent } from '@form-controls';
 
 @Component({
   selector: 'lib-nut-profile',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TextInputComponent,
+    ToggleInputComponent
+  ],
   templateUrl: './nut-profile.component.html',
   styleUrls: ['./nut-profile.component.css'],
 })

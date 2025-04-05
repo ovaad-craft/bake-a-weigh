@@ -1,0 +1,17 @@
+<section class="mainContainer" [formGroup]="Control">
+  
+  <lib-select-input
+    [Control]="Control.controls.type"
+    [OptionType]="TypeSelect"
+    [OptionList]="[ 'low fat', 'skim', '2%', 'whole', 'butter milk']"
+    [Label]="'type'"
+  />
+  
+  <lib-select-input
+    [Control]="Control.controls.state"
+    [OptionType]="TypeSelect"
+    [OptionList]="[ 'powdered', 'liquid', 'condensed' ]"
+    [Label]="'state'"
+  />
+  
+</section>

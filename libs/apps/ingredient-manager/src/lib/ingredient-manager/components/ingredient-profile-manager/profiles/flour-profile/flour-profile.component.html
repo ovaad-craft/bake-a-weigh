@@ -1,3 +1,50 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'type'"
+    [Control]="Control.controls.type"
+    [OptionType]="FlourTypeSelection"
+    [OptionList]="[ 'wheat', 'whole wheat', 'rice', 'rye', 'barley', 'spelt', 'buckwheat', 'other' ]"
+    [Label]="'type'"
+  />
+  
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'classification'"
+    [Control]="Control.controls.classification"
+    [OptionType]="FlourClassificationSelection"
+    [OptionList]="[ 'cake', 'pastry', 'all purpose', 'bread', '0', '00', '000', '0000', 'other' ]"
+    [Label]="'classifcation'"
+  />
+
+  <lib-toggle-input
+    ngDefaultControl
+    [formControlName]="'bleached'"
+    [Control]="Control.controls.bleached"
+    [Label]="'bleached'"
+  />
+
+  @if ( Control.controls.maxHydration ) {
+
+    <lib-number-input
+      ngDefaultControl
+      [formControlName]="'maxHydration'"
+      [Control]="Control.controls.maxHydration"
+      [Label]="'max hydration'"
+    />
+
+  }
+
+  @if ( Control.controls.protein ) {
+
+    <lib-nutrient-tracker
+      ngDefaultControl
+      [formGroupName]="'protein'"
+      [Control]="Control.controls.protein"
+      [Label]="'protein'"
+    />
+
+  }
+
 </section>

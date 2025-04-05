@@ -1,3 +1,38 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.type"
+    [Label]="'type'"
+    [OptionType]="'DairyType'"
+    [OptionList]="[ 'cow', 'goat' ]"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.form"
+    [Label]="'form'"
+    [OptionType]="'DairyForm'"
+    [OptionList]="[ 'milk', 'cream', 'yogurt', 'butter', 'cheese' ]"
+  />
+
+  <lib-dairy-spec-manager
+    ngDefaultControl
+    [Control]="Control.controls.specs"
+    [ControlType]="Control.value.form!"
+  />
+
+  <lib-toggle-input
+    ngDefaultControl
+    [Control]="Control.controls.pasturized"
+    [Label]="'pasturized'"
+  />
+  
+  <lib-toggle-input
+    ngDefaultControl
+    [Control]="Control.controls.homogenized"
+    [Label]="'homogenized'"
+  />
+  
+  
 </section>

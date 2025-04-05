@@ -20,10 +20,11 @@ import { createSweetenerProfileGroup } from "../../../profiles/sweetener-profile
 export function createIngredientDataGroup( ingredientType : IngredientProfileType, data? : IngredientDataType ) : IngredientDataGroupType {
 
 
-
+    
     let dataGroup! : IngredientDataGroupType;
 
     switch( ingredientType ) {
+
         case 'flour'     : dataGroup = createFlourProfileGroup(     data ? data as FlourProfile     : undefined ); break;
         case 'salt'      : dataGroup = createSaltProfileGroup(      data ? data as SaltProfile      : undefined ); break;
         case 'sugar'     : dataGroup = createSugarProfileGroup(     data ? data as SugarProfile     : undefined ); break;
@@ -36,8 +37,8 @@ export function createIngredientDataGroup( ingredientType : IngredientProfileTyp
         case 'herb'      : dataGroup = createHerbProfileGroup(      data ? data as HerbProfile      : undefined ); break;
         case 'extract'   : dataGroup = createExractProfileGroup(    data ? data as ExtractProfile   : undefined ); break;
         case 'sweetener' : dataGroup = createSweetenerProfileGroup( data ? data as SweetenerProfile : undefined ); break;
-    }
 
+    }
 
 
     return dataGroup;

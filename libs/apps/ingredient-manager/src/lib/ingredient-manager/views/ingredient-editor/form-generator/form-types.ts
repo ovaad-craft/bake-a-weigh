@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
-import { ButterType, CaneType, CheeseHydrationType, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, ExtractState, ExtractType, FlourClassification, FlourType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
+import { ButterType, CaneType, CheeseHydrationType, CheeseState, CheeseTextureType, CreamState, CreamType, DairyForm, DairyType, ExtractState, ExtractType, FlourClassification, FlourType, IngredientProfileType, MilkState, MilkType, NutrientAmount, NutrientTracker, OilState, PlantPart, ProduceState, ProduceType, SaltConsistency, SaltType, SugarConsistencyType, SugarType, SweetenerFormType, WeightType, YogurtType } from "@bake-a-weigh/site-types";
 
 
 
@@ -115,7 +115,7 @@ export interface FlourProfileGroup{
     type           : FormControl< FlourType | null >;
     classification : FormControl< FlourClassification | null >;
     bleached       : FormControl< boolean | null >;
-    maxHydration?  : FormControl< number | null >;
+    maxHydration?  : FormControl< number  | null >;
     protein?       : FormGroup< NutrientTrackerGroup >;
 
 }
@@ -166,8 +166,9 @@ export type SugarInfoGroupMap = {
 
 export interface SugarProfileGroup {
 
-    type   : FormControl< SugarType | null >;
-    info   : FormGroup< SugarInfoPartial > | FormGroup< CaneInfoGroup >;
+    type     : FormControl< SugarType | null >;
+    infoType : FormControl< string | null >;
+    info?  : SugarInfoGroupType;
     source : FormControl< string | null >;
 
 }
@@ -190,6 +191,7 @@ export interface SpeciesPrimative {
 
 export interface NutProfileGroup extends SpeciesPrimative {
 
+    species : FormControl< string  | null >;
     roasted : FormControl< boolean | null >;
     salted  : FormControl< boolean | null >;
 
@@ -237,6 +239,7 @@ export interface CheeseSpecsGroup {
     kind      : FormControl< string | null >;
     texture   : FormControl< CheeseTextureType | null >;
     hydration : FormControl< CheeseHydrationType | null >;
+    state     : FormControl< CheeseState | null >;
 
 }
 
@@ -333,7 +336,7 @@ export type IngredientDataGroupType =
         icon?        : FormControl< string | null >;
         nutrition?   : FormGroup< NutritionGroup >;
         notes?       : FormGroup< FormArrayGroupList< IngredientNoteFormGroup > >;
-        profileType? : FormControl< string | null >;
+        profileType? : FormControl< IngredientProfileType | null >;
         data?        : IngredientDataGroupType;
         locations    : FormArray< FormControl< string | null > >;
 

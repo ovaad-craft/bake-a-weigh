@@ -1,0 +1,58 @@
+<section class="mainContainer">
+
+  @switch ( ControlType ) {
+
+    @case ( 'milk' ) {
+
+      <lib-milk-specs
+        ngDefaultControl
+        [Control]="getMilkSpecs()"
+        [Label]="'details'"
+      />
+
+    }
+
+    @case ( 'cream' ) {
+
+      <lib-cream-specs
+        ngDefaultControl
+        [Control]="getCreamSpecs()"
+        [Label]="'details'"
+      />
+
+    }
+
+    @case ( 'yogurt' ) {
+
+      <lib-yogurt-specs
+        ngDefaultControl
+        [Control]="getYogurtSpecs()"
+        [Label]="'details'"
+      />
+
+    }
+
+    @case ( 'butter' ) {
+
+      <lib-butter-specs
+        ngDefaultControl
+        [Control]="getButterSpecs()"
+        [Label]="'details'"
+      />
+
+    }
+
+    @case ( 'cheese' ) {
+
+      <lib-cheese-specs
+        ngDefaultControl
+        [Control]="getCheeseSpecs()"
+        [Label]="'details'"
+      />
+
+    }
+
+  }
+
+  <!--<p>{{ Control.value | json }}</p>-->
+</section>

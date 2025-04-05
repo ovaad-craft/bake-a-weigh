@@ -32,12 +32,24 @@
         <lib-text-input
             [Control]="IngredientEditorForm.controls.profileType!"
             ngDefaultControl
-            [formGroupName]="'profileType'"
+            [formControlName]="'profileType'"
             [label]="'profile type'"
             [InputSize]="33"
         />
         
+        @if ( IngredientEditorForm.controls.data ) {
+    
+            <lib-ingredient-profile-manager
+                ngDefaultControl
+                [Control]="IngredientEditorForm.controls.data"
+                [ProfileType]="IngredientEditorForm.value.profileType!"
+                [formGroupName]="'data'"
+            />
+        }
     }
+
+
+
 
 
 

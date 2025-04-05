@@ -1269,6 +1269,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sugar',
     data : {
       type : 'cane',
+      infoType : 'group',
       info : {
         type : 'dark brown',
         consistency : 'small granules'
@@ -1391,6 +1392,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sugar',
     data : {
       type : 'cane',
+      infoType : 'group',
       info : {
         type : 'light brown',
         consistency : 'small granules'
@@ -1451,6 +1453,7 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'sugar',
     data : {
       type : 'cane',
+      infoType : 'group',
       info : {
         type : 'white',
         consistency : 'small granules'
@@ -1604,8 +1607,20 @@ const DemoIngredients : IngredientProfile[] = [
     profileType : 'flour',
     data : {
       type : 'wheat',
-      classification : '00',
-      bleached : false
+      classification : 'other',
+      bleached : false,
+      maxHydration : 80,
+      protein : {
+        name : 'protein',
+        servingSize : {
+          amount : 45,
+          weightType : 'g'
+        },
+        amount : {
+          amount : 3,
+          weightType : 'g'
+        }
+      }
     },
     locations : ['semolina_flours_category_id1100011']
   },
@@ -1761,6 +1776,20 @@ const DemoIngredients : IngredientProfile[] = [
         }
       ],
       ingredients : ['Steel Cut Oats']
+    },
+    profileType : 'grain',
+    data : {
+      protein : {
+        name : 'protein',
+        servingSize : {
+          amount : 40,
+          weightType : 'g'
+        },
+        amount : {
+          amount : 12,
+          weightType : 'g'
+        }
+      }
     },
     locations : ['oats_category_id1100011']
   },
@@ -1924,6 +1953,11 @@ const DemoIngredients : IngredientProfile[] = [
     brand : 'Kroger',
     id : 'olive_oil_id2200022',
     icon : 'some icon',
+    profileType : 'oil',
+    data : {
+      type : 'olive',
+      state : 'liquid'
+    },
     nutrition : {
       servingSize : {
         amount : 15,
@@ -1970,6 +2004,1114 @@ const DemoIngredients : IngredientProfile[] = [
       ingredients : ['Extra Virgin Olive Oil']
     },
     locations : ['olive_oils_category_id1100011']
+  },
+  {
+    name : 'Whole Milk',
+    brand : 'Kemps',
+    id : 'milk_id1100011',
+    icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'milk',
+      pasturized : true,
+      homogenized : true,
+      specs : {
+        type : 'whole',
+        state : 'liquid'
+      }
+    },
+    nutrition : {
+      servingSize: {
+        amount : 236,
+        weightType : 'ml'
+      },
+      calories : 150,
+      totalFat : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'g',
+          percentage : 10
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 5,
+              weightType : 'g',
+              percentage : 25
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 35,
+          weightType : 'mg',
+          percentage : 12
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 125,
+          weightType : 'mg'
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 12,
+          weightType : 'g'
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 12,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Includes 0g Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount :{
+          amount : 8,
+          weightType : 'g',
+          percentage : 16
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 2.5,
+          weightType : 'mcg',
+          percentage : 10
+        },
+        {
+          name : 'Calcium',
+          amount : 300,
+          weightType : 'mg',
+          percentage : 25
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 400,
+          weightType : 'mg',
+          percentage : 8
+        }
+      ],
+      ingredients : ['milk']
+    },
+    locations : ['milk_category_id1100011']
+  },
+  {
+    name : 'Pure Irish Butter',
+    brand : 'Kerrygold',
+    id : 'butter_id1100011',
+    icon : 'some icon',
+    profileType: 'dairy',
+    data : {
+      type : 'cow',
+      form : 'butter',
+      pasturized : true,
+      homogenized : true,
+      specs : {
+        type : 'unsalted'
+      }
+    },
+    nutrition : {
+      servingSize :{
+        amount : 14,
+        weightType : 'g'
+      },
+      calories : 100,
+      totalFat : {
+        totalAmount : {
+          amount : 11,
+          weightType : 'g',
+          percentage : 14
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 7,
+              weightType : 'g',
+              percentage : 37
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 30,
+          weightType : 'mg',
+          percentage : 10
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 100,
+          weightType : 'mg',
+          percentage : 4
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      ingredients : [
+        'Pasturized Cream',
+        'Salt'
+      ]
+    },
+    locations : ['butter_category_id1100011']
+  },
+  {
+    name : 'Heavy Whipping Cream',
+    brand : 'Kemps',
+    id : 'cream_id1100011',
+    icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'cream',
+      pasturized : true,
+      homogenized : true,
+      specs : {
+        type : 'heavy cream',
+        state : 'liquid'
+      }
+    },
+    nutrition : {
+      servingSize : {
+        amount : 15,
+        weightType : 'ml'
+      },
+      calories : 50,
+      totalFat : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 6
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 3.5,
+              weightType : 'g',
+              percentage : 18
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 20,
+          weightType : 'mg',
+          percentage : 7
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            },
+            nutrients : [
+              {
+                name : 'Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Potassium',
+          amount : 15,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Vitamin A',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Phosphorus',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+      ],
+      ingredients : [
+        'Heavy Cream',
+        'Milk',
+        'Carrageenan',
+        'Mono and Diglycerides and Polysorbate 80'
+      ]
+    },
+    locations: ['cream_category_id1100011']
+  },
+  {
+    name : 'Mozzarella Cheese',
+    brand : 'Sargento',
+    id : 'cheese_id1100011',
+    icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'cheese',
+      specs : {
+        kind : 'cheddar',
+        texture : 'solid',
+        hydration : 'dry',
+        state : 'shredded'
+      },
+      homogenized : true,
+      pasturized : true
+    },
+    nutrition: {
+      servingSize : {
+        amount : 28,
+        weightType : 'g'
+      },
+      calories : 90,
+      totalFat : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 7
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 3,
+              weightType : 'g',
+              percentage : 15
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 15,
+          weightType : 'mg',
+          percentage : 5
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 190,
+          weightType : 'mg',
+          percentage : 8
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 1
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 1
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Includes 0g Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 7,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0.1,
+          weightType : 'mcg',
+          percentage : 0
+        },
+        {
+          name : 'Calcium',
+          amount : 200,
+          weightType : 'mg',
+          percentage : 15
+        },
+        {
+          name : 'Iron',
+          amount : 0.1,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 50,
+          weightType : 'mg',
+          percentage : 0
+        }
+      ],
+      ingredients : [
+        'Pasturized Part-Skim Milk',
+        'Cheese Culture',
+        'Salt',
+        'Enzymes',
+        'Potato Starch (to prevent caking)',
+        'Powdered Cellulose (to prevent caking)',
+        'Natamycin (a natural mold inhibitor)'
+      ]
+    },
+    locations : [ 'cheese_category_id110011']
+  },
+  {
+    name : 'Low Fat Strawberry Yogurt',
+    brand : 'Yoplait',
+    id : 'yogurt_id1100011',
+    icon : 'some icon',
+    profileType : 'dairy',
+    data : {
+      type : 'cow',
+      form : 'yogurt',
+      specs : {
+        type : 'flavored',
+        flavor : 'strawberry'
+      },
+      pasturized : true,
+      homogenized : true
+    },
+    nutrition :{
+      servingSize : {
+        amount : 170,
+        weightType : 'g'
+      },
+      calories : 140,
+      totalFat : {
+        totalAmount : {
+          amount : 1.5,
+          weightType : 'g',
+          percentage : 2
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 1,
+              weightType : 'g',
+              percentage : 5
+            }            
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'mg',
+          percentage : 2
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 85,
+          weightType : 'mg',
+          percentage : 4
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 26,
+          weightType : 'g',
+          percentage : 9
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 18,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Incl. Added Sugars',
+                totalAmount : {
+                  amount : 13,
+                  weightType : 'g',
+                  percentage : 26
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 10
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 3,
+          weightType: 'mcg',
+          percentage : 15
+        },
+        {
+          name : 'Calcium',
+          amount : 200,
+          weightType : 'mg',
+          percentage : 15
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 260,
+          weightType : 'mg',
+          percentage : 6
+        },
+        {
+          name : 'Vitamin A',
+          amount : 180,
+          weightType : 'mcg',
+          percentage : 20
+        }
+      ],
+      ingredients : [
+        'Cultured Grade A Low Fat Milk',
+        'Sugar',
+        'Strawberries',
+        'Modified Food Starch',
+        'Water',
+        'Contains 1% or less of:',
+        'Kosher Gelatin',
+        'Corn Starch',
+        'Carmine (for color)',
+        'Pectin',
+        'Natural Flavor',
+        'Vitamin A Acetate',
+        'Vitamin D3'
+      ]
+    },
+    locations : [ 'yogurt_category_id1100011']
+  },
+  {
+    name : 'Vanilla Extract',
+    brand : 'Mc Cormick',
+    id : 'extract_id1100011',
+    icon : 'some icon',
+    profileType : 'extract',
+    data : {
+      type : 'alcohol',
+      state : 'liquid'
+    },
+    nutrition : {
+      servingSize : {
+        amount : 100,
+        weightType : 'g'
+      },
+      calories : 292,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Pollyunsaturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Monunsaturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 8,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 12,
+          weightType : 'g',
+          percentage : 4
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 12,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Sugar Alcohol',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Calcium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Iron',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Potassium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin A',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Vitamin C',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin E',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin K',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Thiamin',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Riboflavin',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Niacin',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Vitamin B6',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Folate',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Vitamin B12',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Pathothenic Acid',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Phosphorus',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Magnesium',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Zinc',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Selenium',
+          amount : 0,
+          weightType : 'mcg'
+        },
+        {
+          name : 'Copper',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Manganese',
+          amount : 0,
+          weightType : 'mg'
+        }
+      ],
+      ingredients : [
+        'Water',
+        'Alcohol (35%)',
+        'Sugar',
+        'Vanilla Bean Extractives'
+      ]
+    },
+    locations : [ 'extract_category_id1100011' ]
+  },
+  {
+    name : 'Chopped Walnuts',
+    brand : 'Fisher',
+    id : 'walnuts_id1100011',
+    icon : 'some icon',
+    profileType : 'nut',
+    data : {
+      species : 'walnut',
+      roasted : true,
+      salted : false
+    },
+    nutrition : {
+      servingSize : {
+        amount : 1,
+        weightType : 'oz'
+      },
+      calories : 180,
+      totalFat : {
+        totalAmount : {
+          amount : 18,
+          weightType : 'g',
+          percentage : 23
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 1.5,
+              weightType : 'g',
+              percentage : 8
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Polyunsaturated Fat',
+            totalAmount : {
+              amount : 13,
+              weightType : 'g'
+            }
+          },
+          {
+            name : 'Monounsaturated Fat',
+            totalAmount : {
+              amount : 2.5,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'mg',
+          percentage : 0
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 4,
+          weightType : 'g',
+          percentage : 1
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 2,
+              weightType : 'g',
+              percentage : 7
+            }
+          },
+          {
+            name : 'Sugars',
+            totalAmount : {
+              amount : 1,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount : 4,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'mg'
+        },
+        {
+          name : 'Calcium',
+          amount : 30,
+          weightType : 'mg',
+          percentage : 2
+        },
+        {
+          name : 'Iron',
+          amount : 8,
+          weightType : 'mg',
+          percentage : 44
+        },
+        {
+          name : 'Potassium',
+          amount : 120,
+          weightType : 'mg',
+          percentage : 3
+        }
+      ],
+      ingredients : [ 'Walnuts' ]
+    },
+    locations : [ 'nuts_category_id1100011' ]
+  },
+  {
+    name : 'HoneyCrisp',
+    brand : 'Dole',
+    id : 'apples_id1100011',
+    icon : 'some icon',
+    profileType : 'produce',
+    data : {
+      type : 'fruit',
+      state : 'fresh'
+    },
+    nutrition : {
+      servingSize : {
+        amount : 125,
+        weightType : 'g'
+      },
+      calories : 70,
+      totalFat : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        nutrients : [
+          {
+            name : 'Saturated Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g',
+              percentage : 0
+            }
+          },
+          {
+            name : 'Trans Fat',
+            totalAmount : {
+              amount : 0,
+              weightType : 'g'
+            }
+          }
+        ]
+      },
+      cholesterol : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
+      },
+      sodium : {
+        totalAmount : {
+          amount : 0,
+          weightType : 'g'
+        }
+      },
+      totalCarbohydrates : {
+        totalAmount : {
+          amount : 17,
+          weightType : 'g',
+          percentage : 7
+        },
+        nutrients : [
+          {
+            name : 'Dietary Fiber',
+            totalAmount : {
+              amount : 3,
+              weightType : 'g',
+              percentage : 11
+            }
+          },
+          {
+            name : 'Total Sugars',
+            totalAmount : {
+              amount : 13,
+              weightType : 'g'
+            },
+            nutrients : [
+              {
+                name : 'Added Sugars',
+                totalAmount : {
+                  amount : 0,
+                  weightType : 'g',
+                  percentage : 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      protein : {
+        totalAmount : {
+          amount: 0,
+          weightType : 'g'
+        }
+      },
+      vitaminsAndMinerals : [
+        {
+          name : 'Vitamin D',
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        {
+          name : 'Calcium',
+          amount : 8,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Iron',
+          amount : 0.15,
+          weightType : 'mg',
+          percentage : 0
+        },
+        {
+          name : 'Potassium',
+          amount : 135,
+          weightType : 'mg',
+          percentage : 2
+        }
+      ],
+      ingredients : [ 'apple' ]
+    },
+    locations : [ 'apple_category_id1100011' ]
   }
 ]
 
@@ -2120,7 +3262,39 @@ const DemoKeys : CategoryKey[] = [
   {
     name: 'Dairy',
     id: 'dairy_category_id1100011',
-    removable: false
+    removable: false,
+    subCategories : [
+      {
+        name : 'Milk',
+        id : 'milk_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
+      {
+        name : 'Butter',
+        id : 'butter_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
+      {
+        name : 'Cream',
+        id : 'cream_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
+      {
+        name : 'Cheese',
+        id : 'cheese_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      },
+      {
+        name : 'Yogurt',
+        id : 'yogurt_category_id1100011',
+        icon : 'some icon',
+        removable : true
+      }
+    ]
   },
   {
     name: 'Produce',
@@ -2143,7 +3317,15 @@ const DemoKeys : CategoryKey[] = [
             name : 'Fresh',
             id : 'fresh_fruit_category_id1100011',
             icon : 'some icon',
-            removable: true
+            removable: true,
+            subCategories : [
+              {
+                name : 'Apples',
+                id : 'apple_category_id1100011',
+                icon : 'some icon',
+                removable : true
+              }
+            ]
           }
         ]
       },
@@ -2535,7 +3717,9 @@ export class IngredientManagerService {
 
   getIngredientToEdit() : IngredientProfile {
     
-    return DemoIngredients[1];
+    //return DemoIngredients[DemoIngredients.length - 2];
+    return DemoIngredients[13];
+    
     //return this.IngredientToEdit
 
   }

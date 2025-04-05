@@ -1,0 +1,21 @@
+<section class="mainContainer" [formGroup]="Control">
+  
+  <h5>{{Label}}</h5>
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.type"
+    [OptionType]="CreamTypeSelect"
+    [OptionList]="[ 'half & half', 'heavy cream', 'sour cream' ]"
+    [Label]="'type'"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.state"
+    [OptionType]="CreamStateSelect"
+    [OptionList]="[ 'liquid', 'whipped', 'frozen' ]"
+    [Label]="'state'"
+  />
+
+</section>

@@ -2,7 +2,7 @@
   return 'site-types';
 }*/
 
-export type WeightType = 'mcg' | 'mg' | 'g' | 'ml';
+export type WeightType = 'mcg' | 'mg' | 'g' | 'oz' | 'ml';
 export interface IngredientNote{
   title       : string;
   description : string;
@@ -118,6 +118,7 @@ export type SugarInfoTypeMap ={
 
 export interface SugarProfile{
   type   : SugarType;
+  infoType : string;
   info   : SugarInfoTypeMap[this['type']];
   source : string;
 }
@@ -154,7 +155,17 @@ export type MilkType = 'low fat' | 'skim' | '2%' | 'whole' | 'butter milk';
 
 export type MilkState = 'powdered' | 'liquid' | 'condensed';
 
-export type CreamType = 'half & half' | 'heavy cream' | 'sour cream';
+
+
+export type HalfAndHalfType = 'half & half';
+
+export type HeavyCreamType = 'heavy cream';
+
+export type SourCreamType = 'sour cream';
+
+export type CreamType = HalfAndHalfType | HeavyCreamType | SourCreamType;
+
+//export type CreamType = 'half & half' | 'heavy cream' | 'sour cream';
 
 export type CreamState = 'liquid' |  'whipped' | 'frozen';
 

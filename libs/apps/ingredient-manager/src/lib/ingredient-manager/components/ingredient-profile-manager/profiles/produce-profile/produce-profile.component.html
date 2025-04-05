@@ -1,3 +1,20 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'type'"
+    [Control]="Control.controls.type"
+    [OptionType]="ProduceTypeSelection"
+    [OptionList]="[ 'fruit', 'vegetable' ]"
+    [Label]="'type'"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'state'"
+    [Control]="Control.controls.state"
+    [OptionType]="ProduceStateSelection"
+    [OptionList]="[ 'fresh', 'frozen', 'canned', 'preserved', 'pickled', 'dried', 'powdered' ]"
+  />
+
 </section>

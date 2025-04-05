@@ -1,3 +1,18 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  <lib-text-input
+    ngDefaultControl
+    [formControlName]="'species'"
+    [Control]="Control.controls.species"
+    [label]="'species'"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'part'"
+    [Control]="Control.controls.part"
+    [OptionType]="HerbPartSelection"
+    [OptionList]="[ 'root', 'stem', 'leaf', 'flower', 'bark', 'berry', 'fruit', 'seed', 'other' ]"
+  />
+
 </section>

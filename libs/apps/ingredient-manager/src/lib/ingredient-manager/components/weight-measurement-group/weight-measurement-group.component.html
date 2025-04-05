@@ -1,0 +1,19 @@
+<section class="mainContainer" [formGroup]="Control">
+  
+  <lib-number-input
+    ngDefaultControl
+    [formControlName]="'amount'"
+    [Control]="Control.controls.amount"
+    [Label]="'amount'"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [formControlName]="'weightType'"
+    [Control]="Control.controls.weightType"
+    [OptionType]="WeightTypeSelection"
+    [OptionList]="[ 'g', 'mcg', 'mg', 'ml' ]"
+    [Label]="'weight type'"
+  />
+
+</section>

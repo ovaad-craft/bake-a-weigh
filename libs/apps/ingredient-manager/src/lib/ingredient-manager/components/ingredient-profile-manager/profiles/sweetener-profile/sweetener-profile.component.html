@@ -1,3 +1,16 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  <lib-text-input
+    ngDefaultControl
+    [Control]="Control.controls.type"
+    [label]="'type'"
+  />
+
+  <lib-select-input
+    ngDefaultControl
+    [Control]="Control.controls.form"
+    [OptionType]="SweetenerFormOptions"
+    [OptionList]="[ 'liquid', 'powder', 'crystal', 'block', 'paste' ]"
+    [Label]="'form'"
+  />
 </section>

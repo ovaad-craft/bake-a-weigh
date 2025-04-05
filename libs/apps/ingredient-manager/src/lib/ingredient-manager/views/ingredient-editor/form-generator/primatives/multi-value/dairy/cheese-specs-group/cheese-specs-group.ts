@@ -3,6 +3,7 @@ import { CheeseSpecs }                    from "@bake-a-weigh/site-types";
 import { createCheeseTextureTypeControl } from "../../../single-value/dairy/cheese-texture-type-control/cheese-texture-type-control";
 import { createCheeseHydrationControl }   from "../../../single-value/dairy/cheese-hydration-control/cheese-hydration-control";
 import { CheeseSpecsGroup }               from "../../../../form-types";
+import { createCheeseStateControl } from "../../../single-value/dairy/cheese-state-control/cheese-state-control";
 
 
 
@@ -17,8 +18,8 @@ export function createCheeseSpecsGroup( defaultSpecs? : CheeseSpecs ) : FormGrou
         kind      : new FormControl< string | null >( defaultSpecs?.kind ?? null ),
 
         texture   : createCheeseTextureTypeControl( defaultSpecs ? defaultSpecs.texture   : undefined ),
-        hydration : createCheeseHydrationControl(   defaultSpecs ? defaultSpecs.hydration : undefined )
-
+        hydration : createCheeseHydrationControl(   defaultSpecs ? defaultSpecs.hydration : undefined ),
+        state     : createCheeseStateControl (      defaultSpecs ? defaultSpecs.state     : undefined )
 
     });
 

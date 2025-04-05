@@ -1,1 +1,137 @@
-<p>ingredient-profile-manager works</p>
+<section class="mainContainer">
+    
+    <h5>Details</h5>
+
+
+
+    @if( Control !== undefined ) {
+
+        @switch ( ProfileType ) {
+
+            @case ( 'flour' ) {
+
+                <lib-flour-profile
+                    ngDefaultControl
+                    [Control]="getFlourProfile()"
+                    [formGroup]="Control"
+                />
+            
+            }
+
+            @case ( 'salt' ) {
+
+                <lib-salt-profile
+                    ngDefaultControl
+                    [Control]="getSaltProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'sugar' ) {
+
+                <lib-sugar-profile
+                    ngDefaultControl
+                    [Control]="getSugarProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'grain' ) {
+
+                <lib-grain-profile
+                    ngDefaultControl
+                    [Control]="getGrainProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'nut' ) {
+
+                <lib-nut-profile
+                    ngDefaultControl
+                    [Control]="getNutProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'seed' ) {
+
+                <lib-seed-profile
+                    ngDefaultControl
+                    [Control]="getSeedProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'dairy' ) {
+
+                <lib-dairy-profile
+                    ngDefaultControl
+                    [Control]="getDairyProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'produce' ) {
+
+                <lib-produce-profile
+                    ngDefaultControl
+                    [Control]="getProduceProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'oil' ) {
+
+                <lib-oil-profile
+                    ngDefaultControl
+                    [Control]="getOilProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'herb' ) {
+
+                <lib-herb-profile
+                    ngDefaultControl
+                    [Control]="getHerbProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'extract' ) {
+
+                <lib-extract-profile
+                    ngDefaultControl
+                    [Control]="getExtractProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+            
+            @case ( 'sweetener' ) {
+
+                <lib-sweetener-profile
+                    ngDefaultControl
+                    [Control]="getSweetenerProfile()"
+                    [formGroup]="Control"
+                />
+
+            }
+
+        }
+
+    }
+
+
+
+</section>

@@ -1,0 +1,9 @@
+<section class="mainContainer">
+  <label>
+    <h6>{{ Label }}</h6>
+
+    <button (click)="toggleControl()">{{Control.value === true ? 'active' : 'inactive' }}</button>
+
+    <input [(ngModel)]="Control.value" hidden />
+  </label>
+</section>
