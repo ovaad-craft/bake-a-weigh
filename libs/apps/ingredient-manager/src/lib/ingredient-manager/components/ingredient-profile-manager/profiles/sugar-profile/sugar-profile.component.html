@@ -1,6 +1,7 @@
 <section class="mainContainer" [formGroup]="Control">
   
   
+  
   <lib-select-input
     ngDefaultControl
     [Control]="Control.controls.type"
@@ -15,10 +16,17 @@
     [label]="'infoType'"
   />
 
+  <lib-sugar-info
+    ngDefaultControl
+    [Control]="Control.controls.info!"
+  />
+
   <lib-text-input
     ngDefaultControl
     [Control]="Control.controls.source"
     [label]="'source'"
   />
+
+  
 
 </section>

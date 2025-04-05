@@ -25,6 +25,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { SugarProfileGroup } from '../../../../views/ingredient-editor/form-generator/form-types';
 import { SelectInputComponent, TextInputComponent } from '@form-controls';
 import { SugarType } from '@bake-a-weigh/site-types';
+import { SugarInfoComponent } from './components/sugar-info/sugar-info.component';
 
 @Component({
   selector: 'lib-sugar-profile',
@@ -32,7 +33,8 @@ import { SugarType } from '@bake-a-weigh/site-types';
     CommonModule,
     ReactiveFormsModule,
     SelectInputComponent,
-    TextInputComponent
+    TextInputComponent,
+    SugarInfoComponent
   ],
   templateUrl: './sugar-profile.component.html',
   styleUrls: ['./sugar-profile.component.css'],
