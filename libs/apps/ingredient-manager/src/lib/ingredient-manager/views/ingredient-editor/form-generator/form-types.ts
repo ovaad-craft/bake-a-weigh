@@ -338,7 +338,8 @@ export type IngredientDataGroupType =
         notes?       : FormGroup< FormArrayGroupList< IngredientNoteFormGroup > >;
         profileType? : FormControl< IngredientProfileType | null >;
         data?        : IngredientDataGroupType;
-        locations    : FormArray< FormControl< string | null > >;
+        locations    : FormGroup< FormArrayControlList< string > >;
+        //locations    : FormArray< FormControl< string | null > >;
 
     }
 
