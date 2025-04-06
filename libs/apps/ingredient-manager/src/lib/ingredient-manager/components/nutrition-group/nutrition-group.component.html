@@ -39,7 +39,7 @@
         }
         @else {
 
-            <button (click)="addGroup('totalFat')">add</button>
+            <button type="button" (click)="addGroup('totalFat')">add</button>
 
         }
 
@@ -63,7 +63,7 @@
                     [formGroupName]="'cholesterol'"
                 />
 
-                <button (click)="removeGroup('cholesterol')">delete cholesterol</button>
+                <button type="button" (click)="removeGroup('cholesterol')">delete cholesterol</button>
 
             </article>
     
@@ -71,7 +71,7 @@
         }
         @else {
 
-            <button (click)="addGroup('cholesterol')">add cholesterol</button>
+            <button type="button" (click)="addGroup('cholesterol')">add cholesterol</button>
 
         }
 
@@ -94,14 +94,14 @@
                     [formGroupName]="'sodium'"
                 />
 
-                <button (click)="removeGroup('sodium')">delete sodium</button>
+                <button type="button" (click)="removeGroup('sodium')">delete sodium</button>
 
             </article>
     
         }
         @else {
 
-            <button (click)="addGroup('sodium')">add sodium</button>
+            <button type="button" (click)="addGroup('sodium')">add sodium</button>
 
         }
 
@@ -125,14 +125,14 @@
                     [formGroupName]="'totalCarbohydrates'"
                 />
 
-                <button (click)="removeGroup('totalCarbohydrates')">delete carbs</button>
+                <button type="button" (click)="removeGroup('totalCarbohydrates')">delete carbs</button>
     
             </article>    
     
         }
         @else {
 
-            <button (click)="addGroup('totalCarbohydrates')">add carbs</button>
+            <button type="button" (click)="addGroup('totalCarbohydrates')">add carbs</button>
 
         }
 
@@ -155,14 +155,14 @@
                     [formGroupName]="'protein'"
                 />
 
-                <button (click)="removeGroup('protein')">delete protein</button>
+                <button type="button" (click)="removeGroup('protein')">delete protein</button>
 
             </article>    
     
         }
         @else {
 
-            <button (click)="addGroup('protein')">add protein</button>
+            <button type="button" (click)="addGroup('protein')">add protein</button>
 
         }
 
@@ -180,14 +180,14 @@
                 [formGroupName]="'vitaminsAndMinerals'"
             />
 
-            <button (click)="removeVitamins()">delete vitamins</button>
+            <button type="button" (click)="removeVitamins()">delete vitamins</button>
 
         </article>
 
     }
     @else {
 
-        <button (click)="addVitamins()">add vitamins</button>
+        <button type="button" (click)="addVitamins()">add vitamins</button>
 
     }
 

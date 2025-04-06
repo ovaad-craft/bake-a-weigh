@@ -13,14 +13,14 @@
                     [label]="'name'"
                 />
     
-                <button (click)="removeName()">remove name</button>
+                <button type="button" (click)="removeName()">remove name</button>
             </article>
     
     
         }
         @else {
     
-            <button (click)="addName()">add name</button>
+            <button type="button" (click)="addName()">add name</button>
         }
 
     }
@@ -50,7 +50,7 @@
                             [formGroup]="Control.controls.nutrients!.controls.list.controls[$index]"
                         />
     
-                        <button (click)="removeItem( $index )">delete</button>
+                        <button type="button" (click)="removeItem( $index )">delete</button>
     
                     </article>
 
@@ -60,7 +60,7 @@
 
             <article class="addContainer">
 
-                <button (click)="addItem()">add item</button>
+                <button type="button" (click)="addItem()">add item</button>
 
             </article>
 
