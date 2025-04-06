@@ -1,4 +1,4 @@
-<form class="mainContainer" [formGroup]="IngredientEditorForm" (ngSubmit)="$event.preventDefault(); handleSubmission();">
+<form class="mainContainer" [formGroup]="IngredientEditorForm" (ngSubmit)="$event.preventDefault()">
 
     <lib-text-input
         [label]="'name'"
@@ -53,11 +53,11 @@
 
 
 
-    @if (IngredientEditorForm.controls.nutrition) {
+    @if ( IngredientEditorForm.controls.nutrition ) {
         
         <lib-nutrition-group
             ngDefaultControl
-            [formGroup]="IngredientEditorForm.controls.nutrition"
+            [formGroupName]="'nutrition'"
             [Control]="IngredientEditorForm.controls.nutrition"
         />
 
@@ -69,7 +69,7 @@
         [Label]="'locations'"
     />
 
-    <button type="submit">save</button>
+    <button type="button" (click)="handleSubmission()">save</button>
 
 
 </form>

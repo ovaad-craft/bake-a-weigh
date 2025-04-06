@@ -91,6 +91,7 @@ export class IngredientEditorComponent implements OnInit{
 
 
   handleSubmission() : void {
+    //event.preventDefault();
     console.log(this.IngredientEditorForm.value);
   }
 
