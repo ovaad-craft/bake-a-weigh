@@ -1,4 +1,4 @@
-<form class="mainContainer" [formGroup]="IngredientEditorForm">
+<form class="mainContainer" [formGroup]="IngredientEditorForm" (ngSubmit)="$event.preventDefault(); handleSubmission();">
 
     <lib-text-input
         [label]="'name'"
@@ -68,6 +68,8 @@
         [Control]="IngredientEditorForm.controls.locations"
         [Label]="'locations'"
     />
+
+    <button type="submit">save</button>
 
 
 </form>

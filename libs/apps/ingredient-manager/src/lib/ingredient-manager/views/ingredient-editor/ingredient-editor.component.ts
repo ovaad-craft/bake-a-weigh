@@ -88,4 +88,10 @@ export class IngredientEditorComponent implements OnInit{
       
   }
 
+
+
+  handleSubmission() : void {
+    console.log(this.IngredientEditorForm.value);
+  }
+
 }
