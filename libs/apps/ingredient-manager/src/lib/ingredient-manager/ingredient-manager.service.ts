@@ -3718,9 +3718,26 @@ export class IngredientManagerService {
   getIngredientToEdit() : IngredientProfile {
     
     //return DemoIngredients[DemoIngredients.length - 2];
-    return DemoIngredients[13];
+    //return DemoIngredients[13];
     
-    //return this.IngredientToEdit
+    return this.IngredientToEdit
+
+  }
+
+
+
+
+
+  updateIngredient( ingredient : IngredientProfile ) : void {
+
+    const item : number = this.IngredientData.findIndex( a => a.id === ingredient.id );
+
+
+
+    if ( !item ) { throw new Error( `Can't find ingredient with the id ${ ingredient.id }.` ); }
+
+    else { this.IngredientData[ item ] = { ...ingredient }; }
+
 
   }
 
