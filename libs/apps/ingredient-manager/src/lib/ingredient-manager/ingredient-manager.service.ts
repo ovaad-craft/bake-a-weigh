@@ -68,6 +68,9 @@ USER STORY :
 
 import { computed, Injectable, signal, Signal, WritableSignal } from '@angular/core';
 import { CategoryIndex, CategoryKey, IngredientProfile } from '@bake-a-weigh/site-types';
+import { IngredientForm } from './views/ingredient-editor/form-generator/form-types';
+import { FormGroup } from '@angular/forms';
+import { shapeIngredient } from './views/ingredient-editor/shape-ingredient/shape-ingredient';
 
 
 
@@ -3577,7 +3580,7 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
-  private IngredientEditorToggleData : WritableSignal< boolean > = signal( true );
+  private IngredientEditorToggleData : WritableSignal< boolean > = signal( false );
   private CategoryEditorToggleData   : WritableSignal< boolean > = signal( false );
   
   IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
@@ -3706,6 +3709,7 @@ export class IngredientManagerService {
       
       this.IngredientToEdit = ingredient;
       this.toggleIngredientEditorOn();
+      //console.log( ingredient );
 
     }
 
@@ -3728,15 +3732,24 @@ export class IngredientManagerService {
 
 
 
-  updateIngredient( ingredient : IngredientProfile ) : void {
+  updateIngredient( ingredient : FormGroup< IngredientForm >[ 'value' ] ) : void {
+
 
     const item : number = this.IngredientData.findIndex( a => a.id === ingredient.id );
 
 
 
+
+
     if ( !item ) { throw new Error( `Can't find ingredient with the id ${ ingredient.id }.` ); }
 
-    else { this.IngredientData[ item ] = { ...ingredient }; }
+    else {
+
+      this.IngredientData[ item ] = shapeIngredient( ingredient );
+
+      this.toggleIngredientEditorOff();
+    
+    }
 
 
   }
