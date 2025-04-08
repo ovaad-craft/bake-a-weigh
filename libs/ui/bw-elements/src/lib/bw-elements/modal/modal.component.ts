@@ -45,7 +45,7 @@ USER STORY :
 
 
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -54,7 +54,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
-export class ModalComponent {
+export class ModalComponent  implements OnInit, OnDestroy{
 
   @Output() CloseModal : EventEmitter<void> = new EventEmitter<void>();
+
+  
+
+  ngOnInit(): void {
+    document.body.style.overflow = 'hidden';
+  }
+
+  ngOnDestroy(): void {
+    document.body.style.overflow = 'scroll';
+  }
+
 }

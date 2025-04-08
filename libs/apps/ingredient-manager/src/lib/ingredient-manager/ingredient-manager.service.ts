@@ -2491,7 +2491,7 @@ const DemoIngredients : IngredientProfile[] = [
         'Natamycin (a natural mold inhibitor)'
       ]
     },
-    locations : [ 'cheese_category_id110011']
+    locations : [ 'cheese_category_id1100011']
   },
   {
     name : 'Low Fat Strawberry Yogurt',
@@ -2863,7 +2863,7 @@ const DemoIngredients : IngredientProfile[] = [
         'Vanilla Bean Extractives'
       ]
     },
-    locations : [ 'extract_category_id1100011' ]
+    locations : [ 'extracts_category_id1100011' ]
   },
   {
     name : 'Chopped Walnuts',
@@ -3335,6 +3335,7 @@ const DemoKeys : CategoryKey[] = [
       {
         name : 'Vegetables',
         id : 'vegetable_produce_category_id1100011',
+        icon : 'some icon',
         removable: true,
         subCategories : [
           {
@@ -3580,7 +3581,7 @@ export class IngredientManagerService {
   private CategoryIndexData : WritableSignal< CategoryIndex[] > = signal( [] );
   CategoryIndex             : Signal< CategoryIndex[] >         = computed( () => this.CategoryIndexData() );
 
-  private IngredientEditorToggleData : WritableSignal< boolean > = signal( false );
+  private IngredientEditorToggleData : WritableSignal< boolean > = signal( true );
   private CategoryEditorToggleData   : WritableSignal< boolean > = signal( false );
   
   IngredientEditorToggler : Signal< boolean > = computed( () => this.IngredientEditorToggleData() );
@@ -3722,9 +3723,9 @@ export class IngredientManagerService {
   getIngredientToEdit() : IngredientProfile {
     
     //return DemoIngredients[DemoIngredients.length - 2];
-    //return DemoIngredients[13];
+    return DemoIngredients[13];
     
-    return this.IngredientToEdit
+    //return this.IngredientToEdit
 
   }
 
