@@ -38,6 +38,7 @@ export class TextInputComponent {
   @Input() InputSize = 4;
   @Input() ControlName = '';
   @Input() FontSize! : string;
+  @Input() TextAlign! : string;
   @Input() Control!: FormControl<string | null>;
 
 
