@@ -7,20 +7,20 @@
 .mainContainer{
     display: grid;
     width: 92%;
-    height : auto;
+    height : min-content;
     justify-self: center;
-    row-gap: var(--xTiny-1-4);
+    row-gap: var(--xTiny-2-4);
+    padding: var( --xTiny-1-4 ) 0;
     background-color: blanchedalmond;
 }
 
 .nameInfoContainer{
-    margin-top: var( --xTiny-1-4 );
     height: min-content;
     background-color: azure;
     padding: var(--line-bold) 0;
 }
 
-.nameContainer{
+.propertyDisplayContainer{
     display: grid;
     grid-template-columns: auto auto;
     justify-self: center;
@@ -58,4 +58,19 @@
     height: min-content;
     font-size: var( --font-wdiget-2 );
     padding : var( --line-narrow ) var( --line-bold );
+}
+
+
+
+.brandInfoContainer{
+    display: grid;
+    justify-items: center;
+}
+
+.brandTitle{
+    font-size : var( --text-widget-2 );
+}
+
+.brandText{
+    font-size: var(--text-subtitle-1);
 }
