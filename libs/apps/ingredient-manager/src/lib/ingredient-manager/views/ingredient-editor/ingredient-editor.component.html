@@ -1,6 +1,14 @@
 <form class="mainContainer" [formGroup]="IngredientEditorForm" (ngSubmit)="$event.preventDefault()">
 
-    <lib-text-input
+    <fieldset class="nameInfoContainer">
+
+        @if ( !EditNameToggle ) {
+
+            <h1 class="nameText">{{IngredientEditorForm.value.name}}</h1>
+            
+        }
+    </fieldset>
+    <!-- <lib-text-input
         [label]="'name'"
         ngDefaultControl
         [Control]="IngredientEditorForm.controls.name"
@@ -14,7 +22,9 @@
         [Control]="IngredientEditorForm.controls.brand"
         [formControlName]="'brand'"
         [InputSize]="44"
-    />
+    /> -->
+
+    <!--
 
     @if ( NotesToggle ) {
 
@@ -67,7 +77,7 @@
         ngDefaultControl
         [Control]="IngredientEditorForm.controls.locations"
         [Label]="'locations'"
-    />
+    /> -->
 
     <button type="button" (click)="handleSubmission()">save</button>
 

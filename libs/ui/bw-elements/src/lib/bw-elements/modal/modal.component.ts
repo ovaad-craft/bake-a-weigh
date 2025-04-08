@@ -58,14 +58,18 @@ export class ModalComponent  implements OnInit, OnDestroy{
 
   @Output() CloseModal : EventEmitter<void> = new EventEmitter<void>();
 
-  
 
-  ngOnInit(): void {
+
+  ngOnInit() : void {
+
     document.body.style.overflow = 'hidden';
+    
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() : void {
+
     document.body.style.overflow = 'scroll';
+
   }
 
 }

@@ -1,11 +1,13 @@
 :host{
     display: grid;
     width: 100%;
+    background-color: brown;
 }
 
 .mainContainer{
     display: grid;
     width: 92%;
-    place-self: center;
+    justify-self: center;
     row-gap: var(--xTiny-1-4);
+    background-color: blanchedalmond;
 }

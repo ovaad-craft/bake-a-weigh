@@ -74,6 +74,8 @@ export class IngredientEditorComponent implements OnInit{
   NotesToggle       = false;
   ProfileTypeToggle = false;
 
+  EditNameToggle = false;
+
   constructor( private ingredientService : IngredientManagerService ){}
 
   ngOnInit(): void {
