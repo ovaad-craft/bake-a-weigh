@@ -39,3 +39,23 @@
     padding : var( --line-fine ) var( --line-narrow );
 
 }
+
+.nameControlContainer{
+    display: grid;
+    justify-items: center;
+    row-gap: var(--micro-2-4 );
+    padding : var( --xTiny-1-3) 0;
+    /*background-color: orange;*/
+}
+
+.nameControlButtonContainer{
+    display: grid;
+    column-gap: var( --line-wide );
+    grid-template-columns: repeat(2, auto);
+}
+
+.controlButton{
+    height: min-content;
+    font-size: var( --font-wdiget-2 );
+    padding : var( --line-narrow ) var( --line-bold );
+}
