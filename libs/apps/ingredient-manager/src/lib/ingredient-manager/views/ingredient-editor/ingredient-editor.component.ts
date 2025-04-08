@@ -74,8 +74,10 @@ export class IngredientEditorComponent implements OnInit{
   NotesToggle       = false;
   ProfileTypeToggle = false;
 
-  EditNameToggle = true;
+  EditNameToggle = false;
   NamePreviousValue = '';
+  EditBrandToggle = false;
+  BrandPreviousValue = ''
 
   constructor( private ingredientService : IngredientManagerService ){}
 
@@ -108,13 +110,39 @@ export class IngredientEditorComponent implements OnInit{
 
       this.IngredientEditorForm.controls.name.setValue( this.NamePreviousValue );
 
-    }
-
+    }    
+    
+    
     this.EditNameToggle = false;
     this.NamePreviousValue = '';
+    
+  }
+  
+  
+  
+  openBrandControl() : void {
+
+    this.BrandPreviousValue = this.IngredientEditorForm.value.brand!;
+    this.EditBrandToggle = true;
 
   }
 
+  closeBrandControl( update : boolean ) : void {
+
+    if ( !update ) {
+
+      this.IngredientEditorForm.controls.brand.setValue( this.BrandPreviousValue );
+
+    }
+
+    
+
+    this.BrandPreviousValue = '';
+    this.EditBrandToggle = false;
+
+
+  }
+  
 
 
   handleSubmission() : void {
