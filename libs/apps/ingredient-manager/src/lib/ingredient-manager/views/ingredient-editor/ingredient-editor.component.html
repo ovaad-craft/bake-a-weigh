@@ -1,6 +1,6 @@
 <form class="mainContainer" [formGroup]="IngredientEditorForm" (ngSubmit)="$event.preventDefault()">
 
-    <section class="nameInfoContainer">
+    <section class="propInfoContainer">
 
 
 
@@ -21,7 +21,7 @@
         @else {
 
 
-            <article class="nameControlContainer">
+            <article class="textControlContainer">
 
 
 
@@ -36,7 +36,7 @@
 
 
 
-                <article class="nameControlButtonContainer">
+                <article class="controlButtonContainer">
 
 
                     <button
@@ -70,7 +70,7 @@
 
 
 
-    <section class="brandInfoContainer">
+    <section class="propInfoContainer">
 
         @if ( !EditBrandToggle ) {
 
@@ -84,6 +84,47 @@
                 
             </article>
 
+        }
+
+        @else {
+
+            <article class="textControlContainer">
+
+                <lib-text-input
+                    ngDefaultControl
+                    [Control]="IngredientEditorForm.controls.brand"
+                    [formControlName]="'brand'"
+                    [FontSize]="'var(--text-subtitle-3)'"
+                    [InputSize]="33"
+                    [TextAlign]="'center'"
+                />
+
+
+
+                <article class="controlButtonContainer">
+
+                    <button
+                        type="button"
+                        class="controlButton"
+                        (click)="closeBrandControl( true )"
+                    >
+                        save
+                    </button>
+    
+    
+    
+                    <button
+                        type="button"
+                        class="controlButton"
+                        (click)="closeBrandControl( false )"
+                    >
+                        cancel
+                    </button>
+                    
+                </article>
+
+
+            </article>
         }
 
     </section>

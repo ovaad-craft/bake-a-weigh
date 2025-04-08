@@ -14,10 +14,12 @@
     background-color: blanchedalmond;
 }
 
-.nameInfoContainer{
+.propInfoContainer{
+    display: grid;
     height: min-content;
     background-color: azure;
     padding: var(--line-bold) 0;
+    row-gap: var(--line-thick);
 }
 
 .propertyDisplayContainer{
@@ -40,7 +42,7 @@
 
 }
 
-.nameControlContainer{
+.textControlContainer{
     display: grid;
     justify-items: center;
     row-gap: var(--micro-2-4 );
@@ -48,7 +50,7 @@
     /*background-color: orange;*/
 }
 
-.nameControlButtonContainer{
+.controlButtonContainer{
     display: grid;
     column-gap: var( --line-wide );
     grid-template-columns: repeat(2, auto);
@@ -69,6 +71,7 @@
 
 .brandTitle{
     font-size : var( --text-widget-2 );
+    text-align: center;
 }
 
 .brandText{

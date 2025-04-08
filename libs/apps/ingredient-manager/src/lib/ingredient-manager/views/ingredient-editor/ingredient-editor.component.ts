@@ -135,7 +135,7 @@ export class IngredientEditorComponent implements OnInit{
 
     }
 
-    
+
 
     this.BrandPreviousValue = '';
     this.EditBrandToggle = false;
