@@ -7,7 +7,35 @@
 .mainContainer{
     display: grid;
     width: 92%;
+    height : auto;
     justify-self: center;
     row-gap: var(--xTiny-1-4);
     background-color: blanchedalmond;
+}
+
+.nameInfoContainer{
+    margin-top: var( --xTiny-1-4 );
+    height: min-content;
+    background-color: azure;
+    padding: var(--line-bold) 0;
+}
+
+.nameContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-self: center;
+    column-gap: var( --micro-2-4 );
+}
+
+.nameText{
+    font-size: var( --text-title-4 );
+    text-align: center;
+}
+
+.editButton{
+    font-size: var( --text-caption-1 );
+    height : min-content;
+    align-self: center;
+    padding : var( --line-fine ) var( --line-narrow );
+
 }

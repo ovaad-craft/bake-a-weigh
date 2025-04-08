@@ -1,13 +1,59 @@
 <form class="mainContainer" [formGroup]="IngredientEditorForm" (ngSubmit)="$event.preventDefault()">
 
-    <fieldset class="nameInfoContainer">
+    <section class="nameInfoContainer">
 
         @if ( !EditNameToggle ) {
 
-            <h1 class="nameText">{{IngredientEditorForm.value.name}}</h1>
-            
+
+            <article class="nameContainer">
+
+                <h1 class="nameText">{{IngredientEditorForm.value.name}}</h1>
+
+                <!-- Needs Pencil Icon -->
+                <button class="editButton" type="button" (click)="openNameControl()">edit</button>
+
+            </article>
+
+
         }
-    </fieldset>
+        @else {
+            <article class="nameControlContainer">
+
+                <lib-text-input
+                    [label]="'name'"
+                    ngDefaultControl
+                    [Control]="IngredientEditorForm.controls.name"
+                    [formControlName]="'name'"
+                    [InputSize]="44"
+                />
+
+                <article class="nameControlButtonContainer">
+
+
+                    <button
+                        type="button"
+                        class="controlButon"
+                        (click)="closeNameControl( true )"
+                    >
+                        save
+                    </button>
+
+                    <button
+                        type="button"
+                        class="controlButon"
+                        (click)="closeNameControl( false )"
+                    >
+                        cancel
+                    </button>
+
+
+                </article>
+
+                
+            </article>
+        }
+
+    </section>
     <!-- <lib-text-input
         [label]="'name'"
         ngDefaultControl
@@ -79,7 +125,7 @@
         [Label]="'locations'"
     /> -->
 
-    <button type="button" (click)="handleSubmission()">save</button>
+    <!--<button type="button" (click)="handleSubmission()">save</button>-->
 
 
 </form>
