@@ -37,6 +37,7 @@ export class TextInputComponent {
   @Input() label!: string;
   @Input() InputSize = 4;
   @Input() ControlName = '';
+  @Input() FontSize! : string;
   @Input() Control!: FormControl<string | null>;
 
 

@@ -74,7 +74,7 @@ export class IngredientEditorComponent implements OnInit{
   NotesToggle       = false;
   ProfileTypeToggle = false;
 
-  EditNameToggle = false;
+  EditNameToggle = true;
   NamePreviousValue = '';
 
   constructor( private ingredientService : IngredientManagerService ){}
