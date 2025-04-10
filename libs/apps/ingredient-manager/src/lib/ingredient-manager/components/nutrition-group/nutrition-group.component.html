@@ -53,20 +53,12 @@
 
     @else {
 
-        <article class="servingAndCalorieGrid servingAndCalorieControlGrid">
+        <article class="servingContainer">
 
             <lib-serving-size
                 ngDefaultControl
                 [formGroupName]="'servingSize'"
                 [Control]="Control.controls.servingSize"
-            />
-
-            <lib-number-input
-                ngDefaultControl
-                [formControlName]="'calories'"
-                [Control]="Control.controls.calories"
-                [Label]="'calories'"
-                [InputSize]="5"
             />
 
         </article>

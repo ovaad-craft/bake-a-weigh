@@ -2,21 +2,27 @@
 
     <h4 class="title">serving size</h4>
 
-    <lib-number-input
-        ngDefaultControl
-        [Control]="Control.controls.amount"
-        [formControlName]="'amount'"
-        [Label]="'amount'"
-        [InputSize]="4"
-        [FontSize]="'var( --text-title-3 )'"
-    />
+    <article class="servingSizeControlContainer">
 
-    <lib-select-input
+        <lib-number-input
+            ngDefaultControl
+            [Control]="Control.controls.amount"
+            [formControlName]="'amount'"
+            [InputSize]="4"
+            [FontSize]="'var( --text-title-3 )'"
+        />
+
+        <h3 class="weightSelectionDisplay">{{Control.value.weightType}}</h3>
+
+    </article>
+
+
+    <!--<lib-select-input
         ngDefaultControl
         [Control]="Control.controls.weightType"
         [formControlName]="'weightType'"
         [OptionList]="WeightOptions"
         [Label]="'weight'"
-    />
+    />-->
 
 </section>

@@ -3,6 +3,7 @@
     justify-items: center;
     background-color :cornflowerblue;
     height: min-content;
+    width: min-content
 }
 
 .inputShell{
@@ -12,7 +13,8 @@
 
 .inputField{
     --targetWidth : calc( 1ch * var( --width ) );
-    width : min( var( --targetWidth ), 100% );
+    /*width : min( var( --targetWidth ), var(--xTiny-2-2) );*/
+    width : var( --targetWidth );
     font-size : var( --fontSize, var( --text-caption-1 ) );
     place-self : center;
     height : min-content;

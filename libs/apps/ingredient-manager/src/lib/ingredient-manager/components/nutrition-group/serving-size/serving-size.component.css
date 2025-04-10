@@ -1,16 +1,32 @@
 :host{
     display: grid;
-    width : var(--tiny-1-4);
+    background-color:aliceblue;
+    /*width : var(--tiny-1-4);*/
 }
 
 .mainContainer{
     display: grid;
-    grid-template-columns: auto auto;
+   /*width: 100%;*/
+    /*grid-template-columns: auto auto;*/
     column-gap: var(--line-thick);
     row-gap: var(--line-bold);
+    justify-self: center;
 }
 
 .title{
-    grid-area: 1/1/2/3;
+    /*grid-area: 1/1/2/3;*/
+    text-align: center;
+    background-color: cadetblue;
     /*font-size: var( --text-caption-2 );*/
+}
+
+.servingSizeControlContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    place-items: center;
+    column-gap: var( --line-thick );
+}
+
+.weightSelectionDisplay{
+    font-size: var( --text-title-2 );
 }
