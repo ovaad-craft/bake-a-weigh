@@ -1,7 +1,19 @@
 <section class="mainContainer">
-  <label>
-    <h6>{{ Label }}</h6>
+  <!--<label>
+    <h6 *ngIf="Label">{{ Label }}</h6>
 
-    <input [(ngModel)]="Control.value" />
-  </label>
+    <input [(ngModel)]="Control.value" hidden="true" />
+  </label>-->
+  @for ( item of ControlList; track $index ) {
+
+    <button
+      type="button"
+      class="selectButton"
+      [ngClass]="{Control.value === a ? 'active' : 'inactive'}"
+      (click)="updateValue( a )"
+    >
+      {{ a }}
+    </button>
+  }
+
 </section>
