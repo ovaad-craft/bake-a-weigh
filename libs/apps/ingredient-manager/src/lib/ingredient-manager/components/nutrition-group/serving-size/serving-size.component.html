@@ -17,18 +17,16 @@
             <h3 class="weightSelectionDisplay">{{Control.value.weightType}}</h3>
     
         </article>
-
-        <article class="selectContainer">
-
-            <lib-select-buttons-input
-                ngDefaultControl
-                [Control]="Control.controls.weightType"
-                [OptionType]="'g'"
-                [OptionList]="WeightOptions"
-                [Label]="'weight'"
-            />
-
-        </article>
+        
+        <lib-select-buttons-input
+            ngDefaultControl
+            [Control]="Control.controls.weightType"
+            [OptionType]="'g'"
+            [OptionList]="WeightOptions"
+            [FontSize]="'var( --text-article-2 )'"
+            [Label]="'weight'"
+            class="selectContainer"
+        />
 
 
     </article>

@@ -22,7 +22,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ElementWeightGroupType } from '../../../views/ingredient-editor/form-generator/form-types';
-import { NumberInputComponent, SelectButtonsInputComponent, SelectInputComponent } from '@form-controls';
+import { NumberInputComponent, SelectButtonsInputComponent } from '@form-controls';
 import { WeightType } from '@bake-a-weigh/site-types';
 
 @Component({
@@ -32,8 +32,7 @@ import { WeightType } from '@bake-a-weigh/site-types';
     ReactiveFormsModule,
     FormsModule,
     NumberInputComponent,
-    SelectButtonsInputComponent,
-    SelectInputComponent
+    SelectButtonsInputComponent
   ],
   templateUrl: './serving-size.component.html',
   styleUrls: ['./serving-size.component.css'],

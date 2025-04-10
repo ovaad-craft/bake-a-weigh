@@ -1,15 +1,12 @@
-<section class="mainContainer">
-  <!--<label>
-    <h6 *ngIf="Label">{{ Label }}</h6>
-
-    <input [(ngModel)]="Control.value" hidden="true" />
-  </label>-->
+<section class="mainContainer" [ngStyle]="{'--buttonWidth' : ButtonWidth}">
+ 
   @for ( a of OptionList; track $index ) {
 
     <button
       type="button"
       class="selectButton"
-      [ngClass]="{'active' : Control.value === a, 'inactive' : Control.value !== a }"
+      [ngStyle]="{ '--fontSize' : FontSize }"
+      [ngClass]="{ 'active' : Control.value === a, 'inactive' : Control.value !== a }"
       (click)="updateValue( a )"
     >
       {{ a }}

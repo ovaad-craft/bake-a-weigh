@@ -1,15 +1,16 @@
 :host{
     display: grid;
     background-color:aliceblue;
+    width: 100%;
+    margin-top : var( --xTiny-1-4);
     /*width : var(--tiny-1-4);*/
 }
 
 .mainContainer{
     display: grid;
-   /*width: 100%;*/
-    /*grid-template-columns: auto auto;*/
-    column-gap: var(--line-thick);
-    row-gap: var(--line-bold);
+    width: 100%;
+    column-gap: var( --line-thick );
+    row-gap: var( --micro-2-4 );
     justify-self: center;
 }
 
@@ -22,19 +23,25 @@
 
 .controlGrid{
     display: grid;
-    grid-template-columns: auto auto;
+    width : 100%;
+    grid-template-columns: max-content auto;
     column-gap: var( --xTiny-1-4 );
+    background-color: orange;
 }
 
 .selectContainer{
     display: grid;
     place-items: center;
+    width: 100%;
+    justify-items: right;
 }
 
 .servingSizeControlContainer{
     display: grid;
     grid-template-columns: auto auto;
     place-items: center;
+    justify-self: left;
+    /*width : 100%;*/
     column-gap: var( --line-thick );
 }
 

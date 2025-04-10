@@ -1,3 +1,23 @@
+:host{
+    display: grid;
+    background-color: antiquewhite;
+}
+
+.mainContainer{
+    --cellWidth : calc( var(--buttonWidth ) * calc( var( --grcWhole ) * 1ch ) );
+    max-width: 100%;
+    display: grid;
+    row-gap : var( --line-wide );
+    /*grid-auto-flow: column;*/
+    grid-template-columns: repeat( auto-fit, minmax( var(--cellWidth), 1fr ) );
+}
+
+.selectButton{
+    width : var( --cellWidth );
+    font-size: var( --fontSize );
+    padding : var( --line-thick ) var( --line-bold );
+}
+
 .active {
     background-color : green;
 }
