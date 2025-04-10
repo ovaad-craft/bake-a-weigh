@@ -4,9 +4,10 @@
 
     <input
       class="inputField"
-      [ngStyle]="{'--width': InputSize}"
+      [ngStyle]="{ '--width' : InputSize, '--fontSize' : FontSize }"
       type="text"
-      [(ngModel)]="Control.value"
+      [formControl]="Control"
+      (input)="handleZero()"
     />
 
 </label>

@@ -1,5 +1,24 @@
+:host{
+    display: grid;
+    justify-items: center;
+    background-color :cornflowerblue;
+    height: min-content;
+}
+
+.inputShell{
+    display: grid;
+    justify-items: center;
+}
+
 .inputField{
-    --targetWidth: calc(1ch * var(--width));
-    width: min(var(--targetWidth), 100%);
-    place-self: center;
+    --targetWidth : calc( 1ch * var( --width ) );
+    width : min( var( --targetWidth ), 100% );
+    font-size : var( --fontSize, var( --text-caption-1 ) );
+    place-self : center;
+    height : min-content;
+    padding : var( --line-narrow ) var( --line-bold );
+}
+
+.inputLabel{
+    font-size: var(--text-caption-2 );
 }

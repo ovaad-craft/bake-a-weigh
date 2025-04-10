@@ -12,4 +12,5 @@
 
 .title{
     grid-area: 1/1/2/3;
+    /*font-size: var( --text-caption-2 );*/
 }

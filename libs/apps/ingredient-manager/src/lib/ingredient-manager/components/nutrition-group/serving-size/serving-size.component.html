@@ -3,18 +3,19 @@
     <h4 class="title">serving size</h4>
 
     <lib-number-input
-        [Control]="Control.controls.amount"
         ngDefaultControl
+        [Control]="Control.controls.amount"
         [formControlName]="'amount'"
         [Label]="'amount'"
-        [InputSize]="5"
+        [InputSize]="4"
+        [FontSize]="'var( --text-title-3 )'"
     />
 
     <lib-select-input
-        [OptionList]="WeightOptions"
-        [Control]="Control.controls.weightType"
         ngDefaultControl
+        [Control]="Control.controls.weightType"
         [formControlName]="'weightType'"
+        [OptionList]="WeightOptions"
         [Label]="'weight'"
     />
 
