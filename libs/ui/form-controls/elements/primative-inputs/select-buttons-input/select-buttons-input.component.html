@@ -4,12 +4,12 @@
 
     <input [(ngModel)]="Control.value" hidden="true" />
   </label>-->
-  @for ( item of ControlList; track $index ) {
+  @for ( a of OptionList; track $index ) {
 
     <button
       type="button"
       class="selectButton"
-      [ngClass]="{Control.value === a ? 'active' : 'inactive'}"
+      [ngClass]="{'active' : Control.value === a, 'inactive' : Control.value !== a }"
       (click)="updateValue( a )"
     >
       {{ a }}

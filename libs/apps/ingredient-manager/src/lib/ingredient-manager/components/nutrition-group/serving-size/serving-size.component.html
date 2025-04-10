@@ -2,19 +2,37 @@
 
     <h4 class="title">serving size</h4>
 
-    <article class="servingSizeControlContainer">
+    <article class="controlGrid">
 
-        <lib-number-input
-            ngDefaultControl
-            [Control]="Control.controls.amount"
-            [formControlName]="'amount'"
-            [InputSize]="4"
-            [FontSize]="'var( --text-title-3 )'"
-        />
+        <article class="servingSizeControlContainer">
+    
+            <lib-number-input
+                ngDefaultControl
+                [Control]="Control.controls.amount"
+                [formControlName]="'amount'"
+                [InputSize]="4"
+                [FontSize]="'var( --text-title-3 )'"
+            />
+    
+            <h3 class="weightSelectionDisplay">{{Control.value.weightType}}</h3>
+    
+        </article>
 
-        <h3 class="weightSelectionDisplay">{{Control.value.weightType}}</h3>
+        <article class="selectContainer">
+
+            <lib-select-buttons-input
+                ngDefaultControl
+                [Control]="Control.controls.weightType"
+                [OptionType]="'g'"
+                [OptionList]="WeightOptions"
+                [Label]="'weight'"
+            />
+
+        </article>
+
 
     </article>
+
 
 
     <!--<lib-select-input

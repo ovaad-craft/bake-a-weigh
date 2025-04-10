@@ -20,6 +20,17 @@
     /*font-size: var( --text-caption-2 );*/
 }
 
+.controlGrid{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: var( --xTiny-1-4 );
+}
+
+.selectContainer{
+    display: grid;
+    place-items: center;
+}
+
 .servingSizeControlContainer{
     display: grid;
     grid-template-columns: auto auto;
