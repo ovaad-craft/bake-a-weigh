@@ -24,12 +24,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'lib-select-buttons',
+  selector: 'lib-select-buttons-input',
   imports: [CommonModule, FormsModule],
-  templateUrl: './select-buttons.component.html',
-  styleUrls: ['./select-buttons.component.css'],
+  templateUrl: './select-buttons-input.component.html',
+  styleUrls: ['./select-buttons-input.component.css'],
 })
-export class SelectButtonsComponent< ValueType > {
+export class SelectButtonsInputComponent< ValueType > {
 
   @Input() OptionType! : ValueType;
   @Input() OptionList! : ValueType[];
