@@ -1096,7 +1096,7 @@ const DemoIngredients : IngredientProfile[] = [
     brand : 'Wholesome Sweeteners',
     id : 'organic_stevia_id1100011',
     icon : 'some icon',
-    nutrition: {
+    /*nutrition: {
       servingSize : {
         amount : 1,
         weightType : 'g'
@@ -1150,7 +1150,7 @@ const DemoIngredients : IngredientProfile[] = [
         'Organic Stevia Extract (Stevia Rebaudiana)',
         'Silica'
       ]
-    },
+    },*/
     profileType : 'sweetener',
     data :{
       type : 'stevia',

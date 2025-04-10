@@ -1,17 +1,90 @@
 <section class="mainContainer" [formGroup]="Control">
+
+
+
+    @if ( !ServingAndCalorieControlToggle ) {
+        
+        <article class="servingAndCalorieContainer">
+            
+            
+            
+            <button
+                type="button"
+                class="editButton"
+                (click)="openServingAndCalorieControl()"
+            >
+                edit
+            </button>
+        
+            <article class="servingAndCalorieGrid">
+                
+                <article class="propInfoContainer">
+
+                    
+                    <h5 class="servingSizeDisplayText">
+                        {{Control.value.servingSize!.amount}}{{Control.value.servingSize!.weightType}}
+                    </h5>
+                    
+                    <h4 class="propInfoTitle">serving size</h4>
+
+
+                </article>
+
+
+        
+                <article class="propInfoContainer">
     
-    <h4>nutrition</h4>
+                    
+                    <h5 class="servingSizeDisplayText">
+                        {{Control.value.calories}}
+                    </h5>
+                    
+                    <h4 class="propInfoTitle">calories</h4>
     
-    <lib-serving-size
-        [Control]="Control.controls.servingSize"
+    
+                </article>
+                
+            </article>
+            
+            
+        </article>
+
+    }
+
+    @else {
+
+        <article class="servingAndCalorieGrid servingAndCalorieControlGrid">
+
+            <lib-serving-size
+                ngDefaultControl
+                [formGroupName]="'servingSize'"
+                [Control]="Control.controls.servingSize"
+            />
+
+            <lib-number-input
+                ngDefaultControl
+                [formControlName]="'calories'"
+                [Control]="Control.controls.calories"
+                [Label]="'calories'"
+                [InputSize]="5"
+            />
+
+        </article>
+    }
+
+
+    
+    
+    <!--<lib-serving-size
         ngDefaultControl
         [formGroupName]="'servingSize'"
+        [Control]="Control.controls.servingSize"
     />
 
     <lib-number-input
-        [Control]="Control.controls.calories"
         ngDefaultControl
         [formControlName]="'calories'"
+        [Control]="Control.controls.calories"
         [Label]="'calories'"
         [InputSize]="5"
     />
@@ -196,6 +269,6 @@
         [Control]="Control.controls.ingredients"
         ngDefaultControl
         [formArrayName]="'ingredients'"
-    />
+    /> -->
 
 </section>

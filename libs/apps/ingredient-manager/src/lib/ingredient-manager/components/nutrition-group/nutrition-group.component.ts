@@ -66,6 +66,8 @@ export class NutritionGroupComponent implements OnInit {
     TotalCarbohydratesToggle  = false;
     VitaminsAndMineralsToggle = false
 
+    ServingAndCalorieControlToggle = false;
+
 
 
     ngOnInit(): void {
@@ -81,11 +83,34 @@ export class NutritionGroupComponent implements OnInit {
 
 
 
+    openServingAndCalorieControl() : void {
+
+        this.ServingAndCalorieControlToggle = true;
+        
+    }
+
+
+
     addGroup( group : NutritionOptionType ) : void {
 
-        if( !this.Control.controls[ `${ group }` ] ) {
-
+        
+        if( !this.Control.controls[ group ] ) {
+            
+            console.log(group);
             this.Control.addControl( `${ group }`, createNutrientCategoryGroup() );
+            console.log(this.Control);
+
+        }
+
+        switch ( group ) {
+            
+            case 'totalFat'    : this.TotalFatToggle    = true; break;
+            case 'cholesterol' : this.CholesterolToggle = true; break;
+            case 'sodium'      : this.SodiumToggle      = true; break;
+            case 'protein'     : this.ProteinToggle     = true; break;
+            case 'totalCarbohydrates' : this.TotalCarbohydratesToggle = true; break;
+            
+            default : throw new Error( `${group} is not a nutrition item.` );
 
         }
 
@@ -95,9 +120,21 @@ export class NutritionGroupComponent implements OnInit {
 
     removeGroup( group : NutritionOptionType ) : void {
 
-        if( this.Control.controls[ `${ group }` ] ) {
+        if( this.Control.controls[ group ] ) {
 
             this.Control.removeControl( `${ group }` );
+
+        }
+
+        switch ( group ) {
+            
+            case 'totalFat'    : this.TotalFatToggle    = false; break;
+            case 'cholesterol' : this.CholesterolToggle = false; break;
+            case 'sodium'      : this.SodiumToggle      = false; break;
+            case 'protein'     : this.ProteinToggle     = false; break;
+            case 'totalCarbohydrates' : this.TotalCarbohydratesToggle = false; break;
+
+            default : throw new Error( `${group} is not a nutrition item.` );
 
         }
 

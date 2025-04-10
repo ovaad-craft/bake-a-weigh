@@ -44,6 +44,7 @@ import { NutritionGroupComponent } from '../../components/nutrition-group/nutrit
 import { NoteListComponent } from "../../components/note-list/note-list.component";
 import { IngredientProfileManagerComponent } from '../../components/ingredient-profile-manager/ingredient-profile-manager.component';
 import { LocationListComponent } from '../../components/location-list/location-list.component';
+import { createNutritionGroup } from './form-generator/primatives/multi-value/nutrition/nutrition-group/nutrition-group';
 
 
 
@@ -141,6 +142,21 @@ export class IngredientEditorComponent implements OnInit{
     this.EditBrandToggle = false;
 
 
+  }
+
+
+
+  addNutritionFacts() : void {
+
+    this.IngredientEditorForm.addControl( 'nutrition', createNutritionGroup( {
+      servingSize : {
+        amount : 0,
+        weightType : 'g'
+      },
+      calories : 0,
+      ingredients : []
+    } ) );
+    
   }
   
 
