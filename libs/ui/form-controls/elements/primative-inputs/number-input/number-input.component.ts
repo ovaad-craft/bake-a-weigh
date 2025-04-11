@@ -33,6 +33,7 @@ export class NumberInputComponent {
   @Input()Control!  : FormControl< number | null >;
   @Input()Label?    : string;
   @Input()FontSize! : string;
+  @Input()LabelFontSize! : string;
   @Input()InputSize = 4;
 
 

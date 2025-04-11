@@ -11,6 +11,13 @@
     justify-items: center;
 }
 
+.inputLabel{
+    font-size: var( --labelFontSize, var(--text-caption-1 ) );
+    background-color :aliceblue;
+    width: 100%;
+    text-align : center;
+}
+
 .inputField{
     --targetWidth : calc( 1ch * var( --width ) );
     /*width : min( var( --targetWidth ), var(--xTiny-2-2) );*/
@@ -21,6 +28,6 @@
     padding : var( --line-narrow ) var( --line-bold );
 }
 
-.inputLabel{
+/*.inputLabel{
     font-size: var(--text-caption-2 );
-}
+}*/
