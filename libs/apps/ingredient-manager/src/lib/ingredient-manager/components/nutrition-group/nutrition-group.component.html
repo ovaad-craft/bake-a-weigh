@@ -53,15 +53,32 @@
 
     @else {
 
-        <article class="servingContainer">
+        <article class="servingAndCalorieControlContainer">
 
-            <lib-serving-size
-                ngDefaultControl
-                [formGroupName]="'servingSize'"
-                [Control]="Control.controls.servingSize"
-            />
+            <article class="servingContainer">
+    
+                <lib-serving-size
+                    ngDefaultControl
+                    [formGroupName]="'servingSize'"
+                    [Control]="Control.controls.servingSize"
+                />
+    
+            </article>
+    
+            <article class="calorieContainer">
+    
+                <lib-number-input
+                    ngDefaultControl
+                    [formControlName]="'calories'"
+                    [Control]="Control.controls.calories"
+                    [Label]="'calories'"
+                    [InputSize]="5"
+                />
+    
+            </article>
 
         </article>
+
     }
 
 
