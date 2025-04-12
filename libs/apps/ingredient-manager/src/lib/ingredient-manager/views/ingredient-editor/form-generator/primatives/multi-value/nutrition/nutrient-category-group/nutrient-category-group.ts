@@ -12,12 +12,17 @@ export function createNutrientCategoryGroup( defaultData? : NutrientCategory ) :
 
 
 
-    const group : FormGroup< NutrientCategoryGroup > = new FormGroup< NutrientCategoryGroup >({
+    const group : FormGroup< NutrientCategoryGroup > = new FormGroup< NutrientCategoryGroup >({        
 
-        name        : new FormControl< string | null >( defaultData?.name      ? defaultData.name        : null      ),
-        totalAmount : createElementWeightGroup(         defaultData            ? defaultData.totalAmount : undefined )
+        totalAmount : createElementWeightGroup(         defaultData?.totalAmount ?? undefined )
 
     });
+
+    if( defaultData?.name ) {
+
+        group.addControl( 'name', new FormControl< string | null >( defaultData.name ) );
+
+    }
 
     if( defaultData?.nutrients ) {
 
