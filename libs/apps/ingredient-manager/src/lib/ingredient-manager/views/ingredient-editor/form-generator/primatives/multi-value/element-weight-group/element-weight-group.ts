@@ -11,14 +11,16 @@ export function createElementWeightGroup( defaultValues? : ElementWeightType ) :
 
     const group : FormGroup< ElementWeightGroupType > = new FormGroup< ElementWeightGroupType >({
 
-        amount     : new FormControl< number | null >( defaultValues?.amount                    ?? null     ),
+        amount     : new FormControl< number | null >( defaultValues?.amount     ?? null      ),
         weightType : createWeightControl(              defaultValues?.weightType ?? undefined )
 
     });
 
-    if( defaultValues?.percentage ){
+    //console.log(defaultValues);
 
-        group.addControl('percentage', new FormControl< number | null >( defaultValues.percentage ) );
+    if( defaultValues?.percentage !== undefined ){
+
+        group.addControl( 'percentage', new FormControl< number | null >( defaultValues.percentage ) );
 
     }
 
