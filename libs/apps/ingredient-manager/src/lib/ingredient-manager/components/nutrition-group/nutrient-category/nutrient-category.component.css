@@ -1,0 +1,27 @@
+:host{
+    display: grid;
+    justify-items: center;
+}
+
+.mainContainer{
+
+    display : grid;
+    row-gap : var( --micro-2-4 );
+}
+
+.displayContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: var( --micro-2-4 );
+}
+
+.amountDisplay{
+    font-size : var( --text-subtitle-1 );
+}
+
+.editButton{
+    font-size: var( --text-caption-1 );
+    height: min-content;
+    place-self: center;
+    padding : var(--line-fine ) var( --line-narrow );
+}

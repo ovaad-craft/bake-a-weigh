@@ -107,27 +107,28 @@
 
     <article class="nutrientContainer">
         
-        <h4 lass="propInfotitle">Total Fat</h4>
-
+        
         @if( TotalFatToggle ){
-
+            
             <article class="controlContainer">
-
+                
                 <lib-nutrient-category
                     ngDefaultControl
                     [formGroupName]="'totalFat'"
                     [Control]="Control.controls.totalFat!"
+                    [Name]="'Total Fat'"
                     [NameEnabled]="false"
                 />
-
-                <button type="button" (click)="removeGroup('totalFat')">delete</button>
-
+                
+                <button type="button" class="controlButton" (click)="removeGroup('totalFat')">delete</button>
+                
             </article>
-    
-    
+            
+            
         }
         @else {
-
+            
+            <h4 class="propInfotitle">Total Fat</h4>
             <button class="controlButton" type="button" (click)="addGroup('totalFat')">add</button>
 
         }

@@ -84,6 +84,11 @@
     text-align: center;
 }
 
+.controlContainer{
+    display: grid;
+    row-gap: var( --micro-2-4 );
+}
+
 .controlButtonContainer{
     display: grid;
     column-gap: var( --line-wide );

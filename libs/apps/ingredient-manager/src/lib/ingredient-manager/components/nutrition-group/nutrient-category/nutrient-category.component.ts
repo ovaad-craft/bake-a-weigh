@@ -48,9 +48,12 @@ export class NutrientCategoryComponent implements OnInit {
 
   @Input() Control! : FormGroup< NutrientCategoryGroup >;
   @Input() NameEnabled! : boolean;
+  @Input() Name! : string;
 
   NameToggle      = false;
   NutrientsToggle = false;
+
+  ControlToggle = false;
 
 
 
@@ -58,8 +61,13 @@ export class NutrientCategoryComponent implements OnInit {
       
     if( this.Control.controls.name      ) { this.NameToggle      = true; }
     if( this.Control.controls.nutrients ) { this.NutrientsToggle = true; }
+    console.log(this.Control.controls);
 
   }
+
+
+
+  toggleControlOn() : void { this.ControlToggle = true; }
 
 
 

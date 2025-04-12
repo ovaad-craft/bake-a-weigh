@@ -1,6 +1,37 @@
 <section class="mainContainer" [formGroup]="Control">
 
-    @if( NameEnabled ){
+    @if( !ControlToggle ){
+
+        <article class="displayContainer">
+
+            <h5 class="amountDisplay">
+
+                <span *ngIf="Control.value.name">{{ Control.value.name }} </span>
+                {{ Control.value.totalAmount?.amount }}{{ Control.value.totalAmount?.weightType }}
+                <span *ngIf="Control.value.totalAmount?.percentage !== undefined">  {{ Control.value.totalAmount?.percentage }}%</span>
+                
+            </h5>
+
+            <button type="button" class="editButton" (click)="toggleControlOn()">edit</button>
+
+        </article>
+
+    }
+
+    @else {
+
+        <article class="controlContainer">
+
+            <lib-weight
+                [Control]="Control.controls.totalAmount"
+                ngDefaultControl
+                [formGroupName]="'totalAmount'"
+            />
+
+        </article>
+    }
+
+   <!-- @if( NameEnabled ){
 
         @if( NameToggle ) {
     
@@ -67,6 +98,6 @@
 
         </article>
 
-    }
+    }-->
 
 </section>
