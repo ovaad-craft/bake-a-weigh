@@ -1096,7 +1096,7 @@ const DemoIngredients : IngredientProfile[] = [
     brand : 'Wholesome Sweeteners',
     id : 'organic_stevia_id1100011',
     icon : 'some icon',
-    /*nutrition: {
+    nutrition: {
       servingSize : {
         amount : 1,
         weightType : 'g'
@@ -1150,7 +1150,7 @@ const DemoIngredients : IngredientProfile[] = [
         'Organic Stevia Extract (Stevia Rebaudiana)',
         'Silica'
       ]
-    },*/
+    },
     profileType : 'sweetener',
     data :{
       type : 'stevia',
@@ -3010,6 +3010,7 @@ const DemoIngredients : IngredientProfile[] = [
       },
       calories : 70,
       totalFat : {
+        name : 'Total Fat',
         totalAmount : {
           amount : 0,
           weightType : 'g',
@@ -3034,6 +3035,7 @@ const DemoIngredients : IngredientProfile[] = [
         ]
       },
       cholesterol : {
+        name : 'Cholesterol',
         totalAmount : {
           amount : 0,
           weightType : 'g',
@@ -3041,12 +3043,14 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
+        name : 'Sodium',
         totalAmount : {
           amount : 0,
           weightType : 'g'
         }
       },
       totalCarbohydrates : {
+        name : 'Total Carbohydrates',
         totalAmount : {
           amount : 17,
           weightType : 'g',
@@ -3723,7 +3727,7 @@ export class IngredientManagerService {
   getIngredientToEdit() : IngredientProfile {
     
     //return DemoIngredients[DemoIngredients.length - 2];
-    return DemoIngredients[13];
+    return DemoIngredients[DemoIngredients.length-1];
     
     //return this.IngredientToEdit
 
