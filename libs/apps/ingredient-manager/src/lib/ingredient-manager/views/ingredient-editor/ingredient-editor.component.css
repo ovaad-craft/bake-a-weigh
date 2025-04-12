@@ -58,7 +58,7 @@
 
 .controlButton{
     height: min-content;
-    font-size: var( --font-wdiget-2 );
+    font-size: var( --text-subtitle-1 );
     padding : var( --line-narrow ) var( --line-bold );
 }
 

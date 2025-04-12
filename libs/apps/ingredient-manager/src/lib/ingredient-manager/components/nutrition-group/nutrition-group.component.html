@@ -79,9 +79,60 @@
     
             </article>
 
+            <article class="controlButtonContainer">
+
+                <button
+                        type="button"
+                        class="editButton"
+                        (click)="closeServingAndCalorieControl( true )"
+                    >
+                        save
+                    </button>
+    
+    
+    
+                    <button
+                        type="button"
+                        class="controlButton"
+                        (click)="closeServingAndCalorieControl( false )"
+                    >
+                        cancel
+                    </button>
+
+            </article>
+
         </article>
 
     }
+
+    <article class="nutrientContainer">
+        
+        <h4 lass="propInfotitle">Total Fat</h4>
+
+        @if( TotalFatToggle ){
+
+            <article class="controlContainer">
+
+                <lib-nutrient-category
+                    ngDefaultControl
+                    [formGroupName]="'totalFat'"
+                    [Control]="Control.controls.totalFat!"
+                    [NameEnabled]="false"
+                />
+
+                <button type="button" (click)="removeGroup('totalFat')">delete</button>
+
+            </article>
+    
+    
+        }
+        @else {
+
+            <button class="controlButton" type="button" (click)="addGroup('totalFat')">add</button>
+
+        }
+
+    </article>
 
 
     

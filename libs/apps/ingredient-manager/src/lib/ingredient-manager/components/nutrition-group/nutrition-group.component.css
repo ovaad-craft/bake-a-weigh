@@ -6,7 +6,7 @@
 
 .mainContainer{
     display: grid;
-    row-gap: var(--micro-2-4);
+    row-gap: var(--xTiny-2-4);
 }
 
 .propInfoContainer{
@@ -84,7 +84,29 @@
     text-align: center;
 }
 
-/*.servingAndCalorieControlContainer{
-    display : grid;
-    row-gap: var( --xTiny-1-4 );
-}*/
+.controlButtonContainer{
+    display: grid;
+    column-gap: var( --line-wide );
+    grid-template-columns: repeat(2, auto);
+    width : max-content;
+    justify-self : center;
+}
+
+.editButton{
+    height: min-content;
+    font-size: var( --text-subtitle-1 );
+    padding : var( --line-narrow ) var( --line-bold );
+    width: min-content;
+}
+
+.nutrientContainer{
+    display: grid;
+    justify-items: center;
+    row-gap: var( --micro-1-4 );
+}
+
+.controlButton{
+    height: min-content;
+    font-size: var( --text-subtitle-1 );
+    padding : var( --line-narrow ) var( --line-bold );
+}

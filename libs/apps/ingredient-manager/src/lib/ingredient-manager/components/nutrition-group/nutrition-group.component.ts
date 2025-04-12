@@ -31,7 +31,7 @@ import { IngredientListComponent } from './ingredient-list/ingredient-list.compo
 import { ServingSizeComponent } from "./serving-size/serving-size.component";
 import { VitaminsAndMineralsListComponent } from './vitamins-and-minerals-list/vitamins-and-minerals-list.component';
 import { NutrientCategoryComponent } from './nutrient-category/nutrient-category.component';
-import { NutritionOptionType } from '@bake-a-weigh/site-types';
+import { NutritionOptionType, WeightMeasurement } from '@bake-a-weigh/site-types';
 import { createNutrientCategoryGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/nutrient-category-group/nutrient-category-group';
 import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/vitamins-minerals-list/vitamins-minerals-list';
 
@@ -68,6 +68,9 @@ export class NutritionGroupComponent implements OnInit {
 
     ServingAndCalorieControlToggle = false;
 
+    ServingSizePreviousValue! : WeightMeasurement;
+    CaloriesPreviousValue!    : number;
+
 
 
     ngOnInit(): void {
@@ -84,9 +87,26 @@ export class NutritionGroupComponent implements OnInit {
 
 
     openServingAndCalorieControl() : void {
-
-        this.ServingAndCalorieControlToggle = true;
         
+        this.ServingSizePreviousValue = this.Control.value.servingSize as WeightMeasurement;
+        this.CaloriesPreviousValue    = this.Control.value.calories as number;
+        this.ServingAndCalorieControlToggle = true;
+
+    }
+
+
+
+    closeServingAndCalorieControl( update : boolean ) : void {
+
+        if( !update ){
+
+            this.Control.controls.servingSize.setValue( this.ServingSizePreviousValue );
+            this.Control.controls.calories.setValue( this.CaloriesPreviousValue );
+
+        }
+
+        this.ServingAndCalorieControlToggle = false;
+
     }
 
 
@@ -96,9 +116,8 @@ export class NutritionGroupComponent implements OnInit {
         
         if( !this.Control.controls[ group ] ) {
             
-            console.log(group);
+            
             this.Control.addControl( `${ group }`, createNutrientCategoryGroup() );
-            console.log(this.Control);
 
         }
 
@@ -147,6 +166,7 @@ export class NutritionGroupComponent implements OnInit {
         if( !this.Control.controls.vitaminsAndMinerals ) {
 
             this.Control.addControl( 'vitaminsAndMinerals', createVitaminsAndMineralsArray() );
+            
         }
 
     }
