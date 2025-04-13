@@ -23,7 +23,7 @@ import { CommonModule }             from '@angular/common';
 import { ElementWeightGroupType }   from '../../../views/ingredient-editor/form-generator/form-types';
 import { WeightType }               from '@bake-a-weigh/site-types';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NumberInputComponent, SelectInputComponent }  from '@form-controls';
+import { NumberInputComponent, SelectButtonsInputComponent, SelectInputComponent }  from '@form-controls';
 
 @Component({
   selector: 'lib-weight',
@@ -31,7 +31,8 @@ import { NumberInputComponent, SelectInputComponent }  from '@form-controls';
     CommonModule,
     ReactiveFormsModule,
     NumberInputComponent,
-    SelectInputComponent
+    SelectInputComponent,
+    SelectButtonsInputComponent
 
   ],
   templateUrl: './weight.component.html',

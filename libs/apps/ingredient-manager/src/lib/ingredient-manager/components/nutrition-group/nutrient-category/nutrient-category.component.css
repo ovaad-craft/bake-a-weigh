@@ -1,17 +1,21 @@
 :host{
     display: grid;
     justify-items: center;
+    width: 100%;
 }
 
 .mainContainer{
 
     display : grid;
     row-gap : var( --micro-2-4 );
+    width: 100%;
 }
 
 .displayContainer{
     display: grid;
-    grid-template-columns: auto auto;
+    width : max-content;
+    place-self: center;
+    grid-template-columns: max-content auto;
     column-gap: var( --micro-2-4 );
 }
 
@@ -19,9 +23,31 @@
     font-size : var( --text-subtitle-1 );
 }
 
+.controlButton{
+    height: min-content;
+    font-size: var( --text-subtitle-1 );
+    padding : var( --line-narrow ) var( --line-bold );
+}
+
 .editButton{
     font-size: var( --text-caption-1 );
     height: min-content;
-    place-self: center;
+    align-self: center;
+    justify-self: left;
     padding : var(--line-fine ) var( --line-narrow );
+}
+
+.controlContainer{
+    display: grid;
+    width: 100%;
+    background-color:red;
+    row-gap: var( --xTiny-1-4 );
+}
+
+.controlButtonContainer{
+    display: grid;
+    column-gap: var( --line-wide );
+    grid-template-columns: repeat(2, auto);
+    width : max-content;
+    justify-self : center;
 }

@@ -82,22 +82,22 @@
             <article class="controlButtonContainer">
 
                 <button
-                        type="button"
-                        class="editButton"
-                        (click)="closeServingAndCalorieControl( true )"
-                    >
-                        save
-                    </button>
+                    type="button"
+                    class="controlButton"
+                    (click)="closeServingAndCalorieControl( true )"
+                >
+                    save
+                </button>
     
     
     
-                    <button
-                        type="button"
-                        class="controlButton"
-                        (click)="closeServingAndCalorieControl( false )"
-                    >
-                        cancel
-                    </button>
+                <button
+                    type="button"
+                    class="controlButton"
+                    (click)="closeServingAndCalorieControl( false )"
+                >
+                    cancel
+                </button>
 
             </article>
 
@@ -118,6 +118,7 @@
                     [Control]="Control.controls.totalFat!"
                     [Name]="'Total Fat'"
                     [NameEnabled]="false"
+                    class="nutrientCategoryComponent"
                 />
                 
                 <button type="button" class="controlButton" (click)="removeGroup('totalFat')">delete</button>

@@ -26,6 +26,7 @@ import { TextInputComponent }                          from '@form-controls';
 import { WeightComponent }                             from '../weight/weight.component';
 import { createNutrientCategoryGroupArray }            from '../../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/nutrient-category-group-list/nutrient-category-group-list';
 import { createNutrientCategoryGroup }                 from '../../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/nutrient-category-group/nutrient-category-group';
+import { ElementWeightType, WeightType } from '@bake-a-weigh/site-types';
 
 
 
@@ -57,17 +58,35 @@ export class NutrientCategoryComponent implements OnInit {
 
 
 
+  PreviousTotalAmount! : ElementWeightType;
+
+
+
+
+
   ngOnInit(): void {
       
     if( this.Control.controls.name      ) { this.NameToggle      = true; }
     if( this.Control.controls.nutrients ) { this.NutrientsToggle = true; }
-    console.log(this.Control.controls);
+    //console.log(this.Control.controls);
 
   }
 
 
 
-  toggleControlOn() : void { this.ControlToggle = true; }
+  toggleControlOn() : void {
+
+    this.PreviousTotalAmount = this.Control.value.totalAmount as ElementWeightType;
+    this.ControlToggle = true;
+
+  }
+
+  toggleControlOff( update : boolean ) : void {
+
+    if( !update ) { this.Control.controls.totalAmount.setValue( this.PreviousTotalAmount ); }
+
+    this.ControlToggle = false;
+  }
 
 
 

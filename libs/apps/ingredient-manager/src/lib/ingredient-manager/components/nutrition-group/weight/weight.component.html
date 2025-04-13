@@ -1,28 +1,42 @@
 <section class="mainContainer" [formGroup]="Control">
 
-    <lib-number-input
-        [Control]="Control.controls.amount"
-        ngDefaultControl
-        [formControlName]="'amount'"
-        [Label]="'amount'"
-        [InputSize]="5"
-    />
+    <article class="controlContainer">
+        
+        <article class="amountContainer">
 
-    <lib-select-input
-        [OptionList]="WeightOptions"
-        [Control]="Control.controls.weightType"
-        ngDefaultControl
-        [formControlName]="'weightType'"
-        [Label]="'weight'"
-    />
+            <lib-number-input
+                ngDefaultControl
+                [Control]="Control.controls.amount"
+                [formControlName]="'amount'"
+                [InputSize]="4"
+                [FontSize]="'var( --text-title-3 )'"
+            />
+            
+            <h3 class="weightSelectionDisplay">{{ Control.value.weightType }}</h3>
+            
+        </article>
+        
+        <lib-select-buttons-input
+            ngDefaultControl
+            [Control]="Control.controls.weightType"
+            [formControlName]="'weightType'"
+            [OptionList]="WeightOptions"
+            [FontSize]="'var( --text-article-2 )'"
+            [Label]="'weight'"
+            class="selectContainer"
+        />
 
-    @if ( PercentToggle ) {
+    </article>
+
+    <!--@if ( PercentToggle ) {
 
         <lib-number-input
-            [Control]="Control.controls.percentage!"
             ngDefaultControl
+            [Control]="Control.controls.percentage!"
             [formControlName]="'percentage'"
             [Label]="'percent'"
+            [InputSize]="4"
+            [FontSize]="'var( --text-title-3 )'"
         />
 
         <button type="button" (click)="removePercentage()">remove</button>
@@ -31,6 +45,6 @@
     @else {
 
         <button type="button" (click)="addPercentage()">add percentage</button>
-    }
+    }-->
 
 </section>

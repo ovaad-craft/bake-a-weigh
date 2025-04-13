@@ -23,10 +23,33 @@
         <article class="controlContainer">
 
             <lib-weight
-                [Control]="Control.controls.totalAmount"
                 ngDefaultControl
+                [Control]="Control.controls.totalAmount"
                 [formGroupName]="'totalAmount'"
+                class="weightComponent"
             />
+
+            <article class="controlButtonContainer">
+
+                <button
+                        type="button"
+                        class="controlButton"
+                        (click)="toggleControlOff( true )"
+                    >
+                        save
+                    </button>
+    
+    
+    
+                    <button
+                        type="button"
+                        class="controlButton"
+                        (click)="toggleControlOff( false )"
+                    >
+                        cancel
+                    </button>
+
+            </article>
 
         </article>
     }

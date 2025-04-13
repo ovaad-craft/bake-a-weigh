@@ -1,0 +1,41 @@
+:host{
+    display: grid;
+    width: 100%;
+}
+
+.mainContainer{
+    display: grid;
+    background-color: orange;
+    width: 100%;
+    row-gap: var( --xTiny-1-4 );
+    justify-items: center;
+}
+
+.controlContainer{
+    display: grid;
+    width: 100%;
+    grid-template-columns: max-content 1fr;
+    justify-self: center;
+    column-gap: var( --xTiny-1-4 );
+}
+
+.amountContainer{
+    display: grid;
+    grid-template-columns: max-content auto;
+    place-items: center;
+    justify-self: left;
+    width : 100%;
+    column-gap: var( --line-thick );
+    background-color: aqua;
+}
+
+.selectContainer{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    justify-items: right;
+}
+
+.weightSelectionDisplay{
+    font-size: var( --text-title-2 );
+}

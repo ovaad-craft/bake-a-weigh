@@ -87,6 +87,7 @@
 .controlContainer{
     display: grid;
     row-gap: var( --micro-2-4 );
+    width: 100%;
 }
 
 .controlButtonContainer{
@@ -108,10 +109,16 @@
     display: grid;
     justify-items: center;
     row-gap: var( --micro-1-4 );
+    width: 100%;
+    background-color: blue;
 }
 
 .controlButton{
     height: min-content;
     font-size: var( --text-subtitle-1 );
     padding : var( --line-narrow ) var( --line-bold );
+}
+
+.nutrientCategoryComponent{
+    width: 100%;
 }
