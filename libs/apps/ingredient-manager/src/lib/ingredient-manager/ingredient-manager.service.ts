@@ -165,29 +165,18 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 8
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0.5,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Polyunsaturated Fat',
-            totalAmount : {
-              amount : 4,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0.5,
+          weightType : 'g'
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        polyunsaturatedFat : {
+          amount : 4,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -342,16 +331,11 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 18
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g',
-              percentage : 10
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 10
+        }
       },
       sodium : {
         totalAmount : {
@@ -399,24 +383,16 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -514,24 +490,16 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -636,24 +604,16 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -869,37 +829,23 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 18
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g',
-              percentage : 10
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Polyunsaturated Fat',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Monounsaturated Fat',
-            totalAmount : {
-              amount : 11,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 10
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        polyunsaturatedFat : {
+          amount : 1,
+          weightType : 'g'
+        },
+        monounsaturatedFat : {
+          amount : 11,
+          weightType : 'g'
+        }
       },
       sodium : {
         totalAmount : {
@@ -1045,22 +991,14 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       sodium : {
         totalAmount : {
@@ -1175,22 +1113,14 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -1298,22 +1228,14 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -1482,23 +1404,15 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 1
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -1644,37 +1558,23 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 4
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0.5,
-              weightType : 'g',
-              percentage : 3
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Polyunsaturated Fat',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Monounsaturated Fat',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0.5,
+          weightType : 'g',
+          percentage : 3
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        polyunsaturatedFat : {
+          amount : 1,
+          weightType : 'g'
+        },
+        monounsaturatedFat : {
+          amount : 1,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -1813,37 +1713,23 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 4
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0.5,
-              weightType : 'g',
-              percentage : 3
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Polyunsaturated Fat',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Monounsaturated Fat',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0.5,
+          weightType : 'g',
+          percentage : 3
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        polyunsaturatedFat : {
+          amount : 1,
+          weightType : 'g'
+        },
+        monounsaturatedFat : {
+          amount : 1,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -1973,16 +1859,11 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 18
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g',
-              percentage : 10
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 10
+        }
       },
       sodium : {
         totalAmount : {
@@ -2036,24 +1917,16 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 10
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 5,
-              weightType : 'g',
-              percentage : 25
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 5,
+          weightType : 'g',
+          percentage : 25
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -2165,16 +2038,11 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 14
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 7,
-              weightType : 'g',
-              percentage : 37
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 7,
+          weightType : 'g',
+          percentage : 37
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -2238,23 +2106,15 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 6
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 3.5,
-              weightType : 'g',
-              percentage : 18
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 3.5,
+          weightType : 'g',
+          percentage : 18
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -2383,23 +2243,15 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 7
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 3,
-              weightType : 'g',
-              percentage : 15
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 3,
+          weightType : 'g',
+          percentage : 15
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -2521,23 +2373,15 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 2
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g',
-              percentage : 5
-            }            
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 5
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -2666,37 +2510,23 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Pollyunsaturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Monunsaturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        polyunsaturatedFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        monounsaturatedFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -2888,37 +2718,23 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 23
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 1.5,
-              weightType : 'g',
-              percentage : 8
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Polyunsaturated Fat',
-            totalAmount : {
-              amount : 13,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Monounsaturated Fat',
-            totalAmount : {
-              amount : 2.5,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 1.5,
+          weightType : 'g',
+          percentage : 8
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        },
+        polyunsaturatedFat : {
+          amount : 13,
+          weightType : 'g'
+        },
+        monounsaturatedFat : {
+          amount : 2.5,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         totalAmount : {
@@ -3010,29 +2826,20 @@ const DemoIngredients : IngredientProfile[] = [
       },
       calories : 70,
       totalFat : {
-        name : 'Total Fat',
         totalAmount : {
           amount : 0,
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Saturated Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Trans Fat',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+        saturatedFat : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        transFat : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       cholesterol : {
         name : 'Cholesterol',
