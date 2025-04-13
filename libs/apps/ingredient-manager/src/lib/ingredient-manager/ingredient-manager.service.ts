@@ -2831,7 +2831,7 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        saturatedFat : {
+        /*saturatedFat : {
           amount : 0,
           weightType : 'g',
           percentage : 0
@@ -2839,7 +2839,7 @@ const DemoIngredients : IngredientProfile[] = [
         transFat : {
           amount : 0,
           weightType : 'g'
-        }
+        }*/
       },
       cholesterol : {
         name : 'Cholesterol',

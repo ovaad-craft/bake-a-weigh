@@ -16,9 +16,9 @@
 
     </article>
 
-}
+  }
 
-@else {
+  @else {
 
     <article class="controlContainer">
 
@@ -55,6 +55,27 @@
 
     </article>
 
-}
+  }
+
+
+
+  <article class="fatTypesContainer">
+
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.saturatedFat ) {
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Saturated Fat</h4>
+          <button class="addButton" type="button" (click)="addFatType( 'saturated' )">add</button>
+
+        </article>
+      }
+  
+    </article>
+
+  </article>
+
+
 
 </section>

@@ -22,10 +22,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { NutrientCategoryGroup, TotalFatCategoryGroup } from '../../../views/ingredient-editor/form-generator/form-types';
+import { ElementWeightGroupType, NutrientCategoryGroup, TotalFatCategoryGroup } from '../../../views/ingredient-editor/form-generator/form-types';
 import { WeightComponent } from '../weight/weight.component';
 import { ElementWeightType } from '@bake-a-weigh/site-types';
 import { NumberInputComponent } from '@form-controls';
+import { createElementWeightGroup } from '../../../views/ingredient-editor/form-generator/primatives/multi-value/element-weight-group/element-weight-group';
 
 @Component({
   selector: 'lib-total-fat',
@@ -143,6 +144,24 @@ export class TotalFatComponent {
   
     this.MonounsaturatedFatToggle = false;
 
+  }
+
+
+
+  addFatType( type : 'saturated' | 'trans' | 'mono' | 'poly' ) : void {
+
+    const group : FormGroup< ElementWeightGroupType > = createElementWeightGroup( { amount : 0, weightType : 'g'} );
+
+    switch( type ){
+
+      case 'saturated' : this.Control.addControl( 'saturatedFat',       group ); break;
+      case 'trans'     : this.Control.addControl( 'transFat',           group ); break;
+      case 'mono'      : this.Control.addControl( 'monounsaturatedFat', group ); break;
+      case 'poly'      : this.Control.addControl( 'polyunsaturatedFat', group ); break;
+      
+      default          : throw new Error( `${ type } is not an acceptable fat type` );
+
+    }
   }
   
 
