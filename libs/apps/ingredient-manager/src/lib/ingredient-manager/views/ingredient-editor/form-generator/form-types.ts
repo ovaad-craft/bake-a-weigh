@@ -59,6 +59,17 @@ export interface NutrientCategoryGroup{
     name?       : FormControl< string | null >;
     totalAmount : FormGroup< ElementWeightGroupType >;
     nutrients?  : FormGroup< FormArrayGroupList< NutrientCategoryGroup > >;
+    
+}
+
+export interface TotalFatCategoryGroup{
+
+    totalAmount   : FormGroup< ElementWeightGroupType >;
+    saturatedFat? : FormGroup< ElementWeightGroupType >;
+    transFat?     : FormGroup< ElementWeightGroupType >;
+    monounsaturatedFat? : FormGroup< ElementWeightGroupType >;
+    polyunsaturatedFat? : FormGroup< ElementWeightGroupType >;
+
 }
 
 
