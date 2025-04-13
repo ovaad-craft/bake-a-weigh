@@ -28,13 +28,14 @@
 
     </article>
 
-    <!--@if ( PercentToggle ) {
+    @if ( PercentToggle ) {
 
         <lib-number-input
             ngDefaultControl
             [Control]="Control.controls.percentage!"
             [formControlName]="'percentage'"
-            [Label]="'percent'"
+            [Label]="'%'"
+            [LabelFontSize]="'var( --text-article-1 )'"
             [InputSize]="4"
             [FontSize]="'var( --text-title-3 )'"
         />
@@ -45,6 +46,6 @@
     @else {
 
         <button type="button" (click)="addPercentage()">add percentage</button>
-    }-->
+    }
 
 </section>

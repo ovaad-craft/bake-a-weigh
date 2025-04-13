@@ -111,15 +111,20 @@
         @if( TotalFatToggle ){
             
             <article class="controlContainer">
+
+                <lib-total-fat
+                    ngDefaultControl
+                    [Control]="Control.controls.totalFat!"
+                />
                 
-                <lib-nutrient-category
+                <!--<lib-nutrient-category
                     ngDefaultControl
                     [formGroupName]="'totalFat'"
                     [Control]="Control.controls.totalFat!"
                     [Name]="'Total Fat'"
                     [NameEnabled]="false"
                     class="nutrientCategoryComponent"
-                />
+                />-->
                 
                 <button type="button" class="controlButton" (click)="removeGroup('totalFat')">delete</button>
                 
