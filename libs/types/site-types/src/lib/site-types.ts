@@ -29,10 +29,18 @@ export interface NutrientCategory{
 export type NutritionOptionType = 'totalFat' | 'cholesterol' | 'sodium' | 'totalCarbohydrates' |
                                   'protein';
 
+export interface TotalFatCategory{
+  totalAmount   : ElementWeightType;
+  saturatedFat? : ElementWeightType;
+  transFat? : ElementWeightType;
+  monounsaturatedFat? : ElementWeightType;
+  polyunsaturatedFat? : ElementWeightType;
+}
+
 export interface Nutrition{
   servingSize         : ElementWeightType;
   calories            : number;
-  totalFat?           : NutrientCategory;
+  totalFat?           : TotalFatCategory;
   cholesterol?        : NutrientCategory;
   sodium?             : NutrientCategory;
   totalCarbohydrates? : NutrientCategory;
