@@ -5,6 +5,7 @@ import { createElementWeightGroup }       from "../../element-weight-group/eleme
 import { createNutrientCategoryGroup }    from "../nutrient-category-group/nutrient-category-group";
 import { createIngredientArray }          from "../../ingredient-list/ingredient-list";
 import { createVitaminsAndMineralsArray } from "../vitamins-minerals-list/vitamins-minerals-list";
+import { createTotalFatCategoryGroup } from "../total-fat-group/total-fat-group";
 
 
 
@@ -25,7 +26,7 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
 
 
     if( defaultData?.totalFat ){
-        group.addControl( 'totalFat', createNutrientCategoryGroup( defaultData.totalFat) );
+        group.addControl( 'totalFat', createTotalFatCategoryGroup( defaultData.totalFat) );
     }
     if( defaultData?.cholesterol ){
         group.addControl( 'cholesterol', createNutrientCategoryGroup( defaultData.cholesterol) );
