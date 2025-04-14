@@ -133,16 +133,16 @@ export class TotalFatComponent {
   
   togglePolyunsaturatedFatOn() : void {
   
-    this.PreviousTotalAmount = this.Control.value.monounsaturatedFat as ElementWeightType;
-    this.MonounsaturatedFatToggle = true;
+    this.PreviousPolyunsaturatedFatAmount = this.Control.value.polyunsaturatedFat as ElementWeightType;
+    this.PolyunsaturatedFatToggle = true;
   
   }
   
   togglePolyunsaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.controls.monounsaturatedFat!.setValue( this.PreviousTotalAmount ); }
+    if( !update ) { this.Control.controls.polyunsaturatedFat!.setValue( this.PreviousPolyunsaturatedFatAmount ); }
   
-    this.MonounsaturatedFatToggle = false;
+    this.PolyunsaturatedFatToggle = false;
 
   }
 
@@ -158,7 +158,7 @@ export class TotalFatComponent {
       case 'trans'     : this.Control.addControl( 'transFat',           group ); break;
       case 'mono'      : this.Control.addControl( 'monounsaturatedFat', group ); break;
       case 'poly'      : this.Control.addControl( 'polyunsaturatedFat', group ); break;
-      
+
       default          : throw new Error( `${ type } is not an acceptable fat type` );
 
     }

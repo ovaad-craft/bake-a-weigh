@@ -64,12 +64,309 @@
     <article class="fatContainer">
   
       @if ( !Control.controls.saturatedFat ) {
+
         <article class="addFatContainer">
 
           <h4 class="fatTypeTitle">Saturated Fat</h4>
           <button class="addButton" type="button" (click)="addFatType( 'saturated' )">add</button>
 
         </article>
+
+      }
+
+      @else {
+
+        @if ( !SaturatedFatToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Saturated Fat
+                {{ Control.value.saturatedFat!.amount }}{{ Control.value.saturatedFat!.weightType }}
+                <span *ngIf="Control.value.saturatedFat!.percentage !== undefined">  {{ Control.value.saturatedFat!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleSaturatedFatOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Saturated Fat</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.saturatedFat"
+              [formGroupName]="'saturatedFat'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleSaturatedFatOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleSaturatedFatOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+    
+    
+    
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.transFat ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Trans Fat</h4>
+          <button class="addButton" type="button" (click)="addFatType( 'trans' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !TransFatToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Trans Fat
+                {{ Control.value.transFat!.amount }}{{ Control.value.transFat!.weightType }}
+                <span *ngIf="Control.value.transFat!.percentage !== undefined">  {{ Control.value.transFat!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleTransFatOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Trans Fat</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.transFat"
+              [formGroupName]="'transFat'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleTransFatOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleTransFatOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+    
+    
+    
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.monounsaturatedFat ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Monounsaturated Fat</h4>
+          <button class="addButton" type="button" (click)="addFatType( 'mono' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !MonounsaturatedFatToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Monounsaturated Fat
+                {{ Control.value.monounsaturatedFat!.amount }}{{ Control.value.monounsaturatedFat!.weightType }}
+                <span *ngIf="Control.value.monounsaturatedFat!.percentage !== undefined">  {{ Control.value.monounsaturatedFat!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleMonounsaturatedFatOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Monounsaturated Fat</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.monounsaturatedFat"
+              [formGroupName]="'monounsaturatedFat'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleMonounsaturatedFatOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleMonounsaturatedFatOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+    
+    
+    
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.polyunsaturatedFat ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Polyunsaturated Fat</h4>
+          <button class="addButton" type="button" (click)="addFatType( 'poly' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !PolyunsaturatedFatToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Polyunsaturated Fat
+                {{ Control.value.polyunsaturatedFat!.amount }}{{ Control.value.polyunsaturatedFat!.weightType }}
+                <span *ngIf="Control.value.polyunsaturatedFat!.percentage !== undefined">  {{ Control.value.polyunsaturatedFat!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="togglePolyunsaturatedFatOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Polyunsaturated Fat</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.polyunsaturatedFat"
+              [formGroupName]="'polyunsaturatedFat'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="togglePolyunsaturatedFatOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="togglePolyunsaturatedFatOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
       }
   
     </article>

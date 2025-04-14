@@ -119,7 +119,14 @@ export class NutritionGroupComponent implements OnInit {
         if( !this.Control.controls[ group ] ) {
             
             
-            this.Control.addControl( `${ group }`, createNutrientCategoryGroup() );
+            this.Control.addControl( `${ group }`, createNutrientCategoryGroup({
+
+                totalAmount : {
+                    amount : 0,
+                    weightType : 'g'
+                }
+
+            }));
 
         }
 
