@@ -179,11 +179,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -395,11 +393,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -502,11 +498,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -616,11 +610,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -1123,11 +1115,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -1238,11 +1228,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -1415,11 +1403,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -1577,11 +1563,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -1732,11 +1716,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -1929,11 +1911,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 35,
-          weightType : 'mg',
-          percentage : 12
-        }
+        amount : 35,
+        weightType : 'mg',
+        percentage : 12
       },
       sodium : {
         totalAmount : {
@@ -2045,11 +2025,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 30,
-          weightType : 'mg',
-          percentage : 10
-        }
+        amount : 30,
+        weightType : 'mg',
+        percentage : 10
       },
       sodium : {
         totalAmount : {
@@ -2117,11 +2095,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 20,
-          weightType : 'mg',
-          percentage : 7
-        }
+        amount : 20,
+        weightType : 'mg',
+        percentage : 7
       },
       sodium : {
         totalAmount : {
@@ -2254,11 +2230,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 15,
-          weightType : 'mg',
-          percentage : 5
-        }
+        amount : 15,
+        weightType : 'mg',
+        percentage : 5
       },
       sodium : {
         totalAmount : {
@@ -2384,11 +2358,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 5,
-          weightType : 'mg',
-          percentage : 2
-        }
+        amount : 5,
+        weightType : 'mg',
+        percentage : 2
       },
       sodium : {
         totalAmount : {
@@ -2529,11 +2501,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -2737,11 +2707,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       cholesterol : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       sodium : {
         totalAmount : {
@@ -2842,12 +2810,9 @@ const DemoIngredients : IngredientProfile[] = [
         }*/
       },
       cholesterol : {
-        name : 'Cholesterol',
-        totalAmount : {
-          amount : 0,
-          weightType : 'g',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'g',
+        percentage : 0
       },
       sodium : {
         name : 'Sodium',
