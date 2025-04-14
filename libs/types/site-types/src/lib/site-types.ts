@@ -37,13 +37,26 @@ export interface TotalFatCategory{
   polyunsaturatedFat? : ElementWeightType;
 }
 
+export interface TotalSugarsCategory{
+  totalAmount : ElementWeightType;
+  addedSugars? : ElementWeightType;
+}
+
+export interface TotalCarbohydratesCategory{
+  totalAmount : ElementWeightType;
+  dietaryFiber? : ElementWeightType;
+  totalSugars? : TotalSugarsCategory;
+  alcoholSugars? : ElementWeightType;
+
+}
+
 export interface Nutrition{
   servingSize         : ElementWeightType;
   calories            : number;
   totalFat?           : TotalFatCategory;
   cholesterol?        : ElementWeightType;
   sodium?             : ElementWeightType;
-  totalCarbohydrates? : NutrientCategory;
+  totalCarbohydrates? : TotalCarbohydratesCategory;
   protein?            : NutrientCategory;
   vitaminsAndMinerals?: Nutrient[];
   ingredients : string[];
