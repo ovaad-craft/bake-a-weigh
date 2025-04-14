@@ -24,7 +24,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ElementWeightGroupType } from '../../../views/ingredient-editor/form-generator/form-types';
 import { WeightComponent } from '../weight/weight.component';
-import { NumberInputComponent } from '@form-controls';
 import { ElementWeightType } from '@bake-a-weigh/site-types';
 
 @Component({
@@ -32,8 +31,7 @@ import { ElementWeightType } from '@bake-a-weigh/site-types';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    WeightComponent,
-    NumberInputComponent
+    WeightComponent
     
   ],
   templateUrl: './cholesterol.component.html',
