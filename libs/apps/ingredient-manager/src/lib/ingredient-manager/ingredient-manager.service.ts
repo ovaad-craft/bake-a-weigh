@@ -111,16 +111,13 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 7
         },
-        nutrients : [
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount     : 15,
-              weightType : 'g',
-              percentage : 30
-            }
-          }
-        ]
+        totalSugars : {
+          totalAmount : {
+            amount     : 15,
+            weightType : 'g',
+            percentage : 30
+          }          
+        }
       },
       protein : {
         totalAmount : {
@@ -192,23 +189,17 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 1
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 4,
-              weightType : 'g',
-              percentage : 14
-            }
-          },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 4,
+          weightType : 'g',
+          percentage : 14
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 0,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -400,23 +391,17 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 0,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -503,30 +488,21 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 11
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g',
-              percentage : 6
-            }
+        dietaryFiber : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 6
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 26,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 26,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Added Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+          addedSugars : {
+            amount : 0,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -613,30 +589,21 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 11
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g',
-              percentage : 6
-            }
+        dietaryFiber : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 6
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 26,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 26,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Added Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
-          }
-        ]
+          addedSugars : {
+            amount : 0,
+            weightType : 'g'
+          }          
+        }
       },
       protein : {
         totalAmount : {
@@ -761,15 +728,10 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 11
         },
-        nutrients : [
-          {
-            name : 'Sugar Alcohol',
-            totalAmount : {
-              amount : 30,
-              weightType : 'g'
-            }
-          }
-        ]
+        sugarAlcohols : {
+          amount : 30,
+          weightType : 'g'
+        }
       },
       protein : {
         totalAmount : {
@@ -1024,22 +986,16 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0.8,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 0.8,
+          weightType : 'g'
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 0,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -1102,30 +1058,21 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 3
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g'
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 8,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 8,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Added Sugars',
-            totalAmount : {
-              amount : 8,
-              weightType : 'g',
-              percentage : 16
-            }
+          addedSugars : {
+            amount : 8,
+            weightType : 'g',
+            percentage : 16
           }
-        ],
+        }
       },
       protein : {
         totalAmount : {
@@ -1213,30 +1160,22 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 3
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g'
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 8,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 8,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Added Sugars',
-            totalAmount : {
-              amount : 8,
-              weightType : 'g',
-              percentage : 16              
-            }
+          addedSugars : {
+            amount : 8,
+            weightType : 'g',
+            percentage : 16             
+
           }
-        ],
+        }
       },
       protein : {
         totalAmount : {
@@ -1311,15 +1250,12 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 3
         },
-        nutrients : [
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 8,
-              weightType : 'g'
-            }
+        totalSugars : {
+          totalAmount : {
+            amount : 8,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -1384,23 +1320,17 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 12
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g',
-              percentage : 4
-            }
-          },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 1,
+          weightType : 'g',
+          percentage : 4
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 0,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -1542,38 +1472,26 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 10
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 4,
-              weightType : 'g',
-              percentage : 13
-            }
+        dietaryFiber : {
+          amount : 4,
+          weightType : 'g',
+          percentage : 13
+        },
+        solubleFiber : {
+          amount : 2,
+          weightType : 'g'
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 1,
+            weightType : 'g'
           },
-          {
-            name : 'Soluble Fiber',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Added Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
+          addedSugars : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -1693,38 +1611,26 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 10
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 4,
-              weightType : 'g',
-              percentage : 13
-            }
+        dietaryFiber : {
+          amount : 4,
+          weightType : 'g',
+          percentage : 13
+        },
+        solubleFiber : {
+          amount : 2,
+          weightType : 'g'
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 1,
+            weightType : 'g'
           },
-          {
-            name : 'Soluble Fiber',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Added Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          }
-        ]
+          addedSugars : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
+          }          
+        }
       },
       protein : {
         totalAmount : {
@@ -1882,33 +1788,22 @@ const DemoIngredients : IngredientProfile[] = [
           amount : 12,
           weightType : 'g'
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 12,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 12,
-              weightType : 'g'
-            },
-            nutrients : [
-              {
-                name : 'Includes 0g Added Sugars',
-                totalAmount : {
-                  amount : 0,
-                  weightType : 'g',
-                  percentage : 0
-                }
-              }
-            ]
+          addedSugars : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
           }
-        ]
+        }
       },
       protein : {
         totalAmount :{
@@ -2064,34 +1959,23 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            },
-            nutrients : [
-              {
-                name : 'Added Sugars',
-                totalAmount : {
-                  amount : 0,
-                  weightType : 'g',
-                  percentage : 0
-                }
-              }
-            ]
+          addedSugars : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -2197,33 +2081,22 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 1
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 1
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 1
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 0,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            },
-            nutrients : [
-              {
-                name : 'Includes 0g Added Sugars',
-                totalAmount : {
-                  amount : 0,
-                  weightType : 'g',
-                  percentage : 0
-                }
-              }
-            ]
+          addedSugars : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -2323,33 +2196,22 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 9
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 18,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 18,
-              weightType : 'g'
-            },
-            nutrients : [
-              {
-                name : 'Incl. Added Sugars',
-                totalAmount : {
-                  amount : 13,
-                  weightType : 'g',
-                  percentage : 26
-                }
-              }
-            ]
+          addedSugars : {
+            amount : 13,
+            weightType : 'g',
+            percentage : 26
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -2464,30 +2326,21 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 4
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g',
-              percentage : 0
-            }
-          },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 12,
-              weightType : 'g'
-            }
-          },
-          {
-            name : 'Sugar Alcohol',
-            totalAmount : {
-              amount : 0,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 0,
+          weightType : 'g',
+          percentage : 0
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 12,
+            weightType : 'g'
           }
-        ]
+        },
+        sugarAlcohols : {
+          amount : 0,
+          weightType : 'g'
+        }
       },
       protein : {
         totalAmount : {
@@ -2668,23 +2521,17 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 1
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 2,
-              weightType : 'g',
-              percentage : 7
-            }
-          },
-          {
-            name : 'Sugars',
-            totalAmount : {
-              amount : 1,
-              weightType : 'g'
-            }
+        dietaryFiber : {
+          amount : 2,
+          weightType : 'g',
+          percentage : 7
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 1,
+            weightType : 'g'
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {
@@ -2743,7 +2590,7 @@ const DemoIngredients : IngredientProfile[] = [
           weightType : 'g',
           percentage : 0
         },
-        /*saturatedFat : {
+        saturatedFat : {
           amount : 0,
           weightType : 'g',
           percentage : 0
@@ -2751,7 +2598,7 @@ const DemoIngredients : IngredientProfile[] = [
         transFat : {
           amount : 0,
           weightType : 'g'
-        }*/
+        }
       },
       cholesterol : {
         amount : 0,
@@ -2763,39 +2610,27 @@ const DemoIngredients : IngredientProfile[] = [
         weightType : 'g'
       },
       totalCarbohydrates : {
-        name : 'Total Carbohydrates',
         totalAmount : {
           amount : 17,
           weightType : 'g',
           percentage : 7
         },
-        nutrients : [
-          {
-            name : 'Dietary Fiber',
-            totalAmount : {
-              amount : 3,
-              weightType : 'g',
-              percentage : 11
-            }
+        dietaryFiber : {
+          amount : 3,
+          weightType : 'g',
+          percentage : 11
+        },
+        totalSugars : {
+          totalAmount : {
+            amount : 13,
+            weightType : 'g'
           },
-          {
-            name : 'Total Sugars',
-            totalAmount : {
-              amount : 13,
-              weightType : 'g'
-            },
-            nutrients : [
-              {
-                name : 'Added Sugars',
-                totalAmount : {
-                  amount : 0,
-                  weightType : 'g',
-                  percentage : 0
-                }
-              }
-            ]
+          addedSugars : {
+            amount : 0,
+            weightType : 'g',
+            percentage : 0
           }
-        ]
+        }
       },
       protein : {
         totalAmount : {

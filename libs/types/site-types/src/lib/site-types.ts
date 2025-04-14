@@ -45,6 +45,7 @@ export interface TotalSugarsCategory{
 export interface TotalCarbohydratesCategory{
   totalAmount    : ElementWeightType;
   dietaryFiber?  : ElementWeightType;
+  solubleFiber?  : ElementWeightType;
   totalSugars?   : TotalSugarsCategory;
   sugarAlcohols? : ElementWeightType;
 

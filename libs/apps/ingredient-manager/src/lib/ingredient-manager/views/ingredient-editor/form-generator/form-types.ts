@@ -87,6 +87,7 @@ export interface TotalCarbohydratesGroup{
 
     totalAmount    : FormGroup< ElementWeightGroupType >;
     dietaryFiber?  : FormGroup< ElementWeightGroupType >;
+    solubleFiber?  : FormGroup< ElementWeightGroupType >;
     totalSugars?   : FormGroup< TotalSugarsGroup >;
     sugarAlcohols? : FormGroup< ElementWeightGroupType >;
 

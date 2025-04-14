@@ -17,6 +17,8 @@ export function createTotalCarbohydratesGroup( defaultData? : TotalCarbohydrates
 
 
     if( defaultData?.dietaryFiber  ) {  group.addControl( 'dietaryFiber',  createElementWeightGroup( defaultData.dietaryFiber  ));  }
+    
+    if( defaultData?.solubleFiber  ) {  group.addControl( 'solubleFiber',  createElementWeightGroup( defaultData.solubleFiber  ));  }
 
     if( defaultData?.totalSugars   ) {  group.addControl( 'totalSugars',   createTotalSugarsGroup(   defaultData.totalSugars   ));  }
 
