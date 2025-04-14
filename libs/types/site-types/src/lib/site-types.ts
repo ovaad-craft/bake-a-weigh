@@ -41,7 +41,7 @@ export interface Nutrition{
   servingSize         : ElementWeightType;
   calories            : number;
   totalFat?           : TotalFatCategory;
-  cholesterol?        : NutrientCategory;
+  cholesterol?        : ElementWeightType;
   sodium?             : NutrientCategory;
   totalCarbohydrates? : NutrientCategory;
   protein?            : NutrientCategory;
