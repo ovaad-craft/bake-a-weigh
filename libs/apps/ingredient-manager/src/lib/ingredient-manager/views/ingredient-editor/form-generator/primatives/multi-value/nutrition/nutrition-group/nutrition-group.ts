@@ -6,6 +6,7 @@ import { createNutrientCategoryGroup }    from "../nutrient-category-group/nutri
 import { createIngredientArray }          from "../../ingredient-list/ingredient-list";
 import { createVitaminsAndMineralsArray } from "../vitamins-minerals-list/vitamins-minerals-list";
 import { createTotalFatCategoryGroup } from "../total-fat-group/total-fat-group";
+import { createTotalCarbohydratesGroup } from "../total-carbohydrates-group/total-carbohydrates-group";
 
 
 
@@ -35,7 +36,7 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
         group.addControl( 'sodium', createElementWeightGroup( defaultData.sodium) );
     }
     if( defaultData?.totalCarbohydrates ){
-        group.addControl( 'totalCarbohydrates', createNutrientCategoryGroup( defaultData.totalCarbohydrates ) );
+        group.addControl( 'totalCarbohydrates', createTotalCarbohydratesGroup( defaultData.totalCarbohydrates ) );
     }
     if( defaultData?.protein ){
         group.addControl( 'protein', createNutrientCategoryGroup( defaultData.protein ) );
