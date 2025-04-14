@@ -101,11 +101,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -184,11 +182,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -273,11 +269,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 590,
-          weightType : 'mg',
-          percentage : 26
-        }
+        amount : 590,
+        weightType : 'mg',
+        percentage : 26
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -336,11 +330,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -398,11 +390,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -503,11 +493,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 10,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 10,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -615,11 +603,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 10,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 10,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -712,11 +698,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 530,
-          weightType : 'mg',
-          percentage : 23
-        }
+        amount : 530,
+        weightType : 'mg',
+        percentage : 23
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -767,11 +751,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -840,11 +822,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -895,11 +875,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 60,
-          weightType : 'mg',
-          percentage : 3
-        }
+        amount : 60,
+        weightType : 'mg',
+        percentage : 3
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -943,11 +921,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -993,11 +969,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1040,11 +1014,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1120,11 +1092,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1233,11 +1203,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1333,11 +1301,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1408,11 +1374,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1568,11 +1532,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1721,11 +1683,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1848,11 +1808,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -1916,10 +1874,8 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 12
       },
       sodium : {
-        totalAmount : {
-          amount : 125,
-          weightType : 'mg'
-        }
+        amount : 125,
+        weightType : 'mg'
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2030,11 +1986,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 10
       },
       sodium : {
-        totalAmount : {
-          amount : 100,
-          weightType : 'mg',
-          percentage : 4
-        }
+        amount : 100,
+        weightType : 'mg',
+        percentage : 4
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2100,11 +2054,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 7
       },
       sodium : {
-        totalAmount : {
-          amount : 5,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 5,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2235,11 +2187,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 5
       },
       sodium : {
-        totalAmount : {
-          amount : 190,
-          weightType : 'mg',
-          percentage : 8
-        }
+        amount : 190,
+        weightType : 'mg',
+        percentage : 8
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2363,11 +2313,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 2
       },
       sodium : {
-        totalAmount : {
-          amount : 85,
-          weightType : 'mg',
-          percentage : 4
-        }
+        amount : 85,
+        weightType : 'mg',
+        percentage : 4
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2506,11 +2454,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 8,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 8,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2712,11 +2658,9 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'mg',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'mg',
+        percentage : 0
       },
       totalCarbohydrates : {
         totalAmount : {
@@ -2815,11 +2759,8 @@ const DemoIngredients : IngredientProfile[] = [
         percentage : 0
       },
       sodium : {
-        name : 'Sodium',
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       totalCarbohydrates : {
         name : 'Total Carbohydrates',
