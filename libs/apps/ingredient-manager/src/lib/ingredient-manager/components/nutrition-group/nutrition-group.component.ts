@@ -37,6 +37,7 @@ import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/fo
 import { TotalFatComponent } from './total-fat/total-fat.component';
 import { CholesterolComponent } from './cholesterol/cholesterol.component';
 import { createElementWeightGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/element-weight-group/element-weight-group';
+import { SodiumComponent } from './sodium/sodium.component';
 
 
 
@@ -54,6 +55,7 @@ import { createElementWeightGroup } from '../../views/ingredient-editor/form-gen
     ServingSizeComponent,
     TotalFatComponent,
     CholesterolComponent,
+    SodiumComponent,
     VitaminsAndMineralsListComponent
 ],
     templateUrl : './nutrition-group.component.html',
@@ -216,6 +218,28 @@ export class NutritionGroupComponent implements OnInit {
 
         this.CholesterolToggle = false;
         this.Control.removeControl( 'cholesterol' );
+
+    }
+    
+    
+    
+    addSodium() : void {
+
+        this.Control.addControl( 'sodium', createElementWeightGroup({
+
+            amount : 0,
+            weightType : 'g'
+
+        }));
+
+        this.SodiumToggle = true;
+
+    }
+
+    removeSodium() : void {
+
+        this.SodiumToggle = false;
+        this.Control.removeControl( 'sodium' );
 
     }
 
