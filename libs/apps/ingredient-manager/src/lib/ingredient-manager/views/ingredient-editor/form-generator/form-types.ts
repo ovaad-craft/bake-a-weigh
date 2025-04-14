@@ -74,6 +74,26 @@ export interface TotalFatCategoryGroup{
 
 
 
+export interface TotalSugarsGroup{
+
+    totalAmount : FormGroup< ElementWeightGroupType >;
+    addedSugars? : FormGroup< ElementWeightGroupType >;
+
+}
+
+
+
+export interface TotalCarbohydratesGroup{
+
+    totalAmount    : FormGroup< ElementWeightGroupType >;
+    dietaryFiber?  : FormGroup< ElementWeightGroupType >;
+    totalSugars?   : FormGroup< TotalSugarsGroup >;
+    sugarAlcohols? : FormGroup< ElementWeightGroupType >;
+
+}
+
+
+
 export interface NutrientTrackerGroup{
 
     name        : FormControl< string | null >;
@@ -100,10 +120,10 @@ export interface NutritionGroup {
 
     servingSize          : FormGroup< ElementWeightGroupType >;
     calories             : FormControl< number | null >;
-    totalFat?            : FormGroup< NutrientCategoryGroup >;
+    totalFat?            : FormGroup< TotalFatCategoryGroup >;
     cholesterol?         : FormGroup< ElementWeightGroupType >;
     sodium?              : FormGroup< ElementWeightGroupType >;
-    totalCarbohydrates?  : FormGroup< NutrientCategoryGroup >;
+    totalCarbohydrates?  : FormGroup< TotalCarbohydratesGroup >;
     protein?             : FormGroup< NutrientCategoryGroup >;
     vitaminsAndMinerals? : FormGroup< FormArrayGroupList< NutrientGroupType > >;
     ingredients          : FormGroup< FormArrayControlList< string > >;
