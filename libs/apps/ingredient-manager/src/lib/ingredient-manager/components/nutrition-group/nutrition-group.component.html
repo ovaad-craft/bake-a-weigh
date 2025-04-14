@@ -163,6 +163,37 @@
 
 
     </article>
+    
+    
+    
+    <article class="nutrientContainer">
+        
+        
+        @if( SodiumToggle ){
+            
+            <article class="controlContainer">
+
+                <lib-sodium
+                    ngDefaultControl
+                    [Control]="Control.controls.sodium!"
+                />
+                
+                <button type="button" class="controlButton" (click)="removeSodium()">delete sodium</button>
+                
+            </article>
+            
+            
+        }
+
+        @else {
+            
+            <h4 class="propInfotitle">Sodium</h4>
+            <button class="controlButton" type="button" (click)="addSodium()">add</button>
+
+        }
+
+
+    </article>
 
 
     

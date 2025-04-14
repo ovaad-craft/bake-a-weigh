@@ -21,7 +21,7 @@ USER STORIES :
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { ElementWeightGroupType, NutrientCategoryGroup, TotalFatCategoryGroup } from '../../../views/ingredient-editor/form-generator/form-types';
 import { WeightComponent } from '../weight/weight.component';
 import { ElementWeightType } from '@bake-a-weigh/site-types';
@@ -53,7 +53,7 @@ export class TotalFatComponent {
   PreviousSaturatedFatAmount! : ElementWeightType;
 
   TransFatToggle = false;
-  PreviousTransFatsAmount! : ElementWeightType;
+  PreviousTransFatAmount! : ElementWeightType;
 
   MonounsaturatedFatToggle = false;
   PreviousMonounsaturatedFatAmount! : ElementWeightType;
@@ -65,16 +65,27 @@ export class TotalFatComponent {
 
   toggleControlOn() : void {
   
-    this.PreviousSaturatedFatAmount = this.Control.value.totalAmount as ElementWeightType;
+    this.PreviousTotalAmount = this.Control.value.totalAmount as ElementWeightType;
     this.ControlToggle = true;
   
   }
   
   toggleControlOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.controls.totalAmount.setValue( this.PreviousSaturatedFatAmount ); }
-  
+    if( !update ) {
+
+      if( this.Control.controls.totalAmount.controls.percentage === undefined && this.PreviousTotalAmount.percentage !== undefined) {
+      
+        this.Control.controls.totalAmount.addControl( 'percentage', new FormControl< number | null >( null) );     
+        
+      }
+      
+      this.Control.controls.totalAmount.setValue( this.PreviousTotalAmount );
+    
+    }
+
     this.ControlToggle = false;
+  
 
   }
   
@@ -89,7 +100,23 @@ export class TotalFatComponent {
   
   toggleSaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.controls.saturatedFat!.setValue( this.PreviousSaturatedFatAmount ); }
+    if( !update ) {
+
+      if( this.Control.controls.saturatedFat!.controls.percentage === undefined && this.PreviousSaturatedFatAmount.percentage !== undefined) {
+      
+        this.Control.controls.saturatedFat!.addControl( 'percentage', new FormControl< number | null >( null) );     
+        
+      }
+
+      if( this.Control.controls.saturatedFat!.controls.percentage !== undefined && this.PreviousSaturatedFatAmount.percentage === undefined ){
+
+        this.Control.controls.saturatedFat!.removeControl( 'percentage' );
+        
+      }
+      
+      this.Control.controls.saturatedFat!.setValue( this.PreviousSaturatedFatAmount );
+
+    }
   
     this.SaturatedFatToggle = false;
 
@@ -99,14 +126,31 @@ export class TotalFatComponent {
   
   toggleTransFatOn() : void {
   
-    this.PreviousTransFatsAmount = this.Control.value.transFat as ElementWeightType;
+    this.PreviousTransFatAmount = this.Control.value.transFat as ElementWeightType;
     this.TransFatToggle = true;
   
   }
   
   toggleTransFatOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.controls.transFat!.setValue( this.PreviousTransFatsAmount ); }
+    if( !update ) {
+
+      if( this.Control.controls.transFat!.controls.percentage === undefined && this.PreviousTransFatAmount.percentage !== undefined) {
+      
+        this.Control.controls.transFat!.addControl( 'percentage', new FormControl< number | null >( null) );     
+        
+      }
+
+      if( this.Control.controls.transFat!.controls.percentage !== undefined && this.PreviousTransFatAmount.percentage === undefined ){
+
+        this.Control.controls.transFat!.removeControl( 'percentage' );
+        
+      }
+
+
+      this.Control.controls.transFat!.setValue( this.PreviousTransFatAmount );
+
+    }
   
     this.TransFatToggle = false;
 
@@ -123,7 +167,24 @@ export class TotalFatComponent {
   
   toggleMonounsaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.controls.monounsaturatedFat!.setValue( this.PreviousMonounsaturatedFatAmount ); }
+    if( !update ) {
+
+      if( this.Control.controls.monounsaturatedFat!.controls.percentage === undefined && this.PreviousMonounsaturatedFatAmount.percentage !== undefined) {
+      
+        this.Control.controls.monounsaturatedFat!.addControl( 'percentage', new FormControl< number | null >( null) );     
+        
+      }
+
+      if( this.Control.controls.monounsaturatedFat!.controls.percentage !== undefined && this.PreviousMonounsaturatedFatAmount.percentage === undefined ){
+
+        this.Control.controls.monounsaturatedFat!.removeControl( 'percentage' );
+        
+      }
+
+
+      this.Control.controls.monounsaturatedFat!.setValue( this.PreviousMonounsaturatedFatAmount );
+
+    }
   
     this.MonounsaturatedFatToggle = false;
 
@@ -140,7 +201,23 @@ export class TotalFatComponent {
   
   togglePolyunsaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.controls.polyunsaturatedFat!.setValue( this.PreviousPolyunsaturatedFatAmount ); }
+    if( !update ) {
+
+      if( this.Control.controls.polyunsaturatedFat!.controls.percentage === undefined && this.PreviousPolyunsaturatedFatAmount.percentage !== undefined) {
+      
+        this.Control.controls.polyunsaturatedFat!.addControl( 'percentage', new FormControl< number | null >( null) );     
+        
+      }
+
+      if( this.Control.controls.polyunsaturatedFat!.controls.percentage !== undefined && this.PreviousPolyunsaturatedFatAmount.percentage === undefined ){
+
+        this.Control.controls.polyunsaturatedFat!.removeControl( 'percentage' );
+        
+      }
+      
+      this.Control.controls.polyunsaturatedFat!.setValue( this.PreviousPolyunsaturatedFatAmount );
+
+    }
   
     this.PolyunsaturatedFatToggle = false;
 

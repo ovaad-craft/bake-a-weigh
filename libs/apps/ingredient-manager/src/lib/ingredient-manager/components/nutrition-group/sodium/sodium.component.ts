@@ -21,7 +21,7 @@ USER STORIES :
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { ElementWeightGroupType } from '../../../views/ingredient-editor/form-generator/form-types';
 import { ElementWeightType } from '@bake-a-weigh/site-types';
 import { WeightComponent } from '../weight/weight.component';
@@ -34,7 +34,7 @@ import { WeightComponent } from '../weight/weight.component';
 })
 export class SodiumComponent {
 
-  
+
   @Input() Control! : FormGroup< ElementWeightGroupType >;
   @Input() Label!   : string;
 
@@ -56,7 +56,24 @@ export class SodiumComponent {
   
   toggleControlOff( update : boolean ) : void {
   
-    if( !update ) { this.Control.setValue( this.PreviousAmount ); }
+    if( !update ) {
+
+      if( this.Control.controls.percentage === undefined && this.PreviousAmount.percentage !== undefined) {
+            
+        this.Control.addControl( 'percentage', new FormControl< number | null >( null) );     
+              
+      }
+
+      if( this.Control.controls.percentage !== undefined && this.PreviousAmount.percentage === undefined ){
+
+        this.Control.removeControl( 'percentage' );
+        
+      }
+
+
+      this.Control.setValue( this.PreviousAmount );
+
+    }
   
     this.ControlToggle = false;
   
