@@ -18,7 +18,7 @@ USER STORIES :
 
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
@@ -32,16 +32,24 @@ import { WeightComponent } from '../weight/weight.component';
   templateUrl: './sodium.component.html',
   styleUrls: ['./sodium.component.css'],
 })
-export class SodiumComponent {
+export class SodiumComponent implements OnInit {
 
 
   @Input() Control! : FormGroup< ElementWeightGroupType >;
   @Input() Label!   : string;
+  @Input() NewEntry = false;
 
 
 
   PreviousAmount! : ElementWeightType;
   ControlToggle = false;
+
+
+
+  ngOnInit(): void {
+    
+    if( this.NewEntry ) { this.ControlToggle = true; }
+  }
   
   
   
@@ -56,7 +64,7 @@ export class SodiumComponent {
   
   toggleControlOff( update : boolean ) : void {
   
-    if( !update ) {
+    if( !update && this.PreviousAmount !== undefined ) {
 
       if( this.Control.controls.percentage === undefined && this.PreviousAmount.percentage !== undefined) {
             

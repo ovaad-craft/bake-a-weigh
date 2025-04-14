@@ -66,12 +66,19 @@ export class NutritionGroupComponent implements OnInit {
 
     @Input() Control! : FormGroup< NutritionGroup >;
 
-    SodiumToggle      = false;
-    ProteinToggle     = false;
-    TotalFatToggle    = false;
-    CholesterolToggle = false;
+    TotalFatToggle   = false;
+    NewTotalFatEntry = false;
+
+    CholesterolToggle   = false;
+    NewCholesterolEntry = false;
+
+    SodiumToggle   = false;
+    NewSodiumEntry = false;
+
+    ProteinToggle  = false;
+
     TotalCarbohydratesToggle  = false;
-    VitaminsAndMineralsToggle = false
+    VitaminsAndMineralsToggle = false;
 
     ServingAndCalorieControlToggle = false;
 
@@ -118,7 +125,7 @@ export class NutritionGroupComponent implements OnInit {
 
 
 
-    addGroup( group : NutritionOptionType ) : void {
+    /*addGroup( group : NutritionOptionType ) : void {
 
         
         if( !this.Control.controls[ group ] ) {
@@ -171,7 +178,7 @@ export class NutritionGroupComponent implements OnInit {
 
         }
 
-    }
+    }*/
 
 
 
@@ -186,7 +193,8 @@ export class NutritionGroupComponent implements OnInit {
 
         }));
         
-        this.TotalFatToggle = true;
+        this.NewTotalFatEntry = true;
+        this.TotalFatToggle   = true;
         
     }
     
@@ -194,7 +202,8 @@ export class NutritionGroupComponent implements OnInit {
     
     removeTotalFat() : void {
 
-        this.TotalFatToggle = false;
+        this.TotalFatToggle   = false;
+        this.NewTotalFatEntry = false;
         this.Control.removeControl( 'totalFat' );        
 
     }
@@ -210,13 +219,15 @@ export class NutritionGroupComponent implements OnInit {
 
         }));
 
-        this.CholesterolToggle = true;
+        this.NewCholesterolEntry = true;
+        this.CholesterolToggle   = true;
 
     }
 
     removeCholesterol() : void {
 
-        this.CholesterolToggle = false;
+        this.NewCholesterolEntry = false;
+        this.CholesterolToggle   = false;
         this.Control.removeControl( 'cholesterol' );
 
     }
@@ -232,13 +243,15 @@ export class NutritionGroupComponent implements OnInit {
 
         }));
 
-        this.SodiumToggle = true;
+        this.NewSodiumEntry = true;
+        this.SodiumToggle   = true;
 
     }
 
     removeSodium() : void {
 
-        this.SodiumToggle = false;
+        this.NewSodiumEntry = false;
+        this.SodiumToggle   = false;
         this.Control.removeControl( 'sodium' );
 
     }

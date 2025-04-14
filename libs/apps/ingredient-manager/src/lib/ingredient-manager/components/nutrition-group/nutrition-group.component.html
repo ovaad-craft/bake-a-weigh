@@ -115,6 +115,7 @@
                 <lib-total-fat
                     ngDefaultControl
                     [Control]="Control.controls.totalFat!"
+                    [NewEntry]="NewTotalFatEntry"
                 />
                 
                 <button type="button" class="controlButton" (click)="removeTotalFat()">delete fat</button>
@@ -145,6 +146,7 @@
                 <lib-cholesterol
                     ngDefaultControl
                     [Control]="Control.controls.cholesterol!"
+                    [NewEntry]="NewCholesterolEntry"
                 />
                 
                 <button type="button" class="controlButton" (click)="removeCholesterol()">delete cholesterol</button>
@@ -176,6 +178,7 @@
                 <lib-sodium
                     ngDefaultControl
                     [Control]="Control.controls.sodium!"
+                    [NewEntry]="NewSodiumEntry"
                 />
                 
                 <button type="button" class="controlButton" (click)="removeSodium()">delete sodium</button>

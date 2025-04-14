@@ -18,7 +18,7 @@ USER STORIES :
 
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
@@ -39,10 +39,11 @@ import { createElementWeightGroup } from '../../../views/ingredient-editor/form-
   templateUrl: './total-fat.component.html',
   styleUrls: ['./total-fat.component.css'],
 })
-export class TotalFatComponent {
+export class TotalFatComponent implements OnInit {
 
   @Input() Control! : FormGroup< TotalFatCategoryGroup >;
   @Input() Label!   : string;
+  @Input() NewEntry = false;
 
 
 
@@ -60,6 +61,13 @@ export class TotalFatComponent {
 
   PolyunsaturatedFatToggle = false;
   PreviousPolyunsaturatedFatAmount! : ElementWeightType
+
+
+
+  ngOnInit(): void {
+    
+    if( this.NewEntry ){ this.ControlToggle = true; }
+  }
 
 
 
@@ -100,7 +108,9 @@ export class TotalFatComponent {
   
   toggleSaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) {
+    if( !update && this.PreviousSaturatedFatAmount !== undefined ) {
+
+
 
       if( this.Control.controls.saturatedFat!.controls.percentage === undefined && this.PreviousSaturatedFatAmount.percentage !== undefined) {
       
@@ -131,9 +141,9 @@ export class TotalFatComponent {
   
   }
   
-  toggleTransFatOff( update : boolean ) : void {
+  toggleTransFatOff( update : boolean  ) : void {
   
-    if( !update ) {
+    if( !update && this.PreviousTransFatAmount !== undefined ) {
 
       if( this.Control.controls.transFat!.controls.percentage === undefined && this.PreviousTransFatAmount.percentage !== undefined) {
       
@@ -167,7 +177,7 @@ export class TotalFatComponent {
   
   toggleMonounsaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) {
+    if( !update && this.PreviousMonounsaturatedFatAmount !== undefined ) {
 
       if( this.Control.controls.monounsaturatedFat!.controls.percentage === undefined && this.PreviousMonounsaturatedFatAmount.percentage !== undefined) {
       
@@ -201,7 +211,7 @@ export class TotalFatComponent {
   
   togglePolyunsaturatedFatOff( update : boolean ) : void {
   
-    if( !update ) {
+    if( !update && this.PreviousPolyunsaturatedFatAmount !== undefined ) {
 
       if( this.Control.controls.polyunsaturatedFat!.controls.percentage === undefined && this.PreviousPolyunsaturatedFatAmount.percentage !== undefined) {
       
@@ -231,10 +241,10 @@ export class TotalFatComponent {
 
     switch( type ){
 
-      case 'saturated' : this.Control.addControl( 'saturatedFat',       group ); break;
-      case 'trans'     : this.Control.addControl( 'transFat',           group ); break;
-      case 'mono'      : this.Control.addControl( 'monounsaturatedFat', group ); break;
-      case 'poly'      : this.Control.addControl( 'polyunsaturatedFat', group ); break;
+      case 'saturated' : this.Control.addControl( 'saturatedFat',       group ); this.SaturatedFatToggle = true; break;
+      case 'trans'     : this.Control.addControl( 'transFat',           group ); this.TransFatToggle = true; break;
+      case 'mono'      : this.Control.addControl( 'monounsaturatedFat', group ); this.MonounsaturatedFatToggle = true; break;
+      case 'poly'      : this.Control.addControl( 'polyunsaturatedFat', group ); this.PolyunsaturatedFatToggle = true; break;
 
       default          : throw new Error( `${ type } is not an acceptable fat type` );
 

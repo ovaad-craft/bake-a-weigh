@@ -18,7 +18,7 @@ USER STORIES :
 
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
@@ -37,16 +37,25 @@ import { ElementWeightType } from '@bake-a-weigh/site-types';
   templateUrl: './cholesterol.component.html',
   styleUrls: ['./cholesterol.component.css'],
 })
-export class CholesterolComponent {
+export class CholesterolComponent implements OnInit {
 
   @Input() Control! : FormGroup< ElementWeightGroupType >;
   @Input() Label!   : string;
+  @Input() NewEntry = false;
 
 
 
+  
+  
+  
   PreviousAmount! : ElementWeightType;
   ControlToggle = false;
-
+  
+  ngOnInit(): void {
+    
+    if( this.NewEntry ){ this.ControlToggle = true; }
+    
+  }
 
 
   toggleControlOn() : void {
@@ -60,7 +69,7 @@ export class CholesterolComponent {
 
   toggleControlOff( update : boolean ) : void {
 
-    if( !update ) {
+    if( !update && this.PreviousAmount !== undefined ) {
 
       if( this.Control.controls.percentage === undefined && this.PreviousAmount.percentage !== undefined) {
             
