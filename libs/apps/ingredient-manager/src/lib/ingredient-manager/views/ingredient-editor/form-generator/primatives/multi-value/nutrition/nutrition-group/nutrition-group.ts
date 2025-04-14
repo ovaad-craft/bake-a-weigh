@@ -32,7 +32,7 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
         group.addControl( 'cholesterol', createElementWeightGroup( defaultData.cholesterol) );
     }
     if( defaultData?.sodium ){
-        group.addControl( 'sodium', createNutrientCategoryGroup( defaultData.sodium) );
+        group.addControl( 'sodium', createElementWeightGroup( defaultData.sodium) );
     }
     if( defaultData?.totalCarbohydrates ){
         group.addControl( 'totalCarbohydrates', createNutrientCategoryGroup( defaultData.totalCarbohydrates ) );
