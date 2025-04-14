@@ -36,6 +36,7 @@ import { createNutrientCategoryGroup } from '../../views/ingredient-editor/form-
 import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/vitamins-minerals-list/vitamins-minerals-list';
 import { TotalFatComponent } from './total-fat/total-fat.component';
 import { CholesterolComponent } from './cholesterol/cholesterol.component';
+import { createElementWeightGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/element-weight-group/element-weight-group';
 
 
 
@@ -167,6 +168,54 @@ export class NutritionGroupComponent implements OnInit {
             default : throw new Error( `${group} is not a nutrition item.` );
 
         }
+
+    }
+
+
+
+    addTotalFat() : void {
+
+        this.Control.addControl( 'totalFat', createNutrientCategoryGroup({
+
+            totalAmount : {
+                amount : 0,
+                weightType : 'g'
+            }
+
+        }));
+        
+        this.TotalFatToggle = true;
+        
+    }
+    
+    
+    
+    removeTotalFat() : void {
+
+        this.TotalFatToggle = false;
+        this.Control.removeControl( 'totalFat' );        
+
+    }
+
+
+
+    addCholesterol() : void {
+
+        this.Control.addControl( 'cholesterol', createElementWeightGroup({
+
+            amount : 0,
+            weightType : 'g'
+
+        }));
+
+        this.CholesterolToggle = true;
+
+    }
+
+    removeCholesterol() : void {
+
+        this.CholesterolToggle = false;
+        this.Control.removeControl( 'cholesterol' );
 
     }
 

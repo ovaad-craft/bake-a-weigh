@@ -110,7 +110,7 @@
     justify-items: center;
     row-gap: var( --micro-1-4 );
     width: 100%;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 .controlButton{

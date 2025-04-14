@@ -51,7 +51,7 @@ export class CholesterolComponent {
 
 
 
-  openControl() : void {
+  toggleControlOn() : void {
 
     this.PreviousAmount = this.Control.value as ElementWeightType;
     this.ControlToggle = true;
@@ -60,12 +60,12 @@ export class CholesterolComponent {
 
 
 
-  closeControl( update : boolean ) : void {
+  toggleControlOff( update : boolean ) : void {
 
     if( !update ) { this.Control.setValue( this.PreviousAmount ); }
 
     this.ControlToggle = false;
-    
+
   }
 
 

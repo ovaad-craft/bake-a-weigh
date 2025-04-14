@@ -117,19 +117,17 @@
                     [Control]="Control.controls.totalFat!"
                 />
                 
-                <button type="button" class="controlButton" (click)="removeGroup('totalFat')">delete fat</button>
+                <button type="button" class="controlButton" (click)="removeTotalFat()">delete fat</button>
                 
             </article>
             
             
         }
-
-
         
         @else {
             
             <h4 class="propInfotitle">Total Fat</h4>
-            <button class="controlButton" type="button" (click)="addGroup('totalFat')">add</button>
+            <button class="controlButton" type="button" (click)="addTotalFat()">add</button>
 
         }
 
@@ -149,22 +147,20 @@
                     [Control]="Control.controls.cholesterol!"
                 />
                 
-                <button type="button" class="controlButton" (click)="removeGroup('cholesterol')">delete cholesterol</button>
+                <button type="button" class="controlButton" (click)="removeCholesterol()">delete cholesterol</button>
                 
             </article>
             
             
         }
 
-
-
         @else {
             
             <h4 class="propInfotitle">Cholesterol</h4>
-            <button class="controlButton" type="button" (click)="addGroup('cholesterol')">add</button>
+            <button class="controlButton" type="button" (click)="addCholesterol()">add</button>
 
         }
-        
+
 
     </article>
 

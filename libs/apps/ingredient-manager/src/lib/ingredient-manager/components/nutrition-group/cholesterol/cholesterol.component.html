@@ -1,3 +1,60 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  @if( !ControlToggle ){
+
+    <article class="displayContainer">
+
+        <h5 class="amountDisplay">
+
+            Cholesterol
+            {{ Control.value.amount }}{{ Control.value.weightType }}
+            <span *ngIf="Control.value.percentage !== undefined">  {{ Control.value.percentage }}%</span>
+            
+        </h5>
+
+        <button type="button" class="editButton" (click)="toggleControlOn()">edit</button>
+
+    </article>
+
+  }
+
+  @else {
+
+    <article class="controlContainer">
+
+      <h5 class="amountDisplay">Cholesterol</h5>
+      
+      <lib-weight
+        ngDefaultControl
+        [Control]="Control"
+        [formGroup]="Control"
+        class="weightComponent"
+      />
+
+      <article class="controlButtonContainer">
+
+        <button
+          type="button"
+          class="controlButton"
+          (click)="toggleControlOff( true )"
+        >
+          save
+        </button>
+
+
+
+        <button
+          type="button"
+          class="controlButton"
+          (click)="toggleControlOff( false )"
+        >
+          cancel
+        </button>
+
+      </article>
+
+    </article>
+
+  }
+
 </section>
