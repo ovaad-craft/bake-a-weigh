@@ -25,6 +25,7 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ElementWeightGroupType } from '../../../views/ingredient-editor/form-generator/form-types';
 import { WeightComponent } from '../weight/weight.component';
 import { NumberInputComponent } from '@form-controls';
+import { ElementWeightType } from '@bake-a-weigh/site-types';
 
 @Component({
   selector: 'lib-cholesterol',
@@ -42,6 +43,30 @@ export class CholesterolComponent {
 
   @Input() Control! : FormGroup< ElementWeightGroupType >;
   @Input() Label!   : string;
+
+
+
+  PreviousAmount! : ElementWeightType;
+  ControlToggle = false;
+
+
+
+  openControl() : void {
+
+    this.PreviousAmount = this.Control.value as ElementWeightType;
+    this.ControlToggle = true;
+
+  }
+
+
+
+  closeControl( update : boolean ) : void {
+
+    if( !update ) { this.Control.setValue( this.PreviousAmount ); }
+
+    this.ControlToggle = false;
+    
+  }
 
 
 }
