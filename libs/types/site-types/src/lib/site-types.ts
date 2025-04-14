@@ -42,7 +42,7 @@ export interface Nutrition{
   calories            : number;
   totalFat?           : TotalFatCategory;
   cholesterol?        : ElementWeightType;
-  sodium?             : NutrientCategory;
+  sodium?             : ElementWeightType;
   totalCarbohydrates? : NutrientCategory;
   protein?            : NutrientCategory;
   vitaminsAndMinerals?: Nutrient[];

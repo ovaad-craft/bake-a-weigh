@@ -102,7 +102,7 @@ export interface NutritionGroup {
     calories             : FormControl< number | null >;
     totalFat?            : FormGroup< NutrientCategoryGroup >;
     cholesterol?         : FormGroup< ElementWeightGroupType >;
-    sodium?              : FormGroup< NutrientCategoryGroup >;
+    sodium?              : FormGroup< ElementWeightGroupType >;
     totalCarbohydrates?  : FormGroup< NutrientCategoryGroup >;
     protein?             : FormGroup< NutrientCategoryGroup >;
     vitaminsAndMinerals? : FormGroup< FormArrayGroupList< NutrientGroupType > >;
