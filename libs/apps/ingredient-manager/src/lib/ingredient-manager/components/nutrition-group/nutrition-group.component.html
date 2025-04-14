@@ -117,25 +117,51 @@
                     [Control]="Control.controls.totalFat!"
                 />
                 
-                <!--<lib-nutrient-category
-                    ngDefaultControl
-                    [formGroupName]="'totalFat'"
-                    [Control]="Control.controls.totalFat!"
-                    [Name]="'Total Fat'"
-                    [NameEnabled]="false"
-                    class="nutrientCategoryComponent"
-                />-->
-                
-                <button type="button" class="controlButton" (click)="removeGroup('totalFat')">delete</button>
+                <button type="button" class="controlButton" (click)="removeGroup('totalFat')">delete fat</button>
                 
             </article>
             
             
         }
+
+
+        
         @else {
             
             <h4 class="propInfotitle">Total Fat</h4>
             <button class="controlButton" type="button" (click)="addGroup('totalFat')">add</button>
+
+        }
+
+    </article>
+    
+    
+    
+    <article class="nutrientContainer">
+        
+        
+        @if( CholesterolToggle ){
+            
+            <article class="controlContainer">
+
+                <lib-cholesterol
+                    ngDefaultControl
+                    [Control]="Control.controls.cholesterol!"
+                />
+                
+                <button type="button" class="controlButton" (click)="removeGroup('cholesterol')">delete cholesterol</button>
+                
+            </article>
+            
+            
+        }
+
+
+
+        @else {
+            
+            <h4 class="propInfotitle">Cholesterol</h4>
+            <button class="controlButton" type="button" (click)="addGroup('cholesterol')">add</button>
 
         }
 

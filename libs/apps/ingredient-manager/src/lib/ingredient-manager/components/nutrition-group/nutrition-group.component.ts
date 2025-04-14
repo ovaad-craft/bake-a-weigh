@@ -35,6 +35,7 @@ import { NutritionOptionType, WeightMeasurement } from '@bake-a-weigh/site-types
 import { createNutrientCategoryGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/nutrient-category-group/nutrient-category-group';
 import { createVitaminsAndMineralsArray } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/vitamins-minerals-list/vitamins-minerals-list';
 import { TotalFatComponent } from './total-fat/total-fat.component';
+import { CholesterolComponent } from './cholesterol/cholesterol.component';
 
 
 
@@ -51,6 +52,7 @@ import { TotalFatComponent } from './total-fat/total-fat.component';
     IngredientListComponent,
     ServingSizeComponent,
     TotalFatComponent,
+    CholesterolComponent,
     VitaminsAndMineralsListComponent
 ],
     templateUrl : './nutrition-group.component.html',
