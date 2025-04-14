@@ -90,6 +90,12 @@
     width: 100%;
 }
 
+.controlButton{
+    width: max-content;
+    justify-self : center;
+    
+}
+
 .controlButtonContainer{
     display: grid;
     column-gap: var( --line-wide );
