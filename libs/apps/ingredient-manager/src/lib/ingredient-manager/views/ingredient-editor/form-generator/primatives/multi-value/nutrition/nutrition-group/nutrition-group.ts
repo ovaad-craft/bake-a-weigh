@@ -29,7 +29,7 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
         group.addControl( 'totalFat', createTotalFatCategoryGroup( defaultData.totalFat) );
     }
     if( defaultData?.cholesterol ){
-        group.addControl( 'cholesterol', createNutrientCategoryGroup( defaultData.cholesterol) );
+        group.addControl( 'cholesterol', createElementWeightGroup( defaultData.cholesterol) );
     }
     if( defaultData?.sodium ){
         group.addControl( 'sodium', createNutrientCategoryGroup( defaultData.sodium) );

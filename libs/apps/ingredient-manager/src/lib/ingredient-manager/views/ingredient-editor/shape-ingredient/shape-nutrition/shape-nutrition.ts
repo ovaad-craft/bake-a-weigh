@@ -18,7 +18,7 @@ export function shapeNutrition( nutrition : FormGroup< NutritionGroup >[ 'value'
 
 
     if ( nutrition.totalFat    ) { item.totalFat    = shapeNutrientCategory( nutrition.totalFat    ); }
-    if ( nutrition.cholesterol ) { item.cholesterol = shapeNutrientCategory( nutrition.cholesterol ); }
+    if ( nutrition.cholesterol ) { item.cholesterol = nutrition.cholesterol as ElementWeightType; }
     if ( nutrition.sodium      ) { item.sodium      = shapeNutrientCategory( nutrition.sodium      ); }
     if ( nutrition.protein     ) { item.protein     = shapeNutrientCategory( nutrition.protein     ); }
     if ( nutrition.totalCarbohydrates  ) { item.totalCarbohydrates = shapeNutrientCategory( nutrition.totalCarbohydrates ); }
