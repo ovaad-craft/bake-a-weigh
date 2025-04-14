@@ -72,13 +72,15 @@
 
 .addFatContainer{
     display: grid;
-    row-gap: var( --line-wide );
+    justify-self: center;
+    grid-template-columns: max-content min-content;
+    column-gap: var( --line-wide );
 }
 
 .addButton{
     width : max-content;
     height: min-content;
-    font-size : var( --text-widget-2 );
+    font-size : var( --text-caption-1 );
     justify-self: center;
-    padding : var( --line-thick ) var( --line-wide );
+    padding : var( --line-fine ) var( --line-narrow );
 }
