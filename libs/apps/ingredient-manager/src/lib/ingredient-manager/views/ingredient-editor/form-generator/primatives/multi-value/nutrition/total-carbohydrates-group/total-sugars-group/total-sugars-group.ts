@@ -19,7 +19,7 @@ export function createTotalSugarsGroup( defaultData? : TotalSugarsCategory ) : F
 
     if( defaultData?.addedSugars ) {
 
-        group.addControl( 'addedSugars', createElementWeightGroup() );
+        group.addControl( 'addedSugars', createElementWeightGroup( { amount : 0, weightType : 'g' } ) );
 
     }
 

@@ -51,6 +51,7 @@ export class TotalSugarsComponent implements OnInit {
   ngOnInit(): void {
 
     if( this.NewEntry ) { this.ControlToggle = true; }
+    console.log( this.Control);
 
   }
 

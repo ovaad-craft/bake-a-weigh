@@ -232,61 +232,17 @@
 
       @else {
 
-        @if ( !TotalSugarsToggle ) {
-
-          <article class="displayContainer">
-
-            <h5 class="fatTypeTitle">
-    
-                Total Sugars
-                {{ Control.value.totalSugars?.totalAmount!.amount }}{{ Control.value.totalSugars?.totalAmount!.weightType }}
-                <span *ngIf="Control.value.totalSugars?.totalAmount!.percentage !== undefined">  {{ Control.value.totalSugars?.totalAmount!.percentage }}%</span>
-                
-            </h5>
-    
-            <button type="button" class="editButton" (click)="toggleTotalSugarsOn()">edit</button>
-      
-          </article>
-    
-        }
-
-        @else {
-
-          <article class="controlContainer">
+        <article class="controlContainer">
             
-            <lib-total-sugars
-              ngDefaultControl
-              [Control]="Control.controls.totalSugars"
-              [formGroupName]="'totalSugars'"
-              [NewEntry]="NewTotalSugarsEntry"
-              class="weightComponent"
-            />
-      
-            <!--<article class="controlButtonContainer">
-      
-              <button
-                type="button"
-                class="controlButton"
-                (click)="toggleTotalSugarsOff( true )"
-              >
-                save
-              </button>
-      
-      
-      
-              <button
-                type="button"
-                class="controlButton"
-                (click)="toggleTotalSugarsOff( false )"
-              >
-                cancel
-              </button>
-      
-            </article>-->
-      
-          </article>
-
-        }
+          <lib-total-sugars
+            ngDefaultControl
+            [Control]="Control.controls.totalSugars"
+            [formGroupName]="'totalSugars'"
+            [NewEntry]="NewTotalSugarsEntry"
+            class="weightComponent"
+          />
+        
+        </article>        
 
       }
   
