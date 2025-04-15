@@ -253,17 +253,16 @@
         @else {
 
           <article class="controlContainer">
-
-            <h5 class="amountDisplay">Total Sugars</h5>
             
-            <lib-weight
+            <lib-total-sugars
               ngDefaultControl
               [Control]="Control.controls.totalSugars"
               [formGroupName]="'totalSugars'"
+              [NewEntry]="NewTotalSugarsEntry"
               class="weightComponent"
             />
       
-            <article class="controlButtonContainer">
+            <!--<article class="controlButtonContainer">
       
               <button
                 type="button"
@@ -283,7 +282,7 @@
                 cancel
               </button>
       
-            </article>
+            </article>-->
       
           </article>
 
@@ -301,7 +300,7 @@
 
         <article class="addFatContainer">
 
-          <h4 class="fatTypeTitle">Polyunsaturated Fat</h4>
+          <h4 class="fatTypeTitle">Sugar Alcohols</h4>
           <button class="addButton" type="button" (click)="addCarbohydrateType( 'alcohol' )">add</button>
 
         </article>
@@ -316,7 +315,7 @@
 
             <h5 class="fatTypeTitle">
     
-                Polyunsaturated Fat
+                Sugar Alcohols
                 {{ Control.value.sugarAlcohols!.amount }}{{ Control.value.sugarAlcohols!.weightType }}
                 <span *ngIf="Control.value.sugarAlcohols!.percentage !== undefined">  {{ Control.value.sugarAlcohols!.percentage }}%</span>
                 

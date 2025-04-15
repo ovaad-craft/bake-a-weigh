@@ -1,3 +1,144 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  @if( !ControlToggle ){
+
+    <article class="displayContainer">
+
+        <h5 class="fatTypeTitle">
+
+            Total Sugars
+            {{ Control.value.totalAmount?.amount }}{{ Control.value.totalAmount?.weightType }}
+            <span *ngIf="Control.value.totalAmount?.percentage !== undefined">  {{ Control.value.totalAmount?.percentage }}%</span>
+            
+        </h5>
+
+        <button type="button" class="editButton" (click)="toggleControlOn()">edit</button>
+
+    </article>
+
+  }
+
+  @else {
+
+    <article class="controlContainer">
+
+      <h5 class="amountDisplay">Total Sugars</h5>
+      
+      <lib-weight
+        ngDefaultControl
+        [Control]="Control.controls.totalAmount"
+        [formGroupName]="'totalAmount'"
+        class="weightComponent"
+      />
+
+      <article class="controlButtonContainer">
+
+        <button
+          type="button"
+          class="controlButton"
+          (click)="toggleControlOff( true )"
+        >
+          save
+        </button>
+
+
+
+        <button
+          type="button"
+          class="controlButton"
+          (click)="toggleControlOff( false )"
+        >
+          cancel
+        </button>
+
+      </article>
+
+    </article>
+
+  }
+
+
+
+  <article class="fatTypesContainer">
+
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.addedSugars ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Added Sugars</h4>
+          <button class="addButton" type="button" (click)="addAddedSugars()">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !AddedSugarsToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Added Sugars
+                {{ Control.value.addedSugars!.amount }}{{ Control.value.addedSugars!.weightType }}
+                <span *ngIf="Control.value.addedSugars!.percentage !== undefined">  {{ Control.value.addedSugars!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleAddedSugarsOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Added Sugars</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.addedSugars"
+              [formGroupName]="'addedSugars'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleAddedSugarsOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleAddedSugarsOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+
+  </article>
+
+
+
 </section>

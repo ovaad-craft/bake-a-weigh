@@ -27,10 +27,16 @@ import { ElementWeightType } from '@bake-a-weigh/site-types';
 import { WeightComponent } from '../weight/weight.component';
 import { createElementWeightGroup } from '../../../views/ingredient-editor/form-generator/primatives/multi-value/element-weight-group/element-weight-group';
 import { createTotalSugarsGroup } from '../../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/total-carbohydrates-group/total-sugars-group/total-sugars-group';
+import { TotalSugarsComponent } from './total-sugars/total-sugars.component';
 
 @Component({
   selector: 'lib-total-carbohydrates-group',
-  imports: [CommonModule, ReactiveFormsModule, WeightComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    WeightComponent,
+    TotalSugarsComponent
+  ],
   templateUrl: './total-carbohydrates-group.component.html',
   styleUrls: ['./total-carbohydrates-group.component.css'],
 })
@@ -53,6 +59,7 @@ export class TotalCarbohydratesGroupComponent implements OnInit {
   
   TotalSugarsToggle = false;
   PreviousTotalSugarsAmount!   : ElementWeightType;
+  NewTotalSugarsEntry = false;
   
   SugarAlcoholsToggle = false;
   PreviousSugarAlcoholsAmount! : ElementWeightType;
@@ -73,9 +80,25 @@ export class TotalCarbohydratesGroupComponent implements OnInit {
       
       const group : FormGroup< ElementWeightGroupType > = createElementWeightGroup( { amount : 0, weightType : 'g'} );
 
-      if( type === 'dietary')  {  this.Control.addControl( 'dietaryFiber', group );  }
+      if( type === 'dietary')  {
+        
+        this.Control.addControl( 'dietaryFiber', group );
+        this.DietaryFiberToggle = true;
 
-      if( type === 'soluble' ) {  this.Control.addControl( 'solubleFiber', group );  }
+      }
+
+      if( type === 'soluble' ) {
+        
+        this.Control.addControl( 'solubleFiber', group );
+        this.SolubleFiberToggle = true;
+
+      }
+
+      if( type === 'alcohol' ) {
+
+        this.Control.addControl( 'sugarAlcohols', group );
+        this.SugarAlcoholsToggle = true;
+      }
       
     }
 
@@ -88,6 +111,8 @@ export class TotalCarbohydratesGroupComponent implements OnInit {
       });
 
       this.Control.addControl( 'totalSugars', group );
+      this.NewTotalSugarsEntry = true;
+      this.TotalSugarsToggle   = true;
 
     }
   
@@ -104,7 +129,7 @@ export class TotalCarbohydratesGroupComponent implements OnInit {
     
   toggleControlOff( update : boolean ) : void {
    
-    if( !update ) {
+    if( !update && this.PreviousTotalAmount ) {
   
       if( this.Control.controls.totalAmount.controls.percentage === undefined && this.PreviousTotalAmount.percentage !== undefined) {
         

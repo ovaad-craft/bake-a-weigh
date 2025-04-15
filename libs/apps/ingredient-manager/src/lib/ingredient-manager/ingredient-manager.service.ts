@@ -2609,7 +2609,7 @@ const DemoIngredients : IngredientProfile[] = [
         amount : 0,
         weightType : 'g'
       },
-      totalCarbohydrates : {
+      /*totalCarbohydrates : {
         totalAmount : {
           amount : 17,
           weightType : 'g',
@@ -2631,7 +2631,7 @@ const DemoIngredients : IngredientProfile[] = [
             percentage : 0
           }
         }
-      },
+      },*/
       protein : {
         totalAmount : {
           amount: 0,
