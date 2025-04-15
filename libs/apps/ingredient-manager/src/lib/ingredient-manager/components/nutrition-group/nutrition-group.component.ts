@@ -38,6 +38,8 @@ import { TotalFatComponent } from './total-fat/total-fat.component';
 import { CholesterolComponent } from './cholesterol/cholesterol.component';
 import { createElementWeightGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/element-weight-group/element-weight-group';
 import { SodiumComponent } from './sodium/sodium.component';
+import { TotalCarbohydratesGroupComponent } from './total-carbohydrates-group/total-carbohydrates-group.component';
+import { createTotalCarbohydratesGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/total-carbohydrates-group/total-carbohydrates-group';
 
 
 
@@ -56,6 +58,7 @@ import { SodiumComponent } from './sodium/sodium.component';
     TotalFatComponent,
     CholesterolComponent,
     SodiumComponent,
+    TotalCarbohydratesGroupComponent,
     VitaminsAndMineralsListComponent
 ],
     templateUrl : './nutrition-group.component.html',
@@ -75,9 +78,12 @@ export class NutritionGroupComponent implements OnInit {
     SodiumToggle   = false;
     NewSodiumEntry = false;
 
+    TotalCarbohydratesToggle   = false;
+    NewTotalCarbohydratesEntry = false;
+
     ProteinToggle  = false;
 
-    TotalCarbohydratesToggle  = false;
+
     VitaminsAndMineralsToggle = false;
 
     ServingAndCalorieControlToggle = false;
@@ -253,6 +259,32 @@ export class NutritionGroupComponent implements OnInit {
         this.NewSodiumEntry = false;
         this.SodiumToggle   = false;
         this.Control.removeControl( 'sodium' );
+
+    }
+    
+    
+    
+    addTotalCarbohydrates() : void {
+
+        this.Control.addControl( 'totalCarbohydrates', createTotalCarbohydratesGroup({
+
+            totalAmount : {
+                amount : 0,
+                weightType : 'g'
+            }
+
+        }));
+
+        this.NewTotalCarbohydratesEntry = true;
+        this.TotalCarbohydratesToggle   = true;
+
+    }
+
+    removeTotalCarbohydrates() : void {
+
+        this.NewTotalCarbohydratesEntry = false;
+        this.TotalCarbohydratesToggle   = false;
+        this.Control.removeControl( 'totalCarbohydrates' );
 
     }
 

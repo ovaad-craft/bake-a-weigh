@@ -33,8 +33,7 @@ import { createElementWeightGroup } from '../../../views/ingredient-editor/form-
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    WeightComponent,
-    NumberInputComponent
+    WeightComponent
   ],
   templateUrl: './total-fat.component.html',
   styleUrls: ['./total-fat.component.css'],

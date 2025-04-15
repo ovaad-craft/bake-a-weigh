@@ -1,3 +1,378 @@
 <section class="mainContainer" [formGroup]="Control">
-  <p>{{ Control.value | json }}</p>
+  
+  @if( !ControlToggle ){
+
+    <article class="displayContainer">
+
+        <h5 class="amountDisplay">
+
+            Total Carbohydrates
+            {{ Control.value.totalAmount?.amount }}{{ Control.value.totalAmount?.weightType }}
+            <span *ngIf="Control.value.totalAmount?.percentage !== undefined">  {{ Control.value.totalAmount?.percentage }}%</span>
+            
+        </h5>
+
+        <button type="button" class="editButton" (click)="toggleControlOn()">edit</button>
+
+    </article>
+
+  }
+
+  @else {
+
+    <article class="controlContainer">
+
+      <h5 class="amountDisplay">Total Carbohydrates</h5>
+      
+      <lib-weight
+        ngDefaultControl
+        [Control]="Control.controls.totalAmount"
+        [formGroupName]="'totalAmount'"
+        class="weightComponent"
+      />
+
+      <article class="controlButtonContainer">
+
+        <button
+          type="button"
+          class="controlButton"
+          (click)="toggleControlOff( true )"
+        >
+          save
+        </button>
+
+
+
+        <button
+          type="button"
+          class="controlButton"
+          (click)="toggleControlOff( false )"
+        >
+          cancel
+        </button>
+
+      </article>
+
+    </article>
+
+  }
+
+
+
+  <article class="fatTypesContainer">
+
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.dietaryFiber ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Dietary Fiber</h4>
+          <button class="addButton" type="button" (click)="addCarbohydrateType( 'dietary' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !DietaryFiberToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Dietary Fiber
+                {{ Control.value.dietaryFiber!.amount }}{{ Control.value.dietaryFiber!.weightType }}
+                <span *ngIf="Control.value.dietaryFiber!.percentage !== undefined">  {{ Control.value.dietaryFiber!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleDietaryFiberOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Dietary Fiber</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.dietaryFiber"
+              [formGroupName]="'dietaryFiber'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleDietaryFiberOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleDietaryFiberOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+    
+    
+    
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.solubleFiber ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Soluble Fiber</h4>
+          <button class="addButton" type="button" (click)="addCarbohydrateType( 'soluble' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !SolubleFiberToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Soluble Fiber
+                {{ Control.value.solubleFiber!.amount }}{{ Control.value.solubleFiber!.weightType }}
+                <span *ngIf="Control.value.solubleFiber!.percentage !== undefined">  {{ Control.value.solubleFiber!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleSolubleFiberOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Soluble Fiber</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.solubleFiber"
+              [formGroupName]="'solubleFiber'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleSolubleFiberOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleSolubleFiberOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+    
+    
+    
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.totalSugars ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Total Sugars</h4>
+          <button class="addButton" type="button" (click)="addCarbohydrateType( 'totalSugars' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !TotalSugarsToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Total Sugars
+                {{ Control.value.totalSugars?.totalAmount!.amount }}{{ Control.value.totalSugars?.totalAmount!.weightType }}
+                <span *ngIf="Control.value.totalSugars?.totalAmount!.percentage !== undefined">  {{ Control.value.totalSugars?.totalAmount!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleTotalSugarsOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Total Sugars</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.totalSugars"
+              [formGroupName]="'totalSugars'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleTotalSugarsOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleTotalSugarsOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+    
+    
+    
+    <article class="fatContainer">
+  
+      @if ( !Control.controls.sugarAlcohols ) {
+
+        <article class="addFatContainer">
+
+          <h4 class="fatTypeTitle">Polyunsaturated Fat</h4>
+          <button class="addButton" type="button" (click)="addCarbohydrateType( 'alcohol' )">add</button>
+
+        </article>
+
+      }
+
+      @else {
+
+        @if ( !SugarAlcoholsToggle ) {
+
+          <article class="displayContainer">
+
+            <h5 class="fatTypeTitle">
+    
+                Polyunsaturated Fat
+                {{ Control.value.sugarAlcohols!.amount }}{{ Control.value.sugarAlcohols!.weightType }}
+                <span *ngIf="Control.value.sugarAlcohols!.percentage !== undefined">  {{ Control.value.sugarAlcohols!.percentage }}%</span>
+                
+            </h5>
+    
+            <button type="button" class="editButton" (click)="toggleSugarAlcoholsOn()">edit</button>
+      
+          </article>
+    
+        }
+
+        @else {
+
+          <article class="controlContainer">
+
+            <h5 class="amountDisplay">Sugar Alcohols</h5>
+            
+            <lib-weight
+              ngDefaultControl
+              [Control]="Control.controls.sugarAlcohols"
+              [formGroupName]="'sugarAlcohols'"
+              class="weightComponent"
+            />
+      
+            <article class="controlButtonContainer">
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleSugarAlcoholsOff( true )"
+              >
+                save
+              </button>
+      
+      
+      
+              <button
+                type="button"
+                class="controlButton"
+                (click)="toggleSugarAlcoholsOff( false )"
+              >
+                cancel
+              </button>
+      
+            </article>
+      
+          </article>
+
+        }
+
+      }
+  
+    </article>
+
+  </article>
+
+
+
 </section>

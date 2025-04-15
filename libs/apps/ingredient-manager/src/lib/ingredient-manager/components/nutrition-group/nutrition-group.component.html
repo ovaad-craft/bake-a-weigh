@@ -197,6 +197,38 @@
 
 
     </article>
+    
+    
+    
+    <article class="nutrientContainer">
+        
+        
+        @if( TotalCarbohydratesToggle ){
+            
+            <article class="controlContainer">
+
+                <lib-total-carbohydrates-group
+                    ngDefaultControl
+                    [Control]="Control.controls.totalCarbohydrates!"
+                    [NewEntry]="NewTotalCarbohydratesEntry"
+                />
+                
+                <button type="button" class="controlButton" (click)="removeTotalCarbohydrates()">delete total carbohydrates</button>
+                
+            </article>
+            
+            
+        }
+
+        @else {
+            
+            <h4 class="propInfotitle">Total Carbohydrates</h4>
+            <button class="controlButton" type="button" (click)="addTotalCarbohydrates()">add</button>
+
+        }
+
+
+    </article>
 
 
     
