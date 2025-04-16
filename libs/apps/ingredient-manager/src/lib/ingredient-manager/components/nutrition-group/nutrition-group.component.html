@@ -229,6 +229,38 @@
 
 
     </article>
+    
+    
+    
+    <article class="nutrientContainer">
+        
+        
+        @if( ProteinToggle ){
+            
+            <article class="controlContainer">
+
+                <lib-protein-group
+                    ngDefaultControl
+                    [Control]="Control.controls.protein!"
+                    [NewEntry]="NewProteinEntry"
+                />
+                
+                <button type="button" class="controlButton" (click)="removeProtein()">delete protein</button>
+                
+            </article>
+            
+            
+        }
+
+        @else {
+            
+            <h4 class="propInfotitle">Protein</h4>
+            <button class="controlButton" type="button" (click)="addProtein()">add</button>
+
+        }
+
+
+    </article>
 
 
     

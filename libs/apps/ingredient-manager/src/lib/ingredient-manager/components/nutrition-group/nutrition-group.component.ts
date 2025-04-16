@@ -40,6 +40,8 @@ import { createElementWeightGroup } from '../../views/ingredient-editor/form-gen
 import { SodiumComponent } from './sodium/sodium.component';
 import { TotalCarbohydratesGroupComponent } from './total-carbohydrates-group/total-carbohydrates-group.component';
 import { createTotalCarbohydratesGroup } from '../../views/ingredient-editor/form-generator/primatives/multi-value/nutrition/total-carbohydrates-group/total-carbohydrates-group';
+import { ProteinGroupComponent } from './protein-group/protein-group.component';
+import { WeightComponent } from "./weight/weight.component";
 
 
 
@@ -59,7 +61,9 @@ import { createTotalCarbohydratesGroup } from '../../views/ingredient-editor/for
     CholesterolComponent,
     SodiumComponent,
     TotalCarbohydratesGroupComponent,
-    VitaminsAndMineralsListComponent
+    ProteinGroupComponent,
+    VitaminsAndMineralsListComponent,
+    WeightComponent
 ],
     templateUrl : './nutrition-group.component.html',
     styleUrls   : [ './nutrition-group.component.css' ]
@@ -81,7 +85,8 @@ export class NutritionGroupComponent implements OnInit {
     TotalCarbohydratesToggle   = false;
     NewTotalCarbohydratesEntry = false;
 
-    ProteinToggle  = false;
+    ProteinToggle   = false;
+    NewProteinEntry = false;
 
 
     VitaminsAndMineralsToggle = false;
@@ -285,6 +290,30 @@ export class NutritionGroupComponent implements OnInit {
         this.NewTotalCarbohydratesEntry = false;
         this.TotalCarbohydratesToggle   = false;
         this.Control.removeControl( 'totalCarbohydrates' );
+
+    }
+    
+    
+    
+    addProtein() : void {
+
+        this.Control.addControl( 'protein', createElementWeightGroup({
+
+            amount : 0,
+            weightType : 'g'
+
+        }));
+
+        this.NewProteinEntry = true;
+        this.ProteinToggle   = true;
+
+    }
+
+    removeProtein() : void {
+
+        this.NewProteinEntry = false;
+        this.ProteinToggle   = false;
+        this.Control.removeControl( 'protein' );
 
     }
 
