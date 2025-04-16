@@ -120,10 +120,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [ 'Honey' ]
     },
@@ -202,10 +200,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 3,
-          weightType : 'g'
-        }
+        amount : 3,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -272,10 +268,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [ 'Sea Salt', 'Magnesium Carbonate' ]
     },
@@ -333,10 +327,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [ 'Black Sesame Seed Oil' ]
     },
@@ -404,10 +396,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -505,10 +495,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 1,
-          weightType : 'g'
-        }
+        amount : 1,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -606,10 +594,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 1,
-          weightType : 'g'
-        }
+        amount : 1,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -677,10 +663,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -734,10 +718,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [ 'Monkfruit Extract', 'Erythritol' ]
     },
@@ -796,10 +778,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -849,10 +829,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [
         'Corn Starch',
@@ -862,7 +840,7 @@ const DemoIngredients : IngredientProfile[] = [
 
       ]
     },
-    locations : ['']
+    locations : ['powders_category_id1100011']
   },
   {
     name : '100% Organic Sesame Seed',
@@ -895,10 +873,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : ['Certified 100% Organic Sesame Seed']
     },
@@ -943,10 +919,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : ['Dextrose', 'Stevia Leaf Extract']
     },
@@ -998,10 +972,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [
         'Organic Agave Inulin',
@@ -1075,10 +1047,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -1178,10 +1148,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -1258,10 +1226,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : ['Cane Sugar']
     },
@@ -1333,10 +1299,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 6,
-          weightType : 'g'
-        }
+        amount : 6,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -1494,10 +1458,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 5,
-          weightType : 'g'
-        }
+        amount : 5,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -1633,10 +1595,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 5,
-          weightType : 'g'
-        }
+        amount : 5,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -1726,10 +1686,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : ['Extra Virgin Olive Oil']
     },
@@ -1806,11 +1764,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount :{
-          amount : 8,
-          weightType : 'g',
-          percentage : 16
-        }
+        amount : 8,
+        weightType : 'g',
+        percentage : 16
       },
       vitaminsAndMinerals : [
         {
@@ -1893,10 +1849,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       ingredients : [
         'Pasturized Cream',
@@ -1978,11 +1932,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g',
-          percentage : 0
-        }
+        amount : 0,
+        weightType : 'g',
+        percentage : 0
       },
       vitaminsAndMinerals : [
         {
@@ -2099,10 +2051,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 7,
-          weightType : 'g'
-        }
+        amount : 7,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -2214,11 +2164,9 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 5,
-          weightType : 'g',
-          percentage : 10
-        }
+        amount : 5,
+        weightType : 'g',
+        percentage : 10
       },
       vitaminsAndMinerals : [
         {
@@ -2343,10 +2291,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 0,
-          weightType : 'g'
-        }
+        amount : 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -2534,10 +2480,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount : 4,
-          weightType : 'g'
-        }
+        amount : 4,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
@@ -2633,10 +2577,8 @@ const DemoIngredients : IngredientProfile[] = [
         }
       },
       protein : {
-        totalAmount : {
-          amount: 0,
-          weightType : 'g'
-        }
+        amount: 0,
+        weightType : 'g'
       },
       vitaminsAndMinerals : [
         {
