@@ -1,0 +1,84 @@
+:host{
+    display: grid;
+    justify-items: center;
+    width: 100%;
+}
+
+.mainContainer{
+
+    display : grid;
+    row-gap : var( --micro-2-4 );
+    width: 100%;
+}
+
+.displayContainer{
+    display: grid;
+    width : max-content;
+    place-self: center;
+    grid-template-columns: max-content auto;
+    column-gap: var( --micro-2-4 );
+}
+
+.amountDisplay{
+    font-size : var( --text-subtitle-1 );
+    text-align: center;
+}
+
+.controlButton{
+    height: min-content;
+    font-size: var( --text-subtitle-1 );
+    padding : var( --line-narrow ) var( --line-bold );
+}
+
+.editButton{
+    font-size: var( --text-caption-1 );
+    height: min-content;
+    align-self: center;
+    justify-self: left;
+    padding : var(--line-fine ) var( --line-narrow );
+}
+
+.controlContainer{
+    display: grid;
+    width: 100%;
+    row-gap: var( --xTiny-1-4 );
+}
+
+.controlButtonContainer{
+    display: grid;
+    column-gap: var( --line-wide );
+    grid-template-columns: repeat(2, auto);
+    width : max-content;
+    justify-self : center;
+}
+
+
+
+.fatTypesContainer{
+    display: grid;
+    row-gap: var( --xTiny-1-4 );
+}
+
+.fatContainer{
+    display: grid;
+    row-gap: var( --xTiny-1-4 );
+}
+
+.fatTypeTitle{
+    font-weight: 500;
+    text-align: center;
+    font-size : var( --text-widget-2 );
+}
+
+.addFatContainer{
+    display: grid;
+    row-gap: var( --line-wide );
+}
+
+.addButton{
+    width : max-content;
+    height: min-content;
+    font-size : var( --text-widget-2 );
+    justify-self: center;
+    padding : var( --line-thick ) var( --line-wide );
+}
