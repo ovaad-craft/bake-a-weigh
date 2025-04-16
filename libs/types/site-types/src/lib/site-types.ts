@@ -58,7 +58,7 @@ export interface Nutrition{
   cholesterol?        : ElementWeightType;
   sodium?             : ElementWeightType;
   totalCarbohydrates? : TotalCarbohydratesCategory;
-  protein?            : NutrientCategory;
+  protein?            : ElementWeightType;
   vitaminsAndMinerals?: Nutrient[];
   ingredients : string[];
 }

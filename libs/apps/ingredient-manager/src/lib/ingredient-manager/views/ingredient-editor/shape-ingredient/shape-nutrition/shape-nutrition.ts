@@ -20,8 +20,12 @@ export function shapeNutrition( nutrition : FormGroup< NutritionGroup >[ 'value'
     if ( nutrition.totalFat    ) { item.totalFat    = nutrition.totalFat    as TotalFatCategory;  }
     if ( nutrition.cholesterol ) { item.cholesterol = nutrition.cholesterol as ElementWeightType; }
     if ( nutrition.sodium      ) { item.sodium      = nutrition.sodium      as ElementWeightType; }
-    if ( nutrition.protein     ) { item.protein     = shapeNutrientCategory( nutrition.protein     ); }
-    if ( nutrition.totalCarbohydrates  ) { item.totalCarbohydrates = nutrition.totalCarbohydrates as TotalCarbohydratesCategory; }
+    if ( nutrition.protein     ) { item.protein     = nutrition.protein     as ElementWeightType; }
+    if ( nutrition.totalCarbohydrates  ) {
+        
+        item.totalCarbohydrates = nutrition.totalCarbohydrates as TotalCarbohydratesCategory;
+
+    }
     if ( nutrition.vitaminsAndMinerals ) {
 
         item.vitaminsAndMinerals = [];

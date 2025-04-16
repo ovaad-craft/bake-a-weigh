@@ -39,7 +39,7 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
         group.addControl( 'totalCarbohydrates', createTotalCarbohydratesGroup( defaultData.totalCarbohydrates ) );
     }
     if( defaultData?.protein ){
-        group.addControl( 'protein', createNutrientCategoryGroup( defaultData.protein ) );
+        group.addControl( 'protein', createElementWeightGroup( defaultData.protein ) );
     }
     if( defaultData?.vitaminsAndMinerals ){
         group.addControl( 'vitaminsAndMinerals', createVitaminsAndMineralsArray( defaultData.vitaminsAndMinerals ) );

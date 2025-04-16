@@ -125,7 +125,7 @@ export interface NutritionGroup {
     cholesterol?         : FormGroup< ElementWeightGroupType >;
     sodium?              : FormGroup< ElementWeightGroupType >;
     totalCarbohydrates?  : FormGroup< TotalCarbohydratesGroup >;
-    protein?             : FormGroup< NutrientCategoryGroup >;
+    protein?             : FormGroup< ElementWeightGroupType >;
     vitaminsAndMinerals? : FormGroup< FormArrayGroupList< NutrientGroupType > >;
     ingredients          : FormGroup< FormArrayControlList< string > >;
 
