@@ -20,7 +20,7 @@ USER STORIES :
 
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule }             from '@angular/common';
-import { WeightType }               from '@bake-a-weigh/site-types';
+import { Nutrient, WeightType }               from '@bake-a-weigh/site-types';
 import { NutrientGroupType }        from '../../../views/ingredient-editor/form-generator/form-types';
 import { FormControl, FormGroup, ReactiveFormsModule }                    from '@angular/forms';
 import { NumberInputComponent, SelectButtonsInputComponent, TextInputComponent } from '@form-controls';
@@ -46,6 +46,7 @@ export class ElementWeightComponent implements OnInit {
 
   ControlToggle = false;
   PercentageToggle = false;
+  PreviousAmount!   : Nutrient;
 
 
 
@@ -65,9 +66,36 @@ export class ElementWeightComponent implements OnInit {
 
 
 
-  toggleControlOn() : void { this.ControlToggle = true; }
+  toggleControlOn() : void {
+    
+    this.PreviousAmount = this.Control.value as Nutrient;
+    this.ControlToggle = true;
 
-  toggleControlOff( update : boolean ) : void { this.ControlToggle = false; }
+  }
+
+  toggleControlOff( update : boolean ) : void {
+
+    if( !update && this.PreviousAmount !== undefined ) {
+
+      if( this.Control.controls.percentage === undefined && this.PreviousAmount.percentage !== undefined) {
+            
+        this.Control.addControl( 'percentage', new FormControl< number | null >( null) );     
+              
+      }
+
+      if( this.Control.controls.percentage !== undefined && this.PreviousAmount.percentage === undefined ){
+
+        this.Control.removeControl( 'percentage' );
+        
+      }
+
+      this.Control.setValue( this.PreviousAmount );
+    
+    }
+    
+    this.ControlToggle = false;
+
+  }
 
 
 
