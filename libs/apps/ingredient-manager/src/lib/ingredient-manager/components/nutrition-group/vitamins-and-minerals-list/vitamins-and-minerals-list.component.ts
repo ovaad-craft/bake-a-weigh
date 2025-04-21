@@ -18,7 +18,7 @@ USER STORIES :
 
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormArrayGroupList, NutrientGroupType } from '../../../views/ingredient-editor/form-generator/form-types';
@@ -31,9 +31,31 @@ import { ElementWeightComponent } from '../element-weight/element-weight.compone
   templateUrl: './vitamins-and-minerals-list.component.html',
   styleUrls: ['./vitamins-and-minerals-list.component.css'],
 })
-export class VitaminsAndMineralsListComponent {
+export class VitaminsAndMineralsListComponent implements OnInit {
 
   @Input() Control! : FormGroup< FormArrayGroupList< NutrientGroupType > >;
+  @Input() NewEntry = false;
+
+  ControlToggle = false;
+
+
+
+  ngOnInit(): void {
+    
+    if( this.Control.controls.list.length === 0 ) {
+      this.addItem();
+      this.ControlToggle = true;
+
+    }
+    //if( this.NewEntry ) { this.ControlToggle = true; }
+
+  }
+
+
+
+  openControl() : void { this.ControlToggle = true; }
+
+  closeControl() : void { this.ControlToggle = false; }
 
 
 

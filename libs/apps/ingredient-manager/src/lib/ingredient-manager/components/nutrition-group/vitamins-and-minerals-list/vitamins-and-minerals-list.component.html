@@ -1,15 +1,15 @@
 <section class="mainContainer" [formGroup]="Control">
 
-    <h5 class="title">vitamins and minerals</h5>
+    <!--<h5 class="title">vitamins and minerals</h5>-->
 
     <article class="listContainer" [formArrayName]="'list'">
 
         @for (a of Control.controls.list.controls; track $index) {
 
             <lib-element-weight
-                [Control]="a"
                 ngDefaultControl
                 [formGroupName]="$index"
+                [Control]="a"
             />
         }
 
