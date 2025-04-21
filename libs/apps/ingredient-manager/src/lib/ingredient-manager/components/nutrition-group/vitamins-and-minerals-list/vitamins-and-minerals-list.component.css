@@ -2,3 +2,21 @@
     display: grid;
     place-items: center;
 }
+
+.mainContainer{
+    display: grid;
+    row-gap: var( --xTiny-1-4 );
+}
+
+.listContainer{
+    display: grid;
+    row-gap: var( --xTiny-1-4 );
+}
+
+.addButton{
+    width : max-content;
+    height: min-content;
+    font-size : var( --text-widget-2 );
+    justify-self: center;
+    padding : var( --line-thick ) var( --line-wide );
+}

@@ -1,7 +1,5 @@
 <section class="mainContainer" [formGroup]="Control">
 
-    <!--<h5 class="title">vitamins and minerals</h5>-->
-
     <article class="listContainer" [formArrayName]="'list'">
 
         @for (a of Control.controls.list.controls; track $index) {
@@ -15,6 +13,6 @@
 
     </article>
     
-    <button type="button" (click)="addItem()">add item</button>
+    <button class="addButton" type="button" (click)="addItem()">add item</button>
 
 </section>
