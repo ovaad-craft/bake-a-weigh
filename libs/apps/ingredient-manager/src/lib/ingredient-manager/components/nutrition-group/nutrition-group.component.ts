@@ -323,7 +323,9 @@ export class NutritionGroupComponent implements OnInit {
 
         if( !this.Control.controls.vitaminsAndMinerals ) {
 
+            this.VitaminsAndMineralsToggle = true;
             this.Control.addControl( 'vitaminsAndMinerals', createVitaminsAndMineralsArray() );
+            //console.log(this.Control);
             
         }
 
@@ -332,9 +334,11 @@ export class NutritionGroupComponent implements OnInit {
 
 
     removeVitamins() : void {
-
-        if( this.Control.controls.vitaminsAndMinerals ) {
-
+        
+        if( this.Control.controls.vitaminsAndMinerals !== undefined ) {
+            
+            //console.log(this.Control);
+            this.VitaminsAndMineralsToggle = false;
             this.Control.removeControl( 'vitaminsAndMinerals' );
 
         }

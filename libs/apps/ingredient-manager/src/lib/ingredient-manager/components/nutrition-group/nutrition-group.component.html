@@ -260,6 +260,44 @@
         }
 
 
+
+        
+        
+    </article>
+    
+    
+    
+    <article class="nutrientContainer">
+
+        
+        
+        <h4 class="propInfotitle">Vitamins and Minerals</h4>
+        
+        @if( VitaminsAndMineralsToggle ){
+            
+            <article class="controlContainer">
+
+                <lib-vitamins-and-minerals-list
+                    ngDefaultControl
+                    [formGroupName]="'vitaminsAndMinerals'"
+                    [Control]="Control.controls.vitaminsAndMinerals!"
+                />
+                
+                <button type="button" class="controlButton" (click)="removeVitamins()">delete vitamins and minerals</button>
+                
+            </article>
+            
+            
+        }
+
+        @else {
+            
+            <button class="controlButton" type="button" (click)="addVitamins()">add</button>
+
+        }
+
+        
+        
     </article>
 
 
