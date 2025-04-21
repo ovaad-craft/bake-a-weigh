@@ -1,51 +1,118 @@
 <section class="mainContainer" [formGroup]="Control">
 
+    @if ( !ControlToggle ) {
+
+        <article class="displayContainer">
+
+            <h5 class="amountDisplay">
     
-
-    <lib-text-input
-        [Control]="Control.controls.name"
-        ngDefaultControl
-        [formControlName]="'name'"
-        [label]="'name'"
-        [InputSize]="22"
-    />
-
-
-    <lib-number-input
-        [Control]="Control.controls.amount"
-        ngDefaultControl
-        [formControlName]="'amount'"
-        [Label]="'amount'"
-        [InputSize]="5"
-    />
-
-    <lib-select-input
-        [OptionList]="WeightOptions"
-        [Control]="Control.controls.weightType"
-        ngDefaultControl
-        [formControlName]="'weightType'"
-        [Label]="'weight'"
-    />
+                {{ Control.value.name }}
+                {{ Control.value.amount }}
+                {{ Control.value.weightType }}
+                <span *ngIf="Control.value.percentage !== undefined">  {{ Control.value.percentage }}%</span>
+                
+            </h5>
     
-    <article class="percentageContainer">
+            <button type="button" class="editButton" (click)="toggleControlOn()">edit</button>
+    
+        </article>
 
-        @if ( PercentageToggle ) {
+    }
 
-            <lib-number-input
-                [Control]="Control.controls.percentage!"
+    @else {
+
+        <lib-text-input
+            ngDefaultControl
+            [formControlName]="'name'"
+            [Control]="Control.controls.name"
+            [label]="'name'"
+            [InputSize]="22"
+            [FontSize]="'var( --text-title-3 )'"
+        />
+
+        <article class="weightContainer">
+
+            <article class="amountContainer">
+    
+                <lib-number-input
+                    ngDefaultControl
+                    [formControlName]="'amount'"
+                    [Control]="Control.controls.amount"
+                    [Label]="'amount'"
+                    [InputSize]="5"
+                    [FontSize]="'var( --text-title-3 )'"
+                />
+    
+                <h3 class="weightSelectionDisplay">{{ Control.value.weightType }}</h3>
+                
+            </article>
+
+            <lib-select-buttons-input
                 ngDefaultControl
-                [formControlName]="'percentage'"
-                [Label]="'percent'"
+                [formControlName]="'weightType'"
+                [Control]="Control.controls.weightType"
+                [OptionType]="WeightType"
+                [OptionList]="WeightOptions"
+                [FontSize]="'var( --text-article-2 )'"
+                class="selectContainer"
             />
 
-            <button type="button" (click)="removePercentage()">remove</button>
+        </article>
 
-        }
-        @else {
+        
+    
+        
+        <article class="percentageContainer">
+    
+            @if ( PercentageToggle ) {
+    
+                <lib-number-input
+                    [Control]="Control.controls.percentage!"
+                    ngDefaultControl
+                    [formControlName]="'percentage'"
+                    [Label]="'%'"
+                    [LabelFontSize]="'var( --text-article-1 )'"
+                    [InputSize]="4"
+                    [FontSize]="'var( --text-title-3 )'"
+                />
+    
+                <button type="button" (click)="removePercentage()">remove</button>
+    
+            }
+            @else {
+    
+                <button type="button" (click)="addPercentage()">add percentage</button>
+            }
+    
+        </article>
 
-            <button type="button" (click)="addPercentage()">percentage</button>
-        }
 
-    </article>
+
+        <article class="controlButtonContainer">
+
+            <button
+              type="button"
+              class="controlButton"
+              (click)="toggleControlOff( true )"
+            >
+              save
+            </button>
+    
+    
+    
+            <button
+              type="button"
+              class="controlButton"
+              (click)="toggleControlOff( false )"
+            >
+              cancel
+            </button>
+    
+          </article>
+
+    }
+
+    
+
 
 </section>
