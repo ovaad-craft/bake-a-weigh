@@ -2,7 +2,6 @@ import { FormControl, FormGroup }         from "@angular/forms";
 import { Nutrition }                      from "@bake-a-weigh/site-types";
 import { NutritionGroup }                 from "../../../../form-types";
 import { createElementWeightGroup }       from "../../element-weight-group/element-weight-group";
-import { createNutrientCategoryGroup }    from "../nutrient-category-group/nutrient-category-group";
 import { createIngredientArray }          from "../../ingredient-list/ingredient-list";
 import { createVitaminsAndMineralsArray } from "../vitamins-minerals-list/vitamins-minerals-list";
 import { createTotalFatCategoryGroup } from "../total-fat-group/total-fat-group";
@@ -18,9 +17,9 @@ export function createNutritionGroup( defaultData? : Nutrition ) : FormGroup< Nu
 
     const group : FormGroup< NutritionGroup > = new FormGroup< NutritionGroup >({
 
-        servingSize         : createElementWeightGroup(         defaultData?.servingSize ?? undefined ),
-        ingredients         : createIngredientArray(            defaultData?.ingredients ?? undefined ),
-        calories            : new FormControl< number | null >( defaultData?.calories    ?? null      )
+        servingSize : createElementWeightGroup(         defaultData?.servingSize ?? undefined ),
+        ingredients : createIngredientArray(            defaultData?.ingredients ?? undefined ),
+        calories    : new FormControl< number | null >( defaultData?.calories    ?? null      )
 
     });
 
